@@ -1,2 +1,2 @@
-# sgn
-Sistema de Gestão de Núcleos
+# Sistema de Gestão de Núcleos
+
