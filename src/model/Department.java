@@ -5,6 +5,7 @@ public class Department {
     private String field;
     private String description;
     private Professor head;
+<<<<<<< HEAD
 
     public Department(Long id, String field, String description, Professor head) {
         this.id = id;
@@ -41,4 +42,6 @@ public class Department {
 
     public void setHead(Professor head) { this.head = head; }
 
+=======
+>>>>>>> c88b6ceda43d6398c48ecabbcc255c8638169ad2
 }

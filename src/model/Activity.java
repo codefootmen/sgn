@@ -1,7 +1,6 @@
 package model;
 
-public class Program {
+public class Activity {
     private Long id;
     private String name;
-    private Department department;
 }

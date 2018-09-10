@@ -1,7 +1,8 @@
 package model;
 
-public class Program {
+public class RoomType {
     private Long id;
     private String name;
-    private Department department;
+    private String description;
+
 }
