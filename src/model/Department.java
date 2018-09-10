@@ -37,11 +37,8 @@ public class Department {
         this.description = description;
     }
 
-    public Professor getHead() {
-        return head;
-    }
+    public Professor getHead() { return head; }
 
-    public void setHead(Professor head) {
-        this.head = head;
-    }
+    public void setHead(Professor head) { this.head = head; }
+
 }
