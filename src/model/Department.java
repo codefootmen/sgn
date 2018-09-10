@@ -1,4 +1,4 @@
-package controller;
+package model;
 
 public class Department {
     private Long id;

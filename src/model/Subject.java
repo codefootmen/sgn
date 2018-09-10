@@ -1,4 +1,4 @@
-package controller;
+package model;
 
 public class Subject {
     private Long id;
