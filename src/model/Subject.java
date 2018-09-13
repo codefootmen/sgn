@@ -5,4 +5,5 @@ public class Subject {
     private String name;
     private Integer quantityOfCredits;
     private Program program;
+    private RoomType roomType;
 }
