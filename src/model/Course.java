@@ -5,4 +5,6 @@ public class Course {
     private Boolean semester;
     private Integer year;
     private Subject subject;
+    private Professor professor;
+    private Room room;
 }
