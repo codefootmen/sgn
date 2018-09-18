@@ -2,3 +2,5 @@
 **/.idea/tasks.xml
 *.iws
 /out/
+**/.idea/dataSources*
+**/.idea/dataSources/
