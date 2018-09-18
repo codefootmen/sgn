@@ -11,11 +11,3 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_DATABASE=sgn
-  app:
-    image: phpmyadmin/phpmyadmin:latest
-    links:
-      - db
-    ports:
-      - 80:80
-    environment:
-      - PMA_ARBITRARY=1
