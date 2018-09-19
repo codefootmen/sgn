@@ -1,5 +1,8 @@
 package model;
 
+import lombok.Data;
+
+@Data
 public class Campus {
     private Long id;
     private String name;

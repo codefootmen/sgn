@@ -1,5 +1,8 @@
 package model;
 
+import lombok.Data;
+
+@Data
 public class Course {
     private Long id;
     private Boolean semester;
