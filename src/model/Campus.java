@@ -1,8 +1,10 @@
 package model;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 @Data
+@Accessors(chain = true)
 public class Campus {
     private Long id;
     private String name;
