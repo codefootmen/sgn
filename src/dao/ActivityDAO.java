@@ -20,14 +20,12 @@ public class ActivityDAO implements DAO<Activity, Long> {
                             "id_activity = ?, "+
                             "name = ?, "+
                             "activityType = ?, "+
-                            "area = ? "+
-                            "professor = ?, ");
+                            "area = ? ");
 
             statement.setLong(1, activity.getId());
             statement.setString(2, activity.getName());
             statement.setObject(3, activity.getActivity());
             statement.setString(4, activity.getArea());
-            statement.setObject(5, activity.getProfessor());
             statement.execute();
             Database.closeConnection(connection, statement);
             return true;
@@ -59,13 +57,11 @@ public class ActivityDAO implements DAO<Activity, Long> {
                             "name = ?, "+
                             "activityType= ?, "+
                             "area = ? "+
-                            "professor = ?, "+
                             "WHERE id_activity = ?"
             );
             statement.setString(1, activity.getName());
             statement.setObject(2, activity.getActivity());
             statement.setString(3,activity.getArea());
-            statement.setObject(4, activity.getProfessor());
             statement.execute();
             Database.closeConnection(connection, statement);
             return true;
@@ -101,8 +97,7 @@ public class ActivityDAO implements DAO<Activity, Long> {
                 .setName(result.getString("name"))
                 .setActivityType(result.getString("activity_type"))
                 .setArea(result.getLong("area"))
-                .setProfessor(result.getString("professor"))
-                .setInstitution(new InstitutionDAO().find(result.getLong("cnpj")));
+                .setProfessor(new ProfessorDAO().find(result.getLong("siape")));
     }
 
     private List<Activity> search(String sql) {
