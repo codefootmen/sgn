@@ -1,7 +1,6 @@
 package dao;
 
 import model.Building;
-import model.Campus;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
