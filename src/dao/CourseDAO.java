@@ -105,9 +105,9 @@ public class CourseDAO implements DAO<Course, Long> {
                 .setId(result.getLong("id_course"))
                 .setSemester(result.getBoolean("semester"))
                 .setYear(result.getInt("year"))
-                .setSubject(new SubjectDAO(result.getLong("id_subject")))
-                .setProfessor(new ProfessorDAO(result.getLong("siape")))
-                .setRoom(new RoomDAO(result.getLong("id_room")));
+                .setSubject(new SubjectDAO().find(result.getLong("id_subject")))
+                .setProfessor(new ProfessorDAO().find(result.getLong("siape")))
+                .setRoom(new RoomDAO().find(result.getLong("id_room")));
     }
 
     private List<Course> search(String sql) {
