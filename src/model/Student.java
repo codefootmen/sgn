@@ -3,7 +3,8 @@ package model;
 import lombok.Data;
 
 @Data
-public class Student extends Person{
-    private String enrollment;
+public class Student extends Person {
+    private Long idStudent;
     private Activity activity;
+
 }

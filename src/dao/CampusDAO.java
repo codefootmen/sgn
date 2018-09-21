@@ -35,7 +35,7 @@ public class CampusDAO implements DAO<Campus, Long> {
             statement.setString(6, campus.getState());
             statement.setString(7, campus.getTelephone());
             statement.setString(8, campus.getZip());
-            statement.setLong(9, campus.getInstitution().getCnpj());
+            statement.setLong(9, campus.getInstitution().getIdInstitution());
             statement.execute();
             Database.closeConnection(connection, statement);
             return true;
@@ -81,7 +81,7 @@ public class CampusDAO implements DAO<Campus, Long> {
             statement.setString(5, campus.getState());
             statement.setString(6, campus.getTelephone());
             statement.setString(7, campus.getZip());
-            statement.setLong(8, campus.getInstitution().getCnpj());
+            statement.setLong(8, campus.getInstitution().getIdInstitution());
             statement.setLong(9, campus.getId());
             statement.execute();
             Database.closeConnection(connection, statement);

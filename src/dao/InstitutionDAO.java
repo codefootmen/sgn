@@ -19,7 +19,7 @@ public class InstitutionDAO implements DAO<Institution, Long> {
             statement = connection.prepareStatement(
                     "INSERT INTO institution SET cnpj = ?, name = ?, logo = ?, site = ?"
             );
-            statement.setLong(1, institution.getCnpj());
+            statement.setLong(1, institution.getIdInstitution());
             statement.setString(2, institution.getName());
             statement.setString(3, institution.getLogo());
             statement.setString(4, institution.getSite());
@@ -50,12 +50,12 @@ public class InstitutionDAO implements DAO<Institution, Long> {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(
-                    "UPDATE institution SET name = ?, logo = ?, site = ? WHERE cnpj = ?"
+                    "UPDATE institution SET name = ?, logo = ?, site = ? WHERE id_institution = ?"
             );
             statement.setString(1, institution.getName());
             statement.setString(2, institution.getLogo());
             statement.setString(3, institution.getSite());
-            statement.setLong(4, institution.getCnpj());
+            statement.setLong(4, institution.getIdInstitution());
             statement.execute();
             Database.closeConnection(connection, statement);
             return true;
@@ -71,7 +71,7 @@ public class InstitutionDAO implements DAO<Institution, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement("DELETE FROM institution WHERE cnpj = ?");
+            statement = connection.prepareStatement("DELETE FROM institution WHERE id_institution = ?");
             statement.setLong(1, key);
             statement.execute();
             Database.closeConnection(connection, statement);
@@ -85,7 +85,7 @@ public class InstitutionDAO implements DAO<Institution, Long> {
 
     private Institution fromResultSet(ResultSet result) throws SQLException {
         return new Institution()
-                .setCnpj(result.getLong("cnpj"))
+                .setIdInstitution(result.getLong("id_institution"))
                 .setName(result.getString("name"))
                 .setLogo(result.getString("logo"))
                 .setSite(result.getString("site"));

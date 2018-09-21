@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Professor extends Person{
-    private Long siape;
+    private Long idProfessor;
     private HonorificsEnum honorifics;
     private StatusEnum status;
 }
