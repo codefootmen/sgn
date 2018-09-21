@@ -127,7 +127,7 @@ CREATE TABLE `event`
 
 PRIMARY KEY (`id_event`),
 KEY `fkIdx_173` (`siape`),
-CONSTRAINT `FK_173` FOREIGN KEY `fkIdx_173` (`siape`) REFERENCES `professor` (`siape`)
+CONSTRAINT `FK_173` FOREIGN KEY `fkIdx_173` (`siape`) REFERENCES `professor` (id_professor)
 );
 
 
@@ -151,7 +151,7 @@ CREATE TABLE `campus`
 
 PRIMARY KEY (`id_campus`, `cnpj`),
 KEY `fkIdx_32` (`cnpj`),
-CONSTRAINT `FK_32` FOREIGN KEY `fkIdx_32` (`cnpj`) REFERENCES `institution` (`cnpj`)
+CONSTRAINT `FK_32` FOREIGN KEY `fkIdx_32` (`cnpj`) REFERENCES `institution` (id_institution)
 );
 
 
@@ -329,7 +329,7 @@ CONSTRAINT `FK_110` FOREIGN KEY `fkIdx_110` (`id_department`, `id_campus`, `cnpj
 KEY `fkIdx_132` (`id_program`, `id_department`, `id_campus`, `cnpj`),
 CONSTRAINT `FK_132` FOREIGN KEY `fkIdx_132` (`id_program`, `id_department`, `id_campus`, `cnpj`) REFERENCES `program` (`id_program`, `id_department`, `id_campus`, `cnpj`),
 KEY `fkIdx_164` (`enrollment`),
-CONSTRAINT `FK_164` FOREIGN KEY `fkIdx_164` (`enrollment`) REFERENCES `student` (`enrollment`)
+CONSTRAINT `FK_164` FOREIGN KEY `fkIdx_164` (`enrollment`) REFERENCES `student` (id_student)
 );
 
 
@@ -359,7 +359,7 @@ CONSTRAINT `FK_135` FOREIGN KEY `fkIdx_135` (`id_subject`, `id_program`, `id_dep
 KEY `fkIdx_145` (`id_period`),
 CONSTRAINT `FK_145` FOREIGN KEY `fkIdx_145` (`id_period`) REFERENCES `period` (`id_period`),
 KEY `fkIdx_148` (`siape`),
-CONSTRAINT `FK_148` FOREIGN KEY `fkIdx_148` (`siape`) REFERENCES `professor` (`siape`)
+CONSTRAINT `FK_148` FOREIGN KEY `fkIdx_148` (`siape`) REFERENCES `professor` (id_professor)
 );
 
 
