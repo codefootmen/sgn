@@ -1,5 +1,7 @@
 package dao;
 
+import model.HonorificsEnum;
+import model.StatusEnum;
 import utils.Capitalize;
 
 import java.lang.reflect.Field;
@@ -12,6 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//TODO: make protected
 public class Query {
 
     private static List<String> types = Arrays.asList(
@@ -26,26 +29,8 @@ public class Query {
             "float"
     );
 
-    public static PreparedStatement getInsertStatement(Object object) {
-
-        Field[] fields = object.getClass().getDeclaredFields();
-        String sql = "INSERT INTO ";
-        sql += Capitalize.toSneakCase(object.getClass().getSimpleName()) + " SET";
-
-        Field[] parentFields = null;
-        if (object.getClass().getSuperclass().getSimpleName() != "Object") {
-            parentFields = object.getClass().getSuperclass().getDeclaredFields();
-            for (Field field : parentFields) {
-                if (Query.types.contains(field.getType().getSimpleName().toLowerCase())) {
-                    sql += " " + Capitalize.toSneakCase(field.getName()) + " = ?,";
-                } else if (field.getType().isEnum()) {
-                    sql += " " + Capitalize.toSneakCase(field.getName()) + " = ?,";
-                } else {
-                    sql += " id_" + Capitalize.toSneakCase(field.getType().getSimpleName()) + " = ?,";
-                }
-            }
-        }
-
+    public static String getSQLValuesString(Field[] fields){
+        String sql = "";
         for (Field field : fields) {
             if (Query.types.contains(field.getType().getSimpleName().toLowerCase())) {
                 sql += " " + Capitalize.toSneakCase(field.getName()) + " = ?,";
@@ -55,17 +40,37 @@ public class Query {
                 sql += " id_" + Capitalize.toSneakCase(field.getType().getSimpleName()) + " = ?,";
             }
         }
+        return sql;
+    }
+
+    public static String getInsertSQLString(Object object){
+        String sql = "INSERT INTO ";
+        sql += Capitalize.toSneakCase(object.getClass().getSimpleName()) + " SET";
+
+        if (object.getClass().getSuperclass().getSimpleName() != "Object") {
+            sql += getSQLValuesString(object.getClass().getSuperclass().getDeclaredFields());
+        }
+
+        sql += getSQLValuesString(object.getClass().getDeclaredFields());
 
         sql = sql.substring(0, sql.length() - 1);
-        System.out.println(sql);
+
+        return sql;
+    }
+
+    public static PreparedStatement getInsertStatement(Object object) {
+
+        System.out.println(getInsertSQLString(object));
 
         PreparedStatement statement = null;
+        /*
         try {
             statement = Database.getConnection().prepareStatement(sql);
         } catch (SQLException e) {
             Logger.getLogger(Query.class.getName()).log(Level.SEVERE, null, e);
         }
 
+        //Parent
         if (object.getClass().getSuperclass().getSimpleName() != "Object") {
             Class<?> currentParentClass = null;
             try {
@@ -80,8 +85,12 @@ public class Query {
                     if (method.getName().startsWith("get") && !method.getName().endsWith("Class")) {
                         try {
                             if (field.getName().toLowerCase().equals(method.getName().substring(3).toLowerCase())) {
-                                statement.setObject(Arrays.asList(parentFields).lastIndexOf(field) + 1, method.invoke(object));
-                                System.out.println(method.getName());
+                                if(!Query.types.contains(field.getType().getSimpleName().toLowerCase())){
+                                    statement.setObject(Arrays.asList(parentFields).lastIndexOf(field) + 1, Long.valueOf(1));
+                                }else {
+                                    statement.setObject(Arrays.asList(parentFields).lastIndexOf(field) + 1, method.invoke(object));
+                                    System.out.println(method.getName());
+                                }
                             }
                         } catch (IllegalAccessException e) {
                             e.printStackTrace();
@@ -110,8 +119,12 @@ public class Query {
                 if (method.getName().startsWith("get") && !method.getName().endsWith("Class")) {
                     try {
                         if (field.getName().toLowerCase().equals(method.getName().substring(3).toLowerCase())) {
-                            statement.setObject(Arrays.asList(fields).lastIndexOf(field) + 1, method.invoke(object));
-                            System.out.println(method.getName());
+                            if(!Query.types.contains(field.getType().getSimpleName().toLowerCase())){
+                                statement.setObject(Arrays.asList(fields).lastIndexOf(field) + 1, Long.valueOf(1));
+                            }else {
+                                statement.setObject(Arrays.asList(fields).lastIndexOf(field) + 1, method.invoke(object));
+                                System.out.println(method.getName());
+                            }
                         }
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
@@ -124,7 +137,15 @@ public class Query {
             }
         }
 
-        System.out.println(statement);
+        System.out.println(statement);*/
         return statement;
+    }
+
+    public static void setStatementValues(PreparedStatement statement, Object... values) throws SQLException{
+        Integer i = 1;
+        for (Object value: values){
+            statement.setObject(i, value);
+            i++;
+        }
     }
 }
