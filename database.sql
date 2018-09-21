@@ -1,51 +1,49 @@
 -- ****************** SqlDBM: MySQL ******************;
 -- ***************************************************;
 
-DROP TABLE `course`;
+DROP TABLE IF EXISTS `course`;
 
 
-DROP TABLE `subject`;
+DROP TABLE IF EXISTS `subject`;
 
 
-DROP TABLE `request`;
+DROP TABLE IF EXISTS `request`;
 
 
-DROP TABLE `activity`;
+DROP TABLE IF EXISTS `activity`;
 
 
-DROP TABLE `meeting`;
+DROP TABLE IF EXISTS `meeting`;
 
 
-DROP TABLE `room`;
+DROP TABLE IF EXISTS `room`;
 
 
-DROP TABLE `program`;
+DROP TABLE IF EXISTS `program`;
 
 
-DROP TABLE `building`;
+DROP TABLE IF EXISTS `building`;
 
 
-DROP TABLE `department`;
+DROP TABLE IF EXISTS `department`;
 
 
-DROP TABLE `event`;
+DROP TABLE IF EXISTS `event`;
 
 
-DROP TABLE `campus`;
+DROP TABLE IF EXISTS `campus`;
 
 
-DROP TABLE `period`;
+DROP TABLE IF EXISTS `period`;
 
 
-DROP TABLE `student`;
+DROP TABLE IF EXISTS `student`;
 
 
-DROP TABLE `professor`;
+DROP TABLE IF EXISTS `professor`;
 
 
-DROP TABLE `institution`;
-
-
+DROP TABLE IF EXISTS `institution`;
 
 -- ************************************** `period`
 
