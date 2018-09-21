@@ -14,8 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-//TODO: make protected
-public class Query {
+class Query {
 
     private static List<String> types = Arrays.asList(
             "string",
