@@ -15,21 +15,16 @@ public class BuildingDAO implements DAO<Building, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(
-                    "INSERT INTO building SET "+
-                            "id_building= ?, "+
-                            "name = ?, "+
-                            "quantityOfBathroom = ?, "+
-                            "elevator = ? "+
-                            "accessibility = ?, "+
-                            "campus = ?, ");
-
-            statement.setLong(1, building.getId());
-            statement.setString(2, building.getName());
-            statement.setInt(3, building.getQuantityOfBathrooms());
-            statement.setBoolean(4, building.getElevator());
-            statement.setBoolean(5, building.getAccessibility());
-            statement.setObject(6, building.getCampus());
+            statement = connection.prepareStatement(Query.getInsertSQLString(building));
+            Query.setStatementValues(
+                    statement,
+                    building.getIdBuilding(),
+                    building.getName(),
+                    building.getQuantityOfBathrooms(),
+                    building.getElevator(),
+                    building.getAccessibility(),
+                    building.getCampus().getIdCampus()
+            );
             statement.execute();
             Database.closeConnection(connection, statement);
             return true;
@@ -101,7 +96,7 @@ public class BuildingDAO implements DAO<Building, Long> {
 
     private Building fromResultSet(ResultSet result) throws SQLException {
         return new Building()
-                .setId(result.getLong("id_building"))
+                .setIdBuilding(result.getLong("id_building"))
                 .setName(result.getString("name"))
                 .setQuantityOfBathrooms(result.getInt("quantityOfBathrooms"))
                 .setElevator(result.getBoolean("elevator"))

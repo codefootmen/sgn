@@ -16,13 +16,14 @@ public class InstitutionDAO implements DAO<Institution, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(
-                    "INSERT INTO institution SET cnpj = ?, name = ?, logo = ?, site = ?"
+            statement = connection.prepareStatement(Query.getInsertSQLString(institution));
+            Query.setStatementValues(
+                    statement,
+                    institution.getIdInstitution(),
+                    institution.getName(),
+                    institution.getLogo(),
+                    institution.getSite()
             );
-            statement.setLong(1, institution.getIdInstitution());
-            statement.setString(2, institution.getName());
-            statement.setString(3, institution.getLogo());
-            statement.setString(4, institution.getSite());
             statement.execute();
             Database.closeConnection(connection, statement);
             return true;

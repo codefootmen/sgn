@@ -15,17 +15,15 @@ public class ActivityDAO implements DAO<Activity, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(
-                    "INSERT INTO activity SET "+
-                            "id_activity = ?, "+
-                            "name = ?, "+
-                            "activityType = ?, "+
-                            "area = ? ");
-
-            statement.setLong(1, activity.getId());
-            statement.setString(2, activity.getName());
-            statement.setObject(3, activity.getActivity());
-            statement.setString(4, activity.getArea());
+            statement = connection.prepareStatement(Query.getInsertSQLString(activity));
+            Query.setStatementValues(
+                    statement,
+                    activity.getIdActivity(),
+                    activity.getName(),
+                    activity.getActivityType(),
+                    activity.getArea(),
+                    activity.getProfessor().getIdProfessor()
+            );
             statement.execute();
             Database.closeConnection(connection, statement);
             return true;
@@ -60,7 +58,7 @@ public class ActivityDAO implements DAO<Activity, Long> {
                             "WHERE id_activity = ?"
             );
             statement.setString(1, activity.getName());
-            statement.setObject(2, activity.getActivity());
+            statement.setObject(2, activity.getActivityType());
             statement.setString(3,activity.getArea());
             statement.execute();
             Database.closeConnection(connection, statement);
@@ -93,11 +91,11 @@ public class ActivityDAO implements DAO<Activity, Long> {
 
     private Activity fromResultSet(ResultSet result) throws SQLException {
         return new Activity()
-                .setId(result.getLong("id_activity"))
+                .setIdActivity(result.getLong("id_activity"))
                 .setName(result.getString("name"))
-                .setActivityType(result.getString("activity_type"))
-                .setArea(result.getLong("area"))
-                .setProfessor(new ProfessorDAO().find(result.getLong("siape")));
+                //.setActivityType(result.getInt("activity_type"))
+                .setArea(result.getString("area"))
+                .setProfessor(new ProfessorDAO().find(result.getLong("id_professor")));
     }
 
     private List<Activity> search(String sql) {

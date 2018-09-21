@@ -6,7 +6,7 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class Campus {
-    private Long id;
+    private Long idCampus;
     private String name;
     private String street;
     private Long number;

@@ -6,7 +6,7 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class Room {
-    private Long id;
+    private Long idRoom;
     private Integer number;
     private Integer quantityOfSeats;
     private Building building;

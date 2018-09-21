@@ -15,15 +15,13 @@ public class RoomTypeDAO implements DAO<RoomType, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(
-                    "INSERT INTO roomType SET "+
-                            "id_roomType= ?, "+
-                            "name = ?, "+
-                            "description = ?, ");
-
-            statement.setLong(1, roomType.getId());
-            statement.setString(2, roomType.getName());
-            statement.setString(3, roomType.getDescription());
+            statement = connection.prepareStatement(Query.getInsertSQLString(roomType));
+            Query.setStatementValues(
+                    statement,
+                    roomType.getIdRoomType(),
+                    roomType.getName(),
+                    roomType.getDescription()
+            );
             statement.execute();
             Database.closeConnection(connection, statement);
             return true;
@@ -91,7 +89,7 @@ public class RoomTypeDAO implements DAO<RoomType, Long> {
 
     private RoomType fromResultSet(ResultSet result) throws SQLException {
         return new RoomType()
-                .setId(result.getLong("id_roomType"))
+                .setIdRoomType(result.getLong("id_room_type"))
                 .setName(result.getString("name"))
                 .setDescription(result.getString("description"));
     }

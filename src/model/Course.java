@@ -6,7 +6,7 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class Course {
-    private Long id;
+    private Long idCourse;
     private Boolean semester;
     private Integer year;
     private Subject subject;

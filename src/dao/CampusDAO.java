@@ -15,27 +15,19 @@ public class CampusDAO implements DAO<Campus, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(
-                    "INSERT INTO campus SET "+
-                            "id_campus = ?, "+
-                            "name = ?, "+
-                            "street = ?, "+
-                            "number = ? "+
-                            "city = ?, "+
-                            "state = ?, "+
-                            "telephone = ?, "+
-                            "zip = ?, "+
-                            "cnpj = ?"
+            statement = connection.prepareStatement(Query.getInsertSQLString(campus));
+            Query.setStatementValues(
+                    statement,
+                    campus.getIdCampus(),
+                    campus.getName(),
+                    campus.getStreet(),
+                    campus.getNumber(),
+                    campus.getCity(),
+                    campus.getState(),
+                    campus.getTelephone(),
+                    campus.getZip(),
+                    campus.getInstitution().getIdInstitution()
             );
-            statement.setLong(1, campus.getId());
-            statement.setString(2, campus.getName());
-            statement.setString(3, campus.getStreet());
-            statement.setLong(4, campus.getNumber());
-            statement.setString(5, campus.getCity());
-            statement.setString(6, campus.getState());
-            statement.setString(7, campus.getTelephone());
-            statement.setString(8, campus.getZip());
-            statement.setLong(9, campus.getInstitution().getIdInstitution());
             statement.execute();
             Database.closeConnection(connection, statement);
             return true;
@@ -82,7 +74,7 @@ public class CampusDAO implements DAO<Campus, Long> {
             statement.setString(6, campus.getTelephone());
             statement.setString(7, campus.getZip());
             statement.setLong(8, campus.getInstitution().getIdInstitution());
-            statement.setLong(9, campus.getId());
+            statement.setLong(9, campus.getIdCampus());
             statement.execute();
             Database.closeConnection(connection, statement);
             return true;
@@ -114,7 +106,7 @@ public class CampusDAO implements DAO<Campus, Long> {
 
     private Campus fromResultSet(ResultSet result) throws SQLException {
         return new Campus()
-                .setId(result.getLong("id_campus"))
+                .setIdCampus(result.getLong("id_campus"))
                 .setName(result.getString("name"))
                 .setStreet(result.getString("street"))
                 .setNumber(result.getLong("number"))
@@ -122,7 +114,7 @@ public class CampusDAO implements DAO<Campus, Long> {
                 .setState(result.getString("state"))
                 .setTelephone(result.getString("telephone"))
                 .setZip(result.getString("zip"))
-                .setInstitution(new InstitutionDAO().find(result.getLong("cnpj")));
+                .setInstitution(new InstitutionDAO().find(result.getLong("id_institution")));
     }
 
     private List<Campus> search(String sql) {

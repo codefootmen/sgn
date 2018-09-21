@@ -16,19 +16,15 @@ public class RoomDAO implements DAO<Room, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(
-                    "INSERT INTO room SET "+
-                            "id_room= ?, "+
-                            "number = ?, "+
-                            "quantityOfSeats = ?, "+
-                            "building = ? "+
-                            "RoomType = ?, ");
-
-            statement.setLong(1, room.getId());
-            statement.setInt(2, room.getNumber());
-            statement.setInt(3, room.getQuantityOfSeats());
-            statement.setObject(4, room.getBuilding());
-            statement.setObject(5,room.getRoomType());
+            statement = connection.prepareStatement(Query.getInsertSQLString(room));
+            Query.setStatementValues(
+                    statement,
+                    room.getIdRoom(),
+                    room.getNumber(),
+                    room.getQuantityOfSeats(),
+                    room.getBuilding().getIdBuilding(),
+                    room.getRoomType().getIdRoomType()
+            );
             statement.execute();
             Database.closeConnection(connection, statement);
             return true;
@@ -98,7 +94,7 @@ public class RoomDAO implements DAO<Room, Long> {
 
     private Room fromResultSet(ResultSet result) throws SQLException {
         return new Room()
-                .setId(result.getLong("id_room"))
+                .setIdRoom(result.getLong("id_room"))
                 .setNumber(result.getInt("number"))
                 .setQuantityOfSeats(result.getInt("quantityOfSeats"))
                 .setBuilding(new BuildingDAO().find(result.getLong("id_building")))

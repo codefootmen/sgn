@@ -6,7 +6,7 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class RoomType {
-    private Long id;
+    private Long idRoomType;
     private String name;
     private String description;
 

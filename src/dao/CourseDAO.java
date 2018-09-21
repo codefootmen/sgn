@@ -15,21 +15,16 @@ public class CourseDAO implements DAO<Course, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(
-                    "INSERT INTO course SET "+
-                            "id_course= ?, "+
-                            "semester = ?, "+
-                            "year = ?, "+
-                            "subject = ? "+
-                            "professor = ?, "+
-                            "room = ?, ");
-
-            statement.setLong(1, course.getId());
-            statement.setBoolean(2, course.getSemester());
-            statement.setInt(3, course.getYear());
-            statement.setObject(4, course.getSubject());
-            statement.setObject(5, course.getProfessor());
-            statement.setObject(6, course.getRoom());
+            statement = connection.prepareStatement(Query.getInsertSQLString(course));
+            Query.setStatementValues(
+                    statement,
+                    course.getIdCourse(),
+                    course.getSemester(),
+                    course.getYear(),
+                    course.getSubject().getIdSubject(),
+                    course.getProfessor().getIdProfessor(),
+                    course.getRoom().getIdRoom()
+            );
             statement.execute();
             Database.closeConnection(connection, statement);
             return true;
@@ -102,7 +97,7 @@ public class CourseDAO implements DAO<Course, Long> {
 
     private Course fromResultSet(ResultSet result) throws SQLException {
         return new Course()
-                .setId(result.getLong("id_course"))
+                .setIdCourse(result.getLong("id_course"))
                 .setSemester(result.getBoolean("semester"))
                 .setYear(result.getInt("year"))
                 .setSubject(new SubjectDAO().find(result.getLong("id_subject")))
