@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Department {
-    private Long id;
+    private Long idDepartment;
     private String field;
     private String description;
     private Professor head;
