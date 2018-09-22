@@ -57,6 +57,23 @@ class Query {
         return sql;
     }
 
+    public static String getUpdateSQLString(Object object){
+        String sql = "UPDATE ";
+        sql += Capitalize.toSneakCase(object.getClass().getSimpleName()) + " SET";
+
+        if (object.getClass().getSuperclass().getSimpleName() != "Object") {
+            sql += getSQLValuesString(object.getClass().getSuperclass().getDeclaredFields());
+        }
+
+        sql += getSQLValuesString(object.getClass().getDeclaredFields());
+
+        String regex = "id_"+Capitalize.toSneakCase(object.getClass().getSimpleName())+" = \\?, |,$";
+        sql = sql.replaceAll(regex, "");
+        sql += " WHERE " +regex.replaceAll("\\\\|,|\\||\\$", "").trim();
+
+        return sql;
+    }
+
     public static PreparedStatement getInsertStatement(Object object) {
 
         System.out.println(getInsertSQLString(object));
