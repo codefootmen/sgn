@@ -44,7 +44,26 @@ public class SubjectDAO implements DAO<Subject, Long> {
 
     @Override
     public Boolean update(Subject subject) {
-        return null;
+        Connection connection = Database.getConnection();
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(Query.getUpdateSQLString(subject));
+            Query.setStatementValues(
+                    statement,
+                    subject.getName(),
+                    subject.getQuantityOfCredits(),
+                    subject.getProgram().getIdProgram(),
+                    subject.getRoomType().getIdRoomType(),
+                    subject.getIdSubject()
+            );
+            statement.execute();
+            Database.closeConnection(connection, statement);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Database.closeConnection(connection, statement);
+        return false;
     }
 
     @Override

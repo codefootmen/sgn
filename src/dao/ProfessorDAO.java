@@ -45,7 +45,27 @@ public class ProfessorDAO implements DAO<Professor, Long> {
 
     @Override
     public Boolean update(Professor professor) {
-        return null;
+        Connection connection = Database.getConnection();
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(Query.getUpdateSQLString(professor));
+            Query.setStatementValues(
+                    statement,
+                    professor.getFirstName(),
+                    professor.getLastName(),
+                    professor.getEmail(),
+                    professor.getHonorifics().toString(),
+                    professor.getStatus().toString(),
+                    professor.getIdProfessor()
+            );
+            statement.execute();
+            Database.closeConnection(connection, statement);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Database.closeConnection(connection, statement);
+        return false;
     }
 
     @Override
