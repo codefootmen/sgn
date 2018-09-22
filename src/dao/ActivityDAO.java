@@ -50,16 +50,15 @@ public class ActivityDAO implements DAO<Activity, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(
-                    "UPDATE activity SET "+
-                            "name = ?, "+
-                            "activityType= ?, "+
-                            "area = ? "+
-                            "WHERE id_activity = ?"
+            statement = connection.prepareStatement(Query.getUpdateSQLString(activity));
+            Query.setStatementValues(
+                    statement,
+                    activity.getName(),
+                    activity.getActivityType(),
+                    activity.getArea(),
+                    activity.getProfessor().getIdProfessor(),
+                    activity.getIdActivity()
             );
-            statement.setString(1, activity.getName());
-            statement.setObject(2, activity.getActivityType());
-            statement.setString(3,activity.getArea());
             statement.execute();
             Database.closeConnection(connection, statement);
             return true;

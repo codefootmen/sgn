@@ -54,27 +54,19 @@ public class CampusDAO implements DAO<Campus, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(
-                    "UPDATE campus SET "+
-                            "name = ?, "+
-                            "street = ?, "+
-                            "number = ? "+
-                            "city = ?, "+
-                            "state = ?, "+
-                            "telephone = ?, "+
-                            "zip = ?, "+
-                            "cnpj = ?"+
-                            "WHERE id_campus = ?"
+            statement = connection.prepareStatement(Query.getUpdateSQLString(campus));
+            Query.setStatementValues(
+                    statement,
+                    campus.getName(),
+                    campus.getStreet(),
+                    campus.getNumber(),
+                    campus.getCity(),
+                    campus.getState(),
+                    campus.getTelephone(),
+                    campus.getZip(),
+                    campus.getInstitution().getIdInstitution(),
+                    campus.getIdCampus()
             );
-            statement.setString(1, campus.getName());
-            statement.setString(2, campus.getStreet());
-            statement.setLong(3,campus.getNumber());
-            statement.setString(4, campus.getCity());
-            statement.setString(5, campus.getState());
-            statement.setString(6, campus.getTelephone());
-            statement.setString(7, campus.getZip());
-            statement.setLong(8, campus.getInstitution().getIdInstitution());
-            statement.setLong(9, campus.getIdCampus());
             statement.execute();
             Database.closeConnection(connection, statement);
             return true;

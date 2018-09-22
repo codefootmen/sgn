@@ -50,13 +50,14 @@ public class InstitutionDAO implements DAO<Institution, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(
-                    "UPDATE institution SET name = ?, logo = ?, site = ? WHERE id_institution = ?"
+            statement = connection.prepareStatement(Query.getUpdateSQLString(institution));
+            Query.setStatementValues(
+                    statement,
+                    institution.getName(),
+                    institution.getLogo(),
+                    institution.getSite(),
+                    institution.getIdInstitution()
             );
-            statement.setString(1, institution.getName());
-            statement.setString(2, institution.getLogo());
-            statement.setString(3, institution.getSite());
-            statement.setLong(4, institution.getIdInstitution());
             statement.execute();
             Database.closeConnection(connection, statement);
             return true;

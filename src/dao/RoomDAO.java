@@ -51,18 +51,15 @@ public class RoomDAO implements DAO<Room, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(
-                    "UPDATE room SET "+
-                            "number = ?, "+
-                            "quantityOfSeats = ?, "+
-                            "building = ? "+
-                            "roomType = ?, "+
-                            "WHERE id_room = ?");
-
-            statement.setInt(1, room.getNumber());
-            statement.setInt(2, room.getQuantityOfSeats());
-            statement.setObject(3, room.getBuilding());
-            statement.setObject(4,room.getRoomType());
+            statement = connection.prepareStatement(Query.getUpdateSQLString(room));
+            Query.setStatementValues(
+                    statement,
+                    room.getNumber(),
+                    room.getQuantityOfSeats(),
+                    room.getBuilding().getIdBuilding(),
+                    room.getRoomType().getIdRoomType(),
+                    room.getIdRoom()
+            );
             statement.execute();
             Database.closeConnection(connection, statement);
             return true;

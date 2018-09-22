@@ -51,21 +51,16 @@ public class CourseDAO implements DAO<Course, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(
-                    "UPDATE course SET "+
-                            "semester = ?, "+
-                            "year = ?, "+
-                            "subject = ? "+
-                            "professor = ?, "+
-                            "room = ?, "+
-                            "WHERE id_course = ?");
-
-
-            statement.setBoolean(1, course.getSemester());
-            statement.setInt(2, course.getYear());
-            statement.setObject(3, course.getSubject());
-            statement.setObject(4, course.getProfessor());
-            statement.setObject(5, course.getRoom());
+            statement = connection.prepareStatement(Query.getUpdateSQLString(course));
+            Query.setStatementValues(
+                    statement,
+                    course.getSemester(),
+                    course.getYear(),
+                    course.getSubject().getIdSubject(),
+                    course.getProfessor().getIdProfessor(),
+                    course.getRoom().getIdRoom(),
+                    course.getIdCourse()
+            );
             statement.execute();
             Database.closeConnection(connection, statement);
             return true;

@@ -51,20 +51,16 @@ public class BuildingDAO implements DAO<Building, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(
-                    "UPDATE building SET "+
-                            "name = ?, "+
-                            "quantityOfBathroom = ?, "+
-                            "elevator = ? "+
-                            "accessibility = ?, "+
-                            "campus = ?, "+
-                            "WHERE id_building = ?");
-
-            statement.setString(1, building.getName());
-            statement.setInt(2, building.getQuantityOfBathrooms());
-            statement.setBoolean(3, building.getElevator());
-            statement.setBoolean(4, building.getAccessibility());
-            statement.setObject(5, building.getCampus());
+            statement = connection.prepareStatement(Query.getUpdateSQLString(building));
+            Query.setStatementValues(
+                    statement,
+                    building.getName(),
+                    building.getQuantityOfBathrooms(),
+                    building.getElevator(),
+                    building.getAccessibility(),
+                    building.getCampus().getIdCampus(),
+                    building.getIdBuilding()
+            );
             statement.execute();
             Database.closeConnection(connection, statement);
             return true;
