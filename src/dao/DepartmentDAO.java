@@ -51,7 +51,7 @@ public class DepartmentDAO implements DAO<Department, Long> {
                     statement,
                     department.getField(),
                     department.getDescription(),
-                    department.getProfessor().getIdProfessor()
+                    department.getProfessor().getIdProfessor(),
                     department.getIdDepartment()
             );
             statement.execute();
