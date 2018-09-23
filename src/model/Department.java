@@ -7,5 +7,5 @@ public class Department {
     private Long idDepartment;
     private String field;
     private String description;
-    private Professor head;
+    private Professor professor;
 }
