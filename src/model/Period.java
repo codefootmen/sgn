@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Period {
-    private Long id;
+    private Long idPeriod;
     private String start;
     private String end;
     private String dayOfTheWeek;
