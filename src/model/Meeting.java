@@ -4,10 +4,10 @@ import lombok.Data;
 
 @Data
 public class Meeting {
-    private Long id;
+    private Long idMeeting;
     private String day;
     private String time;
     private String agenda;
     private String minutes;
-    private Department departament;
+    private Department department;
 }

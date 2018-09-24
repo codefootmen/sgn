@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Request {
-    private Long id;
+    private Long idRequest;
     private String motive;
     private String description;
     private PriorityEnum priority;
