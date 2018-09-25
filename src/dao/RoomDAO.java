@@ -93,9 +93,9 @@ public class RoomDAO implements DAO<Room, Long> {
         return new Room()
                 .setIdRoom(result.getLong("id_room"))
                 .setNumber(result.getInt("number"))
-                .setQuantityOfSeats(result.getInt("quantityOfSeats"))
-                .setBuilding(new BuildingDAO().find(result.getLong("id_building")))
-                .setRoomType(new RoomTypeDAO().find(result.getLong("id_roomType")));
+                .setQuantityOfSeats(result.getInt("quantity_of_seats"))
+                .setBuilding(null)
+                .setRoomType(null);
     }
 
     private List<Room> search(String sql) {
