@@ -37,7 +37,7 @@ public class CourseDAO implements DAO<Course, Long> {
 
     @Override
     public Course find(Long key) {
-        String sql = String.format("SELECT * FROM course WHERE course = '%s'", key);
+        String sql = String.format("SELECT * FROM course WHERE id_course = '%s'", key);
         return search(sql).get(0);
     }
 
