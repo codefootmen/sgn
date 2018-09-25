@@ -89,12 +89,13 @@ public class ActivityDAO implements DAO<Activity, Long> {
     }
 
     private Activity fromResultSet(ResultSet result) throws SQLException {
-        return new Activity()
-                .setIdActivity(result.getLong("id_activity"))
-                .setName(result.getString("name"))
-                //.setActivityType(result.getInt("activity_type"))
-                .setArea(result.getString("area"))
-                .setProfessor(new ProfessorDAO().find(result.getLong("id_professor")));
+        Activity activity = new Activity();
+        activity.setIdActivity(result.getLong("id_activity"));
+        activity.setName(result.getString("name"));
+        activity.setActivityType(null);
+        activity.setArea(result.getString("area"));
+        activity.setProfessor(null);
+        return activity;
     }
 
     private List<Activity> search(String sql) {
