@@ -36,7 +36,7 @@ public class InstitutionDAO implements DAO<Institution, Long> {
 
     @Override
     public Institution find(Long key) {
-        String sql = String.format("SELECT * FROM institution WHERE cnpj = '%s'", key);
+        String sql = String.format("SELECT * FROM institution WHERE id_institution = '%s'", key);
         return search(sql).get(0);
     }
 
@@ -73,7 +73,9 @@ public class InstitutionDAO implements DAO<Institution, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement("DELETE FROM institution WHERE id_institution = ?");
+            statement = connection.prepareStatement(
+                    "DELETE FROM institution WHERE id_institution = ?"
+            );
             statement.setLong(1, key);
             statement.execute();
             Database.closeConnection(connection, statement);
