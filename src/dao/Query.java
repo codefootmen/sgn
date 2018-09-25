@@ -28,7 +28,7 @@ class Query {
             "float"
     );
 
-    public static String getSQLValuesString(Field[] fields){
+    public static String getSQLValuesString(Field[] fields) {
         String sql = "";
         for (Field field : fields) {
             if (Query.types.contains(field.getType().getSimpleName().toLowerCase())) {
@@ -42,13 +42,19 @@ class Query {
         return sql;
     }
 
-    public static String getInsertSQLString(Object object){
-        String sql = "INSERT INTO ";
-        sql += Capitalize.toSneakCase(object.getClass().getSimpleName()) + " SET";
-
+    private static String getParentSQLValuesString(Object object) {
+        String sql = "";
         if (object.getClass().getSuperclass().getSimpleName() != "Object") {
             sql += getSQLValuesString(object.getClass().getSuperclass().getDeclaredFields());
         }
+        return sql;
+    }
+
+    public static String getInsertSQLString(Object object) {
+        String sql = "INSERT INTO ";
+        sql += Capitalize.toSneakCase(object.getClass().getSimpleName()) + " SET";
+
+        sql += getParentSQLValuesString(object);
 
         sql += getSQLValuesString(object.getClass().getDeclaredFields());
 
@@ -57,19 +63,35 @@ class Query {
         return sql;
     }
 
-    public static String getUpdateSQLString(Object object){
+    public static String getUpdateSQLString(Object object) {
         String sql = "UPDATE ";
         sql += Capitalize.toSneakCase(object.getClass().getSimpleName()) + " SET";
 
-        if (object.getClass().getSuperclass().getSimpleName() != "Object") {
-            sql += getSQLValuesString(object.getClass().getSuperclass().getDeclaredFields());
-        }
+        sql += getParentSQLValuesString(object);
 
         sql += getSQLValuesString(object.getClass().getDeclaredFields());
 
-        String regex = "id_"+Capitalize.toSneakCase(object.getClass().getSimpleName())+" = \\?, |,$";
+        String regex = "id_" + Capitalize.toSneakCase(object.getClass().getSimpleName()) + " = \\?, |,$";
         sql = sql.replaceAll(regex, "");
-        sql += " WHERE " +regex.replaceAll("\\\\|,|\\||\\$", "").trim();
+        sql += " WHERE " + regex.replaceAll("\\\\|,|\\||\\$", "").trim();
+
+        return sql;
+    }
+
+    public static String getDeleteSQLString(Object object) {
+        String sql = "DELETE FROM " +
+                Capitalize.toCamelCase(object.getClass().getSimpleName()) +
+                " WHERE id_" + Capitalize.toCamelCase(object.getClass().getSimpleName()) +
+                " = ?";
+        return sql;
+    }
+
+    public static String getSelectSQLString(Object object) {
+        String sql = "SELECT * FROM " +
+                Capitalize.toCamelCase(object.getClass().getSimpleName()) +
+                " WHERE id_" +
+                Capitalize.toCamelCase(object.getClass().getSimpleName()) +
+                " = ?";
 
         return sql;
     }
@@ -157,9 +179,9 @@ class Query {
         return statement;
     }
 
-    public static void setStatementValues(PreparedStatement statement, Object... values) throws SQLException{
+    public static void setStatementValues(PreparedStatement statement, Object... values) throws SQLException {
         Integer i = 1;
-        for (Object value: values){
+        for (Object value : values) {
             statement.setObject(i, value);
             i++;
         }
