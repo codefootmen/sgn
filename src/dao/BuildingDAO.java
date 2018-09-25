@@ -37,7 +37,7 @@ public class BuildingDAO implements DAO<Building, Long> {
 
     @Override
     public Building find(Long key) {
-        String sql = String.format("SELECT * FROM building WHERE building = '%s'", key);
+        String sql = String.format("SELECT * FROM building WHERE id_building = '%s'", key);
         return search(sql).get(0);
     }
 
@@ -94,10 +94,10 @@ public class BuildingDAO implements DAO<Building, Long> {
         return new Building()
                 .setIdBuilding(result.getLong("id_building"))
                 .setName(result.getString("name"))
-                .setQuantityOfBathrooms(result.getInt("quantityOfBathrooms"))
+                .setQuantityOfBathrooms(result.getInt("quantity_of_bathrooms"))
                 .setElevator(result.getBoolean("elevator"))
                 .setAccessibility(result.getBoolean("accessibility"))
-                .setCampus(new CampusDAO().find(result.getLong("id_campus")));
+                .setCampus(null);
     }
 
     private List<Building> search(String sql) {
