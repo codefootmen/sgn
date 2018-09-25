@@ -106,7 +106,7 @@ public class CampusDAO implements DAO<Campus, Long> {
                 .setState(result.getString("state"))
                 .setTelephone(result.getString("telephone"))
                 .setZip(result.getString("zip"))
-                .setInstitution(new InstitutionDAO().find(result.getLong("id_institution")));
+                .setInstitution(null);
     }
 
     private List<Campus> search(String sql) {
