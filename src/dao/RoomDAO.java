@@ -37,7 +37,7 @@ public class RoomDAO implements DAO<Room, Long> {
 
     @Override
     public Room find(Long key) {
-        String sql = String.format("SELECT * FROM room WHERE room = '%s'", key);
+        String sql = String.format("SELECT * FROM room WHERE id_room = '%s'", key);
         return search(sql).get(0);
     }
 
