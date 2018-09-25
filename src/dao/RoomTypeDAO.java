@@ -34,13 +34,13 @@ public class RoomTypeDAO implements DAO<RoomType, Long> {
 
     @Override
     public RoomType find(Long key) {
-        String sql = String.format("SELECT * FROM roomType WHERE roomType = '%s'", key);
+        String sql = String.format("SELECT * FROM room_type WHERE id_room_type = '%s'", key);
         return search(sql).get(0);
     }
 
     @Override
     public List<RoomType> findAll() {
-        return search("SELECT * FROM roomType");
+        return search("SELECT * FROM room_type");
     }
 
     @Override
@@ -71,7 +71,7 @@ public class RoomTypeDAO implements DAO<RoomType, Long> {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(
-                    "DELETE FROM roomType WHERE id_roomType = ?"
+                    "DELETE FROM room_type WHERE id_room_type = ?"
             );
             statement.setLong(1, key);
             statement.execute();
