@@ -12,5 +12,5 @@ public class Building {
     private Boolean elevator;
     private Boolean accessibility;
     private Campus campus;
-
+    private Institution institution;
 }
