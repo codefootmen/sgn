@@ -9,4 +9,7 @@ public class Subject {
     private Integer quantityOfCredits;
     private Program program;
     private RoomType roomType;
+    private Department department;
+    private Campus campus;
+    private Institution institution;
 }
