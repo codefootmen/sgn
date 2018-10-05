@@ -15,10 +15,19 @@ public class CampusDAO implements DAO<Campus, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getInsertSQLString(campus));
+            statement = connection.prepareStatement(
+                    "INSERT INTO campus SET " +
+                            "name = ? " +
+                            "street = ? " +
+                            "number = ? " +
+                            "city = ?" +
+                            "state = ? " +
+                            "telephone = ? " +
+                            "zip = ? " +
+                            "id_institution = ?"
+            );
             Query.setStatementValues(
                     statement,
-                    campus.getIdCampus(),
                     campus.getName(),
                     campus.getStreet(),
                     campus.getNumber(),
@@ -26,7 +35,7 @@ public class CampusDAO implements DAO<Campus, Long> {
                     campus.getState(),
                     campus.getTelephone(),
                     campus.getZip(),
-                    campus.getInstitution().getIdInstitution()
+                    campus.getIdInstitution()
             );
             statement.execute();
             Database.closeConnection(connection, statement);
@@ -54,7 +63,18 @@ public class CampusDAO implements DAO<Campus, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getUpdateSQLString(campus));
+            statement = connection.prepareStatement(
+                    "UPDATE campus SET " +
+                            "name = ? " +
+                            "street = ? " +
+                            "number = ? " +
+                            "city = ?" +
+                            "state = ? " +
+                            "telephone = ? " +
+                            "zip = ? " +
+                            "id_institution = ? " +
+                            "WHERE id_campus = ?"
+            );
             Query.setStatementValues(
                     statement,
                     campus.getName(),
@@ -64,7 +84,7 @@ public class CampusDAO implements DAO<Campus, Long> {
                     campus.getState(),
                     campus.getTelephone(),
                     campus.getZip(),
-                    campus.getInstitution().getIdInstitution(),
+                    campus.getIdInstitution(),
                     campus.getIdCampus()
             );
             statement.execute();
@@ -106,7 +126,8 @@ public class CampusDAO implements DAO<Campus, Long> {
                 .setState(result.getString("state"))
                 .setTelephone(result.getString("telephone"))
                 .setZip(result.getString("zip"))
-                .setInstitution(null);
+                .setInstitution(null)
+                .setIdInstitution(result.getLong("id_institution"));
     }
 
     private List<Campus> search(String sql) {
