@@ -15,14 +15,28 @@ public class ActivityDAO implements DAO<Activity, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getInsertSQLString(activity));
+            statement = connection.prepareStatement(
+                    "INSERT INTO activity SET " +
+                            "name = ? " +
+                            "activity_type = ? " +
+                            "area = ? " +
+                            "id_professor = ?" +
+                            "id_campus = ? " +
+                            "id_department = ? " +
+                            "id_institution = ? " +
+                            "id_program = ?"
+
+            );
             Query.setStatementValues(
                     statement,
-                    activity.getIdActivity(),
                     activity.getName(),
-                    activity.getActivityType(),
+                    activity.getActivityType().toString(),
                     activity.getArea(),
-                    activity.getProfessor().getIdProfessor()
+                    activity.getIdProfessor(),
+                    activity.getIdCampus(),
+                    activity.getIdDepartment(),
+                    activity.getIdInstitution(),
+                    activity.getIdProgram()
             );
             statement.execute();
             Database.closeConnection(connection, statement);
@@ -50,13 +64,29 @@ public class ActivityDAO implements DAO<Activity, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getUpdateSQLString(activity));
+            statement = connection.prepareStatement(
+                    "UPDATE activity SET " +
+                            "name = ? " +
+                            "activity_type = ? " +
+                            "area = ? " +
+                            "id_professor = ?" +
+                            "id_campus = ? " +
+                            "id_department = ? " +
+                            "id_institution = ? " +
+                            "id_program = ?" +
+                            "WHERE id_activity = ?"
+
+            );
             Query.setStatementValues(
                     statement,
                     activity.getName(),
-                    activity.getActivityType(),
+                    activity.getActivityType().toString(),
                     activity.getArea(),
-                    activity.getProfessor().getIdProfessor(),
+                    activity.getIdProfessor(),
+                    activity.getIdCampus(),
+                    activity.getIdDepartment(),
+                    activity.getIdInstitution(),
+                    activity.getIdProgram(),
                     activity.getIdActivity()
             );
             statement.execute();
