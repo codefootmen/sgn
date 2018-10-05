@@ -247,19 +247,25 @@ CREATE TABLE `request`
 
 CREATE TABLE `activity`
 (
-  `id_activity`    BIGINT unsigned NOT NULL,
-  `name`           VARCHAR(255)    NOT NULL,
-  `activity_type`  ENUM ('')       NOT NULL,
-  `id_department`  BIGINT unsigned NOT NULL,
-  `id_campus`      BIGINT unsigned NOT NULL,
-  `id_institution` BIGINT unsigned NOT NULL,
-  `id_program`     BIGINT unsigned NOT NULL,
+  `id_activity`    BIGINT unsigned            NOT NULL AUTO_INCREMENT,
+  `name`           VARCHAR(255)               NOT NULL,
+  `activity_type`  ENUM ('research',
+                         'education',
+                         'extension_service') NOT NULL,
+  `area`           VARCHAR(255)               NOT NULL,
+  `id_professor`   BIGINT unsigned            NOT NULL,
+  `id_campus`      BIGINT unsigned            NOT NULL,
+  `id_department`  BIGINT unsigned            NOT NULL,
+  `id_institution` BIGINT unsigned            NOT NULL,
+  `id_program`     BIGINT unsigned            NOT NULL,
 
   PRIMARY KEY (`id_activity`),
-  KEY `fkIdx_110` (`id_department`, `id_campus`, `id_institution`),
-  CONSTRAINT `FK_110` FOREIGN KEY `fkIdx_110` (`id_department`, `id_campus`, `id_institution`) REFERENCES `department` (`id_department`, `id_campus`, `id_institution`),
-  KEY `fkIdx_132` (`id_program`, `id_department`, `id_campus`, `id_institution`),
-  CONSTRAINT `FK_132` FOREIGN KEY `fkIdx_132` (`id_program`, `id_department`, `id_campus`, `id_institution`) REFERENCES `program` (`id_program`, `id_department`, `id_campus`, `id_institution`)
+  FOREIGN KEY (`id_professor`) REFERENCES professor (id_professor),
+  FOREIGN KEY (`id_department`) REFERENCES department (id_department),
+  FOREIGN KEY (`id_campus`) REFERENCES campus (id_campus),
+  FOREIGN KEY (`id_institution`) REFERENCES institution (id_institution),
+  FOREIGN KEY (`id_program`) REFERENCES program (id_program)
+
 );
 
 -- ************************************** `course`
