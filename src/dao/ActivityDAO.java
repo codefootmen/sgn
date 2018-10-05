@@ -119,13 +119,21 @@ public class ActivityDAO implements DAO<Activity, Long> {
     }
 
     private Activity fromResultSet(ResultSet result) throws SQLException {
-        Activity activity = new Activity();
-        activity.setIdActivity(result.getLong("id_activity"));
-        activity.setName(result.getString("name"));
-        activity.setActivityType(null);
-        activity.setArea(result.getString("area"));
-        activity.setProfessor(null);
-        return activity;
+        return new Activity()
+                .setIdActivity(result.getLong("id_activity"))
+                .setName(result.getString("name"))
+                .setActivityType(result.getString("activity_type"))
+                .setArea(result.getString("area"))
+                .setProfessor(null)
+                .setIdProfessor(result.getLong("id_professor"))
+                .setCampus(null)
+                .setIdCampus(result.getLong("id_campus"))
+                .setDepartment(null)
+                .setIdDepartment(result.getLong("id_department"))
+                .setInstitution(null)
+                .setIdInstitution(result.getLong("id_institution"))
+                .setProgram(null)
+                .setIdProgram(result.getLong("id_program"));
     }
 
     private List<Activity> search(String sql) {
