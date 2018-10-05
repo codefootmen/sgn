@@ -131,7 +131,7 @@ CREATE TABLE `campus`
 
 CREATE TABLE `building`
 (
-  `id_building`           BIGINT unsigned NOT NULL,
+  `id_building`           BIGINT unsigned NOT NULL AUTO_INCREMENT,
   `name`                  VARCHAR(255)    NOT NULL,
   `quantity_of_bathrooms` INTEGER         NOT NULL,
   `elevator`              BIT             NOT NULL,
@@ -140,8 +140,8 @@ CREATE TABLE `building`
   `id_institution`        BIGINT unsigned NOT NULL,
 
   PRIMARY KEY (`id_building`),
-  KEY `fkIdx_106` (`id_campus`, `id_institution`),
-  CONSTRAINT `FK_106` FOREIGN KEY `fkIdx_106` (`id_campus`, `id_institution`) REFERENCES `campus` (`id_campus`, `id_institution`)
+  FOREIGN KEY (`id_campus`) REFERENCES campus(id_campus),
+  FOREIGN KEY (`id_institution`) REFERENCES institution(id_institution)
 );
 
 -- ************************************** `department`
