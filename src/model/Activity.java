@@ -23,7 +23,7 @@ public class Activity {
     private Long idProgram;
 
     public Professor getProfessor() {
-        if(professor == null){
+        if (professor == null) {
             ProfessorDAO dao = new ProfessorDAO();
             professor = dao.find(idProfessor);
         }
@@ -37,7 +37,7 @@ public class Activity {
     }
 
     public Department getDepartment() {
-        if(department == null){
+        if (department == null) {
             DepartmentDAO dao = new DepartmentDAO();
             department = dao.find(idDepartment);
         }
@@ -51,7 +51,7 @@ public class Activity {
     }
 
     public Campus getCampus() {
-        if(campus == null){
+        if (campus == null) {
             CampusDAO dao = new CampusDAO();
             campus = dao.find(idCampus);
         }
@@ -65,7 +65,7 @@ public class Activity {
     }
 
     public Institution getInstitution() {
-        if(institution == null){
+        if (institution == null) {
             InstitutionDAO dao = new InstitutionDAO();
             institution = dao.find(idInstitution);
         }
@@ -79,7 +79,7 @@ public class Activity {
     }
 
     public Program getProgram() {
-        if(program == null){
+        if (program == null) {
             ProgramDAO dao = new ProgramDAO();
             program = dao.find(idProgram);
         }
@@ -89,6 +89,11 @@ public class Activity {
     public Activity setProgram(Program program) {
         this.idProgram = program.getIdProgram();
         this.program = program;
+        return this;
+    }
+
+    public Activity setActivityType(String activityType) {
+        this.activityType = ActivityTypeEnum.valueOf(activityType.toUpperCase());
         return this;
     }
 }
