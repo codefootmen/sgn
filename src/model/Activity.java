@@ -30,9 +30,10 @@ public class Activity {
         return professor;
     }
 
-    public void setProfessor(Professor professor) {
+    public Activity setProfessor(Professor professor) {
         this.idProfessor = professor.getIdProfessor();
         this.professor = professor;
+        return this;
     }
 
     public Department getDepartment() {
@@ -43,9 +44,10 @@ public class Activity {
         return department;
     }
 
-    public void setDepartment(Department department) {
+    public Activity setDepartment(Department department) {
         this.idDepartment = department.getIdDepartment();
         this.department = department;
+        return this;
     }
 
     public Campus getCampus() {
@@ -56,9 +58,10 @@ public class Activity {
         return campus;
     }
 
-    public void setCampus(Campus campus) {
+    public Activity setCampus(Campus campus) {
         this.idCampus = campus.getIdCampus();
         this.campus = campus;
+        return this;
     }
 
     public Institution getInstitution() {
@@ -69,9 +72,10 @@ public class Activity {
         return institution;
     }
 
-    public void setInstitution(Institution institution) {
+    public Activity setInstitution(Institution institution) {
         this.idInstitution = institution.getIdInstitution();
         this.institution = institution;
+        return this;
     }
 
     public Program getProgram() {
@@ -82,8 +86,9 @@ public class Activity {
         return program;
     }
 
-    public void setProgram(Program program) {
+    public Activity setProgram(Program program) {
         this.idProgram = program.getIdProgram();
         this.program = program;
+        return this;
     }
 }
