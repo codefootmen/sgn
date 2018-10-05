@@ -112,7 +112,7 @@ CREATE TABLE `event`
 
 CREATE TABLE `campus`
 (
-  `id_campus`      BIGINT unsigned NOT NULL,
+  `id_campus`      BIGINT unsigned NOT NULL AUTO_INCREMENT,
   `name`           VARCHAR(255)    NOT NULL,
   `street`         VARCHAR(255)    NOT NULL,
   `number`         BIGINT unsigned NOT NULL,
@@ -123,8 +123,7 @@ CREATE TABLE `campus`
   `id_institution` BIGINT unsigned NOT NULL,
 
   PRIMARY KEY (`id_campus`, `id_institution`),
-  KEY `fkIdx_32` (`id_institution`),
-  CONSTRAINT `FK_32` FOREIGN KEY `fkIdx_32` (`id_institution`) REFERENCES `institution` (id_institution)
+  FOREIGN KEY (`id_institution`) REFERENCES institution (id_institution)
 );
 
 -- ************************************** `building`
@@ -140,8 +139,8 @@ CREATE TABLE `building`
   `id_institution`        BIGINT unsigned NOT NULL,
 
   PRIMARY KEY (`id_building`),
-  FOREIGN KEY (`id_campus`) REFERENCES campus(id_campus),
-  FOREIGN KEY (`id_institution`) REFERENCES institution(id_institution)
+  FOREIGN KEY (`id_campus`) REFERENCES campus (id_campus),
+  FOREIGN KEY (`id_institution`) REFERENCES institution (id_institution)
 );
 
 -- ************************************** `department`
