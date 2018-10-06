@@ -8,4 +8,5 @@ public class Period {
     private String start;
     private String end;
     private String dayOfTheWeek;
+    private Room room;
 }
