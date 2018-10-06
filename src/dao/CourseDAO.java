@@ -15,15 +15,29 @@ public class CourseDAO implements DAO<Course, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getInsertSQLString(course));
+            statement = connection.prepareStatement(
+                    "INSERT INTO course SET " +
+                            "semester = ? " +
+                            "year = ? " +
+                            "id_subject = ? " +
+                            "id_program = ?" +
+                            "id_department = ? " +
+                            "id_campus = ? " +
+                            "id_institution = ? " +
+                            "id_period = ? " +
+                            "id_professor = ?"
+            );
             Query.setStatementValues(
                     statement,
-                    course.getIdCourse(),
                     course.getSemester(),
                     course.getYear(),
-                    course.getSubject().getIdSubject(),
-                    course.getProfessor().getIdProfessor(),
-                    course.getRoom().getIdRoom()
+                    course.getIdSubject(),
+                    course.getIdProgram(),
+                    course.getIdDepartment(),
+                    course.getIdCampus(),
+                    course.getIdInstitution(),
+                    course.getIdPeriod(),
+                    course.getIdProfessor()
             );
             statement.execute();
             Database.closeConnection(connection, statement);
@@ -51,14 +65,30 @@ public class CourseDAO implements DAO<Course, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getUpdateSQLString(course));
+            statement = connection.prepareStatement(
+                    "UPDATE course SET " +
+                            "semester = ? " +
+                            "year = ? " +
+                            "id_subject = ? " +
+                            "id_program = ?" +
+                            "id_department = ? " +
+                            "id_campus = ? " +
+                            "id_institution = ? " +
+                            "id_period = ? " +
+                            "id_professor = ? "+
+                            "WHERE id_course = ?"
+            );
             Query.setStatementValues(
                     statement,
                     course.getSemester(),
                     course.getYear(),
-                    course.getSubject().getIdSubject(),
-                    course.getProfessor().getIdProfessor(),
-                    course.getRoom().getIdRoom(),
+                    course.getIdSubject(),
+                    course.getIdProgram(),
+                    course.getIdDepartment(),
+                    course.getIdCampus(),
+                    course.getIdInstitution(),
+                    course.getIdPeriod(),
+                    course.getIdProfessor(),
                     course.getIdCourse()
             );
             statement.execute();
@@ -96,8 +126,19 @@ public class CourseDAO implements DAO<Course, Long> {
                 .setSemester(result.getBoolean("semester"))
                 .setYear(result.getInt("year"))
                 .setSubject(null)
+                .setIdSubject(result.getLong("id_subject"))
+                .setProgram(null)
+                .setIdProgram(result.getLong("id_program"))
+                .setDepartment(null)
+                .setIdDepartment(result.getLong("id_department"))
+                .setCampus(null)
+                .setIdCampus(result.getLong("id_campus"))
+                .setInstitution(null)
+                .setIdInstitution(result.getLong("id_institution"))
+                .setPeriod(null)
+                .setIdPeriod(result.getLong("id_period"))
                 .setProfessor(null)
-                .setRoom(null);
+                .setIdProfessor(result.getLong("id_professor"));
     }
 
     private List<Course> search(String sql) {

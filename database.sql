@@ -283,12 +283,13 @@ CREATE TABLE `course`
   `id_professor`   BIGINT unsigned NOT NULL,
 
   PRIMARY KEY (`id_course`, `id_subject`, `id_program`, `id_department`, `id_campus`, `id_institution`),
-  KEY `fkIdx_135` (`id_subject`, `id_program`, `id_department`, `id_campus`, `id_institution`),
-  CONSTRAINT `FK_135` FOREIGN KEY `fkIdx_135` (`id_subject`, `id_program`, `id_department`, `id_campus`, `id_institution`) REFERENCES `subject` (`id_subject`, `id_program`, `id_department`, `id_campus`, `id_institution`),
-  KEY `fkIdx_145` (`id_period`),
-  CONSTRAINT `FK_145` FOREIGN KEY `fkIdx_145` (`id_period`) REFERENCES `period` (`id_period`),
-  KEY `fkIdx_148` (`id_professor`),
-  CONSTRAINT `FK_148` FOREIGN KEY `fkIdx_148` (`id_professor`) REFERENCES `professor` (id_professor)
+  FOREIGN KEY (`id_subject`) REFERENCES subject (id_subject),
+  FOREIGN KEY (`id_program`) REFERENCES program (id_program),
+  FOREIGN KEY (`id_department`) REFERENCES department (id_department),
+  FOREIGN KEY (`id_campus`) REFERENCES campus (id_campus),
+  FOREIGN KEY (`id_institution`) REFERENCES institution (id_institution),
+  FOREIGN KEY (`id_period`) REFERENCES period (id_period),
+  FOREIGN KEY (`id_professor`) REFERENCES professor (id_professor)
 );
 
 
