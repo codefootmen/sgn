@@ -31,7 +31,9 @@ public class Activity {
     }
 
     public Activity setProfessor(Professor professor) {
-        this.idProfessor = professor.getIdProfessor();
+        if (professor != null){
+            this.idProfessor = professor.getIdProfessor();
+        }
         this.professor = professor;
         return this;
     }
@@ -45,7 +47,9 @@ public class Activity {
     }
 
     public Activity setDepartment(Department department) {
-        this.idDepartment = department.getIdDepartment();
+        if(department != null){
+            this.idDepartment = department.getIdDepartment();
+        }
         this.department = department;
         return this;
     }
@@ -59,7 +63,9 @@ public class Activity {
     }
 
     public Activity setCampus(Campus campus) {
-        this.idCampus = campus.getIdCampus();
+        if(campus != null){
+            this.idCampus = campus.getIdCampus();
+        }
         this.campus = campus;
         return this;
     }
@@ -73,7 +79,9 @@ public class Activity {
     }
 
     public Activity setInstitution(Institution institution) {
-        this.idInstitution = institution.getIdInstitution();
+        if(institution != null){
+            this.idInstitution = institution.getIdInstitution();
+        }
         this.institution = institution;
         return this;
     }
@@ -87,7 +95,9 @@ public class Activity {
     }
 
     public Activity setProgram(Program program) {
-        this.idProgram = program.getIdProgram();
+        if(program != null){
+            this.idProgram = program.getIdProgram();
+        }
         this.program = program;
         return this;
     }
