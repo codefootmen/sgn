@@ -115,7 +115,10 @@ public class BuildingDAO implements DAO<Building, Long> {
                 .setQuantityOfBathrooms(result.getInt("quantity_of_bathrooms"))
                 .setElevator(result.getBoolean("elevator"))
                 .setAccessibility(result.getBoolean("accessibility"))
-                .setCampus(null);
+                .setCampus(null)
+                .setIdCampus(result.getLong("id_campus"))
+                .setInstitution(null)
+                .setIdInstitution(result.getLong("id_institution"));
     }
 
     private List<Building> search(String sql) {
