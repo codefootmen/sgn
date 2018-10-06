@@ -11,5 +11,6 @@ public class Room {
     private Integer quantityOfSeats;
     private Building building;
     private RoomType roomType;
+    private Period period;
 
 }

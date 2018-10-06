@@ -10,4 +10,6 @@ public class Meeting {
     private String agenda;
     private String minutes;
     private Department department;
+    private Campus campus;
+    private Institution institution;
 }

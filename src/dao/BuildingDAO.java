@@ -15,15 +15,23 @@ public class BuildingDAO implements DAO<Building, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getInsertSQLString(building));
+            statement = connection.prepareStatement(
+                    "INSERT INTO building SET " +
+                            "name = ? " +
+                            "quantity_of_bathrooms = ? " +
+                            "elevator = ? " +
+                            "accessibility = ?" +
+                            "id_campus = ? " +
+                            "id_institution = ?"
+            );
             Query.setStatementValues(
                     statement,
-                    building.getIdBuilding(),
                     building.getName(),
                     building.getQuantityOfBathrooms(),
                     building.getElevator(),
                     building.getAccessibility(),
-                    building.getCampus().getIdCampus()
+                    building.getIdCampus(),
+                    building.getIdInstitution()
             );
             statement.execute();
             Database.closeConnection(connection, statement);
@@ -51,14 +59,24 @@ public class BuildingDAO implements DAO<Building, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getUpdateSQLString(building));
+            statement = connection.prepareStatement(
+                    "UPDATE building SET " +
+                            "name = ? " +
+                            "quantity_of_bathrooms = ? " +
+                            "elevator = ? " +
+                            "accessibility = ?" +
+                            "id_campus = ? " +
+                            "id_institution = ? " +
+                            "WHERE id_building = ?"
+            );
             Query.setStatementValues(
                     statement,
                     building.getName(),
                     building.getQuantityOfBathrooms(),
                     building.getElevator(),
                     building.getAccessibility(),
-                    building.getCampus().getIdCampus(),
+                    building.getIdCampus(),
+                    building.getIdInstitution(),
                     building.getIdBuilding()
             );
             statement.execute();
