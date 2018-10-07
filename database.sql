@@ -49,7 +49,7 @@ DROP TABLE IF EXISTS `institution`;
 
 CREATE TABLE `period`
 (
-  `id_period`    BIGINT unsigned NOT NULL,
+  `id_period`    BIGINT unsigned NOT NULL AUTO_INCREMENT,
   `start`        VARCHAR(255)    NOT NULL,
   `end`          VARCHAR(255)    NOT NULL,
   `dayOfTheWeek` VARCHAR(255)    NOT NULL,
@@ -61,7 +61,7 @@ CREATE TABLE `period`
 
 CREATE TABLE `student`
 (
-  `id_student` BIGINT unsigned NOT NULL,
+  `id_student` BIGINT unsigned NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(255)    NOT NULL,
   `last_name`  VARCHAR(255)    NOT NULL,
   `email`      VARCHAR(255)    NOT NULL,
@@ -73,7 +73,7 @@ CREATE TABLE `student`
 
 CREATE TABLE `professor`
 (
-  `id_professor` BIGINT unsigned NOT NULL,
+  `id_professor` BIGINT unsigned NOT NULL AUTO_INCREMENT,
   `first_name`   VARCHAR(255)    NOT NULL,
   `last_name`    VARCHAR(255)    NOT NULL,
   `email`        VARCHAR(255)    NOT NULL,
@@ -87,7 +87,7 @@ CREATE TABLE `professor`
 
 CREATE TABLE `institution`
 (
-  `id_institution` BIGINT unsigned NOT NULL,
+  `id_institution` BIGINT unsigned NOT NULL AUTO_INCREMENT,
   `name`           VARCHAR(255)    NOT NULL,
   `logo`           VARCHAR(255)    NOT NULL,
   `site`           VARCHAR(255)    NOT NULL,
@@ -147,22 +147,24 @@ CREATE TABLE `building`
 
 CREATE TABLE `department`
 (
-  `id_department`  BIGINT unsigned NOT NULL,
+  `id_department`  BIGINT unsigned NOT NULL AUTO_INCREMENT,
   `field`          VARCHAR(255)    NOT NULL,
   `description`    VARCHAR(255)    NOT NULL,
   `id_campus`      BIGINT unsigned NOT NULL,
   `id_institution` BIGINT unsigned NOT NULL,
+  `id_professor`   BIGINT unsigned NOT NULL,
 
   PRIMARY KEY (`id_department`, `id_campus`, `id_institution`),
-  KEY `fkIdx_102` (`id_campus`, `id_institution`),
-  CONSTRAINT `FK_102` FOREIGN KEY `fkIdx_102` (`id_campus`, `id_institution`) REFERENCES `campus` (`id_campus`, `id_institution`)
+  FOREIGN KEY (`id_campus`) REFERENCES campus (id_campus),
+  FOREIGN KEY (`id_institution`) REFERENCES institution (id_institution),
+  FOREIGN KEY (`id_professor`) REFERENCES professor (id_professor)
 );
 
 -- ************************************** `meeting`
 
 CREATE TABLE `meeting`
 (
-  `id_meeting`     BIGINT unsigned NOT NULL,
+  `id_meeting`     BIGINT unsigned NOT NULL AUTO_INCREMENT,
   `day`            VARCHAR(255)    NOT NULL,
   `time`           VARCHAR(255)    NOT NULL,
   `agenda`         VARCHAR(255)    NOT NULL,
@@ -180,7 +182,7 @@ CREATE TABLE `meeting`
 
 CREATE TABLE `room`
 (
-  `id_room`           BIGINT unsigned NOT NULL,
+  `id_room`           BIGINT unsigned NOT NULL AUTO_INCREMENT,
   `number`            INTEGER         NOT NULL,
   `quantity_of_seats` INTEGER         NOT NULL,
   `room_type`         ENUM ('')       NOT NULL,
@@ -198,7 +200,7 @@ CREATE TABLE `room`
 
 CREATE TABLE `program`
 (
-  `id_program`     BIGINT unsigned NOT NULL,
+  `id_program`     BIGINT unsigned NOT NULL AUTO_INCREMENT,
   `name`           VARCHAR(255)    NOT NULL,
   `id_department`  BIGINT unsigned NOT NULL,
   `id_campus`      BIGINT unsigned NOT NULL,
@@ -214,7 +216,7 @@ CREATE TABLE `program`
 
 CREATE TABLE `subject`
 (
-  `id_subject`          BIGINT unsigned NOT NULL,
+  `id_subject`          BIGINT unsigned NOT NULL AUTO_INCREMENT,
   `name`                VARCHAR(255)    NOT NULL,
   `quantity_of_credits` INTEGER         NOT NULL,
   `room_type`           ENUM ('')       NOT NULL,
@@ -232,7 +234,7 @@ CREATE TABLE `subject`
 
 CREATE TABLE `request`
 (
-  `id_request`  BIGINT unsigned NOT NULL,
+  `id_request`  BIGINT unsigned NOT NULL AUTO_INCREMENT,
   `motive`      VARCHAR(255)    NOT NULL,
   `description` VARCHAR(255)    NOT NULL,
   `id_room`     BIGINT unsigned NOT NULL,
@@ -271,7 +273,7 @@ CREATE TABLE `activity`
 
 CREATE TABLE `course`
 (
-  `id_course`      BIGINT unsigned NOT NULL,
+  `id_course`      BIGINT unsigned NOT NULL AUTO_INCREMENT,
   `semester`       BIT             NOT NULL,
   `year`           INTEGER         NOT NULL,
   `id_subject`     BIGINT unsigned NOT NULL,

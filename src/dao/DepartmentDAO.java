@@ -15,13 +15,21 @@ public class DepartmentDAO implements DAO<Department, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getInsertSQLString(department));
+            statement = connection.prepareStatement(
+                    "INSERT INTO department SET " +
+                            "field = ? " +
+                            "description = ? " +
+                            "id_campus = ?" +
+                            "id_institution = ? " +
+                            "id_professor = ?"
+            );
             Query.setStatementValues(
                     statement,
-                    department.getIdDepartment(),
                     department.getField(),
                     department.getDescription(),
-                    department.getProfessor().getIdProfessor()
+                    department.getIdCampus(),
+                    department.getIdInstitution(),
+                    department.getIdProfessor()
             );
             statement.execute();
             Database.closeConnection(connection, statement);
@@ -49,12 +57,22 @@ public class DepartmentDAO implements DAO<Department, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getUpdateSQLString(department));
+            statement = connection.prepareStatement(
+                    "UPDATE department SET " +
+                            "field = ? " +
+                            "description = ? " +
+                            "id_campus = ?" +
+                            "id_institution = ? " +
+                            "id_professor = ? "+
+                            "WHERE id_department = ?"
+            );
             Query.setStatementValues(
                     statement,
                     department.getField(),
                     department.getDescription(),
-                    department.getProfessor().getIdProfessor(),
+                    department.getIdCampus(),
+                    department.getIdInstitution(),
+                    department.getIdProfessor(),
                     department.getIdDepartment()
             );
             statement.execute();
@@ -87,12 +105,16 @@ public class DepartmentDAO implements DAO<Department, Long> {
     }
 
     private Department fromResultSet(ResultSet result) throws SQLException {
-        Department department = new Department();
-        department.setIdDepartment(result.getLong("id_department"));
-        department.setField(result.getString("field"));
-        department.setDescription(result.getString("description"));
-        department.setProfessor(null);
-        return department;
+        return new Department()
+                .setIdDepartment(result.getLong("id_department"))
+                .setField(result.getString("field"))
+                .setDescription(result.getString("description"))
+                .setCampus(null)
+                .setIdCampus(result.getLong("id_campus"))
+                .setInstitution(null)
+                .setIdInstitution(result.getLong("id_institution"))
+                .setProfessor(null)
+                .setIdProfessor(result.getLong("id_professor"));
     }
 
     private List<Department> search(String sql) {
