@@ -16,14 +16,19 @@ public class RoomDAO implements DAO<Room, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getInsertSQLString(room));
+            statement = connection.prepareStatement(
+                    "INSERT INTO room SET " +
+                            "number = ? " +
+                            "quantity_of_seats = ? " +
+                            "id_room_type = ? " +
+                            "id_building = ?"
+            );
             Query.setStatementValues(
                     statement,
-                    room.getIdRoom(),
                     room.getNumber(),
                     room.getQuantityOfSeats(),
-                    room.getBuilding().getIdBuilding(),
-                    room.getRoomType().getIdRoomType()
+                    room.getIdRoomType(),
+                    room.getIdBuilding()
             );
             statement.execute();
             Database.closeConnection(connection, statement);
@@ -51,13 +56,20 @@ public class RoomDAO implements DAO<Room, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getUpdateSQLString(room));
+            statement = connection.prepareStatement(
+                    "UPDATE room SET " +
+                            "number = ? " +
+                            "quantity_of_seats = ? " +
+                            "id_room_type = ? " +
+                            "id_building = ? "+
+                            "WHERE id_room = ?"
+            );
             Query.setStatementValues(
                     statement,
                     room.getNumber(),
                     room.getQuantityOfSeats(),
-                    room.getBuilding().getIdBuilding(),
-                    room.getRoomType().getIdRoomType(),
+                    room.getIdRoomType(),
+                    room.getIdBuilding(),
                     room.getIdRoom()
             );
             statement.execute();
@@ -94,8 +106,10 @@ public class RoomDAO implements DAO<Room, Long> {
                 .setIdRoom(result.getLong("id_room"))
                 .setNumber(result.getInt("number"))
                 .setQuantityOfSeats(result.getInt("quantity_of_seats"))
+                .setRoomType(null)
+                .setIdRoomType(result.getLong("id_room_type"))
                 .setBuilding(null)
-                .setRoomType(null);
+                .setIdBuilding(result.getLong("id_building"));
     }
 
     private List<Room> search(String sql) {

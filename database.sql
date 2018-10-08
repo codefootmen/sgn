@@ -246,14 +246,14 @@ CREATE TABLE `subject`
 
 CREATE TABLE `request`
 (
-  `id_request`  BIGINT unsigned NOT NULL AUTO_INCREMENT,
-  `motive`      VARCHAR(255)    NOT NULL,
-  `description` VARCHAR(255)    NOT NULL,
-  `priority`    ENUM('normal', 'urgent') NOT NULL,
-  `id_room`     BIGINT unsigned NOT NULL,
+  `id_request`  BIGINT unsigned           NOT NULL AUTO_INCREMENT,
+  `motive`      VARCHAR(255)              NOT NULL,
+  `description` VARCHAR(255)              NOT NULL,
+  `priority`    ENUM ('normal', 'urgent') NOT NULL,
+  `id_room`     BIGINT unsigned           NOT NULL,
 
   PRIMARY KEY (`id_request`),
-  FOREIGN KEY (`id_room`) REFERENCES room(id_room)
+  FOREIGN KEY (`id_room`) REFERENCES room (id_room)
 );
 
 -- ************************************** `activity`
