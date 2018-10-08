@@ -17,11 +17,11 @@ DROP TABLE IF EXISTS `department`;
 
 DROP TABLE IF EXISTS `event`;
 
+DROP TABLE IF EXISTS `period`;
+
 DROP TABLE IF EXISTS `room`;
 
 DROP TABLE IF EXISTS `building`;
-
-DROP TABLE IF EXISTS `period`;
 
 DROP TABLE IF EXISTS `student`;
 
