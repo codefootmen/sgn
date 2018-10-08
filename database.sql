@@ -11,23 +11,23 @@ DROP TABLE IF EXISTS `activity`;
 
 DROP TABLE IF EXISTS `meeting`;
 
-DROP TABLE IF EXISTS `room`;
-
 DROP TABLE IF EXISTS `program`;
-
-DROP TABLE IF EXISTS `building`;
 
 DROP TABLE IF EXISTS `department`;
 
 DROP TABLE IF EXISTS `event`;
 
-DROP TABLE IF EXISTS `campus`;
+DROP TABLE IF EXISTS `room`;
+
+DROP TABLE IF EXISTS `building`;
 
 DROP TABLE IF EXISTS `period`;
 
 DROP TABLE IF EXISTS `student`;
 
 DROP TABLE IF EXISTS `professor`;
+
+DROP TABLE IF EXISTS `campus`;
 
 DROP TABLE IF EXISTS `institution`;
 
@@ -160,8 +160,9 @@ CREATE TABLE `meeting`
   `id_institution` BIGINT unsigned NOT NULL,
 
   PRIMARY KEY (`id_meeting`),
-  KEY `fkIdx_115` (`id_department`, `id_campus`, `id_institution`),
-  CONSTRAINT `FK_115` FOREIGN KEY `fkIdx_115` (`id_department`, `id_campus`, `id_institution`) REFERENCES `department` (`id_department`, `id_campus`, `id_institution`)
+  FOREIGN KEY (`id_department`) REFERENCES department (id_department),
+  FOREIGN KEY (`id_campus`) REFERENCES campus (id_campus),
+  FOREIGN KEY (`id_institution`) REFERENCES institution (id_institution)
 );
 
 -- ************************************** `room`

@@ -15,15 +15,23 @@ public class MeetingDAO implements DAO<Meeting, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getInsertSQLString(meeting));
+            statement = connection.prepareStatement(
+                    "INSERT INTO meeting SET " +
+                            "day = ? " +
+                            "time = ? " +
+                            "minutes = ? " +
+                            "id_department = ? " +
+                            "id_campus = ? " +
+                            "id_institution = ?"
+            );
             Query.setStatementValues(
                     statement,
-                    meeting.getIdMeeting(),
                     meeting.getDay(),
                     meeting.getTime(),
-                    meeting.getAgenda(),
                     meeting.getMinutes(),
-                    meeting.getDepartment().getIdDepartment()
+                    meeting.getIdDepartment(),
+                    meeting.getIdCampus(),
+                    meeting.getIdInstitution()
             );
             statement.execute();
             Database.closeConnection(connection, statement);
@@ -51,14 +59,24 @@ public class MeetingDAO implements DAO<Meeting, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getUpdateSQLString(meeting));
+            statement = connection.prepareStatement(
+                    "UPDATE meeting SET " +
+                            "day = ? " +
+                            "time = ? " +
+                            "minutes = ? " +
+                            "id_department = ? " +
+                            "id_campus = ? " +
+                            "id_institution = ? " +
+                            "WHERE id_meeting = ?"
+            );
             Query.setStatementValues(
                     statement,
                     meeting.getDay(),
                     meeting.getTime(),
-                    meeting.getAgenda(),
                     meeting.getMinutes(),
-                    meeting.getDepartment().getIdDepartment(),
+                    meeting.getIdDepartment(),
+                    meeting.getIdCampus(),
+                    meeting.getIdInstitution(),
                     meeting.getIdMeeting()
             );
             statement.execute();
@@ -91,14 +109,18 @@ public class MeetingDAO implements DAO<Meeting, Long> {
     }
 
     private Meeting fromResultSet(ResultSet result) throws SQLException {
-        Meeting meeting = new Meeting();
-        meeting.setIdMeeting(result.getLong("id_meeting"));
-        meeting.setDay(result.getString("day"));
-        meeting.setTime(result.getString("time"));
-        meeting.setAgenda(result.getString("agenda"));
-        meeting.setMinutes(result.getString("minutes"));
-        meeting.setDepartment(null);
-        return meeting;
+        return new Meeting()
+                .setIdMeeting(result.getLong("id_meeting"))
+                .setDay(result.getString("day"))
+                .setTime(result.getString("time"))
+                .setAgenda(result.getString("agenda"))
+                .setMinutes(result.getString("minutes"))
+                .setDepartment(null)
+                .setIdDepartment(result.getLong("id_department"))
+                .setCampus(null)
+                .setIdCampus(result.getLong("id_campus"))
+                .setInstitution(null)
+                .setIdInstitution(result.getLong("id_institution"));
     }
 
     private List<Meeting> search(String sql) {
