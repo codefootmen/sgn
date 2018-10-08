@@ -295,8 +295,16 @@ CREATE TABLE `course`
   FOREIGN KEY (`id_professor`) REFERENCES professor (id_professor)
 );
 
+-- ************************************** `room_type`
 
+CREATE TABLE `room_type`
+(
+  `id_room_type` BIGINT unsigned NOT NULL AUTO_INCREMENT,
+  `name`         VARCHAR(255)    NOT NULL,
+  `description`  VARCHAR(255)    NOT NULL,
 
+  PRIMARY KEY (`id_room_type`)
+);
 
 
 
