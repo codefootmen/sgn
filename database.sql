@@ -44,18 +44,6 @@ CREATE TABLE `room_type`
   PRIMARY KEY (`id_room_type`)
 );
 
--- ************************************** `period`
-
-CREATE TABLE `period`
-(
-  `id_period`    BIGINT unsigned NOT NULL AUTO_INCREMENT,
-  `start`        VARCHAR(255)    NOT NULL,
-  `end`          VARCHAR(255)    NOT NULL,
-  `dayOfTheWeek` VARCHAR(255)    NOT NULL,
-
-  PRIMARY KEY (`id_period`)
-);
-
 -- ************************************** `student`
 
 CREATE TABLE `student`
@@ -172,15 +160,26 @@ CREATE TABLE `room`
   `id_room`           BIGINT unsigned NOT NULL AUTO_INCREMENT,
   `number`            INTEGER         NOT NULL,
   `quantity_of_seats` INTEGER         NOT NULL,
-  `room_type`         ENUM ('')       NOT NULL,
+  `id_room_type`      BIGINT unsigned NOT NULL,
   `id_building`       BIGINT unsigned NOT NULL,
-  `id_period`         BIGINT unsigned NOT NULL,
 
   PRIMARY KEY (`id_room`),
-  KEY `fkIdx_151` (`id_building`),
-  CONSTRAINT `FK_151` FOREIGN KEY `fkIdx_151` (`id_building`) REFERENCES `building` (`id_building`),
-  KEY `fkIdx_161` (`id_period`),
-  CONSTRAINT `FK_161` FOREIGN KEY `fkIdx_161` (`id_period`) REFERENCES `period` (`id_period`)
+  FOREIGN KEY (`id_room_type`) REFERENCES room_type (id_room_type),
+  FOREIGN KEY (`id_building`) REFERENCES building (id_building)
+);
+
+-- ************************************** `period`
+
+CREATE TABLE `period`
+(
+  `id_period`       BIGINT unsigned NOT NULL AUTO_INCREMENT,
+  `start`           VARCHAR(255)    NOT NULL,
+  `end`             VARCHAR(255)    NOT NULL,
+  `day_of_the_week` VARCHAR(255)    NOT NULL,
+  `id_room`         BIGINT unsigned NOT NULL,
+
+  PRIMARY KEY (`id_period`),
+  FOREIGN KEY (`id_room`) REFERENCES room (`id_room`)
 );
 
 -- ************************************** `event`

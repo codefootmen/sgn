@@ -15,13 +15,19 @@ public class PeriodDAO implements DAO<Period, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getInsertSQLString(period));
+            statement = connection.prepareStatement(
+                    "INSERT INTO period SET " +
+                            "start = ? " +
+                            "end = ? " +
+                            "day_of_the_week = ? " +
+                            "id_room = ?"
+            );
             Query.setStatementValues(
                     statement,
-                    period.getIdPeriod(),
                     period.getStart(),
                     period.getEnd(),
-                    period.getDayOfTheWeek()
+                    period.getDayOfTheWeek(),
+                    period.getIdRoom()
             );
             statement.execute();
             Database.closeConnection(connection, statement);
@@ -49,12 +55,20 @@ public class PeriodDAO implements DAO<Period, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getUpdateSQLString(period));
+            statement = connection.prepareStatement(
+                    "UPDATE period SET " +
+                            "start = ? " +
+                            "end = ? " +
+                            "day_of_the_week = ? " +
+                            "id_room = ? " +
+                            "WHERE id_period = ?"
+            );
             Query.setStatementValues(
                     statement,
                     period.getStart(),
                     period.getEnd(),
                     period.getDayOfTheWeek(),
+                    period.getIdRoom(),
                     period.getIdPeriod()
             );
             statement.execute();
@@ -87,12 +101,13 @@ public class PeriodDAO implements DAO<Period, Long> {
     }
 
     private Period fromResultSet(ResultSet result) throws SQLException {
-        Period period = new Period();
-        period.setIdPeriod(result.getLong("id_period"));
-        period.setStart(result.getString("start"));
-        period.setEnd(result.getString("end"));
-        period.setDayOfTheWeek(result.getString("day_of_the_week"));
-        return period;
+        return new Period()
+                .setIdPeriod(result.getLong("id_period"))
+                .setStart(result.getString("start"))
+                .setEnd(result.getString("end"))
+                .setDayOfTheWeek(result.getString("day_of_the_week"))
+                .setRoom(null)
+                .setIdRoom(result.getLong("id_room"));
     }
 
     private List<Period> search(String sql) {
