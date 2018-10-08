@@ -15,15 +15,21 @@ public class EventDAO implements DAO<Event, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getInsertSQLString(event));
+            statement = connection.prepareStatement(
+                    "INSERT INTO event SET " +
+                            "name = ? " +
+                            "date = ? " +
+                            "id_period = ? " +
+                            "id_professor = ? " +
+                            "id_room = ?"
+            );
             Query.setStatementValues(
                     statement,
-                    event.getIdEvent(),
-                    event.getDay(),
                     event.getName(),
-                    event.getPeriod().getIdPeriod(),
-                    event.getProfessor().getIdProfessor(),
-                    event.getRoom().getIdRoom()
+                    event.getDate(),
+                    event.getIdPeriod(),
+                    event.getIdProfessor(),
+                    event.getIdRoom()
             );
             statement.execute();
             Database.closeConnection(connection, statement);
@@ -51,14 +57,22 @@ public class EventDAO implements DAO<Event, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getUpdateSQLString(event));
+            statement = connection.prepareStatement(
+                    "UPDATE event SET " +
+                            "name = ? " +
+                            "date = ? " +
+                            "id_period = ? " +
+                            "id_professor = ? " +
+                            "id_room = ? " +
+                            "WHERE id_event = ?"
+            );
             Query.setStatementValues(
                     statement,
-                    event.getDay(),
                     event.getName(),
-                    event.getPeriod().getIdPeriod(),
-                    event.getProfessor().getIdProfessor(),
-                    event.getRoom().getIdRoom(),
+                    event.getDate(),
+                    event.getIdPeriod(),
+                    event.getIdProfessor(),
+                    event.getIdRoom(),
                     event.getIdEvent()
             );
             statement.execute();
@@ -91,14 +105,16 @@ public class EventDAO implements DAO<Event, Long> {
     }
 
     private Event fromResultSet(ResultSet result) throws SQLException {
-        Event event = new Event();
-        event.setIdEvent(result.getLong("id_event"));
-        event.setDay(result.getString("day"));
-        event.setName(result.getString("name"));
-        event.setPeriod(null);
-        event.setProfessor(null);
-        event.setRoom(null);
-        return event;
+        return new Event()
+                .setIdEvent(result.getLong("id_event"))
+                .setName(result.getString("name"))
+                .setDate(result.getString("date"))
+                .setPeriod(null)
+                .setIdPeriod(result.getLong("id_period"))
+                .setProfessor(null)
+                .setIdProfessor(result.getLong("id_professor"))
+                .setRoom(null)
+                .setIdRoom(result.getLong("id_room"));
     }
 
     private List<Event> search(String sql) {
