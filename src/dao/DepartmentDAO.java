@@ -34,7 +34,7 @@ public class DepartmentDAO implements DAO<Department, Long> {
     }
 
     @Override
-    public Department find(Long key) {
+    public Department findOne(Long key) {
         String sql = String.format("SELECT * FROM department WHERE id_department = '%s'", key);
         return search(sql).get(0);
     }

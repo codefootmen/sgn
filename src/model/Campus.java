@@ -21,7 +21,7 @@ public class Campus {
     public Institution getInstitution() {
         if (institution == null) {
             InstitutionDAO dao = new InstitutionDAO();
-            institution = dao.find(idInstitution);
+            institution = dao.findOne(idInstitution);
         }
         return institution;
     }

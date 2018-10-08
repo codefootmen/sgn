@@ -48,7 +48,7 @@ public class CampusDAO implements DAO<Campus, Long> {
     }
 
     @Override
-    public Campus find(Long key) {
+    public Campus findOne(Long key) {
         String sql = String.format("SELECT * FROM campus WHERE id_campus = '%s'", key);
         return search(sql).get(0);
     }

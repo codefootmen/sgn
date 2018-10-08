@@ -25,7 +25,7 @@ public class Activity {
     public Professor getProfessor() {
         if (professor == null) {
             ProfessorDAO dao = new ProfessorDAO();
-            professor = dao.find(idProfessor);
+            professor = dao.findOne(idProfessor);
         }
         return professor;
     }
@@ -41,7 +41,7 @@ public class Activity {
     public Department getDepartment() {
         if (department == null) {
             DepartmentDAO dao = new DepartmentDAO();
-            department = dao.find(idDepartment);
+            department = dao.findOne(idDepartment);
         }
         return department;
     }
@@ -57,7 +57,7 @@ public class Activity {
     public Campus getCampus() {
         if (campus == null) {
             CampusDAO dao = new CampusDAO();
-            campus = dao.find(idCampus);
+            campus = dao.findOne(idCampus);
         }
         return campus;
     }
@@ -73,7 +73,7 @@ public class Activity {
     public Institution getInstitution() {
         if (institution == null) {
             InstitutionDAO dao = new InstitutionDAO();
-            institution = dao.find(idInstitution);
+            institution = dao.findOne(idInstitution);
         }
         return institution;
     }
@@ -89,7 +89,7 @@ public class Activity {
     public Program getProgram() {
         if (program == null) {
             ProgramDAO dao = new ProgramDAO();
-            program = dao.find(idProgram);
+            program = dao.findOne(idProgram);
         }
         return program;
     }

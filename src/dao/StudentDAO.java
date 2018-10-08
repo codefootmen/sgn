@@ -35,7 +35,7 @@ public class StudentDAO implements DAO<Student, Long> {
     }
 
     @Override
-    public Student find(Long key) {
+    public Student findOne(Long key) {
         String sql = String.format("SELECT * FROM student WHERE id_student = '%s'", key);
         return search(sql).get(0);
     }

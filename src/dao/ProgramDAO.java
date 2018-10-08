@@ -33,7 +33,7 @@ public class ProgramDAO implements DAO<Program, Long> {
     }
 
     @Override
-    public Program find(Long key) {
+    public Program findOne(Long key) {
         String sql = String.format("SELECT * FROM program WHERE id_program = '%s'", key);
         return search(sql).get(0);
     }

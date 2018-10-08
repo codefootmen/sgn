@@ -36,7 +36,7 @@ public class ProfessorDAO implements DAO<Professor, Long> {
     }
 
     @Override
-    public Professor find(Long key) {
+    public Professor findOne(Long key) {
         String sql = String.format("SELECT * FROM professor WHERE id_professor = '%s'", key);
         return search(sql).get(0);
     }

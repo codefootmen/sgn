@@ -49,7 +49,7 @@ public class ActivityDAO implements DAO<Activity, Long> {
     }
 
     @Override
-    public Activity find(Long key) {
+    public Activity findOne(Long key) {
         String sql = String.format("SELECT * FROM activity WHERE id_activity = '%s'", key);
         return search(sql).get(0);
     }

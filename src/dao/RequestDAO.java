@@ -35,7 +35,7 @@ public class RequestDAO implements DAO<Request, Long> {
     }
 
     @Override
-    public Request find(Long key) {
+    public Request findOne(Long key) {
         String sql = String.format("SELECT * FROM request WHERE id_request = '%s'", key);
         return search(sql).get(0);
     }

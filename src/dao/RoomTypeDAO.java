@@ -33,7 +33,7 @@ public class RoomTypeDAO implements DAO<RoomType, Long> {
     }
 
     @Override
-    public RoomType find(Long key) {
+    public RoomType findOne(Long key) {
         String sql = String.format("SELECT * FROM room_type WHERE id_room_type = '%s'", key);
         return search(sql).get(0);
     }

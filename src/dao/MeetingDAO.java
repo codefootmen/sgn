@@ -36,7 +36,7 @@ public class MeetingDAO implements DAO<Meeting, Long> {
     }
 
     @Override
-    public Meeting find(Long key) {
+    public Meeting findOne(Long key) {
         String sql = String.format("SELECT * FROM meeting WHERE id_meeting = '%s'", key);
         return search(sql).get(0);
     }
