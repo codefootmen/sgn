@@ -217,15 +217,18 @@ CREATE TABLE `subject`
   `id_subject`          BIGINT unsigned NOT NULL,
   `name`                VARCHAR(255)    NOT NULL,
   `quantity_of_credits` INTEGER         NOT NULL,
-  `room_type`           ENUM ('')       NOT NULL,
+  `id_room_type`        BIGINT unsigned NOT NULL,
   `id_program`          BIGINT unsigned NOT NULL,
   `id_department`       BIGINT unsigned NOT NULL,
   `id_campus`           BIGINT unsigned NOT NULL,
   `id_institution`      BIGINT unsigned NOT NULL,
 
   PRIMARY KEY (`id_subject`, `id_program`, `id_department`, `id_campus`, `id_institution`),
-  KEY `fkIdx_126` (`id_program`, `id_department`, `id_campus`, `id_institution`),
-  CONSTRAINT `FK_126` FOREIGN KEY `fkIdx_126` (`id_program`, `id_department`, `id_campus`, `id_institution`) REFERENCES `program` (`id_program`, `id_department`, `id_campus`, `id_institution`)
+  FOREIGN KEY (`id_room_type`) REFERENCES room_type(id_room_type),
+  FOREIGN KEY (`id_program`) REFERENCES program(id_program),
+  FOREIGN KEY (`id_department`) REFERENCES department (id_department),
+  FOREIGN KEY (`id_campus`) REFERENCES campus (id_campus),
+  FOREIGN KEY (`id_institution`) REFERENCES institution (id_institution)
 );
 
 -- ************************************** `request`
