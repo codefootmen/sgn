@@ -94,23 +94,6 @@ CREATE TABLE `institution`
   PRIMARY KEY (`id_institution`)
 );
 
--- ************************************** `event`
-
-CREATE TABLE `event`
-(
-  `id_event`     BIGINT unsigned NOT NULL AUTO_INCREMENT,
-  `name`         VARCHAR(255)    NOT NULL,
-  `date`         DATE            NOT NULL,
-  `id_period`    BIGINT unsigned NOT NULL,
-  `id_professor` BIGINT unsigned NOT NULL,
-  `id_room`      BIGINT unsigned NOT NULL,
-
-  PRIMARY KEY (`id_event`),
-  FOREIGN KEY (`id_period`) REFERENCES period (id_period),
-  FOREIGN KEY (`id_professor`) REFERENCES professor (id_professor),
-  FOREIGN KEY (`id_room`) REFERENCES room (id_room)
-);
-
 -- ************************************** `campus`
 
 CREATE TABLE `campus`
@@ -199,6 +182,23 @@ CREATE TABLE `room`
   CONSTRAINT `FK_161` FOREIGN KEY `fkIdx_161` (`id_period`) REFERENCES `period` (`id_period`)
 );
 
+-- ************************************** `event`
+
+CREATE TABLE `event`
+(
+  `id_event`     BIGINT unsigned NOT NULL AUTO_INCREMENT,
+  `name`         VARCHAR(255)    NOT NULL,
+  `date`         DATE            NOT NULL,
+  `id_period`    BIGINT unsigned NOT NULL,
+  `id_professor` BIGINT unsigned NOT NULL,
+  `id_room`      BIGINT unsigned NOT NULL,
+
+  PRIMARY KEY (`id_event`),
+  FOREIGN KEY (`id_period`) REFERENCES period (id_period),
+  FOREIGN KEY (`id_professor`) REFERENCES professor (id_professor),
+  FOREIGN KEY (`id_room`) REFERENCES room (id_room)
+);
+
 -- ************************************** `program`
 
 CREATE TABLE `program`
@@ -272,7 +272,6 @@ CREATE TABLE `activity`
   FOREIGN KEY (`id_campus`) REFERENCES campus (id_campus),
   FOREIGN KEY (`id_institution`) REFERENCES institution (id_institution),
   FOREIGN KEY (`id_program`) REFERENCES program (id_program)
-
 );
 
 -- ************************************** `course`
