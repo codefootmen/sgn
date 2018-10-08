@@ -15,12 +15,21 @@ public class ProgramDAO implements DAO<Program, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getInsertSQLString(program));
+            statement = connection.prepareStatement(
+                    "INSERT INTO program SET " +
+                            "name = ? " +
+                            "academic_level = ? " +
+                            "id_department = ? " +
+                            "id_campus = ? " +
+                            "id_institution = ?"
+            );
             Query.setStatementValues(
                     statement,
-                    program.getIdProgram(),
                     program.getName(),
-                    program.getDepartment().getIdDepartment()
+                    program.getAcademicLevel().toString(),
+                    program.getIdDepartment(),
+                    program.getIdCampus(),
+                    program.getIdInstitution()
             );
             statement.execute();
             Database.closeConnection(connection, statement);
@@ -48,11 +57,22 @@ public class ProgramDAO implements DAO<Program, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getUpdateSQLString(program));
+            statement = connection.prepareStatement(
+                    "UPDATE program SET " +
+                            "name = ? " +
+                            "academic_level = ? " +
+                            "id_department = ? " +
+                            "id_campus = ? " +
+                            "id_institution = ? "+
+                            "WHERE id_program = ?"
+            );
             Query.setStatementValues(
                     statement,
                     program.getName(),
-                    program.getDepartment(),
+                    program.getAcademicLevel().toString(),
+                    program.getIdDepartment(),
+                    program.getIdCampus(),
+                    program.getIdInstitution(),
                     program.getIdProgram()
             );
             statement.execute();
@@ -85,11 +105,16 @@ public class ProgramDAO implements DAO<Program, Long> {
     }
 
     private Program fromResultSet(ResultSet result) throws SQLException {
-        Program program = new Program();
-        program.setIdProgram(result.getLong("id_program"));
-        program.setName(result.getString("name"));
-        program.setDepartment(null);
-        return program;
+        return new Program()
+                .setIdProgram(result.getLong("id_program"))
+                .setName(result.getString("name"))
+                .setAcademicLevel(result.getString("academic_level"))
+                .setDepartment(null)
+                .setIdDepartment(result.getLong("id_department"))
+                .setCampus(null)
+                .setIdCampus(result.getLong("id_campus"))
+                .setInstitution(null)
+                .setIdInstitution(result.getLong("id_institution"));
     }
 
     private List<Program> search(String sql) {

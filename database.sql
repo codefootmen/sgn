@@ -60,10 +60,10 @@ CREATE TABLE `student`
 
 CREATE TABLE `professor`
 (
-  `id_professor` BIGINT unsigned NOT NULL AUTO_INCREMENT,
-  `first_name`   VARCHAR(255)    NOT NULL,
-  `last_name`    VARCHAR(255)    NOT NULL,
-  `email`        VARCHAR(255)    NOT NULL,
+  `id_professor` BIGINT unsigned             NOT NULL AUTO_INCREMENT,
+  `first_name`   VARCHAR(255)                NOT NULL,
+  `last_name`    VARCHAR(255)                NOT NULL,
+  `email`        VARCHAR(255)                NOT NULL,
   `status`       ENUM ('normal', 'on_leave') NOT NULL,
   `honorifics`   ENUM ('dr', 'mr', 'ms')     NOT NULL,
 
@@ -205,14 +205,20 @@ CREATE TABLE `program`
 (
   `id_program`     BIGINT unsigned NOT NULL AUTO_INCREMENT,
   `name`           VARCHAR(255)    NOT NULL,
+  `academic_level` ENUM (
+    'elementary_school',
+    'high_school',
+    'technician',
+    'undergrad'
+  )                                NOT NULL,
   `id_department`  BIGINT unsigned NOT NULL,
   `id_campus`      BIGINT unsigned NOT NULL,
   `id_institution` BIGINT unsigned NOT NULL,
-  `academic_level` ENUM ('')       NOT NULL,
 
   PRIMARY KEY (`id_program`, `id_department`, `id_campus`, `id_institution`),
-  KEY `fkIdx_120` (`id_department`, `id_campus`, `id_institution`),
-  CONSTRAINT `FK_120` FOREIGN KEY `fkIdx_120` (`id_department`, `id_campus`, `id_institution`) REFERENCES `department` (`id_department`, `id_campus`, `id_institution`)
+  FOREIGN KEY (`id_department`) REFERENCES department (id_department),
+  FOREIGN KEY (`id_campus`) REFERENCES campus (id_campus),
+  FOREIGN KEY (`id_institution`) REFERENCES institution (id_institution)
 );
 
 -- ************************************** `subject`

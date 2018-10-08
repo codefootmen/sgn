@@ -3,8 +3,8 @@ package model;
 import lombok.Data;
 
 public enum AcademicLevelEnum {
-    ELEMENTARY_SCHOOL("elementarySchool","Elementary_School"),
-    HIGH_SCHOOL("highSchool", "High_School"),
+    ELEMENTARY_SCHOOL("elementary_school","Elementary School"),
+    HIGH_SCHOOL("high_school", "High School"),
     TECHNICIAN("technician", "Technician"),
     UNDERGRAD("undergrad","Undergrad");
 
