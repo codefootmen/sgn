@@ -15,14 +15,19 @@ public class RequestDAO implements DAO<Request, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getUpdateSQLString(request));
+            statement = connection.prepareStatement(
+                    "INSERT INTO request SET " +
+                            "motive = ? " +
+                            "description = ? " +
+                            "priority = ? " +
+                            "id_room = ?"
+            );
             Query.setStatementValues(
                     statement,
-                    request.getIdRequest(),
                     request.getMotive(),
                     request.getDescription(),
                     request.getPriority().toString(),
-                    request.getRoom().getIdRoom()
+                    request.getIdRoom()
             );
             statement.execute();
             Database.closeConnection(connection, statement);
@@ -50,13 +55,20 @@ public class RequestDAO implements DAO<Request, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getUpdateSQLString(request));
+            statement = connection.prepareStatement(
+                    "INSERT INTO request SET " +
+                            "motive = ? " +
+                            "description = ? " +
+                            "priority = ? " +
+                            "id_room = ? " +
+                            "WHERE id_request = ?"
+            );
             Query.setStatementValues(
                     statement,
                     request.getMotive(),
                     request.getDescription(),
                     request.getPriority().toString(),
-                    request.getRoom().getIdRoom(),
+                    request.getIdRoom(),
                     request.getIdRequest()
             );
             statement.execute();
@@ -89,13 +101,13 @@ public class RequestDAO implements DAO<Request, Long> {
     }
 
     private Request fromResultSet(ResultSet result) throws SQLException {
-        Request request = new Request();
-        request.setIdRequest(result.getLong("id_request"));
-        request.setMotive(result.getString("motive"));
-        request.setDescription(result.getString("description"));
-        request.setPriority(null);
-        request.setRoom(null);
-        return request;
+        return new Request()
+                .setIdRequest(result.getLong("id_request"))
+                .setMotive(result.getString("motive"))
+                .setDescription(result.getString("description"))
+                .setPriority(result.getString("priority"))
+                .setRoom(null)
+                .setIdRoom(result.getLong("id_room"));
     }
 
     private List<Request> search(String sql) {
