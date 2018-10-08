@@ -1,49 +1,48 @@
--- ****************** SqlDBM: MySQL ******************;
+-- ****************** SGN DATABASE *******************;
 -- ***************************************************;
 
 DROP TABLE IF EXISTS `course`;
 
-
 DROP TABLE IF EXISTS `subject`;
-
 
 DROP TABLE IF EXISTS `request`;
 
-
 DROP TABLE IF EXISTS `activity`;
-
 
 DROP TABLE IF EXISTS `meeting`;
 
-
 DROP TABLE IF EXISTS `room`;
-
 
 DROP TABLE IF EXISTS `program`;
 
-
 DROP TABLE IF EXISTS `building`;
-
 
 DROP TABLE IF EXISTS `department`;
 
-
 DROP TABLE IF EXISTS `event`;
-
 
 DROP TABLE IF EXISTS `campus`;
 
-
 DROP TABLE IF EXISTS `period`;
-
 
 DROP TABLE IF EXISTS `student`;
 
-
 DROP TABLE IF EXISTS `professor`;
 
-
 DROP TABLE IF EXISTS `institution`;
+
+DROP TABLE IF EXISTS `room_type`;
+
+-- ************************************** `room_type`
+
+CREATE TABLE `room_type`
+(
+  `id_room_type` BIGINT unsigned NOT NULL AUTO_INCREMENT,
+  `name`         VARCHAR(255)    NOT NULL,
+  `description`  VARCHAR(255)    NOT NULL,
+
+  PRIMARY KEY (`id_room_type`)
+);
 
 -- ************************************** `period`
 
@@ -226,8 +225,8 @@ CREATE TABLE `subject`
   `id_institution`      BIGINT unsigned NOT NULL,
 
   PRIMARY KEY (`id_subject`, `id_program`, `id_department`, `id_campus`, `id_institution`),
-  FOREIGN KEY (`id_room_type`) REFERENCES room_type(id_room_type),
-  FOREIGN KEY (`id_program`) REFERENCES program(id_program),
+  FOREIGN KEY (`id_room_type`) REFERENCES room_type (id_room_type),
+  FOREIGN KEY (`id_program`) REFERENCES program (id_program),
   FOREIGN KEY (`id_department`) REFERENCES department (id_department),
   FOREIGN KEY (`id_campus`) REFERENCES campus (id_campus),
   FOREIGN KEY (`id_institution`) REFERENCES institution (id_institution)
@@ -297,16 +296,7 @@ CREATE TABLE `course`
   FOREIGN KEY (`id_professor`) REFERENCES professor (id_professor)
 );
 
--- ************************************** `room_type`
 
-CREATE TABLE `room_type`
-(
-  `id_room_type` BIGINT unsigned NOT NULL AUTO_INCREMENT,
-  `name`         VARCHAR(255)    NOT NULL,
-  `description`  VARCHAR(255)    NOT NULL,
-
-  PRIMARY KEY (`id_room_type`)
-);
 
 
 
