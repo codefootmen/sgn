@@ -15,15 +15,21 @@ public class ProfessorDAO implements DAO<Professor, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getInsertSQLString(professor));
+            statement = connection.prepareStatement(
+                    "INSERT INTO professor SET " +
+                            "first_name = ? " +
+                            "last_name = ? " +
+                            "email = ? " +
+                            "status = ? " +
+                            "honorifics = ?"
+            );
             Query.setStatementValues(
                     statement,
                     professor.getFirstName(),
                     professor.getLastName(),
                     professor.getEmail(),
-                    professor.getIdProfessor(),
-                    professor.getHonorifics().toString(),
-                    professor.getStatus().toString()
+                    professor.getStatus().toString(),
+                    professor.getHonorifics().toString()
             );
             statement.execute();
             Database.closeConnection(connection, statement);
@@ -51,14 +57,22 @@ public class ProfessorDAO implements DAO<Professor, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getUpdateSQLString(professor));
+            statement = connection.prepareStatement(
+                    "UPDATE professor SET " +
+                            "first_name = ? " +
+                            "last_name = ? " +
+                            "email = ? " +
+                            "status = ? " +
+                            "honorifics = ? " +
+                            "WHERE id_professor = ?"
+            );
             Query.setStatementValues(
                     statement,
                     professor.getFirstName(),
                     professor.getLastName(),
                     professor.getEmail(),
-                    professor.getHonorifics().toString(),
                     professor.getStatus().toString(),
+                    professor.getHonorifics().toString(),
                     professor.getIdProfessor()
             );
             statement.execute();
@@ -91,14 +105,13 @@ public class ProfessorDAO implements DAO<Professor, Long> {
     }
 
     private Professor fromResultSet(ResultSet result) throws SQLException {
-        Professor professor = new Professor();
-        professor.setFirstName(result.getString("first_name"));
-        professor.setLastName(result.getString("last_name"));
-        professor.setEmail(result.getString("email"));
-        professor.setIdProfessor(result.getLong("id_professor"));
-        professor.setHonorifics(null);
-        professor.setStatus(null);
-        return professor;
+        return new Professor()
+                .setIdProfessor(result.getLong("id_professor"))
+                .setFirstName(result.getString("first_name"))
+                .setLastName(result.getString("last_name"))
+                .setEmail(result.getString("email"))
+                .setStatus(result.getString("status"))
+                .setHonorifics(result.getString("honorifics"));
     }
 
     private List<Professor> search(String sql) {

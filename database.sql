@@ -64,8 +64,8 @@ CREATE TABLE `professor`
   `first_name`   VARCHAR(255)    NOT NULL,
   `last_name`    VARCHAR(255)    NOT NULL,
   `email`        VARCHAR(255)    NOT NULL,
-  `status`       ENUM ('normal') NOT NULL,
-  `honorifics`   ENUM ('dr')     NOT NULL,
+  `status`       ENUM ('normal', 'on_leave') NOT NULL,
+  `honorifics`   ENUM ('dr', 'mr', 'ms')     NOT NULL,
 
   PRIMARY KEY (`id_professor`)
 );

@@ -4,17 +4,36 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 @Data
-public class Professor extends Person{
+@Accessors(chain = true)
+public class Professor extends Person {
     private Long idProfessor;
-    private HonorificsEnum honorifics;
     private StatusEnum status;
+    private HonorificsEnum honorifics;
 
-    public Professor(){};
-
-    public Professor(String firstName, String lastName, String email, Long idProfessor, HonorificsEnum honorifics, StatusEnum status) {
-        super(firstName, lastName, email);
-        this.idProfessor = idProfessor;
-        this.honorifics = honorifics;
-        this.status = status;
+    public Professor setFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
     }
+
+    public Professor setLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
+    public Professor setEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public Professor setStatus(String status) {
+        this.status = StatusEnum.valueOf(status.toUpperCase());
+        return this;
+    }
+
+    public Professor setHonorifics(String honorifics) {
+        this.honorifics = HonorificsEnum.valueOf(honorifics.toUpperCase());
+        return this;
+    }
+
+
 }

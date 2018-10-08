@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public enum StatusEnum {
     NORMAL("normal", "Normal"),
-    ON_LEAVE("onLeave", "Batata");
+    ON_LEAVE("on_leave", "On Leave");
 
     String keyDb;
     String viewText;

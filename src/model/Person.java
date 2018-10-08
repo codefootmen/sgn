@@ -1,19 +1,13 @@
 package model;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 @Data
+@Accessors(chain = true)
 public abstract class Person {
 
-    private String firstName;
-    private String lastName;
-    private String email;
-
-    public Person(){}
-
-    public Person(String firstName, String lastName, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
+    protected String firstName;
+    protected String lastName;
+    protected String email;
 }
