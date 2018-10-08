@@ -15,14 +15,25 @@ public class SubjectDAO implements DAO<Subject, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getInsertSQLString(subject));
+            statement = connection.prepareStatement(
+                    "INSERT INTO subject SET " +
+                            "name = ? " +
+                            "quantity_of_credits = ? " +
+                            "id_room_type = ? " +
+                            "id_program = ?" +
+                            "id_department = ? " +
+                            "id_campus = ? " +
+                            "id_institution = ?"
+            );
             Query.setStatementValues(
                     statement,
-                    subject.getIdSubject(),
                     subject.getName(),
                     subject.getQuantityOfCredits(),
-                    subject.getProgram().getIdProgram(),
-                    subject.getRoomType().getIdRoomType()
+                    subject.getIdRoomType(),
+                    subject.getIdProgram(),
+                    subject.getIdDepartment(),
+                    subject.getIdCampus(),
+                    subject.getIdInstitution()
             );
             statement.execute();
             Database.closeConnection(connection, statement);
@@ -35,7 +46,7 @@ public class SubjectDAO implements DAO<Subject, Long> {
     }
 
     @Override
-    public Subject find(Long key) {
+    public Subject findOne(Long key) {
         String sql = String.format("SELECT * FROM subject WHERE id_subject = '%s'", key);
         return search(sql).get(0);
     }
@@ -50,13 +61,26 @@ public class SubjectDAO implements DAO<Subject, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getUpdateSQLString(subject));
+            statement = connection.prepareStatement(
+                    "UPDATE subject SET " +
+                            "name = ? " +
+                            "quantity_of_credits = ? " +
+                            "id_room_type = ? " +
+                            "id_program = ?" +
+                            "id_department = ? " +
+                            "id_campus = ? " +
+                            "id_institution = ? " +
+                            "WHERE id_subject = ?"
+            );
             Query.setStatementValues(
                     statement,
                     subject.getName(),
                     subject.getQuantityOfCredits(),
-                    subject.getProgram().getIdProgram(),
-                    subject.getRoomType().getIdRoomType(),
+                    subject.getIdRoomType(),
+                    subject.getIdProgram(),
+                    subject.getIdDepartment(),
+                    subject.getIdCampus(),
+                    subject.getIdInstitution(),
                     subject.getIdSubject()
             );
             statement.execute();
@@ -89,13 +113,20 @@ public class SubjectDAO implements DAO<Subject, Long> {
     }
 
     private Subject fromResultSet(ResultSet result) throws SQLException {
-        Subject subject = new Subject();
-        subject.setIdSubject(result.getLong("id_subject"));
-        subject.setName(result.getString("name"));
-        subject.setQuantityOfCredits(result.getInt("quantity_of_credits"));
-        subject.setProgram(null);
-        subject.setRoomType(null);
-        return subject;
+        return new Subject()
+                .setIdSubject(result.getLong("id_subject"))
+                .setName(result.getString("name"))
+                .setQuantityOfCredits(result.getInt("quantity_of_credits"))
+                .setRoomType(null)
+                .setIdRoomType(result.getLong("id_room_type"))
+                .setProgram(null)
+                .setIdProgram(result.getLong("id_program"))
+                .setDepartment(null)
+                .setIdDepartment(result.getLong("id_department"))
+                .setCampus(null)
+                .setIdCampus(result.getLong("id_campus"))
+                .setInstitution(null)
+                .setIdInstitution(result.getLong("id_institution"));
     }
 
     private List<Subject> search(String sql) {

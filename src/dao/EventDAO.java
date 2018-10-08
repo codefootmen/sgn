@@ -36,7 +36,7 @@ public class EventDAO implements DAO<Event, Long> {
     }
 
     @Override
-    public Event find(Long key) {
+    public Event findOne(Long key) {
         String sql = String.format("SELECT * FROM event WHERE id_event = '%s'", key);
         return search(sql).get(0);
     }

@@ -21,7 +21,7 @@ public class Building {
     public Campus getCampus() {
         if(campus == null){
             CampusDAO dao = new CampusDAO();
-            campus = dao.find(idCampus);
+            campus = dao.findOne(idCampus);
         }
         return campus;
     }
@@ -35,7 +35,7 @@ public class Building {
     public Institution getInstitution() {
         if(institution == null){
             InstitutionDAO dao = new InstitutionDAO();
-            institution = dao.find(idInstitution);
+            institution = dao.findOne(idInstitution);
         }
         return institution;
     }

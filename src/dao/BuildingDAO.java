@@ -44,7 +44,7 @@ public class BuildingDAO implements DAO<Building, Long> {
     }
 
     @Override
-    public Building find(Long key) {
+    public Building findOne(Long key) {
         String sql = String.format("SELECT * FROM building WHERE id_building = '%s'", key);
         return search(sql).get(0);
     }

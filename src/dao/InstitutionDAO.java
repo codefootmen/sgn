@@ -35,7 +35,7 @@ public class InstitutionDAO implements DAO<Institution, Long> {
     }
 
     @Override
-    public Institution find(Long key) {
+    public Institution findOne(Long key) {
         String sql = String.format("SELECT * FROM institution WHERE id_institution = '%s'", key);
         return search(sql).get(0);
     }

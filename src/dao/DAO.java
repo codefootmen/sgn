@@ -5,7 +5,7 @@ import java.util.List;
 public interface DAO<Entity, PrimaryKeyType> {
     Boolean save(Entity entity);
 
-    Entity find(PrimaryKeyType key);
+    Entity findOne(PrimaryKeyType key);
 
     List<Entity> findAll();
 

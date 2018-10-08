@@ -34,7 +34,7 @@ public class PeriodDAO implements DAO<Period, Long> {
     }
 
     @Override
-    public Period find(Long key) {
+    public Period findOne(Long key) {
         String sql = String.format("SELECT * FROM period WHERE id_period = '%s'", key);
         return search(sql).get(0);
     }
