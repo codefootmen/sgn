@@ -48,12 +48,14 @@ CREATE TABLE `room_type`
 
 CREATE TABLE `student`
 (
-  `id_student` BIGINT unsigned NOT NULL AUTO_INCREMENT,
-  `first_name` VARCHAR(255)    NOT NULL,
-  `last_name`  VARCHAR(255)    NOT NULL,
-  `email`      VARCHAR(255)    NOT NULL,
+  `id_student`  BIGINT unsigned NOT NULL AUTO_INCREMENT,
+  `first_name`  VARCHAR(255)    NOT NULL,
+  `last_name`   VARCHAR(255)    NOT NULL,
+  `email`       VARCHAR(255)    NOT NULL,
+  `id_activity` BIGINT unsigned NOT NULL,
 
-  PRIMARY KEY (`id_student`)
+  PRIMARY KEY (`id_student`),
+  FOREIGN KEY (`id_activity`) REFERENCES activity (id_activity)
 );
 
 -- ************************************** `professor`

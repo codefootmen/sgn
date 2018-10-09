@@ -15,14 +15,19 @@ public class StudentDAO implements DAO<Student, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getInsertSQLString(student));
+            statement = connection.prepareStatement(
+                    "INSERT INTO student SET " +
+                            "first_name = ? " +
+                            "last_name = ? " +
+                            "email = ? " +
+                            "id_activity = ?"
+            );
             Query.setStatementValues(
                     statement,
                     student.getFirstName(),
                     student.getLastName(),
                     student.getEmail(),
-                    student.getIdStudent(),
-                    student.getActivity().getIdActivity()
+                    student.getIdActivity()
             );
             statement.execute();
             Database.closeConnection(connection, statement);
@@ -50,13 +55,20 @@ public class StudentDAO implements DAO<Student, Long> {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(Query.getUpdateSQLString(student));
+            statement = connection.prepareStatement(
+                    "UPDATE student SET " +
+                            "first_name = ? " +
+                            "last_name = ? " +
+                            "email = ? " +
+                            "id_activity = ? " +
+                            "WHERE id_student = ?"
+            );
             Query.setStatementValues(
                     statement,
                     student.getFirstName(),
                     student.getLastName(),
                     student.getEmail(),
-                    student.getActivity().getIdActivity(),
+                    student.getIdActivity(),
                     student.getIdStudent()
             );
             statement.execute();
@@ -89,13 +101,13 @@ public class StudentDAO implements DAO<Student, Long> {
     }
 
     private Student fromResultSet(ResultSet result) throws SQLException {
-        Student student = new Student();
-        student.setFirstName(result.getString("first_name"));
-        student.setLastName(result.getString("last_name"));
-        student.setEmail(result.getString("email"));
-        student.setIdStudent(result.getLong("id_student"));
-        student.setActivity(null);
-        return student;
+        return new Student()
+                .setIdStudent(result.getLong("id_student"))
+                .setFirstName(result.getString("first_name"))
+                .setLastName(result.getString("last_name"))
+                .setEmail(result.getString("email"))
+                .setActivity(null)
+                .setIdActivity(result.getLong("id_activity"));
     }
 
     private List<Student> search(String sql) {
