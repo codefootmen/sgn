@@ -19,7 +19,7 @@ public class Building {
     private Long idInstitution;
 
     public Campus getCampus() {
-        if(campus == null){
+        if (campus == null) {
             CampusDAO dao = new CampusDAO();
             campus = dao.findOne(idCampus);
         }
@@ -27,13 +27,15 @@ public class Building {
     }
 
     public Building setCampus(Campus campus) {
-        this.idCampus = campus.getIdCampus();
+        if (campus != null) {
+            this.idCampus = campus.getIdCampus();
+        }
         this.campus = campus;
         return this;
     }
 
     public Institution getInstitution() {
-        if(institution == null){
+        if (institution == null) {
             InstitutionDAO dao = new InstitutionDAO();
             institution = dao.findOne(idInstitution);
         }
@@ -41,7 +43,9 @@ public class Building {
     }
 
     public Building setInstitution(Institution institution) {
-        this.idInstitution = institution.getIdInstitution();
+        if (institution != null) {
+            this.idInstitution = institution.getIdInstitution();
+        }
         this.institution = institution;
         return this;
     }

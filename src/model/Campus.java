@@ -27,7 +27,9 @@ public class Campus {
     }
 
     public Campus setInstitution(Institution institution) {
-        this.idInstitution = institution.getIdInstitution();
+        if (institution != null) {
+            this.idInstitution = institution.getIdInstitution();
+        }
         this.institution = institution;
         return this;
     }
