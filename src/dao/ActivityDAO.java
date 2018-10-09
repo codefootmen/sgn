@@ -17,13 +17,13 @@ public class ActivityDAO implements DAO<Activity, Long> {
         try {
             statement = connection.prepareStatement(
                     "INSERT INTO activity SET " +
-                            "name = ? " +
-                            "activity_type = ? " +
-                            "area = ? " +
-                            "id_professor = ?" +
-                            "id_campus = ? " +
-                            "id_department = ? " +
-                            "id_institution = ? " +
+                            "name = ?, " +
+                            "activity_type = ?, " +
+                            "area = ?, " +
+                            "id_professor = ?, " +
+                            "id_campus = ?, " +
+                            "id_department = ?," +
+                            "id_institution = ?, " +
                             "id_program = ?"
 
             );
@@ -66,14 +66,14 @@ public class ActivityDAO implements DAO<Activity, Long> {
         try {
             statement = connection.prepareStatement(
                     "UPDATE activity SET " +
-                            "name = ? " +
-                            "activity_type = ? " +
-                            "area = ? " +
-                            "id_professor = ?" +
-                            "id_campus = ? " +
-                            "id_department = ? " +
-                            "id_institution = ? " +
-                            "id_program = ?" +
+                            "name = ?, " +
+                            "activity_type = ?, " +
+                            "area = ?, " +
+                            "id_professor = ?, " +
+                            "id_campus = ?, " +
+                            "id_department = ?, " +
+                            "id_institution = ?, " +
+                            "id_program = ? " +
                             "WHERE id_activity = ?"
 
             );

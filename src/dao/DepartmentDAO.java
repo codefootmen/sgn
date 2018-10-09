@@ -17,10 +17,10 @@ public class DepartmentDAO implements DAO<Department, Long> {
         try {
             statement = connection.prepareStatement(
                     "INSERT INTO department SET " +
-                            "field = ? " +
-                            "description = ? " +
-                            "id_campus = ?" +
-                            "id_institution = ? " +
+                            "field = ?, " +
+                            "description = ?, " +
+                            "id_campus = ?, " +
+                            "id_institution = ?, " +
                             "id_professor = ?"
             );
             Query.setStatementValues(
@@ -59,11 +59,11 @@ public class DepartmentDAO implements DAO<Department, Long> {
         try {
             statement = connection.prepareStatement(
                     "UPDATE department SET " +
-                            "field = ? " +
-                            "description = ? " +
-                            "id_campus = ?" +
-                            "id_institution = ? " +
-                            "id_professor = ? "+
+                            "field = ?, " +
+                            "description = ?, " +
+                            "id_campus = ?, " +
+                            "id_institution = ?, " +
+                            "id_professor = ? " +
                             "WHERE id_department = ?"
             );
             Query.setStatementValues(

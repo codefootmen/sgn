@@ -18,9 +18,9 @@ public class RoomDAO implements DAO<Room, Long> {
         try {
             statement = connection.prepareStatement(
                     "INSERT INTO room SET " +
-                            "number = ? " +
-                            "quantity_of_seats = ? " +
-                            "id_room_type = ? " +
+                            "number = ?, " +
+                            "quantity_of_seats = ?, " +
+                            "id_room_type = ?, " +
                             "id_building = ?"
             );
             Query.setStatementValues(
@@ -58,9 +58,9 @@ public class RoomDAO implements DAO<Room, Long> {
         try {
             statement = connection.prepareStatement(
                     "UPDATE room SET " +
-                            "number = ? " +
-                            "quantity_of_seats = ? " +
-                            "id_room_type = ? " +
+                            "number = ?, " +
+                            "quantity_of_seats = ?, " +
+                            "id_room_type = ?, " +
                             "id_building = ? "+
                             "WHERE id_room = ?"
             );

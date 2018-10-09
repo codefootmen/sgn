@@ -17,9 +17,9 @@ public class RequestDAO implements DAO<Request, Long> {
         try {
             statement = connection.prepareStatement(
                     "INSERT INTO request SET " +
-                            "motive = ? " +
-                            "description = ? " +
-                            "priority = ? " +
+                            "motive = ?, " +
+                            "description = ?, " +
+                            "priority = ?, " +
                             "id_room = ?"
             );
             Query.setStatementValues(
@@ -57,9 +57,9 @@ public class RequestDAO implements DAO<Request, Long> {
         try {
             statement = connection.prepareStatement(
                     "INSERT INTO request SET " +
-                            "motive = ? " +
-                            "description = ? " +
-                            "priority = ? " +
+                            "motive = ?, " +
+                            "description = ?, " +
+                            "priority = ?, " +
                             "id_room = ? " +
                             "WHERE id_request = ?"
             );

@@ -17,7 +17,7 @@ public class RoomTypeDAO implements DAO<RoomType, Long> {
         try {
             statement = connection.prepareStatement(
                     "INSERT INTO room_type SET " +
-                            "name = ? " +
+                            "name = ?, " +
                             "description = ?"
             );
             Query.setStatementValues(
@@ -53,7 +53,7 @@ public class RoomTypeDAO implements DAO<RoomType, Long> {
         try {
             statement = connection.prepareStatement(
                     "UPDATE room_type SET " +
-                            "name = ? " +
+                            "name = ?, " +
                             "description = ? "+
                             "WHERE id_room_type = ?"
             );

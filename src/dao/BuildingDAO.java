@@ -17,11 +17,11 @@ public class BuildingDAO implements DAO<Building, Long> {
         try {
             statement = connection.prepareStatement(
                     "INSERT INTO building SET " +
-                            "name = ? " +
-                            "quantity_of_bathrooms = ? " +
-                            "elevator = ? " +
-                            "accessibility = ?" +
-                            "id_campus = ? " +
+                            "name = ?, " +
+                            "quantity_of_bathrooms = ?, " +
+                            "elevator = ?, " +
+                            "accessibility = ?, " +
+                            "id_campus = ?, " +
                             "id_institution = ?"
             );
             Query.setStatementValues(
@@ -61,11 +61,11 @@ public class BuildingDAO implements DAO<Building, Long> {
         try {
             statement = connection.prepareStatement(
                     "UPDATE building SET " +
-                            "name = ? " +
-                            "quantity_of_bathrooms = ? " +
-                            "elevator = ? " +
-                            "accessibility = ?" +
-                            "id_campus = ? " +
+                            "name = ?, " +
+                            "quantity_of_bathrooms = ?, " +
+                            "elevator = ?, " +
+                            "accessibility = ?," +
+                            "id_campus = ?, " +
                             "id_institution = ? " +
                             "WHERE id_building = ?"
             );

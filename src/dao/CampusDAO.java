@@ -17,13 +17,13 @@ public class CampusDAO implements DAO<Campus, Long> {
         try {
             statement = connection.prepareStatement(
                     "INSERT INTO campus SET " +
-                            "name = ? " +
-                            "street = ? " +
-                            "number = ? " +
-                            "city = ?" +
-                            "state = ? " +
-                            "telephone = ? " +
-                            "zip = ? " +
+                            "name = ?, " +
+                            "street = ?, " +
+                            "number = ?, " +
+                            "city = ?, " +
+                            "state = ?, " +
+                            "telephone = ?, " +
+                            "zip = ?, " +
                             "id_institution = ?"
             );
             Query.setStatementValues(
@@ -65,13 +65,13 @@ public class CampusDAO implements DAO<Campus, Long> {
         try {
             statement = connection.prepareStatement(
                     "UPDATE campus SET " +
-                            "name = ? " +
-                            "street = ? " +
-                            "number = ? " +
-                            "city = ?" +
-                            "state = ? " +
-                            "telephone = ? " +
-                            "zip = ? " +
+                            "name = ?, " +
+                            "street = ?, " +
+                            "number = ?, " +
+                            "city = ?, " +
+                            "state = ?, " +
+                            "telephone = ?, " +
+                            "zip = ?, " +
                             "id_institution = ? " +
                             "WHERE id_campus = ?"
             );

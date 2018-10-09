@@ -17,11 +17,12 @@ public class MeetingDAO implements DAO<Meeting, Long> {
         try {
             statement = connection.prepareStatement(
                     "INSERT INTO meeting SET " +
-                            "day = ? " +
-                            "time = ? " +
-                            "minutes = ? " +
-                            "id_department = ? " +
-                            "id_campus = ? " +
+                            "day = ?, " +
+                            "time = ?, " +
+                            "minutes = ?, " +
+                            "agenda = ?, " +
+                            "id_department = ?, " +
+                            "id_campus = ?, " +
                             "id_institution = ?"
             );
             Query.setStatementValues(
@@ -29,6 +30,7 @@ public class MeetingDAO implements DAO<Meeting, Long> {
                     meeting.getDay(),
                     meeting.getTime(),
                     meeting.getMinutes(),
+                    meeting.getAgenda(),
                     meeting.getIdDepartment(),
                     meeting.getIdCampus(),
                     meeting.getIdInstitution()
@@ -61,11 +63,12 @@ public class MeetingDAO implements DAO<Meeting, Long> {
         try {
             statement = connection.prepareStatement(
                     "UPDATE meeting SET " +
-                            "day = ? " +
-                            "time = ? " +
-                            "minutes = ? " +
-                            "id_department = ? " +
-                            "id_campus = ? " +
+                            "day = ?, " +
+                            "time = ?, " +
+                            "minutes = ?, " +
+                            "agenda = ?, " +
+                            "id_department = ?, " +
+                            "id_campus = ?, " +
                             "id_institution = ? " +
                             "WHERE id_meeting = ?"
             );

@@ -17,9 +17,9 @@ public class StudentDAO implements DAO<Student, Long> {
         try {
             statement = connection.prepareStatement(
                     "INSERT INTO student SET " +
-                            "first_name = ? " +
-                            "last_name = ? " +
-                            "email = ? " +
+                            "first_name = ?, " +
+                            "last_name = ?, " +
+                            "email = ?, " +
                             "id_activity = ?"
             );
             Query.setStatementValues(
@@ -57,9 +57,9 @@ public class StudentDAO implements DAO<Student, Long> {
         try {
             statement = connection.prepareStatement(
                     "UPDATE student SET " +
-                            "first_name = ? " +
-                            "last_name = ? " +
-                            "email = ? " +
+                            "first_name = ?, " +
+                            "last_name = ?, " +
+                            "email = ?, " +
                             "id_activity = ? " +
                             "WHERE id_student = ?"
             );

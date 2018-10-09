@@ -17,10 +17,10 @@ public class ProfessorDAO implements DAO<Professor, Long> {
         try {
             statement = connection.prepareStatement(
                     "INSERT INTO professor SET " +
-                            "first_name = ? " +
-                            "last_name = ? " +
-                            "email = ? " +
-                            "status = ? " +
+                            "first_name = ?, " +
+                            "last_name = ?, " +
+                            "email = ?, " +
+                            "status = ?, " +
                             "honorifics = ?"
             );
             Query.setStatementValues(
@@ -59,10 +59,10 @@ public class ProfessorDAO implements DAO<Professor, Long> {
         try {
             statement = connection.prepareStatement(
                     "UPDATE professor SET " +
-                            "first_name = ? " +
-                            "last_name = ? " +
-                            "email = ? " +
-                            "status = ? " +
+                            "first_name = ?, " +
+                            "last_name = ?, " +
+                            "email = ?, " +
+                            "status = ?, " +
                             "honorifics = ? " +
                             "WHERE id_professor = ?"
             );

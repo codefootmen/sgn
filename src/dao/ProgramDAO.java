@@ -17,10 +17,10 @@ public class ProgramDAO implements DAO<Program, Long> {
         try {
             statement = connection.prepareStatement(
                     "INSERT INTO program SET " +
-                            "name = ? " +
-                            "academic_level = ? " +
-                            "id_department = ? " +
-                            "id_campus = ? " +
+                            "name = ?, " +
+                            "academic_level = ?, " +
+                            "id_department = ?, " +
+                            "id_campus = ?, " +
                             "id_institution = ?"
             );
             Query.setStatementValues(
@@ -59,11 +59,11 @@ public class ProgramDAO implements DAO<Program, Long> {
         try {
             statement = connection.prepareStatement(
                     "UPDATE program SET " +
-                            "name = ? " +
-                            "academic_level = ? " +
-                            "id_department = ? " +
-                            "id_campus = ? " +
-                            "id_institution = ? "+
+                            "name = ?, " +
+                            "academic_level = ?, " +
+                            "id_department = ?, " +
+                            "id_campus = ?, " +
+                            "id_institution = ? " +
                             "WHERE id_program = ?"
             );
             Query.setStatementValues(

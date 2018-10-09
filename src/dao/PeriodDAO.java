@@ -17,9 +17,9 @@ public class PeriodDAO implements DAO<Period, Long> {
         try {
             statement = connection.prepareStatement(
                     "INSERT INTO period SET " +
-                            "start = ? " +
-                            "end = ? " +
-                            "day_of_the_week = ? " +
+                            "start = ?, " +
+                            "end = ?, " +
+                            "day_of_the_week = ?, " +
                             "id_room = ?"
             );
             Query.setStatementValues(
@@ -57,9 +57,9 @@ public class PeriodDAO implements DAO<Period, Long> {
         try {
             statement = connection.prepareStatement(
                     "UPDATE period SET " +
-                            "start = ? " +
-                            "end = ? " +
-                            "day_of_the_week = ? " +
+                            "start = ?, " +
+                            "end = ?, " +
+                            "day_of_the_week = ?, " +
                             "id_room = ? " +
                             "WHERE id_period = ?"
             );

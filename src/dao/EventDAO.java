@@ -17,10 +17,10 @@ public class EventDAO implements DAO<Event, Long> {
         try {
             statement = connection.prepareStatement(
                     "INSERT INTO event SET " +
-                            "name = ? " +
-                            "date = ? " +
-                            "id_period = ? " +
-                            "id_professor = ? " +
+                            "name = ?, " +
+                            "date = ?, " +
+                            "id_period = ?, " +
+                            "id_professor = ?, " +
                             "id_room = ?"
             );
             Query.setStatementValues(
@@ -59,10 +59,10 @@ public class EventDAO implements DAO<Event, Long> {
         try {
             statement = connection.prepareStatement(
                     "UPDATE event SET " +
-                            "name = ? " +
-                            "date = ? " +
-                            "id_period = ? " +
-                            "id_professor = ? " +
+                            "name = ?, " +
+                            "date = ?, " +
+                            "id_period = ?, " +
+                            "id_professor = ?, " +
                             "id_room = ? " +
                             "WHERE id_event = ?"
             );

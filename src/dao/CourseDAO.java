@@ -17,14 +17,14 @@ public class CourseDAO implements DAO<Course, Long> {
         try {
             statement = connection.prepareStatement(
                     "INSERT INTO course SET " +
-                            "semester = ? " +
-                            "year = ? " +
-                            "id_subject = ? " +
-                            "id_program = ?" +
-                            "id_department = ? " +
-                            "id_campus = ? " +
-                            "id_institution = ? " +
-                            "id_period = ? " +
+                            "semester = ?, " +
+                            "year = ?, " +
+                            "id_subject = ?, " +
+                            "id_program = ?, " +
+                            "id_department = ?, " +
+                            "id_campus = ?, " +
+                            "id_institution = ?, " +
+                            "id_period = ?, " +
                             "id_professor = ?"
             );
             Query.setStatementValues(
@@ -75,7 +75,7 @@ public class CourseDAO implements DAO<Course, Long> {
                             "id_campus = ? " +
                             "id_institution = ? " +
                             "id_period = ? " +
-                            "id_professor = ? "+
+                            "id_professor = ? " +
                             "WHERE id_course = ?"
             );
             Query.setStatementValues(

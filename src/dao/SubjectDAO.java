@@ -17,12 +17,12 @@ public class SubjectDAO implements DAO<Subject, Long> {
         try {
             statement = connection.prepareStatement(
                     "INSERT INTO subject SET " +
-                            "name = ? " +
-                            "quantity_of_credits = ? " +
-                            "id_room_type = ? " +
-                            "id_program = ?" +
-                            "id_department = ? " +
-                            "id_campus = ? " +
+                            "name = ?, " +
+                            "quantity_of_credits = ?, " +
+                            "id_room_type = ?, " +
+                            "id_program = ?, " +
+                            "id_department = ?, " +
+                            "id_campus = ?, " +
                             "id_institution = ?"
             );
             Query.setStatementValues(
@@ -63,12 +63,12 @@ public class SubjectDAO implements DAO<Subject, Long> {
         try {
             statement = connection.prepareStatement(
                     "UPDATE subject SET " +
-                            "name = ? " +
-                            "quantity_of_credits = ? " +
-                            "id_room_type = ? " +
-                            "id_program = ?" +
-                            "id_department = ? " +
-                            "id_campus = ? " +
+                            "name = ?, " +
+                            "quantity_of_credits = ?, " +
+                            "id_room_type = ?, " +
+                            "id_program = ?, " +
+                            "id_department = ?, " +
+                            "id_campus = ?, " +
                             "id_institution = ? " +
                             "WHERE id_subject = ?"
             );

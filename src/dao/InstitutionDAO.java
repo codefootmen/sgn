@@ -18,8 +18,8 @@ public class InstitutionDAO implements DAO<Institution, Long> {
         try {
             statement = connection.prepareStatement(
                     "INSERT INTO institution SET " +
-                            "name = ? " +
-                            "logo = ? " +
+                            "name = ?, " +
+                            "logo = ?, " +
                             "site = ?"
             );
             Query.setStatementValues(
@@ -56,8 +56,8 @@ public class InstitutionDAO implements DAO<Institution, Long> {
         try {
             statement = connection.prepareStatement(
                     "UPDATE institution SET " +
-                            "name = ? " +
-                            "logo = ? " +
+                            "name = ?, " +
+                            "logo = ?, " +
                             "site = ? " +
                             "WHERE id_institution = ?"
             );
