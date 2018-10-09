@@ -44,20 +44,6 @@ CREATE TABLE `room_type`
   PRIMARY KEY (`id_room_type`)
 );
 
--- ************************************** `student`
-
-CREATE TABLE `student`
-(
-  `id_student`  BIGINT unsigned NOT NULL AUTO_INCREMENT,
-  `first_name`  VARCHAR(255)    NOT NULL,
-  `last_name`   VARCHAR(255)    NOT NULL,
-  `email`       VARCHAR(255)    NOT NULL,
-  `id_activity` BIGINT unsigned NOT NULL,
-
-  PRIMARY KEY (`id_student`),
-  FOREIGN KEY (`id_activity`) REFERENCES activity (id_activity)
-);
-
 -- ************************************** `professor`
 
 CREATE TABLE `professor`
@@ -280,6 +266,20 @@ CREATE TABLE `activity`
   FOREIGN KEY (`id_campus`) REFERENCES campus (id_campus),
   FOREIGN KEY (`id_institution`) REFERENCES institution (id_institution),
   FOREIGN KEY (`id_program`) REFERENCES program (id_program)
+);
+
+-- ************************************** `student`
+
+CREATE TABLE `student`
+(
+  `id_student`  BIGINT unsigned NOT NULL AUTO_INCREMENT,
+  `first_name`  VARCHAR(255)    NOT NULL,
+  `last_name`   VARCHAR(255)    NOT NULL,
+  `email`       VARCHAR(255)    NOT NULL,
+  `id_activity` BIGINT unsigned NOT NULL,
+
+  PRIMARY KEY (`id_student`),
+  FOREIGN KEY (`id_activity`) REFERENCES activity (id_activity)
 );
 
 -- ************************************** `course`
