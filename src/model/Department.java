@@ -22,7 +22,7 @@ public class Department {
     public Campus getCampus() {
         if (campus == null) {
             CampusDAO dao = new CampusDAO();
-            campus = dao.find(idCampus);
+            campus = dao.findOne(idCampus);
         }
         return campus;
     }
@@ -38,7 +38,7 @@ public class Department {
     public Institution getInstitution() {
         if (institution == null) {
             InstitutionDAO dao = new InstitutionDAO();
-            institution = dao.find(idInstitution);
+            institution = dao.findOne(idInstitution);
         }
         return institution;
     }
@@ -54,7 +54,7 @@ public class Department {
     public Professor getProfessor() {
         if (professor == null) {
             ProfessorDAO dao = new ProfessorDAO();
-            professor = dao.find(idProfessor);
+            professor = dao.findOne(idProfessor);
         }
         return professor;
     }
