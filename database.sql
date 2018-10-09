@@ -3,21 +3,13 @@
 
 DROP TABLE IF EXISTS `course`;
 
-DROP TABLE IF EXISTS `subject`;
-
-DROP TABLE IF EXISTS `request`;
-
-DROP TABLE IF EXISTS `activity`;
+DROP TABLE IF EXISTS `event`;
 
 DROP TABLE IF EXISTS `meeting`;
 
-DROP TABLE IF EXISTS `program`;
-
-DROP TABLE IF EXISTS `department`;
-
-DROP TABLE IF EXISTS `event`;
-
 DROP TABLE IF EXISTS `period`;
+
+DROP TABLE IF EXISTS `request`;
 
 DROP TABLE IF EXISTS `room`;
 
@@ -25,11 +17,19 @@ DROP TABLE IF EXISTS `building`;
 
 DROP TABLE IF EXISTS `student`;
 
-DROP TABLE IF EXISTS `professor`;
+DROP TABLE IF EXISTS `activity`;
+
+DROP TABLE IF EXISTS `subject`;
+
+DROP TABLE IF EXISTS `program`;
+
+DROP TABLE IF EXISTS `department`;
 
 DROP TABLE IF EXISTS `campus`;
 
 DROP TABLE IF EXISTS `institution`;
+
+DROP TABLE IF EXISTS `professor`;
 
 DROP TABLE IF EXISTS `room_type`;
 
