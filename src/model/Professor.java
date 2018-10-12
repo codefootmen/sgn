@@ -1,7 +1,11 @@
 package model;
 
+import dao.ProfessorDAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
+
+import java.sql.SQLException;
+import java.util.List;
 
 @Data
 @Accessors(chain = true)
@@ -35,5 +39,23 @@ public class Professor extends Person {
         return this;
     }
 
+    public void save() throws SQLException, ClassNotFoundException{
+        ProfessorDAO.save(this);
+    }
 
+    public void update() throws SQLException, ClassNotFoundException{
+        ProfessorDAO.update(this);
+    }
+
+    public void delete() throws SQLException, ClassNotFoundException{
+        ProfessorDAO.delete(this);
+    }
+
+    public static Professor findOne(idProfessor) throws ClassNotFoundException, SQLException{
+        return ProfessorDAO.findOne(idProfessor);
+    }
+
+    public static List<Professor> findAll() throws SQLException, ClassNotFoundException{
+        return ProfessorDAO.findAll();
+    }
 }
