@@ -3,8 +3,12 @@ package model;
 import dao.CampusDAO;
 import dao.DepartmentDAO;
 import dao.InstitutionDAO;
+import dao.MeetingDAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
+
+import java.sql.SQLException;
+import java.util.List;
 
 @Data
 @Accessors(chain = true)
@@ -67,5 +71,25 @@ public class Meeting {
         }
         this.institution = institution;
         return this;
+    }
+
+    public void save() throws SQLException, ClassNotFoundException{
+        MeetingDAO.save(this);
+    }
+
+    public void update() throws SQLException, ClassNotFoundException{
+        MeetingDAO.update(this);
+    }
+
+    public void delete() throws SQLException, ClassNotFoundException{
+        MeetingDAO.delete(this);
+    }
+
+    public static Meeting findOne(idMeeting) throws ClassNotFoundException, SQLException{
+        return MeetingDAO.findOne(idMeeting);
+    }
+
+    public static List<Meeting> findAll() throws SQLException, ClassNotFoundException{
+        return MeetingDAO.findAll();
     }
 }
