@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.sql.SQLException;
+import java.util.List;
 
 @Data
 @Accessors(chain = true)
@@ -151,11 +152,11 @@ public class Course {
         CourseDAO.delete(this);
     }
 
-    public static Building findOne(idCourse) throws ClassNotFoundException, SQLException{
+    public static Course findOne(idCourse) throws ClassNotFoundException, SQLException{
         return CourseDAO.findOne(idCourse);
     }
 
-    public static List<Building> findAll() throws SQLException, ClassNotFoundException{
+    public static List<Course> findAll() throws SQLException, ClassNotFoundException{
         return CourseDAO.findAll();
     }
 }
