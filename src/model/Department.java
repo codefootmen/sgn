@@ -1,10 +1,14 @@
 package model;
 
 import dao.CampusDAO;
+import dao.DepartmentDAO;
 import dao.InstitutionDAO;
 import dao.ProfessorDAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
+
+import java.sql.SQLException;
+import java.util.List;
 
 @Data
 @Accessors(chain = true)
@@ -65,5 +69,25 @@ public class Department {
         }
         this.professor = professor;
         return this;
+    }
+
+    public void save() throws SQLException, ClassNotFoundException{
+        DepartmentDAO.save(this);
+    }
+
+    public void update() throws SQLException, ClassNotFoundException{
+        DepartmentDAO.update(this);
+    }
+
+    public void delete() throws SQLException, ClassNotFoundException{
+        DepartmentDAO.delete(this);
+    }
+
+    public static Department findOne(idDepartment) throws ClassNotFoundException, SQLException{
+        return DepartmentDAO.findOne(idDepartment);
+    }
+
+    public static List<Department> findAll() throws SQLException, ClassNotFoundException{
+        return DepartmentDAO.findAll();
     }
 }
