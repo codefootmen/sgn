@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.sql.SQLException;
+import java.util.List;
 
 @Data
 @Accessors(chain = true)
