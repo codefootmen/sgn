@@ -1,10 +1,14 @@
 package model;
 
+import dao.EventDAO;
 import dao.PeriodDAO;
 import dao.ProfessorDAO;
 import dao.RoomDAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
+
+import java.sql.SQLException;
+import java.util.List;
 
 @Data
 @Accessors(chain = true)
@@ -65,5 +69,25 @@ public class Event {
         }
         this.room = room;
         return this;
+    }
+
+    public void save() throws SQLException, ClassNotFoundException{
+        EventDAO.save(this);
+    }
+
+    public void update() throws SQLException, ClassNotFoundException{
+        EventDAO.update(this);
+    }
+
+    public void delete() throws SQLException, ClassNotFoundException{
+        EventDAO.delete(this);
+    }
+
+    public static Event findOne(idEvent) throws ClassNotFoundException, SQLException{
+        return EventDAO.findOne(idEvent);
+    }
+
+    public static List<Event> findAll() throws SQLException, ClassNotFoundException{
+        return EventDAO.findAll();
     }
 }
