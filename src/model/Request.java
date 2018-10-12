@@ -1,8 +1,12 @@
 package model;
 
+import dao.RequestDAO;
 import dao.RoomDAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
+
+import java.sql.SQLException;
+import java.util.List;
 
 @Data
 @Accessors(chain = true)
@@ -33,5 +37,25 @@ public class Request {
         }
         this.room = room;
         return this;
+    }
+
+    public void save() throws SQLException, ClassNotFoundException{
+        RequestDAO.save(this);
+    }
+
+    public void update() throws SQLException, ClassNotFoundException{
+        RequestDAO.update(this);
+    }
+
+    public void delete() throws SQLException, ClassNotFoundException{
+        RequestDAO.delete(this);
+    }
+
+    public static Request findOne(idRequest) throws ClassNotFoundException, SQLException{
+        return RequestDAO.findOne(idRequest);
+    }
+
+    public static List<Request> findAll() throws SQLException, ClassNotFoundException{
+        return RequestDAO.findAll();
     }
 }
