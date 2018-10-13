@@ -4,6 +4,9 @@ import dao.*;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.sql.SQLException;
+import java.util.List;
+
 @Data
 @Accessors(chain = true)
 public class Subject {
@@ -99,5 +102,25 @@ public class Subject {
         }
         this.institution = institution;
         return this;
+    }
+
+    public void save() throws SQLException, ClassNotFoundException{
+        SubjectDAO.save(this);
+    }
+
+    public void update() throws SQLException, ClassNotFoundException{
+        SubjectDAO.update(this);
+    }
+
+    public void delete() throws SQLException, ClassNotFoundException{
+        SubjectDAO.delete(this);
+    }
+
+    public static Subject findOne(idSubject) throws ClassNotFoundException, SQLException{
+        return SubjectDAO.findOne(idSubject);
+    }
+
+    public static List<Subject> findAll() throws SQLException, ClassNotFoundException{
+        return SubjectDAO.findAll();
     }
 }
