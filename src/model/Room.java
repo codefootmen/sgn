@@ -1,9 +1,13 @@
 package model;
 
 import dao.BuildingDAO;
+import dao.RoomDAO;
 import dao.RoomTypeDAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
+
+import java.sql.SQLException;
+import java.util.List;
 
 @Data
 @Accessors(chain = true)
@@ -46,5 +50,25 @@ public class Room {
         }
         this.building = building;
         return this;
+    }
+
+    public void save() throws SQLException, ClassNotFoundException{
+        RoomDAO.save(this);
+    }
+
+    public void update() throws SQLException, ClassNotFoundException{
+        RoomDAO.update(this);
+    }
+
+    public void delete() throws SQLException, ClassNotFoundException{
+        RoomDAO.delete(this);
+    }
+
+    public static Room findOne(idRoom) throws ClassNotFoundException, SQLException{
+        return RoomDAO.findOne(idRoom);
+    }
+
+    public static List<Room> findAll() throws SQLException, ClassNotFoundException{
+        return RoomDAO.findAll();
     }
 }
