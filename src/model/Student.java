@@ -1,8 +1,12 @@
 package model;
 
 import dao.ActivityDAO;
+import dao.StudentDAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
+
+import java.sql.SQLException;
+import java.util.List;
 
 @Data
 @Accessors(chain = true)
@@ -40,5 +44,25 @@ public class Student extends Person {
         }
         this.activity = activity;
         return this;
+    }
+
+    public void save() throws SQLException, ClassNotFoundException{
+        StudentDAO.save(this);
+    }
+
+    public void update() throws SQLException, ClassNotFoundException{
+        StudentDAO.update(this);
+    }
+
+    public void delete() throws SQLException, ClassNotFoundException{
+        StudentDAO.delete(this);
+    }
+
+    public static Student findOne(idStudent) throws ClassNotFoundException, SQLException{
+        return StudentDAO.findOne(idStudent);
+    }
+
+    public static List<Student> findAll() throws SQLException, ClassNotFoundException{
+        return StudentDAO.findAll();
     }
 }
