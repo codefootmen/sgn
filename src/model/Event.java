@@ -22,6 +22,7 @@ public class Event {
     private Long idProfessor;
     private Room room;
     private Long idRoom;
+    private static EventDAO DAO = new EventDAO();
 
     public Period getPeriod() {
         if (period == null) {
@@ -72,22 +73,22 @@ public class Event {
     }
 
     public void save() throws SQLException, ClassNotFoundException{
-        EventDAO.save(this);
+        DAO.save(this);
     }
 
     public void update() throws SQLException, ClassNotFoundException{
-        EventDAO.update(this);
+        DAO.update(this);
     }
 
     public void delete() throws SQLException, ClassNotFoundException{
-        EventDAO.delete(this);
+        DAO.delete(this.idEvent);
     }
 
-    public static Event findOne(idEvent) throws ClassNotFoundException, SQLException{
-        return EventDAO.findOne(idEvent);
+    public static Event findOne(Long id) throws ClassNotFoundException, SQLException{
+        return DAO.findOne(id);
     }
 
     public static List<Event> findAll() throws SQLException, ClassNotFoundException{
-        return EventDAO.findAll();
+        return DAO.findAll();
     }
 }

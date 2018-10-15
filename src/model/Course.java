@@ -27,6 +27,7 @@ public class Course {
     private Long idPeriod;
     private Professor professor;
     private Long idProfessor;
+    private static CourseDAO DAO = new CourseDAO();
 
     public Subject getSubject() {
         if(subject == null){
@@ -141,22 +142,22 @@ public class Course {
     }
 
     public void save() throws SQLException, ClassNotFoundException{
-        CourseDAO.save(this);
+        DAO.save(this);
     }
 
     public void update() throws SQLException, ClassNotFoundException{
-        CourseDAO.update(this);
+        DAO.update(this);
     }
 
     public void delete() throws SQLException, ClassNotFoundException{
-        CourseDAO.delete(this);
+        DAO.delete(this.idCourse);
     }
 
-    public static Course findOne(idCourse) throws ClassNotFoundException, SQLException{
-        return CourseDAO.findOne(idCourse);
+    public static Course findOne(Long id) throws ClassNotFoundException, SQLException{
+        return DAO.findOne(id);
     }
 
     public static List<Course> findAll() throws SQLException, ClassNotFoundException{
-        return CourseDAO.findAll();
+        return DAO.findAll();
     }
 }

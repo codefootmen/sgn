@@ -13,6 +13,7 @@ public class Professor extends Person {
     private Long idProfessor;
     private StatusEnum status;
     private HonorificsEnum honorifics;
+    private static ProfessorDAO DAO = new ProfessorDAO();
 
     public Professor setFirstName(String firstName) {
         this.firstName = firstName;
@@ -40,22 +41,22 @@ public class Professor extends Person {
     }
 
     public void save() throws SQLException, ClassNotFoundException{
-        ProfessorDAO.save(this);
+        DAO.save(this);
     }
 
     public void update() throws SQLException, ClassNotFoundException{
-        ProfessorDAO.update(this);
+        DAO.update(this);
     }
 
     public void delete() throws SQLException, ClassNotFoundException{
-        ProfessorDAO.delete(this);
+        DAO.delete(this.idProfessor);
     }
 
-    public static Professor findOne(idProfessor) throws ClassNotFoundException, SQLException{
-        return ProfessorDAO.findOne(idProfessor);
+    public static Professor findOne(Long id) throws ClassNotFoundException, SQLException{
+        return DAO.findOne(id);
     }
 
     public static List<Professor> findAll() throws SQLException, ClassNotFoundException{
-        return ProfessorDAO.findAll();
+        return DAO.findAll();
     }
 }

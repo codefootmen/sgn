@@ -15,24 +15,25 @@ public class Institution {
     private String name;
     private String logo;
     private String site;
+    static private InstitutionDAO DAO = new InstitutionDAO();
 
-    public void save() throws SQLException, ClassNotFoundException{
-        InstitutionDAO.save(this);
+    public void save() {
+        DAO.save(this);
     }
 
-    public void update() throws SQLException, ClassNotFoundException{
-        InstitutionDAO.update(this);
+    public void update(){
+        DAO.update(this);
     }
 
-    public void delete() throws SQLException, ClassNotFoundException{
-        InstitutionDAO.delete(this);
+    public void delete(){
+        DAO.delete(this.idInstitution);
     }
 
-    public static Institution findOne(idInstitution) throws ClassNotFoundException, SQLException{
-        return InstitutionDAO.findOne(idInstitution);
+    public static Institution findOne(Long id){
+        return DAO.findOne(id);
     }
 
-    public static List<Institution> findAll() throws SQLException, ClassNotFoundException{
-        return InstitutionDAO.findAll();
+    public static List<Institution> findAll() {
+        return DAO.findAll();
     }
 }

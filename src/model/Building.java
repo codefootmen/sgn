@@ -21,6 +21,7 @@ public class Building {
     private Long idCampus;
     private Institution institution;
     private Long idInstitution;
+    private static BuildingDAO DAO = new BuildingDAO();
 
     public Campus getCampus() {
         if (campus == null) {
@@ -55,22 +56,22 @@ public class Building {
     }
 
     public void save() throws SQLException, ClassNotFoundException{
-        BuildingDAO.save(this);
+        DAO.save(this);
     }
 
     public void update() throws SQLException, ClassNotFoundException{
-        BuildingDAO.update(this);
+        DAO.update(this);
     }
 
     public void delete() throws SQLException, ClassNotFoundException{
-        BuildingDAO.delete(this);
+        DAO.delete(this.idBuilding);
     }
 
-    public static Building findOne(idBuilding) throws ClassNotFoundException, SQLException{
-        return BuildingDAO.findOne(idBuilding);
+    public static Building findOne(Long id) throws ClassNotFoundException, SQLException{
+        return DAO.findOne(id);
     }
 
     public static List<Building> findAll() throws SQLException, ClassNotFoundException{
-        return BuildingDAO.findAll();
+        return DAO.findAll();
     }
 }

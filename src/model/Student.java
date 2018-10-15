@@ -14,6 +14,7 @@ public class Student extends Person {
     private Long idStudent;
     private Activity activity;
     private Long idActivity;
+    private static StudentDAO DAO = new StudentDAO();
 
     public Student setFirstName(String firstName) {
         this.firstName = firstName;
@@ -47,22 +48,22 @@ public class Student extends Person {
     }
 
     public void save() throws SQLException, ClassNotFoundException{
-        StudentDAO.save(this);
+        DAO.save(this);
     }
 
     public void update() throws SQLException, ClassNotFoundException{
-        StudentDAO.update(this);
+        DAO.update(this);
     }
 
     public void delete() throws SQLException, ClassNotFoundException{
-        StudentDAO.delete(this);
+        DAO.delete(this.idStudent);
     }
 
-    public static Student findOne(idStudent) throws ClassNotFoundException, SQLException{
-        return StudentDAO.findOne(idStudent);
+    public static Student findOne(Long id) throws ClassNotFoundException, SQLException{
+        return DAO.findOne(id);
     }
 
     public static List<Student> findAll() throws SQLException, ClassNotFoundException{
-        return StudentDAO.findAll();
+        return DAO.findAll();
     }
 }

@@ -22,6 +22,7 @@ public class Program {
     private Long idCampus;
     private Institution institution;
     private Long idInstitution;
+    private static ProgramDAO DAO = new ProgramDAO();
 
     public Program setAcademicLevel(String academicLevel) {
         this.academicLevel = AcademicLevelEnum.valueOf(academicLevel.toUpperCase());
@@ -77,22 +78,22 @@ public class Program {
     }
 
     public void save() throws SQLException, ClassNotFoundException{
-        ProgramDAO.save(this);
+        DAO.save(this);
     }
 
     public void update() throws SQLException, ClassNotFoundException{
-        ProgramDAO.update(this);
+        DAO.update(this);
     }
 
     public void delete() throws SQLException, ClassNotFoundException{
-        ProgramDAO.delete(this);
+        DAO.delete(this.idProgram);
     }
 
-    public static Program findOne(idProgram) throws ClassNotFoundException, SQLException{
-        return ProgramDAO.findOne(idProgram);
+    public static Program findOne(Long id) throws ClassNotFoundException, SQLException{
+        return DAO.findOne(id);
     }
 
     public static List<Program> findAll() throws SQLException, ClassNotFoundException{
-        return ProgramDAO.findAll();
+        return DAO.findAll();
     }
 }

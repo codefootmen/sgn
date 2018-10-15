@@ -22,6 +22,7 @@ public class Department {
     private Long idInstitution;
     private Professor professor;
     private Long idProfessor;
+    private static DepartmentDAO DAO = new DepartmentDAO();
 
     public Campus getCampus() {
         if (campus == null) {
@@ -72,22 +73,22 @@ public class Department {
     }
 
     public void save() throws SQLException, ClassNotFoundException{
-        DepartmentDAO.save(this);
+        DAO.save(this);
     }
 
     public void update() throws SQLException, ClassNotFoundException{
-        DepartmentDAO.update(this);
+        DAO.update(this);
     }
 
     public void delete() throws SQLException, ClassNotFoundException{
-        DepartmentDAO.delete(this);
+        DAO.delete(this.idDepartment);
     }
 
-    public static Department findOne(idDepartment) throws ClassNotFoundException, SQLException{
-        return DepartmentDAO.findOne(idDepartment);
+    public static Department findOne(Long id) throws ClassNotFoundException, SQLException{
+        return DAO.findOne(id);
     }
 
     public static List<Department> findAll() throws SQLException, ClassNotFoundException{
-        return DepartmentDAO.findAll();
+        return DAO.findAll();
     }
 }

@@ -17,6 +17,7 @@ public class Period {
     private String dayOfTheWeek;
     private Room room;
     private Long idRoom;
+    private static PeriodDAO DAO = new PeriodDAO();
 
     public Room getRoom() {
         if (room == null) {
@@ -35,22 +36,22 @@ public class Period {
     }
 
     public void save() throws SQLException, ClassNotFoundException{
-        PeriodDAO.save(this);
+        DAO.save(this);
     }
 
     public void update() throws SQLException, ClassNotFoundException{
-        PeriodDAO.update(this);
+        DAO.update(this);
     }
 
     public void delete() throws SQLException, ClassNotFoundException{
-        PeriodDAO.delete(this);
+        DAO.delete(this.idPeriod);
     }
 
-    public static Period findOne(idPeriod) throws ClassNotFoundException, SQLException{
-        return PeriodDAO.findOne(idPeriod);
+    public static Period findOne(Long id) throws ClassNotFoundException, SQLException{
+        return DAO.findOne(id);
     }
 
-    public static List<Meeting> findAll() throws SQLException, ClassNotFoundException{
-        return PeriodDAO.findAll();
+    public static List<Period> findAll() throws SQLException, ClassNotFoundException{
+        return DAO.findAll();
     }
 }

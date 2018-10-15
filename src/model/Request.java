@@ -17,6 +17,7 @@ public class Request {
     private PriorityEnum priority;
     private Room room;
     private Long idRoom;
+    private static RequestDAO DAO = new RequestDAO();
 
     public Request setPriority(String priority) {
         this.priority = PriorityEnum.valueOf(priority.toUpperCase());
@@ -40,22 +41,22 @@ public class Request {
     }
 
     public void save() throws SQLException, ClassNotFoundException{
-        RequestDAO.save(this);
+        DAO.save(this);
     }
 
     public void update() throws SQLException, ClassNotFoundException{
-        RequestDAO.update(this);
+        DAO.update(this);
     }
 
     public void delete() throws SQLException, ClassNotFoundException{
-        RequestDAO.delete(this);
+        DAO.delete(this.idRequest);
     }
 
-    public static Request findOne(idRequest) throws ClassNotFoundException, SQLException{
-        return RequestDAO.findOne(idRequest);
+    public static Request findOne(Long id) throws ClassNotFoundException, SQLException{
+        return DAO.findOne(id);
     }
 
     public static List<Request> findAll() throws SQLException, ClassNotFoundException{
-        return RequestDAO.findAll();
+        return DAO.findAll();
     }
 }

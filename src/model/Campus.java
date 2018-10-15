@@ -21,6 +21,7 @@ public class Campus {
     private String zip;
     private Institution institution;
     private Long idInstitution;
+    private static CampusDAO DAO = new CampusDAO();
 
     public Institution getInstitution() {
         if (institution == null) {
@@ -38,23 +39,23 @@ public class Campus {
         return this;
     }
 
-    public void save() throws SQLException, ClassNotFoundException{
-        CampusDAO.save(this);
+    public void save() {
+        DAO.save(this);
     }
 
-    public void update() throws SQLException, ClassNotFoundException{
-        CampusDAO.update(this);
+    public void update() {
+        DAO.update(this);
     }
 
-    public void delete() throws SQLException, ClassNotFoundException{
-        CampusDAO.delete(this);
+    public void delete(){
+        DAO.delete(this.idCampus);
     }
 
-    public static Campus findOne(idCampus) throws ClassNotFoundException, SQLException{
-        return CampusDAO.findOne(idCampus);
+    public static Campus findOne(Long id) {
+        return DAO.findOne(id);
     }
 
-    public static List<Campus> findAll() throws SQLException, ClassNotFoundException{
-        return CampusDAO.findAll();
+    public static List<Campus> findAll(){
+        return DAO.findAll();
     }
 }

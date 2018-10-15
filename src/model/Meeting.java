@@ -24,6 +24,7 @@ public class Meeting {
     private Long idCampus;
     private Institution institution;
     private Long idInstitution;
+    private static MeetingDAO DAO = new MeetingDAO();
 
     public Department getDepartment() {
         if (department == null) {
@@ -74,22 +75,22 @@ public class Meeting {
     }
 
     public void save() throws SQLException, ClassNotFoundException{
-        MeetingDAO.save(this);
+        DAO.save(this);
     }
 
     public void update() throws SQLException, ClassNotFoundException{
-        MeetingDAO.update(this);
+        DAO.update(this);
     }
 
     public void delete() throws SQLException, ClassNotFoundException{
-        MeetingDAO.delete(this);
+        DAO.delete(this.idMeeting);
     }
 
-    public static Meeting findOne(idMeeting) throws ClassNotFoundException, SQLException{
-        return MeetingDAO.findOne(idMeeting);
+    public static Meeting findOne(Long id) throws ClassNotFoundException, SQLException{
+        return DAO.findOne(id);
     }
 
     public static List<Meeting> findAll() throws SQLException, ClassNotFoundException{
-        return MeetingDAO.findAll();
+        return DAO.findAll();
     }
 }

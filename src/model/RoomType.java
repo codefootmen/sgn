@@ -13,25 +13,26 @@ public class RoomType {
     private Long idRoomType;
     private String name;
     private String description;
+    private static RoomTypeDAO DAO = new RoomTypeDAO();
 
     public void save() throws SQLException, ClassNotFoundException{
-        RoomTypeDAO.save(this);
+        DAO.save(this);
     }
 
     public void update() throws SQLException, ClassNotFoundException{
-        RoomTypeDAO.update(this);
+        DAO.update(this);
     }
 
     public void delete() throws SQLException, ClassNotFoundException{
-        RoomTypeDAO.delete(this);
+        DAO.delete(this.idRoomType);
     }
 
-    public static RoomType findOne(idRoomType) throws ClassNotFoundException, SQLException{
-        return RoomTypeDAO.findOne(idRoomType);
+    public static RoomType findOne(Long id) throws ClassNotFoundException, SQLException{
+        return DAO.findOne(id);
     }
 
     public static List<RoomType> findAll() throws SQLException, ClassNotFoundException{
-        return RoomTypeDAO.findAll();
+        return DAO.findAll();
     }
 
 }

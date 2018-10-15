@@ -19,6 +19,7 @@ public class Room {
     private Long idRoomType;
     private Building building;
     private Long idBuilding;
+    private static RoomDAO DAO = new RoomDAO();
 
     public RoomType getRoomType() {
         if (roomType == null) {
@@ -53,22 +54,22 @@ public class Room {
     }
 
     public void save() throws SQLException, ClassNotFoundException{
-        RoomDAO.save(this);
+        DAO.save(this);
     }
 
     public void update() throws SQLException, ClassNotFoundException{
-        RoomDAO.update(this);
+        DAO.update(this);
     }
 
     public void delete() throws SQLException, ClassNotFoundException{
-        RoomDAO.delete(this);
+        DAO.delete(this.idRoom);
     }
 
-    public static Room findOne(idRoom) throws ClassNotFoundException, SQLException{
-        return RoomDAO.findOne(idRoom);
+    public static Room findOne(Long id) throws ClassNotFoundException, SQLException{
+        return DAO.findOne(id);
     }
 
     public static List<Room> findAll() throws SQLException, ClassNotFoundException{
-        return RoomDAO.findAll();
+        return DAO.findAll();
     }
 }

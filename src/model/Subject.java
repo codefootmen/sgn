@@ -23,7 +23,7 @@ public class Subject {
     private Long idCampus;
     private Institution institution;
     private Long idInstitution;
-
+    private static SubjectDAO DAO = new SubjectDAO();
     public RoomType getRoomType() {
         if (roomType == null) {
             RoomTypeDAO dao = new RoomTypeDAO();
@@ -105,22 +105,22 @@ public class Subject {
     }
 
     public void save() throws SQLException, ClassNotFoundException{
-        SubjectDAO.save(this);
+        DAO.save(this);
     }
 
     public void update() throws SQLException, ClassNotFoundException{
-        SubjectDAO.update(this);
+        DAO.update(this);
     }
 
     public void delete() throws SQLException, ClassNotFoundException{
-        SubjectDAO.delete(this);
+        DAO.delete(this.idSubject);
     }
 
-    public static Subject findOne(idSubject) throws ClassNotFoundException, SQLException{
-        return SubjectDAO.findOne(idSubject);
+    public static Subject findOne(Long id) throws ClassNotFoundException, SQLException{
+        return DAO.findOne(id);
     }
 
     public static List<Subject> findAll() throws SQLException, ClassNotFoundException{
-        return SubjectDAO.findAll();
+        return DAO.findAll();
     }
 }
