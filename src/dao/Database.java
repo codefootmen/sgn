@@ -11,6 +11,7 @@ public abstract class Database {
     public static Connection getConnection() {
         Connection connection = null;
         try {
+            DriverManager.registerDriver(new com.mysql.jdbc.Driver ());
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sgn", "root", "password");
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
