@@ -67,11 +67,11 @@ public class Building {
         DAO.delete(this.idBuilding);
     }
 
-    public static Building findOne(Long id) throws ClassNotFoundException, SQLException{
+    public static Building findOne(Long id) {
         return DAO.findOne(id);
     }
 
-    public static List<Building> findAll() throws SQLException, ClassNotFoundException{
+    public static List<Building> findAll() {
         return DAO.findAll();
     }
 }
