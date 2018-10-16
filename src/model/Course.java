@@ -153,11 +153,11 @@ public class Course {
         DAO.delete(this.idCourse);
     }
 
-    public static Course findOne(Long id) throws ClassNotFoundException, SQLException{
+    public static Course findOne(Long id) {
         return DAO.findOne(id);
     }
 
-    public static List<Course> findAll() throws SQLException, ClassNotFoundException{
+    public static List<Course> findAll() {
         return DAO.findAll();
     }
 }
