@@ -32,6 +32,6 @@ public class CampusController extends Servlet{
     @Override
     public RequestDispatcher showAllPage(HttpServletRequest request) {
         request.setAttribute("campi", Campus.findAll());
-        return request.getRequestDispatcher("/campiShowAll.jsp");
+        return request.getRequestDispatcher("campus/campusShowAll.jsp");
     }
 }
