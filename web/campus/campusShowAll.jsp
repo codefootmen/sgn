@@ -19,7 +19,7 @@
                     <th>Number</th>
                     <th>City</th>
                     <th>State</th>
-                    <th>Telefone</th>
+                    <th>Telephone</th>
                     <th>ZIP</th>
                     <th>Institution</th>
                 </tr>
