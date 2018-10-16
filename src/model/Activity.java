@@ -4,6 +4,8 @@ import dao.*;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.util.List;
+
 @Data
 @Accessors(chain = true)
 public class Activity {
@@ -21,6 +23,9 @@ public class Activity {
     private Long idInstitution;
     private Program program;
     private Long idProgram;
+    private static ActivityDAO DAO = new ActivityDAO();
+
+
 
     public Professor getProfessor() {
         if (professor == null) {
@@ -105,5 +110,13 @@ public class Activity {
     public Activity setActivityType(String activityType) {
         this.activityType = ActivityTypeEnum.valueOf(activityType.toUpperCase());
         return this;
+    }
+
+    public static Activity findOne(Long id) {
+        return DAO.findOne(id);
+    }
+
+    public static List<Activity> findAll() {
+        return DAO.findAll();
     }
 }
