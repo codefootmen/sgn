@@ -53,7 +53,7 @@ public class SubjectDAO implements DAO<Subject, Long> {
 
     @Override
     public List<Subject> findAll() {
-        return search("SELECT * FROM student");
+        return search("SELECT * FROM subject");
     }
 
     @Override
