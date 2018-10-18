@@ -59,11 +59,11 @@ public class Student extends Person {
         DAO.delete(this.idStudent);
     }
 
-    public static Student findOne(Long id) throws ClassNotFoundException, SQLException{
+    public static Student findOne(Long id) {
         return DAO.findOne(id);
     }
 
-    public static List<Student> findAll() throws SQLException, ClassNotFoundException{
+    public static List<Student> findAll() {
         return DAO.findAll();
     }
 }
