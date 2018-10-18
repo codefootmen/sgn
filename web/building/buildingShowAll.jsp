@@ -23,7 +23,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${builds}" var="a">
+                <c:forEach items="${buildings}" var="a">
                     <tr>
                         <td>${a.getIdBuilding()}</td>
                         <td>${a.getName()}</td>
