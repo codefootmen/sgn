@@ -84,11 +84,11 @@ public class Department {
         DAO.delete(this.idDepartment);
     }
 
-    public static Department findOne(Long id) throws ClassNotFoundException, SQLException{
+    public static Department findOne(Long id) {
         return DAO.findOne(id);
     }
 
-    public static List<Department> findAll() throws SQLException, ClassNotFoundException{
+    public static List<Department> findAll() {
         return DAO.findAll();
     }
 }
