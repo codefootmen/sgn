@@ -52,11 +52,11 @@ public class Request {
         DAO.delete(this.idRequest);
     }
 
-    public static Request findOne(Long id) throws ClassNotFoundException, SQLException{
+    public static Request findOne(Long id) {
         return DAO.findOne(id);
     }
 
-    public static List<Request> findAll() throws SQLException, ClassNotFoundException{
+    public static List<Request> findAll() {
         return DAO.findAll();
     }
 }
