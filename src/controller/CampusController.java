@@ -16,17 +16,19 @@ public class CampusController extends Servlet{
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
-        return null;
+        return request.getRequestDispatcher("/campus/campusForm.jsp");
     }
 
     @Override
     public RequestDispatcher editPage(HttpServletRequest request) {
-        return null;
+        return request.getRequestDispatcher("/campus/campusForm.jsp");
     }
 
     @Override
     public RequestDispatcher showOnePage(HttpServletRequest request) {
-        return null;
+        Long id = Long.valueOf(request.getAttribute("id").toString());
+        request.setAttribute("campus", Campus.findOne(id));
+        return request.getRequestDispatcher("/campus/campusShowOne.jsp");
     }
 
     @Override
