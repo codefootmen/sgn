@@ -84,11 +84,11 @@ public class Event {
         DAO.delete(this.idEvent);
     }
 
-    public static Event findOne(Long id) throws ClassNotFoundException, SQLException{
+    public static Event findOne(Long id) {
         return DAO.findOne(id);
     }
 
-    public static List<Event> findAll() throws SQLException, ClassNotFoundException{
+    public static List<Event> findAll() {
         return DAO.findAll();
     }
 }
