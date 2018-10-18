@@ -89,11 +89,11 @@ public class Program {
         DAO.delete(this.idProgram);
     }
 
-    public static Program findOne(Long id) throws ClassNotFoundException, SQLException{
+    public static Program findOne(Long id) {
         return DAO.findOne(id);
     }
 
-    public static List<Program> findAll() throws SQLException, ClassNotFoundException{
+    public static List<Program> findAll() {
         return DAO.findAll();
     }
 }
