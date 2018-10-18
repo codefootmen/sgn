@@ -23,13 +23,13 @@ public class BuildingController extends Servlet {
     @Override
     public RequestDispatcher showOnePage(HttpServletRequest request) {
         Long id = Long.valueOf(request.getAttribute("id").toString());
-        request.setAttribute("build", Building.findOne(id));
+        request.setAttribute("building", Building.findOne(id));
         return request.getRequestDispatcher("/building/buildingShowOne.jsp");
     }
 
     @Override
     public RequestDispatcher showAllPage(HttpServletRequest request) {
-        request.setAttribute("builds", Building.findAll());
+        request.setAttribute("buildings", Building.findAll());
         return request.getRequestDispatcher("/building/buildingShowAll.jsp");
     }
 }
