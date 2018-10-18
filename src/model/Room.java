@@ -65,11 +65,11 @@ public class Room {
         DAO.delete(this.idRoom);
     }
 
-    public static Room findOne(Long id) throws ClassNotFoundException, SQLException{
+    public static Room findOne(Long id) {
         return DAO.findOne(id);
     }
 
-    public static List<Room> findAll() throws SQLException, ClassNotFoundException{
+    public static List<Room> findAll() {
         return DAO.findAll();
     }
 }
