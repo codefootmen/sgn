@@ -86,11 +86,11 @@ public class Meeting {
         DAO.delete(this.idMeeting);
     }
 
-    public static Meeting findOne(Long id) throws ClassNotFoundException, SQLException{
+    public static Meeting findOne(Long id) {
         return DAO.findOne(id);
     }
 
-    public static List<Meeting> findAll() throws SQLException, ClassNotFoundException{
+    public static List<Meeting> findAll() {
         return DAO.findAll();
     }
 }
