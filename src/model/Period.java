@@ -47,11 +47,11 @@ public class Period {
         DAO.delete(this.idPeriod);
     }
 
-    public static Period findOne(Long id) throws ClassNotFoundException, SQLException{
+    public static Period findOne(Long id) {
         return DAO.findOne(id);
     }
 
-    public static List<Period> findAll() throws SQLException, ClassNotFoundException{
+    public static List<Period> findAll() {
         return DAO.findAll();
     }
 }
