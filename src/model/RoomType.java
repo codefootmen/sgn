@@ -27,11 +27,11 @@ public class RoomType {
         DAO.delete(this.idRoomType);
     }
 
-    public static RoomType findOne(Long id) throws ClassNotFoundException, SQLException{
+    public static RoomType findOne(Long id) {
         return DAO.findOne(id);
     }
 
-    public static List<RoomType> findAll() throws SQLException, ClassNotFoundException{
+    public static List<RoomType> findAll() {
         return DAO.findAll();
     }
 
