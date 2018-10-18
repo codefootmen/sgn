@@ -116,11 +116,11 @@ public class Subject {
         DAO.delete(this.idSubject);
     }
 
-    public static Subject findOne(Long id) throws ClassNotFoundException, SQLException{
+    public static Subject findOne(Long id) {
         return DAO.findOne(id);
     }
 
-    public static List<Subject> findAll() throws SQLException, ClassNotFoundException{
+    public static List<Subject> findAll() {
         return DAO.findAll();
     }
 }
