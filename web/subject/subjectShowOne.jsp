@@ -20,7 +20,7 @@
                     <th>Program</th>
                     <th>Department</th>
                     <th>Campus</th>
-                    <th>Institution</th>
+                    <th>Institute</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -32,7 +32,7 @@
                         <td>${subject.getIdProgram()}</td>
                         <td>${subject.getIdDepartment()}</td>
                         <td>${subject.getIdCampus()}</td>
-                        <td>${subject.getIdInstitution()}</td>
+                        <td>${subject.getIdInstitute()}</td>
                     </tr>
                 </tbody>
             </table>

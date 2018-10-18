@@ -22,7 +22,7 @@ public class BuildingDAO implements DAO<Building, Long> {
                             "elevator = ?, " +
                             "accessibility = ?, " +
                             "id_campus = ?, " +
-                            "id_institution = ?"
+                            "id_institute = ?"
             );
             Query.setStatementValues(
                     statement,
@@ -31,7 +31,7 @@ public class BuildingDAO implements DAO<Building, Long> {
                     building.getElevator(),
                     building.getAccessibility(),
                     building.getIdCampus(),
-                    building.getIdInstitution()
+                    building.getIdInstitute()
             );
             statement.execute();
             Database.closeConnection(connection, statement);
@@ -66,7 +66,7 @@ public class BuildingDAO implements DAO<Building, Long> {
                             "elevator = ?, " +
                             "accessibility = ?," +
                             "id_campus = ?, " +
-                            "id_institution = ? " +
+                            "id_institute = ? " +
                             "WHERE id_building = ?"
             );
             Query.setStatementValues(
@@ -76,7 +76,7 @@ public class BuildingDAO implements DAO<Building, Long> {
                     building.getElevator(),
                     building.getAccessibility(),
                     building.getIdCampus(),
-                    building.getIdInstitution(),
+                    building.getIdInstitute(),
                     building.getIdBuilding()
             );
             statement.execute();
@@ -117,8 +117,8 @@ public class BuildingDAO implements DAO<Building, Long> {
                 .setAccessibility(result.getBoolean("accessibility"))
                 .setCampus(null)
                 .setIdCampus(result.getLong("id_campus"))
-                .setInstitution(null)
-                .setIdInstitution(result.getLong("id_institution"));
+                .setInstitute(null)
+                .setIdInstitute(result.getLong("id_institute"));
     }
 
     private List<Building> search(String sql) {

@@ -19,7 +19,7 @@
                     <th>Elevator</th>
                     <th>Accessibility</th>
                     <th>Campus</th>
-                    <th>Institution</th>
+                    <th>Institute</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -31,7 +31,7 @@
                         <td>${a.getElevator()}</td>
                         <td>${a.getAccessibility()}</td>
                         <td>${a.getIdCampus()}</td>
-                        <td>${a.getIdInstitution()}</td>
+                        <td>${a.getIdInstitute()}</td>
                     </tr>
                 </c:forEach>
                 </tbody>

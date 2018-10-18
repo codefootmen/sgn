@@ -23,7 +23,7 @@ public class SubjectDAO implements DAO<Subject, Long> {
                             "id_program = ?, " +
                             "id_department = ?, " +
                             "id_campus = ?, " +
-                            "id_institution = ?"
+                            "id_institute = ?"
             );
             Query.setStatementValues(
                     statement,
@@ -33,7 +33,7 @@ public class SubjectDAO implements DAO<Subject, Long> {
                     subject.getIdProgram(),
                     subject.getIdDepartment(),
                     subject.getIdCampus(),
-                    subject.getIdInstitution()
+                    subject.getIdInstitute()
             );
             statement.execute();
             Database.closeConnection(connection, statement);
@@ -69,7 +69,7 @@ public class SubjectDAO implements DAO<Subject, Long> {
                             "id_program = ?, " +
                             "id_department = ?, " +
                             "id_campus = ?, " +
-                            "id_institution = ? " +
+                            "id_institute = ? " +
                             "WHERE id_subject = ?"
             );
             Query.setStatementValues(
@@ -80,7 +80,7 @@ public class SubjectDAO implements DAO<Subject, Long> {
                     subject.getIdProgram(),
                     subject.getIdDepartment(),
                     subject.getIdCampus(),
-                    subject.getIdInstitution(),
+                    subject.getIdInstitute(),
                     subject.getIdSubject()
             );
             statement.execute();
@@ -125,8 +125,8 @@ public class SubjectDAO implements DAO<Subject, Long> {
                 .setIdDepartment(result.getLong("id_department"))
                 .setCampus(null)
                 .setIdCampus(result.getLong("id_campus"))
-                .setInstitution(null)
-                .setIdInstitution(result.getLong("id_institution"));
+                .setInstitute(null)
+                .setIdInstitute(result.getLong("id_institute"));
     }
 
     private List<Subject> search(String sql) {

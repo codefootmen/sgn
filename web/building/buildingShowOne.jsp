@@ -19,7 +19,7 @@
                     <th>Elevator</th>
                     <th>Accessibility</th>
                     <th>Campus</th>
-                    <th>Institution</th>
+                    <th>Institute</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -30,7 +30,7 @@
                         <td>${building.getElevator()}</td>
                         <td>${building.getAccessibility()}</td>
                         <td>${building.getIdCampus()}</td>
-                        <td>${building.getIdInstitution()}</td>
+                        <td>${building.getIdInstitute()}</td>
                     </tr>
                 </tbody>
             </table>

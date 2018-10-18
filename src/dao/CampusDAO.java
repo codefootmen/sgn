@@ -24,7 +24,7 @@ public class CampusDAO implements DAO<Campus, Long> {
                             "state = ?, " +
                             "telephone = ?, " +
                             "zip = ?, " +
-                            "id_institution = ?"
+                            "id_institute = ?"
             );
             Query.setStatementValues(
                     statement,
@@ -35,7 +35,7 @@ public class CampusDAO implements DAO<Campus, Long> {
                     campus.getState(),
                     campus.getTelephone(),
                     campus.getZip(),
-                    campus.getIdInstitution()
+                    campus.getIdInstitute()
             );
             statement.execute();
             Database.closeConnection(connection, statement);
@@ -72,7 +72,7 @@ public class CampusDAO implements DAO<Campus, Long> {
                             "state = ?, " +
                             "telephone = ?, " +
                             "zip = ?, " +
-                            "id_institution = ? " +
+                            "id_institute = ? " +
                             "WHERE id_campus = ?"
             );
             Query.setStatementValues(
@@ -84,7 +84,7 @@ public class CampusDAO implements DAO<Campus, Long> {
                     campus.getState(),
                     campus.getTelephone(),
                     campus.getZip(),
-                    campus.getIdInstitution(),
+                    campus.getIdInstitute(),
                     campus.getIdCampus()
             );
             statement.execute();
@@ -126,8 +126,8 @@ public class CampusDAO implements DAO<Campus, Long> {
                 .setState(result.getString("state"))
                 .setTelephone(result.getString("telephone"))
                 .setZip(result.getString("zip"))
-                .setInstitution(null)
-                .setIdInstitution(result.getLong("id_institution"));
+                .setInstitute(null)
+                .setIdInstitute(result.getLong("id_institute"));
     }
 
     private List<Campus> search(String sql) {

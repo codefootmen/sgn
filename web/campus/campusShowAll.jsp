@@ -21,7 +21,7 @@
                     <th>State</th>
                     <th>Telephone</th>
                     <th>ZIP</th>
-                    <th>Institution</th>
+                    <th>Institute</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -35,7 +35,7 @@
                         <td>${a.getState()}</td>
                         <td>${a.getTelephone()}</td>
                         <td>${a.getZip()}</td>
-                        <td>${a.getIdInstitution()}</td>
+                        <td>${a.getIdInstitute()}</td>
                     </tr>
                 </c:forEach>
                 </tbody>

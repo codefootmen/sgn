@@ -20,16 +20,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${institutes}" var="a">
                     <tr>
-                        <th>${a.getIdInstitution()}</th>
-                        <th>${a.getName()}</th>
-                        <th>${a.getLogo()}</th>
-                        <th>${a.getSite()}</th>
+                        <th>${institute.getIdInstitute()}</th>
+                        <th>${institute.getName()}</th>
+                        <th><img src="${institute.getLogo()}"></th>
+                        <th>${institute.getSite()}</th>
                     </tr>
-                </c:forEach>
                 </tbody>
             </table>
+
         </div>
     </div>
 </div>

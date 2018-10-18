@@ -1,6 +1,6 @@
 package dao;
 
-import model.Institution;
+import model.Institute;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,24 +9,24 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InstitutionDAO implements DAO<Institution, Long> {
+public class InstituteDAO implements DAO<Institute, Long> {
 
     @Override
-    public Boolean save(Institution institution) {
+    public Boolean save(Institute institute) {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(
-                    "INSERT INTO institution SET " +
+                    "INSERT INTO institute SET " +
                             "name = ?, " +
                             "logo = ?, " +
                             "site = ?"
             );
             Query.setStatementValues(
                     statement,
-                    institution.getName(),
-                    institution.getLogo(),
-                    institution.getSite()
+                    institute.getName(),
+                    institute.getLogo(),
+                    institute.getSite()
             );
             statement.execute();
             Database.closeConnection(connection, statement);
@@ -39,34 +39,34 @@ public class InstitutionDAO implements DAO<Institution, Long> {
     }
 
     @Override
-    public Institution findOne(Long key) {
-        String sql = String.format("SELECT * FROM institution WHERE id_institution = '%s'", key);
+    public Institute findOne(Long key) {
+        String sql = String.format("SELECT * FROM institute WHERE id_institute = '%s'", key);
         return search(sql).get(0);
     }
 
     @Override
-    public List<Institution> findAll() {
-        return search("SELECT * FROM institution");
+    public List<Institute> findAll() {
+        return search("SELECT * FROM institute");
     }
 
     @Override
-    public Boolean update(Institution institution) {
+    public Boolean update(Institute institute) {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(
-                    "UPDATE institution SET " +
+                    "UPDATE institute SET " +
                             "name = ?, " +
                             "logo = ?, " +
                             "site = ? " +
-                            "WHERE id_institution = ?"
+                            "WHERE id_institute = ?"
             );
             Query.setStatementValues(
                     statement,
-                    institution.getName(),
-                    institution.getLogo(),
-                    institution.getSite(),
-                    institution.getIdInstitution()
+                    institute.getName(),
+                    institute.getLogo(),
+                    institute.getSite(),
+                    institute.getIdInstitute()
             );
             statement.execute();
             Database.closeConnection(connection, statement);
@@ -84,7 +84,7 @@ public class InstitutionDAO implements DAO<Institution, Long> {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(
-                    "DELETE FROM institution WHERE id_institution = ?"
+                    "DELETE FROM institute WHERE id_institute = ?"
             );
             statement.setLong(1, key);
             statement.execute();
@@ -97,18 +97,18 @@ public class InstitutionDAO implements DAO<Institution, Long> {
         return false;
     }
 
-    private Institution fromResultSet(ResultSet result) throws SQLException {
-        return new Institution()
-                .setIdInstitution(result.getLong("id_institution"))
+    private Institute fromResultSet(ResultSet result) throws SQLException {
+        return new Institute()
+                .setIdInstitute(result.getLong("id_institute"))
                 .setName(result.getString("name"))
                 .setLogo(result.getString("logo"))
                 .setSite(result.getString("site"));
     }
 
-    private List<Institution> search(String sql) {
+    private List<Institute> search(String sql) {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
-        List<Institution> list = new ArrayList<>();
+        List<Institute> list = new ArrayList<>();
         try {
             statement = connection.prepareStatement(sql);
             try (ResultSet result = statement.executeQuery()) {

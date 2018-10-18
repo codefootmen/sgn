@@ -18,7 +18,7 @@
                     <th>Academic Level</th>
                     <th>Department</th>
                     <th>Campus</th>
-                    <th>Institution</th>
+                    <th>Institute</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -29,7 +29,7 @@
                         <td>${a.getAcademicLevel()}</td>
                         <td>${a.getIdDepartment()}</td>
                         <td>${a.getIdCampus()}</td>
-                        <td>${a.getIdInstitution()}</td>
+                        <td>${a.getIdInstitute()}</td>
                     </tr>
                 </c:forEach>
                 </tbody>

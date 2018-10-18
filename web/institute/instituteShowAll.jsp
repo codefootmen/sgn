@@ -4,7 +4,7 @@
 <div class="container">
     <div class="columns">
         <div class="column">
-            <h1 class="title has-text-centered">Institutions</h1>
+            <h1 class="title has-text-centered">Institutes</h1>
         </div>
     </div>
     <div class="columns">
@@ -20,15 +20,16 @@
                 </tr>
                 </thead>
                 <tbody>
+                <c:forEach items="${institutes}" var="a">
                     <tr>
-                        <th>${institute.getIdInstitution()}</th>
-                        <th>${institute.getName()}</th>
-                        <th><img src="${institute.getLogo()}"></th>
-                        <th>${institute.getSite()}</th>
+                        <th>${a.getIdInstitute()}</th>
+                        <th>${a.getName()}</th>
+                        <th>${a.getLogo()}</th>
+                        <th>${a.getSite()}</th>
                     </tr>
+                </c:forEach>
                 </tbody>
             </table>
-
         </div>
     </div>
 </div>

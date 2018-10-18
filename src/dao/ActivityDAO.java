@@ -23,7 +23,7 @@ public class ActivityDAO implements DAO<Activity, Long> {
                             "id_professor = ?, " +
                             "id_campus = ?, " +
                             "id_department = ?," +
-                            "id_institution = ?, " +
+                            "id_institute = ?, " +
                             "id_program = ?"
 
             );
@@ -35,7 +35,7 @@ public class ActivityDAO implements DAO<Activity, Long> {
                     activity.getIdProfessor(),
                     activity.getIdCampus(),
                     activity.getIdDepartment(),
-                    activity.getIdInstitution(),
+                    activity.getIdInstitute(),
                     activity.getIdProgram()
             );
             statement.execute();
@@ -72,7 +72,7 @@ public class ActivityDAO implements DAO<Activity, Long> {
                             "id_professor = ?, " +
                             "id_campus = ?, " +
                             "id_department = ?, " +
-                            "id_institution = ?, " +
+                            "id_institute = ?, " +
                             "id_program = ? " +
                             "WHERE id_activity = ?"
 
@@ -85,7 +85,7 @@ public class ActivityDAO implements DAO<Activity, Long> {
                     activity.getIdProfessor(),
                     activity.getIdCampus(),
                     activity.getIdDepartment(),
-                    activity.getIdInstitution(),
+                    activity.getIdInstitute(),
                     activity.getIdProgram(),
                     activity.getIdActivity()
             );
@@ -130,8 +130,8 @@ public class ActivityDAO implements DAO<Activity, Long> {
                 .setIdCampus(result.getLong("id_campus"))
                 .setDepartment(null)
                 .setIdDepartment(result.getLong("id_department"))
-                .setInstitution(null)
-                .setIdInstitution(result.getLong("id_institution"))
+                .setInstitute(null)
+                .setIdInstitute(result.getLong("id_institute"))
                 .setProgram(null)
                 .setIdProgram(result.getLong("id_program"));
     }

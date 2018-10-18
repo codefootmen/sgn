@@ -17,7 +17,7 @@
                     <th>Field</th>
                     <th>Description</th>
                     <th>Campus</th>
-                    <th>Institution</th>
+                    <th>Institute</th>
                     <th>Professor</th>
                 </tr>
                 </thead>
@@ -27,7 +27,7 @@
                         <td>${department.getField()}</td>
                         <td>${department.getDescription()}</td>
                         <td>${department.getIdCampus()}</td>
-                        <td>${department.getIdInstitution()}</td>
+                        <td>${department.getIdInstitute()}</td>
                         <td>${department.getIdProfessor()}</td>
                     </tr>
                 </tbody>

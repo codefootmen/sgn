@@ -33,7 +33,7 @@
                         <td>${a.getMinutes()}</td>
                         <td>${a.getIdDepartment()}</td>
                         <td>${a.getIdCampus()}</td>
-                        <td>${a.getIdInstitution()}</td>
+                        <td>${a.getIdInstitute()}</td>
                     </tr>
                 </c:forEach>
                 </tbody>

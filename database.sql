@@ -27,7 +27,7 @@ DROP TABLE IF EXISTS `department`;
 
 DROP TABLE IF EXISTS `campus`;
 
-DROP TABLE IF EXISTS `institution`;
+DROP TABLE IF EXISTS `institute`;
 
 DROP TABLE IF EXISTS `professor`;
 
@@ -58,16 +58,16 @@ CREATE TABLE `professor`
   PRIMARY KEY (`id_professor`)
 );
 
--- ************************************** `institution`
+-- ************************************** `institute`
 
-CREATE TABLE `institution`
+CREATE TABLE `institute`
 (
-  `id_institution` BIGINT unsigned NOT NULL AUTO_INCREMENT,
+  `id_institute` BIGINT unsigned NOT NULL AUTO_INCREMENT,
   `name`           VARCHAR(255)    NOT NULL,
   `logo`           VARCHAR(255)    NOT NULL,
   `site`           VARCHAR(255)    NOT NULL,
 
-  PRIMARY KEY (`id_institution`)
+  PRIMARY KEY (`id_institute`)
 );
 
 -- ************************************** `campus`
@@ -82,10 +82,10 @@ CREATE TABLE `campus`
   `state`          VARCHAR(255)    NOT NULL,
   `telephone`      VARCHAR(255)    NOT NULL,
   `zip`            VARCHAR(255)    NOT NULL,
-  `id_institution` BIGINT unsigned NOT NULL,
+  `id_institute` BIGINT unsigned NOT NULL,
 
-  PRIMARY KEY (`id_campus`, `id_institution`),
-  FOREIGN KEY (`id_institution`) REFERENCES institution (id_institution)
+  PRIMARY KEY (`id_campus`, `id_institute`),
+  FOREIGN KEY (`id_institute`) REFERENCES institute (id_institute)
 );
 
 -- ************************************** `building`
@@ -98,11 +98,11 @@ CREATE TABLE `building`
   `elevator`              BIT             NOT NULL,
   `accessibility`         BIT             NOT NULL,
   `id_campus`             BIGINT unsigned NOT NULL,
-  `id_institution`        BIGINT unsigned NOT NULL,
+  `id_institute`        BIGINT unsigned NOT NULL,
 
   PRIMARY KEY (`id_building`),
   FOREIGN KEY (`id_campus`) REFERENCES campus (id_campus),
-  FOREIGN KEY (`id_institution`) REFERENCES institution (id_institution)
+  FOREIGN KEY (`id_institute`) REFERENCES institute (id_institute)
 );
 
 -- ************************************** `department`
@@ -113,12 +113,12 @@ CREATE TABLE `department`
   `field`          VARCHAR(255)    NOT NULL,
   `description`    VARCHAR(255)    NOT NULL,
   `id_campus`      BIGINT unsigned NOT NULL,
-  `id_institution` BIGINT unsigned NOT NULL,
+  `id_institute` BIGINT unsigned NOT NULL,
   `id_professor`   BIGINT unsigned NOT NULL,
 
-  PRIMARY KEY (`id_department`, `id_campus`, `id_institution`),
+  PRIMARY KEY (`id_department`, `id_campus`, `id_institute`),
   FOREIGN KEY (`id_campus`) REFERENCES campus (id_campus),
-  FOREIGN KEY (`id_institution`) REFERENCES institution (id_institution),
+  FOREIGN KEY (`id_institute`) REFERENCES institute (id_institute),
   FOREIGN KEY (`id_professor`) REFERENCES professor (id_professor)
 );
 
@@ -133,12 +133,12 @@ CREATE TABLE `meeting`
   `minutes`        VARCHAR(255)    NOT NULL,
   `id_department`  BIGINT unsigned NOT NULL,
   `id_campus`      BIGINT unsigned NOT NULL,
-  `id_institution` BIGINT unsigned NOT NULL,
+  `id_institute` BIGINT unsigned NOT NULL,
 
   PRIMARY KEY (`id_meeting`),
   FOREIGN KEY (`id_department`) REFERENCES department (id_department),
   FOREIGN KEY (`id_campus`) REFERENCES campus (id_campus),
-  FOREIGN KEY (`id_institution`) REFERENCES institution (id_institution)
+  FOREIGN KEY (`id_institute`) REFERENCES institute (id_institute)
 );
 
 -- ************************************** `room`
@@ -201,12 +201,12 @@ CREATE TABLE `program`
   )                                NOT NULL,
   `id_department`  BIGINT unsigned NOT NULL,
   `id_campus`      BIGINT unsigned NOT NULL,
-  `id_institution` BIGINT unsigned NOT NULL,
+  `id_institute` BIGINT unsigned NOT NULL,
 
-  PRIMARY KEY (`id_program`, `id_department`, `id_campus`, `id_institution`),
+  PRIMARY KEY (`id_program`, `id_department`, `id_campus`, `id_institute`),
   FOREIGN KEY (`id_department`) REFERENCES department (id_department),
   FOREIGN KEY (`id_campus`) REFERENCES campus (id_campus),
-  FOREIGN KEY (`id_institution`) REFERENCES institution (id_institution)
+  FOREIGN KEY (`id_institute`) REFERENCES institute (id_institute)
 );
 
 -- ************************************** `subject`
@@ -220,14 +220,14 @@ CREATE TABLE `subject`
   `id_program`          BIGINT unsigned NOT NULL,
   `id_department`       BIGINT unsigned NOT NULL,
   `id_campus`           BIGINT unsigned NOT NULL,
-  `id_institution`      BIGINT unsigned NOT NULL,
+  `id_institute`      BIGINT unsigned NOT NULL,
 
-  PRIMARY KEY (`id_subject`, `id_program`, `id_department`, `id_campus`, `id_institution`),
+  PRIMARY KEY (`id_subject`, `id_program`, `id_department`, `id_campus`, `id_institute`),
   FOREIGN KEY (`id_room_type`) REFERENCES room_type (id_room_type),
   FOREIGN KEY (`id_program`) REFERENCES program (id_program),
   FOREIGN KEY (`id_department`) REFERENCES department (id_department),
   FOREIGN KEY (`id_campus`) REFERENCES campus (id_campus),
-  FOREIGN KEY (`id_institution`) REFERENCES institution (id_institution)
+  FOREIGN KEY (`id_institute`) REFERENCES institute (id_institute)
 );
 
 -- ************************************** `request`
@@ -257,14 +257,14 @@ CREATE TABLE `activity`
   `id_professor`   BIGINT unsigned            NOT NULL,
   `id_campus`      BIGINT unsigned            NOT NULL,
   `id_department`  BIGINT unsigned            NOT NULL,
-  `id_institution` BIGINT unsigned            NOT NULL,
+  `id_institute` BIGINT unsigned            NOT NULL,
   `id_program`     BIGINT unsigned            NOT NULL,
 
   PRIMARY KEY (`id_activity`),
   FOREIGN KEY (`id_professor`) REFERENCES professor (id_professor),
   FOREIGN KEY (`id_department`) REFERENCES department (id_department),
   FOREIGN KEY (`id_campus`) REFERENCES campus (id_campus),
-  FOREIGN KEY (`id_institution`) REFERENCES institution (id_institution),
+  FOREIGN KEY (`id_institute`) REFERENCES institute (id_institute),
   FOREIGN KEY (`id_program`) REFERENCES program (id_program)
 );
 
@@ -293,16 +293,16 @@ CREATE TABLE `course`
   `id_program`     BIGINT unsigned NOT NULL,
   `id_department`  BIGINT unsigned NOT NULL,
   `id_campus`      BIGINT unsigned NOT NULL,
-  `id_institution` BIGINT unsigned NOT NULL,
+  `id_institute` BIGINT unsigned NOT NULL,
   `id_period`      BIGINT unsigned NOT NULL,
   `id_professor`   BIGINT unsigned NOT NULL,
 
-  PRIMARY KEY (`id_course`, `id_subject`, `id_program`, `id_department`, `id_campus`, `id_institution`),
+  PRIMARY KEY (`id_course`, `id_subject`, `id_program`, `id_department`, `id_campus`, `id_institute`),
   FOREIGN KEY (`id_subject`) REFERENCES subject (id_subject),
   FOREIGN KEY (`id_program`) REFERENCES program (id_program),
   FOREIGN KEY (`id_department`) REFERENCES department (id_department),
   FOREIGN KEY (`id_campus`) REFERENCES campus (id_campus),
-  FOREIGN KEY (`id_institution`) REFERENCES institution (id_institution),
+  FOREIGN KEY (`id_institute`) REFERENCES institute (id_institute),
   FOREIGN KEY (`id_period`) REFERENCES period (id_period),
   FOREIGN KEY (`id_professor`) REFERENCES professor (id_professor)
 );

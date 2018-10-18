@@ -1,11 +1,10 @@
 package model;
 
 import dao.CampusDAO;
-import dao.InstitutionDAO;
+import dao.InstituteDAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @Data
@@ -19,23 +18,23 @@ public class Campus {
     private String state;
     private String telephone;
     private String zip;
-    private Institution institution;
-    private Long idInstitution;
+    private Institute institute;
+    private Long idInstitute;
     private static CampusDAO DAO = new CampusDAO();
 
-    public Institution getInstitution() {
-        if (institution == null) {
-            InstitutionDAO dao = new InstitutionDAO();
-            institution = dao.findOne(idInstitution);
+    public Institute getInstitute() {
+        if (institute == null) {
+            InstituteDAO dao = new InstituteDAO();
+            institute = dao.findOne(idInstitute);
         }
-        return institution;
+        return institute;
     }
 
-    public Campus setInstitution(Institution institution) {
-        if (institution != null) {
-            this.idInstitution = institution.getIdInstitution();
+    public Campus setInstitute(Institute institute) {
+        if (institute != null) {
+            this.idInstitute = institute.getIdInstitute();
         }
-        this.institution = institution;
+        this.institute = institute;
         return this;
     }
 

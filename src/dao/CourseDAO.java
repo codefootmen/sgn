@@ -23,7 +23,7 @@ public class CourseDAO implements DAO<Course, Long> {
                             "id_program = ?, " +
                             "id_department = ?, " +
                             "id_campus = ?, " +
-                            "id_institution = ?, " +
+                            "id_institute = ?, " +
                             "id_period = ?, " +
                             "id_professor = ?"
             );
@@ -35,7 +35,7 @@ public class CourseDAO implements DAO<Course, Long> {
                     course.getIdProgram(),
                     course.getIdDepartment(),
                     course.getIdCampus(),
-                    course.getIdInstitution(),
+                    course.getIdInstitute(),
                     course.getIdPeriod(),
                     course.getIdProfessor()
             );
@@ -73,7 +73,7 @@ public class CourseDAO implements DAO<Course, Long> {
                             "id_program = ?" +
                             "id_department = ? " +
                             "id_campus = ? " +
-                            "id_institution = ? " +
+                            "id_institute = ? " +
                             "id_period = ? " +
                             "id_professor = ? " +
                             "WHERE id_course = ?"
@@ -86,7 +86,7 @@ public class CourseDAO implements DAO<Course, Long> {
                     course.getIdProgram(),
                     course.getIdDepartment(),
                     course.getIdCampus(),
-                    course.getIdInstitution(),
+                    course.getIdInstitute(),
                     course.getIdPeriod(),
                     course.getIdProfessor(),
                     course.getIdCourse()
@@ -133,8 +133,8 @@ public class CourseDAO implements DAO<Course, Long> {
                 .setIdDepartment(result.getLong("id_department"))
                 .setCampus(null)
                 .setIdCampus(result.getLong("id_campus"))
-                .setInstitution(null)
-                .setIdInstitution(result.getLong("id_institution"))
+                .setInstitute(null)
+                .setIdInstitute(result.getLong("id_institute"))
                 .setPeriod(null)
                 .setIdPeriod(result.getLong("id_period"))
                 .setProfessor(null)

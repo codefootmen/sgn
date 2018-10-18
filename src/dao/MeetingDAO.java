@@ -23,7 +23,7 @@ public class MeetingDAO implements DAO<Meeting, Long> {
                             "agenda = ?, " +
                             "id_department = ?, " +
                             "id_campus = ?, " +
-                            "id_institution = ?"
+                            "id_institute = ?"
             );
             Query.setStatementValues(
                     statement,
@@ -33,7 +33,7 @@ public class MeetingDAO implements DAO<Meeting, Long> {
                     meeting.getAgenda(),
                     meeting.getIdDepartment(),
                     meeting.getIdCampus(),
-                    meeting.getIdInstitution()
+                    meeting.getIdInstitute()
             );
             statement.execute();
             Database.closeConnection(connection, statement);
@@ -69,7 +69,7 @@ public class MeetingDAO implements DAO<Meeting, Long> {
                             "agenda = ?, " +
                             "id_department = ?, " +
                             "id_campus = ?, " +
-                            "id_institution = ? " +
+                            "id_institute = ? " +
                             "WHERE id_meeting = ?"
             );
             Query.setStatementValues(
@@ -79,7 +79,7 @@ public class MeetingDAO implements DAO<Meeting, Long> {
                     meeting.getMinutes(),
                     meeting.getIdDepartment(),
                     meeting.getIdCampus(),
-                    meeting.getIdInstitution(),
+                    meeting.getIdInstitute(),
                     meeting.getIdMeeting()
             );
             statement.execute();
@@ -122,8 +122,8 @@ public class MeetingDAO implements DAO<Meeting, Long> {
                 .setIdDepartment(result.getLong("id_department"))
                 .setCampus(null)
                 .setIdCampus(result.getLong("id_campus"))
-                .setInstitution(null)
-                .setIdInstitution(result.getLong("id_institution"));
+                .setInstitute(null)
+                .setIdInstitute(result.getLong("id_institute"));
     }
 
     private List<Meeting> search(String sql) {

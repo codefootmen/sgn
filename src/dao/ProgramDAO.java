@@ -21,7 +21,7 @@ public class ProgramDAO implements DAO<Program, Long> {
                             "academic_level = ?, " +
                             "id_department = ?, " +
                             "id_campus = ?, " +
-                            "id_institution = ?"
+                            "id_institute = ?"
             );
             Query.setStatementValues(
                     statement,
@@ -29,7 +29,7 @@ public class ProgramDAO implements DAO<Program, Long> {
                     program.getAcademicLevel().toString(),
                     program.getIdDepartment(),
                     program.getIdCampus(),
-                    program.getIdInstitution()
+                    program.getIdInstitute()
             );
             statement.execute();
             Database.closeConnection(connection, statement);
@@ -63,7 +63,7 @@ public class ProgramDAO implements DAO<Program, Long> {
                             "academic_level = ?, " +
                             "id_department = ?, " +
                             "id_campus = ?, " +
-                            "id_institution = ? " +
+                            "id_institute = ? " +
                             "WHERE id_program = ?"
             );
             Query.setStatementValues(
@@ -72,7 +72,7 @@ public class ProgramDAO implements DAO<Program, Long> {
                     program.getAcademicLevel().toString(),
                     program.getIdDepartment(),
                     program.getIdCampus(),
-                    program.getIdInstitution(),
+                    program.getIdInstitute(),
                     program.getIdProgram()
             );
             statement.execute();
@@ -113,8 +113,8 @@ public class ProgramDAO implements DAO<Program, Long> {
                 .setIdDepartment(result.getLong("id_department"))
                 .setCampus(null)
                 .setIdCampus(result.getLong("id_campus"))
-                .setInstitution(null)
-                .setIdInstitution(result.getLong("id_institution"));
+                .setInstitute(null)
+                .setIdInstitute(result.getLong("id_institute"));
     }
 
     private List<Program> search(String sql) {

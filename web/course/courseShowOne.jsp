@@ -20,7 +20,7 @@
                     <th>Program</th>
                     <th>Department</th>
                     <th>Campus</th>
-                    <th>Institution</th>
+                    <th>Institute</th>
                     <th>Period</th>
                     <th>Professor</th>
                 </tr>
@@ -34,7 +34,7 @@
                         <td>${course.getIdProgram()}</td>
                         <td>${course.getIdDepartment()}</td>
                         <td>${course.getIdCampus()}</td>
-                        <td>${course.getIdInstitution()}</td>
+                        <td>${course.getIdInstitute()}</td>
                         <td>${course.getIdPeriod()}</td>
                         <td>${course.getIdProfessor()}</td>
                     </tr>

@@ -21,9 +21,10 @@ public class Subject {
     private Long idDepartment;
     private Campus campus;
     private Long idCampus;
-    private Institution institution;
-    private Long idInstitution;
+    private Institute institute;
+    private Long idInstitute;
     private static SubjectDAO DAO = new SubjectDAO();
+
     public RoomType getRoomType() {
         if (roomType == null) {
             RoomTypeDAO dao = new RoomTypeDAO();
@@ -88,19 +89,19 @@ public class Subject {
         return this;
     }
 
-    public Institution getInstitution() {
-        if (institution == null) {
-            InstitutionDAO dao = new InstitutionDAO();
-            institution = dao.findOne(idInstitution);
+    public Institute getInstitute() {
+        if (institute == null) {
+            InstituteDAO dao = new InstituteDAO();
+            institute = dao.findOne(idInstitute);
         }
-        return institution;
+        return institute;
     }
 
-    public Subject setInstitution(Institution institution) {
-        if (institution != null) {
-            this.idInstitution = institution.getIdInstitution();
+    public Subject setInstitute(Institute institute) {
+        if (institute != null) {
+            this.idInstitute = institute.getIdInstitute();
         }
-        this.institution = institution;
+        this.institute = institute;
         return this;
     }
 

@@ -1,21 +1,20 @@
 package model;
 
 
-import dao.InstitutionDAO;
+import dao.InstituteDAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @Data
 @Accessors(chain = true)
-public class Institution {
-    private Long idInstitution;
+public class Institute {
+    private Long idInstitute;
     private String name;
     private String logo;
     private String site;
-    static private InstitutionDAO DAO = new InstitutionDAO();
+    static private InstituteDAO DAO = new InstituteDAO();
 
     public void save() {
         DAO.save(this);
@@ -26,14 +25,14 @@ public class Institution {
     }
 
     public void delete(){
-        DAO.delete(this.idInstitution);
+        DAO.delete(this.idInstitute);
     }
 
-    public static Institution findOne(Long id){
+    public static Institute findOne(Long id){
         return DAO.findOne(id);
     }
 
-    public static List<Institution> findAll() {
+    public static List<Institute> findAll() {
         return DAO.findAll();
     }
 }

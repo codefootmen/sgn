@@ -20,7 +20,7 @@
                     <th>Minutes</th>
                     <th>Department</th>
                     <th>Campus</th>
-                    <th>Institution</th>
+                    <th>Institute</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -32,7 +32,7 @@
                         <td>${meeting.getMinutes()}</td>
                         <td>${meeting.getIdDepartment()}</td>
                         <td>${meeting.getIdCampus()}</td>
-                        <td>${meeting.getIdInstitution()}</td>
+                        <td>${meeting.getIdInstitute()}</td>
                     </tr>
                 </tbody>
             </table>

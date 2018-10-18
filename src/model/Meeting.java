@@ -2,7 +2,7 @@ package model;
 
 import dao.CampusDAO;
 import dao.DepartmentDAO;
-import dao.InstitutionDAO;
+import dao.InstituteDAO;
 import dao.MeetingDAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -22,8 +22,8 @@ public class Meeting {
     private Long idDepartment;
     private Campus campus;
     private Long idCampus;
-    private Institution institution;
-    private Long idInstitution;
+    private Institute institute;
+    private Long idInstitute;
     private static MeetingDAO DAO = new MeetingDAO();
 
     public Department getDepartment() {
@@ -58,19 +58,19 @@ public class Meeting {
         return this;
     }
 
-    public Institution getInstitution() {
-        if (institution == null) {
-            InstitutionDAO dao = new InstitutionDAO();
-            institution = dao.findOne(idInstitution);
+    public Institute getInstitute() {
+        if (institute == null) {
+            InstituteDAO dao = new InstituteDAO();
+            institute = dao.findOne(idInstitute);
         }
-        return institution;
+        return institute;
     }
 
-    public Meeting setInstitution(Institution institution) {
-        if (institution != null) {
-            this.idInstitution = institution.getIdInstitution();
+    public Meeting setInstitute(Institute institute) {
+        if (institute != null) {
+            this.idInstitute = institute.getIdInstitute();
         }
-        this.institution = institution;
+        this.institute = institute;
         return this;
     }
 

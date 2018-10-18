@@ -18,7 +18,7 @@
                     <th>Academic Level</th>
                     <th>Department</th>
                     <th>Campus</th>
-                    <th>Institution</th>
+                    <th>Institute</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -28,7 +28,7 @@
                         <td>${program.getAcademicLevel()}</td>
                         <td>${program.getIdDepartment()}</td>
                         <td>${program.getIdCampus()}</td>
-                        <td>${program.getIdInstitution()}</td>
+                        <td>${program.getIdInstitute()}</td>
                     </tr>
                 </tbody>
             </table>

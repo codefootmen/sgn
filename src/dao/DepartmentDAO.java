@@ -20,7 +20,7 @@ public class DepartmentDAO implements DAO<Department, Long> {
                             "field = ?, " +
                             "description = ?, " +
                             "id_campus = ?, " +
-                            "id_institution = ?, " +
+                            "id_institute = ?, " +
                             "id_professor = ?"
             );
             Query.setStatementValues(
@@ -28,7 +28,7 @@ public class DepartmentDAO implements DAO<Department, Long> {
                     department.getField(),
                     department.getDescription(),
                     department.getIdCampus(),
-                    department.getIdInstitution(),
+                    department.getIdInstitute(),
                     department.getIdProfessor()
             );
             statement.execute();
@@ -62,7 +62,7 @@ public class DepartmentDAO implements DAO<Department, Long> {
                             "field = ?, " +
                             "description = ?, " +
                             "id_campus = ?, " +
-                            "id_institution = ?, " +
+                            "id_institute = ?, " +
                             "id_professor = ? " +
                             "WHERE id_department = ?"
             );
@@ -71,7 +71,7 @@ public class DepartmentDAO implements DAO<Department, Long> {
                     department.getField(),
                     department.getDescription(),
                     department.getIdCampus(),
-                    department.getIdInstitution(),
+                    department.getIdInstitute(),
                     department.getIdProfessor(),
                     department.getIdDepartment()
             );
@@ -111,8 +111,8 @@ public class DepartmentDAO implements DAO<Department, Long> {
                 .setDescription(result.getString("description"))
                 .setCampus(null)
                 .setIdCampus(result.getLong("id_campus"))
-                .setInstitution(null)
-                .setIdInstitution(result.getLong("id_institution"))
+                .setInstitute(null)
+                .setIdInstitute(result.getLong("id_institute"))
                 .setProfessor(null)
                 .setIdProfessor(result.getLong("id_professor"));
     }

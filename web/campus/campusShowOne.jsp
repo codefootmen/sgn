@@ -34,7 +34,7 @@
                         <td>${campus.getState()}</td>
                         <td>${campus.getTelephone()}</td>
                         <td>${campus.getZip()}</td>
-                        <td>${campus.getIdInstitution()}</td>
+                        <td>${campus.getIdInstitute()}</td>
                     </tr>
                 </tbody>
             </table>

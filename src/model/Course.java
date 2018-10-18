@@ -21,8 +21,8 @@ public class Course {
     private Long idDepartment;
     private Campus campus;
     private Long idCampus;
-    private Institution institution;
-    private Long idInstitution;
+    private Institute institute;
+    private Long idInstitute;
     private Period period;
     private Long idPeriod;
     private Professor professor;
@@ -93,19 +93,19 @@ public class Course {
         return this;
     }
 
-    public Institution getInstitution() {
-        if (institution == null) {
-            InstitutionDAO dao = new InstitutionDAO();
-            institution = dao.findOne(idInstitution);
+    public Institute getInstitute() {
+        if (institute == null) {
+            InstituteDAO dao = new InstituteDAO();
+            institute = dao.findOne(idInstitute);
         }
-        return institution;
+        return institute;
     }
 
-    public Course setInstitution(Institution institution) {
-        if(institution != null){
-            this.idInstitution = institution.getIdInstitution();
+    public Course setInstitute(Institute institute) {
+        if(institute != null){
+            this.idInstitute = institute.getIdInstitute();
         }
-        this.institution = institution;
+        this.institute = institute;
         return this;
     }
 

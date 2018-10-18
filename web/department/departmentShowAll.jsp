@@ -17,7 +17,7 @@
                     <th>Field</th>
                     <th>Description</th>
                     <th>Campus</th>
-                    <th>Institution</th>
+                    <th>Institute</th>
                     <th>Professor</th>
                 </tr>
                 </thead>
@@ -28,7 +28,7 @@
                         <td>${a.getField()}</td>
                         <td>${a.getDescription()}</td>
                         <td>${a.getIdCampus()}</td>
-                        <td>${a.getIdInstitution()}</td>
+                        <td>${a.getIdInstitute()}</td>
                         <td>${a.getIdProfessor()}</td>
                     </tr>
                 </c:forEach>
