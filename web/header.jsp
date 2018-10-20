@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/bulma.min.css">
     <link rel="stylesheet" href="../css/style.css">
 
-    <title>Institutions</title>
+    <title>SGN</title>
 </head>
 
 <body>
