@@ -1,6 +1,8 @@
 package controller;
 
 import model.Building;
+import model.Campus;
+import model.Institute;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +14,8 @@ public class BuildingController extends Servlet {
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
+        request.setAttribute("campi", Campus.findAll());
+        request.setAttribute("institutes", Institute.findAll());
         return request.getRequestDispatcher("/building/buildingForm.jsp");
     }
 
