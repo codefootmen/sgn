@@ -1,6 +1,9 @@
 package controller;
 
 import model.Event;
+import model.Period;
+import model.Professor;
+import model.Room;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +15,9 @@ public class EventController extends Servlet {
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
+        request.setAttribute("periods", Period.findAll());
+        request.setAttribute("professors", Professor.findAll());
+        request.setAttribute("rooms", Room.findAll());
         return request.getRequestDispatcher("/event/eventForm.jsp");
     }
 
