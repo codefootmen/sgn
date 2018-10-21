@@ -1,6 +1,6 @@
 package controller;
 
-import model.Activity;
+import model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +12,11 @@ public class ActivityController extends Servlet {
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
+        request.setAttribute("professors", Professor.findAll());
+        request.setAttribute("departments", Department.findAll());
+        request.setAttribute("campi", Campus.findAll());
+        request.setAttribute("institutes", Institute.findAll());
+        request.setAttribute("programs", Program.findAll());
         return request.getRequestDispatcher("/activity/activityForm.jsp");
     }
 
