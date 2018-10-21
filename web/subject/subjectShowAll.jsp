@@ -26,7 +26,7 @@
                 <tbody>
                 <c:forEach items="${subjects}" var="a">
                     <tr>
-                        <td>${a.getIdSubject()}</td>
+                        <td><a href="${path}/subjects/${a.getIdSubject()}">${a.getIdSubject()}</a></td>
                         <td>${a.getName()}</td>
                         <td>${a.getQuantityOfCredits()}</td>
                         <td>${a.getIdRoomType()}</td>

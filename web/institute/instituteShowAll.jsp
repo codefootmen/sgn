@@ -22,7 +22,7 @@
                 <tbody>
                 <c:forEach items="${institutes}" var="a">
                     <tr>
-                        <th>${a.getIdInstitute()}</th>
+                        <th><a href="${path}/institutes/${a.getIdInstitute()}">${a.getIdInstitute()}</a></th>
                         <th>${a.getName()}</th>
                         <th>${a.getLogo()}</th>
                         <th>${a.getSite()}</th>

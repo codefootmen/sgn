@@ -23,7 +23,7 @@
                 <tbody>
                 <c:forEach items="${rooms}" var="a">
                     <tr>
-                        <td>${a.getIdRoom()}</td>
+                        <td><a href="${path}/rooms/${a.getIdRoom()}">${a.getIdRoom()}</a></td>
                         <td>${a.getNumber()}</td>
                         <td>${a.getQuantityOfSeats()}</td>
                         <td>${a.getIdRoomType()}</td>

@@ -23,7 +23,7 @@
                 <tbody>
                 <c:forEach items="${requests}" var="a">
                     <tr>
-                        <td>${a.getIdRequest()}</td>
+                        <td><a href="${path}/requests/${a.getIdRequest()}">${a.getIdRequest()}</a></td>
                         <td>${a.getMotive()}</td>
                         <td>${a.getDescription()}</td>
                         <td>${a.getPriority()}</td>

@@ -26,7 +26,7 @@
                 <tbody>
                 <c:forEach items="${buildings}" var="a">
                     <tr>
-                        <td>${a.getIdBuilding()}</td>
+                        <td><a href="${path}/buildings/${a.getIdBuilding()}">${a.getIdBuilding()}</a> </td>
                         <td>${a.getName()}</td>
                         <td>${a.getQuantityOfBathrooms()}</td>
                         <td>${a.getElevator()}</td>

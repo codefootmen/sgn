@@ -23,7 +23,7 @@
                 <tbody>
                 <c:forEach items="${periods}" var="a">
                     <tr>
-                        <td>${a.getIdPeriod()}</td>
+                        <td><a href="${path}/periods/${a.getIdPeriod()}">${a.getIdPeriod()}</a></td>
                         <td>${a.getStart()}</td>
                         <td>${a.getEnd()}</td>
                         <td>${a.getDayOfTheWeek()}</td>

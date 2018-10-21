@@ -24,7 +24,7 @@
                 <tbody>
                 <c:forEach items="${events}" var="a">
                     <tr>
-                        <td>${a.getIdEvent()}</td>
+                        <td><a href="${path}/events/${a.getIdEvent()}">${a.getIdEvent()}</a></td>
                         <td>${a.getName()}</td>
                         <td>${a.getDate()}</td>
                         <td>${a.getIdPeriod()}</td>

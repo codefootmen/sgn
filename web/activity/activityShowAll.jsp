@@ -25,7 +25,7 @@
                 <tbody>
                 <c:forEach items="${activities}" var="a">
                     <tr>
-                        <td>${a.getIdActivity()}</td>
+                        <td><a href="${path}/activities/${a.getIdActivity()}">${a.getIdActivity()}</a></td>
                         <td>${a.getName()}</td>
                         <td>${a.getActivityType()}</td>
                         <td>${a.getArea()}</td>

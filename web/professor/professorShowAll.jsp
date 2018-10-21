@@ -23,7 +23,7 @@
                 <tbody>
                 <c:forEach items="${professors}" var="a">
                     <tr>
-                        <td>${a.getIdProfessor()}</td>
+                        <td><a href="${path}/professors/${a.getIdProfessor()}">${a.getIdProfessor()}</a></td>
                         <td>${a.getFirstName()}</td>
                         <td>${a.getLastName()}</td>
                         <td>${a.getStatus()}</td>

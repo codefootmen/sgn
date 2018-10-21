@@ -28,7 +28,7 @@
                 <tbody>
                 <c:forEach items="${courses}" var="a">
                     <tr>
-                        <td>${a.getIdCourse()}</td>
+                        <td><a href="${path}/courses/${a.getIdCourse()}">${a.getIdCourse()}</a></td>
                         <td>${a.getSemester()}</td>
                         <td>${a.getYear()}</td>
                         <td>${a.getIdSubject()}</td>
