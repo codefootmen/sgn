@@ -1,6 +1,7 @@
 package controller;
 
 import model.Campus;
+import model.Institute;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,6 +17,7 @@ public class CampusController extends Servlet{
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
+        request.setAttribute("institutes", Institute.findAll());
         return request.getRequestDispatcher("/campus/campusForm.jsp");
     }
 
