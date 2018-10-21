@@ -5,6 +5,7 @@ import model.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
+import java.util.EnumSet;
 
 
 @WebServlet(name = "ActivityController", urlPatterns = {"/activities/*"})
@@ -17,6 +18,7 @@ public class ActivityController extends Servlet {
         request.setAttribute("campi", Campus.findAll());
         request.setAttribute("institutes", Institute.findAll());
         request.setAttribute("programs", Program.findAll());
+        request.setAttribute("activityTypes", EnumSet.allOf(ActivityTypeEnum.class));
         return request.getRequestDispatcher("/activity/activityForm.jsp");
     }
 

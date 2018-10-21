@@ -30,8 +30,9 @@
                         <div class="control">
                             <div class="select">
                                 <select>
-                                    <option>Select dropdown</option>
-                                    <option>With options</option>
+                                    <c:forEach items="${activityTypes}" var="acTy">
+                                        <option value="${acTy}">${acTy}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
                         </div>
@@ -43,7 +44,7 @@
                             <div class="select">
                                 <select>
                                 <c:forEach items="${professors}" var="prof">
-                                    <option id="${prof.getIdProfessor()}">${prof.getFirstName()}</option>
+                                    <option value="${prof.getIdProfessor()}">${prof.getFirstName()}</option>
                                 </c:forEach>
                                 </select>
                             </div>
@@ -56,7 +57,7 @@
                             <div class="select">
                                 <select>
                                     <c:forEach items="${departments}" var="depart">
-                                        <option id="${depart.getIdDepartment()}">${depart.getField()}</option>
+                                        <option value="${depart.getIdDepartment()}">${depart.getField()}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -69,7 +70,7 @@
                             <div class="select">
                                 <select>
                                     <c:forEach items="${campi}" var="camp">
-                                        <option id="${camp.getIdCampus()}">${camp.getName()}</option>
+                                        <option value="${camp.getIdCampus()}">${camp.getName()}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -82,7 +83,7 @@
                             <div class="select">
                                 <select>
                                     <c:forEach items="${institutes}" var="inst">
-                                        <option id="${inst.getIdInstitute()}">${inst.getName()}</option>
+                                        <option value="${inst.getIdInstitute()}">${inst.getName()}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -95,7 +96,7 @@
                             <div class="select">
                                 <select>
                                     <c:forEach items="${programs}" var="prog">
-                                        <option id="${prog.getIdProgram()}">${prog.getName()}</option>
+                                        <option value="${prog.getIdProgram()}">${prog.getName()}</option>
                                     </c:forEach>
                                 </select>
                             </div>
