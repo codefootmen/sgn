@@ -1,5 +1,8 @@
 package controller;
 
+import model.Campus;
+import model.Department;
+import model.Institute;
 import model.Meeting;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +15,9 @@ public class MeetingController extends Servlet {
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
+        request.setAttribute("departments", Department.findAll());
+        request.setAttribute("campi", Campus.findAll());
+        request.setAttribute("institutes", Institute.findAll());
         return request.getRequestDispatcher("/meeting/meetingForm.jsp");
     }
 
