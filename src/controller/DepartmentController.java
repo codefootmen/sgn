@@ -1,6 +1,9 @@
 package controller;
 
+import model.Campus;
 import model.Department;
+import model.Institute;
+import model.Professor;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +15,9 @@ public class DepartmentController extends Servlet {
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
+        request.setAttribute("campi", Campus.findAll());
+        request.setAttribute("institutes", Institute.findAll());
+        request.setAttribute("professors", Professor.findAll());
         return request.getRequestDispatcher("/department/departmentForm.jsp");
     }
 
