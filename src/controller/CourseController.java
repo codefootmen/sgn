@@ -1,6 +1,6 @@
 package controller;
 
-import model.Course;
+import model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +12,13 @@ public class CourseController extends Servlet {
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
+        request.setAttribute("subjects", Subject.findAll());
+        request.setAttribute("programs", Program.findAll());
+        request.setAttribute("departments", Department.findAll());
+        request.setAttribute("campi", Campus.findAll());
+        request.setAttribute("institutes", Institute.findAll());
+        request.setAttribute("periods", Period.findAll());
+        request.setAttribute("professors", Professor.findAll());
         return request.getRequestDispatcher("/course/courseForm.jsp");
     }
 
