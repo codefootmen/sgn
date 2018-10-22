@@ -1,6 +1,7 @@
 package controller;
 
 import model.Period;
+import model.Room;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +13,7 @@ public class PeriodController extends Servlet {
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
+        request.setAttribute("rooms", Room.findAll());
         return request.getRequestDispatcher("/period/periodForm.jsp");
     }
 
