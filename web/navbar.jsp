@@ -2,7 +2,7 @@
     <div class="container">
         <div class="navbar-brand">
             <a class="navbar-item" href="${path}/" style="font-weight:bold;">
-                SGD
+                SGN
             </a>
             <span class="navbar-burger burger" data-target="navMenu">
             <span></span>

@@ -8,7 +8,7 @@
     <div class="container">
         <div class="columns">
             <div class="column">
-                <h1 class="title has-text-centered">SGD - Home</h1>
+                <h1 class="title has-text-centered">SGN - Home</h1>
             </div>
         </div>
     </div>
