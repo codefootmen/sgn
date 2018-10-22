@@ -1,10 +1,13 @@
 package controller;
 
+import model.HonorificsEnum;
 import model.Professor;
+import model.StatusEnum;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
+import java.util.EnumSet;
 
 
 @WebServlet(name = "ProfessorController", urlPatterns = {"/professors/*"})
@@ -12,6 +15,8 @@ public class ProfessorController extends Servlet {
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
+        request.setAttribute("status", EnumSet.allOf(StatusEnum.class));
+        request.setAttribute("honorifics", EnumSet.allOf(HonorificsEnum.class));
         return request.getRequestDispatcher("/professor/professorForm.jsp");
     }
 
