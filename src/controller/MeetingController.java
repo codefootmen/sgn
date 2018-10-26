@@ -22,6 +22,11 @@ public class MeetingController extends Servlet {
     }
 
     @Override
+    public RequestDispatcher insert(HttpServletRequest request) {
+        return null;
+    }
+
+    @Override
     public RequestDispatcher editPage(HttpServletRequest request) {
         return request.getRequestDispatcher("/meeting/meetingForm.jsp");
     }

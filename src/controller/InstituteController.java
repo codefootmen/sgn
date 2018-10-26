@@ -15,6 +15,11 @@ public class InstituteController extends Servlet {
     }
 
     @Override
+    public RequestDispatcher insert(HttpServletRequest request) {
+        return null;
+    }
+
+    @Override
     public RequestDispatcher editPage(HttpServletRequest request) {
         return request.getRequestDispatcher("/institute/instituteForm.jsp");
     }
