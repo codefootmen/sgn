@@ -8,10 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ActivityDAO implements DAO<Activity, Long> {
-    @Override
-    public Boolean save(Activity activity) {
+    public static Optional<Activity> saveOptional(final Activity activity) {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
@@ -38,14 +38,27 @@ public class ActivityDAO implements DAO<Activity, Long> {
                     activity.getIdInstitute(),
                     activity.getIdProgram()
             );
+//            recuperar o id do banco se necessário e atribuir ao objeto
+//            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+//                if (generatedKeys.next()) {
+//                    activity.setIdActivity(generatedKeys.getLong(1));
+//                } else {
+//                    throw new SQLException("Creating user failed, no ID obtained.");
+//                }
+//            }
             statement.execute();
             Database.closeConnection(connection, statement);
-            return true;
+            return Optional.of(activity);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         Database.closeConnection(connection, statement);
-        return false;
+        return Optional.empty();
+    }
+
+    @Override
+    public Boolean save(Activity activity) {
+        return null;
     }
 
     @Override

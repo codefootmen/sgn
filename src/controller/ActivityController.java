@@ -1,5 +1,6 @@
 package controller;
 
+import dao.ActivityDAO;
 import model.*;
 
 import javax.servlet.RequestDispatcher;
@@ -19,7 +20,32 @@ public class ActivityController extends Servlet {
         request.setAttribute("institutes", Institute.findAll());
         request.setAttribute("programs", Program.findAll());
         request.setAttribute("activityTypes", EnumSet.allOf(ActivityTypeEnum.class));
+        request.setAttribute("operation", "New");
+        request.setAttribute("action", "/activities/new");
         return request.getRequestDispatcher("/activity/activityForm.jsp");
+    }
+
+    @Override
+    public RequestDispatcher insert(HttpServletRequest request) {
+        String name = request.getParameter("name");
+        String area = request.getParameter("area");
+        String activityType = request.getParameter("activityType");
+        String professor = request.getParameter("professor");
+        String department = request.getParameter("department");
+        String campus = request.getParameter("campus");
+        String institute = request.getParameter("institute");
+        String program = request.getParameter("program");
+        Activity activity = new Activity()
+                .setName(name)
+                .setArea(area)
+                .setActivityType(activityType)
+                .setProfessor(Professor.findOne(Long.parseLong(professor)))
+                .setDepartment(Department.findOne(Long.parseLong(department)))
+                .setCampus(Campus.findOne(Long.parseLong(campus)))
+                .setInstitute(Institute.findOne(Long.parseLong(institute)))
+                .setProgram(Program.findOne(Long.parseLong(program)));
+        ActivityDAO.saveOptional(activity);
+        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
