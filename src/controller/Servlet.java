@@ -2,6 +2,8 @@ package controller;
 
 import java.awt.print.Pageable;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.servlet.RequestDispatcher;
@@ -13,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 public abstract class Servlet extends HttpServlet {
 
     public abstract RequestDispatcher newPage(HttpServletRequest request);
+
+    public abstract RequestDispatcher insert(HttpServletRequest request);
 
     public abstract RequestDispatcher editPage(HttpServletRequest request);
 
@@ -27,7 +31,7 @@ public abstract class Servlet extends HttpServlet {
             url = "/";
         }
 
-        Pattern pattern = Pattern.compile("(^\\/[0-9]{1,})(\\/edit$)|(\\/new$)|(^\\/[0-9]{1,}$)|(^\\/$)");
+        Pattern pattern = Pattern.compile("(^\\/[0-9]+)(\\/edit$)|(\\/new$)|(^\\/[0-9]+$)|(^\\/$)");
         Matcher m = pattern.matcher(url);
 
         /*
@@ -43,7 +47,11 @@ public abstract class Servlet extends HttpServlet {
                 editPage(request).forward(request, response);
             }
             if (m.group(3) != null) {
-                newPage(request).forward(request, response);
+                if (request.getMethod().equals("GET")) {
+                    newPage(request).forward(request, response);
+                } else {
+                    insert(request).forward(request, response);
+                }
             }
             if (m.group(4) != null) {
                 request.setAttribute("id", url.substring(1));
@@ -58,9 +66,8 @@ public abstract class Servlet extends HttpServlet {
     }
 
 
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        handleRequest(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
