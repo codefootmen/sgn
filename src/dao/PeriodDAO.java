@@ -8,10 +8,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class PeriodDAO implements DAO<Period, Long> {
     @Override
-    public Boolean save(Period period) {
+    public Optional<Period> save(Period period) {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
@@ -31,12 +32,12 @@ public class PeriodDAO implements DAO<Period, Long> {
             );
             statement.execute();
             Database.closeConnection(connection, statement);
-            return true;
+            return Optional.of(period);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         Database.closeConnection(connection, statement);
-        return false;
+        return Optional.empty();
     }
 
     @Override

@@ -8,10 +8,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class RoomTypeDAO implements DAO<RoomType, Long> {
     @Override
-    public Boolean save(RoomType roomType) {
+    public Optional<RoomType> save(RoomType roomType) {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
@@ -27,12 +28,12 @@ public class RoomTypeDAO implements DAO<RoomType, Long> {
             );
             statement.execute();
             Database.closeConnection(connection, statement);
-            return true;
+            return Optional.of(roomType);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         Database.closeConnection(connection, statement);
-        return false;
+        return Optional.empty();
     }
 
     @Override

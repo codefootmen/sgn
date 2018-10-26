@@ -12,7 +12,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class CampusDAO implements DAO<Campus, Long> {
-    public static Optional<Campus> saveOptional(Campus campus) {
+    @Override
+    public Optional<Campus> save(Campus campus) {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
@@ -46,11 +47,6 @@ public class CampusDAO implements DAO<Campus, Long> {
         }
         Database.closeConnection(connection, statement);
         return Optional.empty();
-    }
-
-    @Override
-    public Boolean save(Campus campus) {
-        return null;
     }
 
     @Override

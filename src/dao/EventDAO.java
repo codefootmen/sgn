@@ -8,10 +8,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class EventDAO implements DAO<Event, Long> {
     @Override
-    public Boolean save(Event event) {
+    public Optional<Event> save(Event event) {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
@@ -33,12 +34,12 @@ public class EventDAO implements DAO<Event, Long> {
             );
             statement.execute();
             Database.closeConnection(connection, statement);
-            return true;
+            return Optional.of(event);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         Database.closeConnection(connection, statement);
-        return false;
+        return Optional.empty();
     }
 
     @Override

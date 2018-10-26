@@ -8,10 +8,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ProfessorDAO implements DAO<Professor, Long> {
     @Override
-    public Boolean save(Professor professor) {
+    public Optional<Professor> save(Professor professor) {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
@@ -33,12 +34,12 @@ public class ProfessorDAO implements DAO<Professor, Long> {
             );
             statement.execute();
             Database.closeConnection(connection, statement);
-            return true;
+            return Optional.of(professor);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         Database.closeConnection(connection, statement);
-        return false;
+        return Optional.empty();
     }
 
     @Override

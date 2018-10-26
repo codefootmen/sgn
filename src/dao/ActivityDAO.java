@@ -11,7 +11,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class ActivityDAO implements DAO<Activity, Long> {
-    public static Optional<Activity> saveOptional(final Activity activity) {
+    @Override
+    public Optional<Activity> save(Activity activity) {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
@@ -54,11 +55,6 @@ public class ActivityDAO implements DAO<Activity, Long> {
         }
         Database.closeConnection(connection, statement);
         return Optional.empty();
-    }
-
-    @Override
-    public Boolean save(Activity activity) {
-        return null;
     }
 
     @Override

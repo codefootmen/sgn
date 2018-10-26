@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class BuildingDAO implements DAO<Building, Long> {
-
-    public static Optional<Building> saveOptional(Building building) {
+    @Override
+    public Optional<Building> save(Building building) {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
@@ -45,10 +45,6 @@ public class BuildingDAO implements DAO<Building, Long> {
         return Optional.empty();
     }
 
-    @Override
-    public Boolean save(Building building) {
-        return null;
-    }
 
     @Override
     public Building findOne(Long key) {
