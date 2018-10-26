@@ -5,71 +5,76 @@
     <div class="container">
         <div class="columns">
             <div class="column">
-                <h1 class="title has-text-centered">New Building</h1>
+                <h1 class="title has-text-centered">${operation} Building</h1>
             </div>
         </div>
-        <div class="columns">
-            <div class="column">
-                <div class="field">
-                    <label class="label">Name</label>
-                    <div class="control">
-                        <input class="input is-info" type="text" placeholder="Text input">
-                    </div>
-                </div>
 
-                <div class="field">
-                    <label class="label">Quantity of bathdrooms</label>
-                    <div class="control">
-                        <input class="input is-info" type="number" placeholder="Number input">
-                    </div>
-                </div>
-
-                <div class="field">
-                    <div class="checkbox">
-                        <input class="is-info" type="checkbox"> Have elevator(s)
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="checkbox">
-                        <input class="is-info" type="checkbox"> Accessibility
-                    </div>
-                </div>
-
-                    <div class="field is-center">
+        <form action="${path}${action}" method="POST">
+            <div class="columns">
+                <div class="column">
+                    <div class="field">
+                        <label class="label">Name</label>
                         <div class="control">
-                            <label class="label is-inline-block">Campus</label>
-                            <div class="select is-inline-block">
-                                <select>
-                                    <c:forEach items="${campi}" var="camp">
-                                        <option value="${camp.getIdCampus()}">${camp.getName()}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
+                            <input class="input is-info" name="name" type="text" placeholder="Text input" value="${building.getName()}">
                         </div>
                     </div>
 
-                    <div class="field is-center">
+                    <div class="field">
+                        <label class="label">Quantity of bathrooms</label>
                         <div class="control">
-                            <label class="label is-inline-block">Institute</label>
-                            <div class="select is-inline-block">
-                                <select>
-                                    <c:forEach items="${institutes}" var="inst">
-                                        <option value="${inst.getIdInstitute()}">${inst.getName()}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
+                            <input class="input is-info" name="quantityOfBathrooms" type="number" placeholder="Number input" value="${building.getQuantityOfBathrooms()}">
                         </div>
                     </div>
-                <div class="field is-grouped">
-                    <div class="control">
-                        <button class="button is-link">Submit</button>
+
+                    <div class="field">
+                        <div class="checkbox">
+                            <input class="is-info" name="elevator" id="elevator" type="checkbox" ${building.getElevator() ? "checked" : ""}>
+                            <label for="elevator">Elevator(s)</label>
+                        </div>
                     </div>
-                    <div class="control">
-                        <button class="button is-text">Cancel</button>
+                    <div class="field">
+                        <div class="checkbox">
+                            <input class="is-info" name="accessibility" id="accessibility" type="checkbox" ${building.getAccessibility() ? "checked" : ""}>
+                            <label for="accessibility">Accessibility</label>
+                        </div>
+                    </div>
+
+                        <div class="field is-center">
+                            <div class="control">
+                                <label class="label is-inline-block">Campus</label>
+                                <div class="select is-inline-block">
+                                    <select name="campus">
+                                        <c:forEach items="${campi}" var="camp">
+                                            <option value="${camp.getIdCampus()}" <c:if test="${building.getIdCampus() == camp.getIdCampus()}"> selected </c:if>>${camp.getName()}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field is-center">
+                            <div class="control">
+                                <label class="label is-inline-block">Institute</label>
+                                <div class="select is-inline-block">
+                                    <select name="institute">
+                                        <c:forEach items="${institutes}" var="inst">
+                                           <option value="${inst.getIdInstitute()}" <c:if test = "${building.getIdInstitute() == inst.getIdInstitute()}"> selected</c:if>>${inst.getName()}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button type="submit" class="button is-link">Submit</button>
+                        </div>
+                        <div class="control">
+                            <button type="reset" class="button is-text">Cancel</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
     <c:import url="../footer.jsp"/>
     </body>
