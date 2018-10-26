@@ -2,16 +2,17 @@ package dao;
 
 import model.Campus;
 
+import javax.swing.text.html.Option;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class CampusDAO implements DAO<Campus, Long> {
-    @Override
-    public Boolean save(Campus campus) {
+    public static Optional<Campus> saveOptional(Campus campus) {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
@@ -39,12 +40,17 @@ public class CampusDAO implements DAO<Campus, Long> {
             );
             statement.execute();
             Database.closeConnection(connection, statement);
-            return true;
+            return Optional.of(campus);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         Database.closeConnection(connection, statement);
-        return false;
+        return Optional.empty();
+    }
+
+    @Override
+    public Boolean save(Campus campus) {
+        return null;
     }
 
     @Override
