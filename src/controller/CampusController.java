@@ -23,6 +23,11 @@ public class CampusController extends Servlet{
 
     @Override
     public RequestDispatcher editPage(HttpServletRequest request) {
+        Long id = Long.valueOf(request.getAttribute("id").toString());
+        request.setAttribute("campus", Campus.findOne(id));
+        request.setAttribute("institutes", Institute.findAll());
+        request.setAttribute("operation", "Edit");
+        request.setAttribute("action", "/campi/" + id);
         return request.getRequestDispatcher("/campus/campusForm.jsp");
     }
 
