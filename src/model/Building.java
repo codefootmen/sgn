@@ -8,6 +8,7 @@ import lombok.experimental.Accessors;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 @Data
 @Accessors(chain = true)
@@ -74,4 +75,6 @@ public class Building {
     public static List<Building> findAll() {
         return DAO.findAll();
     }
+
+    public static Optional<Building> save(Building building){return DAO.save(building); }
 }

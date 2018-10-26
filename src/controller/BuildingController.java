@@ -1,6 +1,5 @@
 package controller;
 
-import dao.BuildingDAO;
 import model.Building;
 import model.Campus;
 import model.Institute;
@@ -35,7 +34,7 @@ public class BuildingController extends Servlet {
                 .setAccessibility(Boolean.valueOf(accessibility))
                 .setCampus(Campus.findOne(Long.parseLong(campus)))
                 .setInstitute(Institute.findOne(Long.parseLong(institute)));
-        BuildingDAO.saveOptional(building);
+        Building.save(building);
         return request.getRequestDispatcher("/index.jsp");
     }
 

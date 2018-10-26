@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.util.List;
+import java.util.Optional;
 
 @Data
 @Accessors(chain = true)
@@ -119,4 +120,6 @@ public class Activity {
     public static List<Activity> findAll() {
         return DAO.findAll();
     }
+
+    public static Optional<Activity> save(Activity activity){return DAO.save(activity); }
 }

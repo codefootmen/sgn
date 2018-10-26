@@ -1,6 +1,5 @@
 package controller;
 
-import dao.ActivityDAO;
 import model.*;
 
 import javax.servlet.RequestDispatcher;
@@ -44,7 +43,7 @@ public class ActivityController extends Servlet {
                 .setCampus(Campus.findOne(Long.parseLong(campus)))
                 .setInstitute(Institute.findOne(Long.parseLong(institute)))
                 .setProgram(Program.findOne(Long.parseLong(program)));
-        ActivityDAO.saveOptional(activity);
+        Activity.save(activity);
         return request.getRequestDispatcher("/index.jsp");
     }
 

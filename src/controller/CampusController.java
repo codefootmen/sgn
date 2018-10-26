@@ -2,7 +2,6 @@ package controller;
 
 import model.Campus;
 import model.Institute;
-import dao.CampusDAO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -43,7 +42,7 @@ public class CampusController extends Servlet{
                 .setTelephone(telephone)
                 .setZip(zip)
                 .setInstitute(Institute.findOne(Long.parseLong(institute)));
-        CampusDAO.saveOptional(campus);
+        Campus.save(campus);
         return request.getRequestDispatcher("/index.jsp");
     }
 
