@@ -28,7 +28,7 @@
                             Campi
                         </a>
                         <a class="navbar-item" href="${path}/courses/">
-                            Course
+                            Courses
                         </a>
                         <a class="navbar-item" href="${path}/departments/">
                             Departments
