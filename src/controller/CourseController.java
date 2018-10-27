@@ -19,6 +19,8 @@ public class CourseController extends Servlet {
         request.setAttribute("institutes", Institute.findAll());
         request.setAttribute("periods", Period.findAll());
         request.setAttribute("professors", Professor.findAll());
+        request.setAttribute("operation", "New");
+        request.setAttribute("action", "/course/new");
         return request.getRequestDispatcher("/course/courseForm.jsp");
     }
 
@@ -29,6 +31,17 @@ public class CourseController extends Servlet {
 
     @Override
     public RequestDispatcher editPage(HttpServletRequest request) {
+        Long id = Long.valueOf(request.getAttribute("id").toString());
+        request.setAttribute("course", Course.findOne(id));
+        request.setAttribute("subjects", Subject.findAll());
+        request.setAttribute("programs", Program.findAll());
+        request.setAttribute("departments", Department.findAll());
+        request.setAttribute("campi", Campus.findAll());
+        request.setAttribute("institutes", Institute.findAll());
+        request.setAttribute("periods", Period.findAll());
+        request.setAttribute("professors", Professor.findAll());
+        request.setAttribute("operation", "Edit");
+        request.setAttribute("action", "/course/" + id);
         return request.getRequestDispatcher("/course/courseForm.jsp");
     }
 
