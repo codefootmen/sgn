@@ -5,7 +5,7 @@
     <div class="container">
         <div class="columns">
             <div class="column">
-                <h1 class="title has-text-centered">New Campus</h1>
+                <h1 class="title has-text-centered">${operation} Campus</h1>
             </div>
         </div>
         <form action="${path}${action}" method="POST">
