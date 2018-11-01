@@ -5,7 +5,7 @@
 <div class="container">
     <div class="columns">
         <div class="column">
-            <h1 class="title has-text-centered">New Department</h1>
+            <h1 class="title has-text-centered">${operation} Department</h1>
         </div>
     </div>
     <div class="columns">
@@ -30,9 +30,9 @@
                     <label class="label">Campus</label>
                     <div class="control">
                         <div class="select">
-                            <select>
+                            <select name="campus">
                                 <c:forEach items="${campi}" var="camp">
-                                    <option value="${camp.getIdCampus()}">${camp.getName()}</option>
+                                    <option value="${camp.getIdCampus()}" <c:if test="${course.getIdCampus() == camp.getIdCampus()}"> selected </c:if > ${camp.getName}</option> >${camp.getName()}</option>
                                 </c:forEach>
                             </select>
                         </div>
