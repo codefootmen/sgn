@@ -127,4 +127,8 @@ public class Activity {
     public static Optional<Activity> update(Activity activity) {
         return DAO.update(activity);
     }
+
+    public static Boolean delete(Long id) {
+        return DAO.delete(id);
+    }
 }
