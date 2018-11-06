@@ -24,7 +24,7 @@ public class CampusController extends Servlet{
     }
 
     @Override
-    public RequestDispatcher insert(HttpServletRequest request) {
+    public RequestDispatcher save(HttpServletRequest request) {
         String name = request.getParameter("name");
         String street = request.getParameter("street");
         String number = request.getParameter("number");
@@ -44,6 +44,11 @@ public class CampusController extends Servlet{
                 .setInstitute(Institute.findOne(Long.parseLong(institute)));
         Campus.save(campus);
         return request.getRequestDispatcher("/index.jsp");
+    }
+
+    @Override
+    public RequestDispatcher update(HttpServletRequest request) {
+        return null;
     }
 
     @Override

@@ -25,7 +25,12 @@ public class CourseController extends Servlet {
     }
 
     @Override
-    public RequestDispatcher insert(HttpServletRequest request) {
+    public RequestDispatcher save(HttpServletRequest request) {
+        return null;
+    }
+
+    @Override
+    public RequestDispatcher update(HttpServletRequest request) {
         return null;
     }
 

@@ -20,7 +20,7 @@ public class BuildingController extends Servlet {
     }
 
     @Override
-    public RequestDispatcher insert(HttpServletRequest request) {
+    public RequestDispatcher save(HttpServletRequest request) {
         String name = request.getParameter("name");
         String quantityOfBathrooms = request.getParameter("quantityOfBathrooms");
         String elevator = request.getParameter("elevator");
@@ -36,6 +36,11 @@ public class BuildingController extends Servlet {
                 .setInstitute(Institute.findOne(Long.parseLong(institute)));
         Building.save(building);
         return request.getRequestDispatcher("/index.jsp");
+    }
+
+    @Override
+    public RequestDispatcher update(HttpServletRequest request) {
+        return null;
     }
 
     @Override

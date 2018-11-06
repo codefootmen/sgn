@@ -1,9 +1,6 @@
 package controller;
 
-import java.awt.print.Pageable;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Enumeration;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.servlet.RequestDispatcher;
@@ -16,13 +13,15 @@ public abstract class Servlet extends HttpServlet {
 
     public abstract RequestDispatcher newPage(HttpServletRequest request);
 
-    public abstract RequestDispatcher insert(HttpServletRequest request);
-
     public abstract RequestDispatcher editPage(HttpServletRequest request);
 
     public abstract RequestDispatcher showOnePage(HttpServletRequest request);
 
     public abstract RequestDispatcher showAllPage(HttpServletRequest request);
+
+    public abstract RequestDispatcher save(HttpServletRequest request);
+
+    public abstract RequestDispatcher update(HttpServletRequest request);
 
     protected void handleRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -43,14 +42,19 @@ public abstract class Servlet extends HttpServlet {
         */
         if (m.matches()) {
             if (m.group(1) != null) {
-                request.setAttribute("id", m.group(1).substring(1));
-                editPage(request).forward(request, response);
+                if (request.getMethod().equals("GET")) {
+                    request.setAttribute("id", m.group(1).substring(1));
+                    editPage(request).forward(request, response);
+                } else {
+                    request.setAttribute("id", m.group(1).substring(1));
+                    update(request).forward(request, response);
+                }
             }
             if (m.group(3) != null) {
                 if (request.getMethod().equals("GET")) {
                     newPage(request).forward(request, response);
                 } else {
-                    insert(request).forward(request, response);
+                    save(request).forward(request, response);
                 }
             }
             if (m.group(4) != null) {
