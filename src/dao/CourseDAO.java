@@ -1,6 +1,5 @@
 package dao;
 
-import model.Activity;
 import model.Course;
 
 import java.sql.Connection;

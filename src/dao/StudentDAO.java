@@ -1,6 +1,5 @@
 package dao;
 
-import model.Activity;
 import model.Student;
 
 import java.sql.Connection;
