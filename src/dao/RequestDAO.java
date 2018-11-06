@@ -1,5 +1,6 @@
 package dao;
 
+import model.Activity;
 import model.Request;
 
 import java.sql.Connection;
@@ -52,7 +53,7 @@ public class RequestDAO implements DAO<Request, Long> {
     }
 
     @Override
-    public Boolean update(Request request) {
+    public Optional<Request> update(Request request) {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
@@ -74,12 +75,12 @@ public class RequestDAO implements DAO<Request, Long> {
             );
             statement.execute();
             Database.closeConnection(connection, statement);
-            return true;
+            return Optional.of(request);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         Database.closeConnection(connection, statement);
-        return false;
+        return Optional.empty();
     }
 
     @Override
