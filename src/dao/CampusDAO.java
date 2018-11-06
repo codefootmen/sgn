@@ -1,8 +1,8 @@
 package dao;
 
+import model.Activity;
 import model.Campus;
 
-import javax.swing.text.html.Option;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -61,7 +61,7 @@ public class CampusDAO implements DAO<Campus, Long> {
     }
 
     @Override
-    public Boolean update(Campus campus) {
+    public Optional<Campus> update(Campus campus) {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
@@ -91,12 +91,12 @@ public class CampusDAO implements DAO<Campus, Long> {
             );
             statement.execute();
             Database.closeConnection(connection, statement);
-            return true;
+            return Optional.of(campus);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         Database.closeConnection(connection, statement);
-        return false;
+        return Optional.empty();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package dao;
 
+import model.Activity;
 import model.Period;
 
 import java.sql.Connection;
@@ -52,7 +53,7 @@ public class PeriodDAO implements DAO<Period, Long> {
     }
 
     @Override
-    public Boolean update(Period period) {
+    public Optional<Period> update(Period period) {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
@@ -74,12 +75,12 @@ public class PeriodDAO implements DAO<Period, Long> {
             );
             statement.execute();
             Database.closeConnection(connection, statement);
-            return true;
+            return Optional.of(period);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         Database.closeConnection(connection, statement);
-        return false;
+        return Optional.empty();
     }
 
     @Override

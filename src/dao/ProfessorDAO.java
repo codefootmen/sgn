@@ -1,5 +1,6 @@
 package dao;
 
+import model.Activity;
 import model.Professor;
 
 import java.sql.Connection;
@@ -54,7 +55,7 @@ public class ProfessorDAO implements DAO<Professor, Long> {
     }
 
     @Override
-    public Boolean update(Professor professor) {
+    public Optional<Professor> update(Professor professor) {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
@@ -78,12 +79,12 @@ public class ProfessorDAO implements DAO<Professor, Long> {
             );
             statement.execute();
             Database.closeConnection(connection, statement);
-            return true;
+            return Optional.of(professor);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         Database.closeConnection(connection, statement);
-        return false;
+        return Optional.empty();
     }
 
     @Override

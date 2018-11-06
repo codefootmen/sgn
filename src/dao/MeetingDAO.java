@@ -1,5 +1,6 @@
 package dao;
 
+import model.Activity;
 import model.Meeting;
 
 import java.sql.Connection;
@@ -58,7 +59,7 @@ public class MeetingDAO implements DAO<Meeting, Long> {
     }
 
     @Override
-    public Boolean update(Meeting meeting) {
+    public Optional<Meeting> update(Meeting meeting) {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
@@ -85,12 +86,12 @@ public class MeetingDAO implements DAO<Meeting, Long> {
             );
             statement.execute();
             Database.closeConnection(connection, statement);
-            return true;
+            return Optional.of(meeting);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         Database.closeConnection(connection, statement);
-        return false;
+        return Optional.empty();
     }
 
     @Override

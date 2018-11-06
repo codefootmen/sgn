@@ -1,5 +1,6 @@
 package dao;
 
+import model.Activity;
 import model.Subject;
 
 import java.sql.Connection;
@@ -58,7 +59,7 @@ public class SubjectDAO implements DAO<Subject, Long> {
     }
 
     @Override
-    public Boolean update(Subject subject) {
+    public Optional<Subject> update(Subject subject) {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
@@ -86,12 +87,12 @@ public class SubjectDAO implements DAO<Subject, Long> {
             );
             statement.execute();
             Database.closeConnection(connection, statement);
-            return true;
+            return Optional.of(subject);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         Database.closeConnection(connection, statement);
-        return false;
+        return Optional.of(subject);
     }
 
     @Override

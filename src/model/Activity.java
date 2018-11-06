@@ -27,7 +27,6 @@ public class Activity {
     private static ActivityDAO DAO = new ActivityDAO();
 
 
-
     public Professor getProfessor() {
         if (professor == null) {
             ProfessorDAO dao = new ProfessorDAO();
@@ -37,7 +36,7 @@ public class Activity {
     }
 
     public Activity setProfessor(Professor professor) {
-        if (professor != null){
+        if (professor != null) {
             this.idProfessor = professor.getIdProfessor();
         }
         this.professor = professor;
@@ -53,7 +52,7 @@ public class Activity {
     }
 
     public Activity setDepartment(Department department) {
-        if(department != null){
+        if (department != null) {
             this.idDepartment = department.getIdDepartment();
         }
         this.department = department;
@@ -69,7 +68,7 @@ public class Activity {
     }
 
     public Activity setCampus(Campus campus) {
-        if(campus != null){
+        if (campus != null) {
             this.idCampus = campus.getIdCampus();
         }
         this.campus = campus;
@@ -85,7 +84,7 @@ public class Activity {
     }
 
     public Activity setInstitute(Institute institute) {
-        if(institute != null){
+        if (institute != null) {
             this.idInstitute = institute.getIdInstitute();
         }
         this.institute = institute;
@@ -101,7 +100,7 @@ public class Activity {
     }
 
     public Activity setProgram(Program program) {
-        if(program != null){
+        if (program != null) {
             this.idProgram = program.getIdProgram();
         }
         this.program = program;
@@ -121,5 +120,11 @@ public class Activity {
         return DAO.findAll();
     }
 
-    public static Optional<Activity> save(Activity activity){return DAO.save(activity); }
+    public static Optional<Activity> save(Activity activity) {
+        return DAO.save(activity);
+    }
+
+    public static Optional<Activity> update(Activity activity) {
+        return DAO.update(activity);
+    }
 }

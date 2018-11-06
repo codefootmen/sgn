@@ -40,13 +40,13 @@ public class ActivityDAO implements DAO<Activity, Long> {
                     activity.getIdProgram()
             );
 //            recuperar o id do banco se necessário e atribuir ao objeto
-//            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
-//                if (generatedKeys.next()) {
-//                    activity.setIdActivity(generatedKeys.getLong(1));
-//                } else {
-//                    throw new SQLException("Creating user failed, no ID obtained.");
-//                }
-//            }
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    activity.setIdActivity(generatedKeys.getLong(1));
+                } else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+            }
             statement.execute();
             Database.closeConnection(connection, statement);
             return Optional.of(activity);
@@ -69,7 +69,7 @@ public class ActivityDAO implements DAO<Activity, Long> {
     }
 
     @Override
-    public Boolean update(Activity activity) {
+    public Optional<Activity> update(Activity activity) {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
@@ -100,12 +100,19 @@ public class ActivityDAO implements DAO<Activity, Long> {
             );
             statement.execute();
             Database.closeConnection(connection, statement);
-            return true;
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    activity.setIdActivity(generatedKeys.getLong(1));
+                } else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+            }
+            return Optional.of(activity);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         Database.closeConnection(connection, statement);
-        return false;
+        return Optional.of(activity);
     }
 
     @Override

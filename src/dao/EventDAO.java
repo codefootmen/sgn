@@ -1,5 +1,6 @@
 package dao;
 
+import model.Activity;
 import model.Event;
 
 import java.sql.Connection;
@@ -54,7 +55,7 @@ public class EventDAO implements DAO<Event, Long> {
     }
 
     @Override
-    public Boolean update(Event event) {
+    public Optional<Event> update(Event event) {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
@@ -78,12 +79,12 @@ public class EventDAO implements DAO<Event, Long> {
             );
             statement.execute();
             Database.closeConnection(connection, statement);
-            return true;
+            return Optional.of(event);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         Database.closeConnection(connection, statement);
-        return false;
+        return Optional.empty();
     }
 
     @Override

@@ -1,8 +1,8 @@
 package dao;
 
+import model.Activity;
 import model.Building;
 
-import javax.swing.text.html.Option;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -58,7 +58,7 @@ public class BuildingDAO implements DAO<Building, Long> {
     }
 
     @Override
-    public Boolean update(Building building) {
+    public Optional<Building> update(Building building) {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
@@ -84,12 +84,12 @@ public class BuildingDAO implements DAO<Building, Long> {
             );
             statement.execute();
             Database.closeConnection(connection, statement);
-            return true;
+            return Optional.of(building);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         Database.closeConnection(connection, statement);
-        return false;
+        return Optional.of(building);
     }
 
     @Override

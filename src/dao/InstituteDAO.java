@@ -1,5 +1,6 @@
 package dao;
 
+import model.Activity;
 import model.Institute;
 
 import java.sql.Connection;
@@ -51,7 +52,7 @@ public class InstituteDAO implements DAO<Institute, Long> {
     }
 
     @Override
-    public Boolean update(Institute institute) {
+    public Optional<Institute> update(Institute institute) {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
@@ -71,12 +72,12 @@ public class InstituteDAO implements DAO<Institute, Long> {
             );
             statement.execute();
             Database.closeConnection(connection, statement);
-            return true;
+            return Optional.of(institute);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         Database.closeConnection(connection, statement);
-        return false;
+        return Optional.empty();
     }
 
     @Override

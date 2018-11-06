@@ -1,5 +1,6 @@
 package dao;
 
+import model.Activity;
 import model.RoomType;
 
 import java.sql.Connection;
@@ -48,7 +49,7 @@ public class RoomTypeDAO implements DAO<RoomType, Long> {
     }
 
     @Override
-    public Boolean update(RoomType roomType) {
+    public Optional<RoomType> update(RoomType roomType) {
         Connection connection = Database.getConnection();
         PreparedStatement statement = null;
         try {
@@ -66,12 +67,12 @@ public class RoomTypeDAO implements DAO<RoomType, Long> {
             );
             statement.execute();
             Database.closeConnection(connection, statement);
-            return true;
+            return Optional.of(roomType);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         Database.closeConnection(connection, statement);
-        return false;
+        return Optional.empty();
     }
 
     @Override

@@ -1,5 +1,7 @@
 package dao;
 
+import model.Activity;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -12,7 +14,7 @@ public interface DAO<Entity, PrimaryKeyType> {
 
     List<Entity> findAll();
 
-    Boolean update(Entity entity);
+    Optional<Entity> update(Entity entity);
 
     Boolean delete(PrimaryKeyType key);
 }
