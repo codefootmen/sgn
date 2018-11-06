@@ -26,6 +26,11 @@ public class RoomTypeController extends Servlet {
     }
 
     @Override
+    public RequestDispatcher delete(HttpServletRequest request) {
+        return null;
+    }
+
+    @Override
     public RequestDispatcher editPage(HttpServletRequest request) {
         return request.getRequestDispatcher("/roomType/roomTypeForm.jsp");
     }

@@ -26,6 +26,11 @@ public class RequestController extends Servlet {
     }
 
     @Override
+    public RequestDispatcher delete(HttpServletRequest request) {
+        return null;
+    }
+
+    @Override
     public RequestDispatcher editPage(HttpServletRequest request) {
         return request.getRequestDispatcher("/request/requestForm.jsp");
     }

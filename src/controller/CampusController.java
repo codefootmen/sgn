@@ -52,6 +52,11 @@ public class CampusController extends Servlet{
     }
 
     @Override
+    public RequestDispatcher delete(HttpServletRequest request) {
+        return null;
+    }
+
+    @Override
     public RequestDispatcher editPage(HttpServletRequest request) {
         Long id = Long.valueOf(request.getAttribute("id").toString());
         request.setAttribute("campus", Campus.findOne(id));

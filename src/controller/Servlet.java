@@ -23,6 +23,8 @@ public abstract class Servlet extends HttpServlet {
 
     public abstract RequestDispatcher update(HttpServletRequest request);
 
+    public abstract RequestDispatcher delete(HttpServletRequest request);
+
     protected void handleRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String url = request.getPathInfo();
@@ -58,8 +60,13 @@ public abstract class Servlet extends HttpServlet {
                 }
             }
             if (m.group(4) != null) {
-                request.setAttribute("id", url.substring(1));
-                showOnePage(request).forward(request, response);
+                if (request.getMethod().equals("GET")) {
+                    request.setAttribute("id", url.substring(1));
+                    showOnePage(request).forward(request, response);
+                } else {
+                    request.setAttribute("id", url.substring(1));
+                    delete(request).forward(request, response);
+                }
             }
             if (m.group(5) != null) {
                 showAllPage(request).forward(request, response);

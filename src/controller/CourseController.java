@@ -35,6 +35,11 @@ public class CourseController extends Servlet {
     }
 
     @Override
+    public RequestDispatcher delete(HttpServletRequest request) {
+        return null;
+    }
+
+    @Override
     public RequestDispatcher editPage(HttpServletRequest request) {
         Long id = Long.valueOf(request.getAttribute("id").toString());
         request.setAttribute("course", Course.findOne(id));

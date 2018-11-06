@@ -99,4 +99,10 @@ public class ActivityController extends Servlet {
         Activity.update(activity);
         return request.getRequestDispatcher("/index.jsp");
     }
+
+    @Override
+    public RequestDispatcher delete(HttpServletRequest request) {
+        Activity.delete(Long.valueOf(request.getAttribute("id").toString()));
+        return request.getRequestDispatcher("/activity/activityShowAll.jsp");
+    }
 }
