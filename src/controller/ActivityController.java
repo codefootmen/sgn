@@ -77,7 +77,7 @@ public class ActivityController extends Servlet {
 
     @Override
     public RequestDispatcher update(HttpServletRequest request) {
-        Long idActivity = Long.valueOf(request.getParameter("id"));
+        Long idActivity = Long.valueOf(request.getAttribute("id").toString());
         String name = request.getParameter("name");
         String area = request.getParameter("area");
         String activityType = request.getParameter("activityType");
