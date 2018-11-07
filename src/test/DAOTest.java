@@ -5,14 +5,14 @@ import model.*;
 
 public class DAOTest {
     public static void main(String[] args) {
-        Institution institution = new Institution()
+        Institute institute = new Institute()
                 .setName("Name")
                 .setLogo("Logo")
                 .setSite("Site");
-        new InstitutionDAO().save(institution);
+        new InstituteDAO().save(institute);
 
-        institution = new InstitutionDAO().findOne(Long.valueOf(1));
-        System.out.println(institution);
+        institute = new InstituteDAO().findOne(Long.valueOf(1));
+        System.out.println(institute);
 
         Campus campus = new Campus()
                 .setName("Name")
@@ -22,7 +22,7 @@ public class DAOTest {
                 .setState("State")
                 .setTelephone("Telephone")
                 .setZip("Zip")
-                .setIdInstitution(institution.getIdInstitution());
+                .setIdInstitute(institute.getIdInstitute());
         new CampusDAO().save(campus);
 
         campus = new CampusDAO().findOne(Long.valueOf(1));
@@ -34,7 +34,7 @@ public class DAOTest {
                 .setElevator(false)
                 .setAccessibility(true)
                 .setIdCampus(campus.getIdCampus())
-                .setIdInstitution(institution.getIdInstitution());
+                .setIdInstitute(institute.getIdInstitute());
         new BuildingDAO().save(building);
 
         building = new BuildingDAO().findOne(Long.valueOf(1));
@@ -74,7 +74,7 @@ public class DAOTest {
                 .setField("Field")
                 .setDescription("Description")
                 .setCampus(campus)
-                .setInstitution(institution)
+                .setInstitute(institute)
                 .setProfessor(professor);
         new DepartmentDAO().save(department);
 
@@ -87,7 +87,7 @@ public class DAOTest {
                 .setAcademicLevel("undergrad")
                 .setDepartment(department)
                 .setCampus(campus)
-                .setInstitution(institution);
+                .setInstitute(institute);
         new ProgramDAO().save(program);
 
         program = new ProgramDAO().findOne(Long.valueOf(1));
@@ -101,7 +101,7 @@ public class DAOTest {
                 .setProgram(program)
                 .setDepartment(department)
                 .setCampus(campus)
-                .setInstitution(institution);
+                .setInstitute(institute);
         new SubjectDAO().save(subject);
 
         subject = new SubjectDAO().findOne(Long.valueOf(1));
@@ -126,7 +126,7 @@ public class DAOTest {
                 .setProgram(program)
                 .setDepartment(department)
                 .setCampus(campus)
-                .setInstitution(institution)
+                .setInstitute(institute)
                 .setPeriod(period)
                 .setProfessor(professor);
         new CourseDAO().save(course);
@@ -142,7 +142,7 @@ public class DAOTest {
                 .setProfessor(professor)
                 .setCampus(campus)
                 .setDepartment(department)
-                .setInstitution(institution)
+                .setInstitute(institute)
                 .setProgram(program);
         new ActivityDAO().save(activity);
 
@@ -180,7 +180,7 @@ public class DAOTest {
                 .setMinutes("Minutes")
                 .setDepartment(department)
                 .setCampus(campus)
-                .setInstitution(institution);
+                .setInstitute(institute);
         new MeetingDAO().save(meeting);
 
         meeting = new MeetingDAO().findOne(Long.valueOf(1));
