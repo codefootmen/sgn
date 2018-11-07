@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-class Query {
+public class Query {
 
     private static List<String> types = Arrays.asList(
             "string",
