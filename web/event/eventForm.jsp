@@ -5,7 +5,7 @@
 <div class="container">
     <div class="columns">
         <div class="column">
-            <h1 class="title has-text-centered">New Event</h1>
+            <h1 class="title has-text-centered">${operation} Event</h1>
         </div>
     </div>
     <div class="columns">
@@ -32,7 +32,7 @@
                         <div class="select">
                             <select>
                                 <c:forEach items="${periods}" var="per">
-                                    <option value="${per.getIdPeriod()}">${per.getStart()} - ${per.getEnd()}</option>
+                                    <option value="${per.getIdPeriod()}" <c:if test="${event.getIdPeriods == per.getIdPeriods}"> selected </c:if>${per.getStart()} - ${per.getEnd()}</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -45,7 +45,7 @@
                         <div class="select">
                             <select>
                                 <c:forEach items="${professors}" var="prof">
-                                    <option value="${prof.getIdProfessor()}">${prof.getFirstName()}</option>
+                                    <option value="${prof.getIdProfessor()}" <c:if test="${event.getIdProfessors == prof.getIdProfessors}"> selected </c:if>${prof.getFirstName()}</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -58,7 +58,7 @@
                         <div class="select">
                             <select>
                                 <c:forEach items="${rooms}" var="room">
-                                    <option value="${room.getIdRoom()}">${prof.getNumber()}</option>
+                                    <option value="${room.getIdRoom()}" <c:if test="${event.getIdRoom == room.getIdRoom}"> selected </c:if>${prof.getNumber()}</option>
                                 </c:forEach>
                             </select>
                         </div>
