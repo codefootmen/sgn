@@ -5,7 +5,7 @@
 <div class="container">
     <div class="columns">
         <div class="column">
-            <h1 class="title has-text-centered">New Institute</h1>
+            <h1 class="title has-text-centered">${operation} Institute</h1>
         </div>
     </div>
     <div class="columns">
