@@ -5,7 +5,7 @@
 <div class="container">
     <div class="columns">
         <div class="column">
-            <h1 class="title has-text-centered">New Meeting</h1>
+            <h1 class="title has-text-centered">${operation} Meeting</h1>
         </div>
     </div>
     <div class="columns">
@@ -46,7 +46,7 @@
                         <div class="select">
                             <select>
                                 <c:forEach items="${departments}" var="dept">
-                                    <option value="${dept.getIdDepartment()}">${dept.getField()}</option>
+                                    <option value="${dept.getIdDepartment()}" <c:if test="${meeting.getIdDepartment == dept.getIdDepartment}"> selected </c:if>${dept.getField()}</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -59,7 +59,7 @@
                         <div class="select">
                             <select>
                                 <c:forEach items="${campi}" var="cam">
-                                    <option value="${cam.getIdCampus()}">${cam.getName()}</option>
+                                    <option value="${cam.getIdCampus()}" <c:if test="${meeting.getIdCampi == cam.getIdCampi}">selected </c:if>${cam.getName()}</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -72,7 +72,7 @@
                         <div class="select">
                             <select>
                                 <c:forEach items="${institutes}" var="inst">
-                                    <option value="${inst.getIdInstitute()}">${inst.getName()}</option>
+                                    <option value="${inst.getIdInstitute()}" <c:if test="${meeting.getIdInstitute == inst.getIdInstitute}"> selected </c:if>${inst.getName()}</option>
                                 </c:forEach>
                             </select>
                         </div>
