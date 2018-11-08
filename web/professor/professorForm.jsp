@@ -5,7 +5,7 @@
     <div class="container">
         <div class="columns">
             <div class="column">
-                <h1 class="title has-text-centered">New Professor</h1>
+                <h1 class="title has-text-centered">${operation} Professor</h1>
             </div>
         </div>
         <div class="columns">
@@ -37,7 +37,7 @@
                         <div class="select">
                             <select>
                                 <c:forEach items="${status}" var="stat">
-                                    <option value="${stat}">${stat}</option>
+                                    <option value="${stat}" <c:if test="${professor.getIdStatus == stat.getIdStatus}">selected </c:if>${stat}</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -50,7 +50,7 @@
                         <div class="select">
                             <select>
                                 <c:forEach items="${honorifics}" var="hono">
-                                    <option value="${hono}">${hono}</option>
+                                    <option value="${hono}" <c:if test="${professor.getIdHono == hono.getIdHono}"> selected </c:if>${hono}</option>
                                 </c:forEach>
                             </select>
                         </div>
