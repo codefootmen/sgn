@@ -5,7 +5,7 @@
     <div class="container">
         <div class="columns">
             <div class="column">
-                <h1 class="title has-text-centered">New Period</h1>
+                <h1 class="title has-text-centered">${operation} Period</h1>
             </div>
         </div>
         <div class="columns">
@@ -31,7 +31,7 @@
                         <div class="select">
                             <select>
                                 <c:forEach items="${rooms}" var="room">
-                                    <option value="${room.getIdRoom()}">${room.getNumber()}</option>
+                                    <option value="${room.getIdRoom()}" <c:if test="${period.getIdRooms == room.getIdRoom}"> selected </c:if>${room.getNumber()}</option>
                                 </c:forEach>
                             </select>
                         </div>
