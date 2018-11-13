@@ -7,6 +7,7 @@ import model.Institute;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
+import java.sql.SQLException;
 
 
 @WebServlet(name = "BuildingController", urlPatterns = {"/buildings/*"})
@@ -24,6 +25,7 @@ public class BuildingController extends Servlet {
     @Override
     public RequestDispatcher editPage(HttpServletRequest request) {
         Long id = Long.valueOf(request.getAttribute("id").toString());
+        request.setAttribute("building", Building.findOne(id));
         request.setAttribute("campi", Campus.findAll());
         request.setAttribute("institutes", Institute.findAll());
         request.setAttribute("operation", "Edit");
@@ -52,7 +54,30 @@ public class BuildingController extends Servlet {
 
     @Override
     public RequestDispatcher update(HttpServletRequest request) {
-        return null;
+
+        Long idBuilding = Long.valueOf(request.getAttribute("id").toString());
+        String name = request.getParameter("name");
+        String quantityOfBathrooms = request.getParameter("quantityOfBathrooms");
+        String elevator = request.getParameter("elevator");
+        String accessibility = request.getParameter("accessibility");
+        String campus = request.getParameter("campus");
+        String institute = request.getParameter("institute");
+        Building building = new Building()
+                .setIdBuilding(idBuilding)
+                .setName(name)
+                .setQuantityOfBathrooms(Integer.valueOf(quantityOfBathrooms))
+                .setElevator(Boolean.valueOf(elevator))
+                .setAccessibility(Boolean.valueOf(accessibility))
+                .setCampus(Campus.findOne(Long.parseLong(campus)))
+                .setInstitute(Institute.findOne(Long.parseLong(institute)));
+        try {
+            building.update();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
