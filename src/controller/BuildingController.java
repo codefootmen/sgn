@@ -16,6 +16,18 @@ public class BuildingController extends Servlet {
     public RequestDispatcher newPage(HttpServletRequest request) {
         request.setAttribute("campi", Campus.findAll());
         request.setAttribute("institutes", Institute.findAll());
+        request.setAttribute("operation", "New");
+        request.setAttribute("action", "/building/new");
+        return request.getRequestDispatcher("/building/buildingForm.jsp");
+    }
+
+    @Override
+    public RequestDispatcher editPage(HttpServletRequest request) {
+        Long id = Long.valueOf(request.getAttribute("id").toString());
+        request.setAttribute("campi", Campus.findAll());
+        request.setAttribute("institutes", Institute.findAll());
+        request.setAttribute("operation", "Edit");
+        request.setAttribute("action", "/building/" + id+ "/edit");
         return request.getRequestDispatcher("/building/buildingForm.jsp");
     }
 
@@ -46,11 +58,6 @@ public class BuildingController extends Servlet {
     @Override
     public RequestDispatcher delete(HttpServletRequest request) {
         return null;
-    }
-
-    @Override
-    public RequestDispatcher editPage(HttpServletRequest request) {
-        return request.getRequestDispatcher("/building/buildingForm.jsp");
     }
 
     @Override
