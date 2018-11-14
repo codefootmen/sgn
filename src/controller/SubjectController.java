@@ -1,10 +1,11 @@
 package controller;
 
-import model.Subject;
+import model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
+import java.util.EnumSet;
 
 
 @WebServlet(name = "SubjectController", urlPatterns = {"/subjects/*"})
@@ -22,7 +23,7 @@ public class SubjectController extends Servlet {
 
     @Override
     public RequestDispatcher update(HttpServletRequest request) {
-        return null;
+return null;
     }
 
     @Override
@@ -32,6 +33,16 @@ public class SubjectController extends Servlet {
 
     @Override
     public RequestDispatcher editPage(HttpServletRequest request) {
+        Long id = Long.valueOf(request.getAttribute("id").toString());
+        request.setAttribute("subject", Subject.findOne(id));
+        request.setAttribute("professors", Professor.findAll());
+        request.setAttribute("departments", Department.findAll());
+        request.setAttribute("campi", Campus.findAll());
+        request.setAttribute("institutes", Institute.findAll());
+        request.setAttribute("programs", Program.findAll());
+        request.setAttribute("roomTypes", RoomType.findAll());
+        request.setAttribute("operation", "Edit");
+        request.setAttribute("action", "/subjects/" + id+ "/edit");
         return request.getRequestDispatcher("/subject/subjectForm.jsp");
     }
 

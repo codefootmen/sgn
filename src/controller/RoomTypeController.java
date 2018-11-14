@@ -1,6 +1,6 @@
 package controller;
 
-import model.RoomType;
+import model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +22,15 @@ public class RoomTypeController extends Servlet {
 
     @Override
     public RequestDispatcher update(HttpServletRequest request) {
-        return null;
+        Long id = Long.valueOf(request.getAttribute("id").toString());
+        String name = request.getParameter("name");
+        String description = request.getParameter("description");
+        RoomType roomType = new RoomType()
+                .setIdRoomType(id)
+                .setName(name)
+                .setDescription(description);
+        roomType.update();
+        return request.getRequestDispatcher("/roomType/roomTypeShowAll.jsp");
     }
 
     @Override
@@ -32,6 +40,10 @@ public class RoomTypeController extends Servlet {
 
     @Override
     public RequestDispatcher editPage(HttpServletRequest request) {
+        Long id = Long.valueOf(request.getAttribute("id").toString());
+        request.setAttribute("roomType", RoomType.findOne(id));
+        request.setAttribute("operation", "Edit");
+        request.setAttribute("action", "/roomTypes/" + id+ "/edit");
         return request.getRequestDispatcher("/roomType/roomTypeForm.jsp");
     }
 
