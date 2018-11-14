@@ -58,8 +58,6 @@
                                     </span>
                                 </button>
                             </form>
-
-
                         </td>
                     </tr>
                 </c:forEach>
