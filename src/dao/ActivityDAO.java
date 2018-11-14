@@ -2,10 +2,7 @@ package dao;
 
 import model.Activity;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -25,8 +22,8 @@ public class ActivityDAO implements DAO<Activity, Long> {
                             "id_campus = ?, " +
                             "id_department = ?," +
                             "id_institute = ?, " +
-                            "id_program = ?"
-
+                            "id_program = ?",
+                    Statement.RETURN_GENERATED_KEYS
             );
             Query.setStatementValues(
                     statement,
@@ -40,6 +37,7 @@ public class ActivityDAO implements DAO<Activity, Long> {
                     activity.getIdProgram()
             );
 //            recuperar o id do banco se necessário e atribuir ao objeto
+            statement.execute();
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     activity.setIdActivity(generatedKeys.getLong(1));
@@ -47,7 +45,6 @@ public class ActivityDAO implements DAO<Activity, Long> {
                     throw new SQLException("Creating user failed, no ID obtained.");
                 }
             }
-            statement.execute();
             Database.closeConnection(connection, statement);
             return Optional.of(activity);
         } catch (SQLException e) {
