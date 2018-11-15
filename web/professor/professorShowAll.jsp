@@ -16,6 +16,7 @@
                     <th>Id</th>
                     <th>First Name</th>
                     <th>Last Name</th>
+                    <th>email</th>
                     <th>Status</th>
                     <th>Honorifcs</th>
                     <th>Edit</th>
@@ -28,6 +29,7 @@
                         <td><a href="${path}/professors/${a.getIdProfessor()}">${a.getIdProfessor()}</a></td>
                         <td>${a.getFirstName()}</td>
                         <td>${a.getLastName()}</td>
+                        <td>${a.getEmail()}</td>
                         <td>${a.getStatus()}</td>
                         <td>${a.getHonorifics()}</td>
                         <td>
@@ -41,7 +43,7 @@
                             </a>
                         </td>
                         <td>
-                            <form action="/professors/${a.getIdProfessor()}" method="POST">
+                            <form action="/professors/${a.getIdProfessor()}" method="POST" onsubmit="return alert('O item selecionado será excluído!')">
                                 <button type="submit" class="no-button-style">
                                 <span class="icon">
                                     <svg style="width:24px;height:24px" viewBox="0 0 24 24">
