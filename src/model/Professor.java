@@ -45,8 +45,8 @@ public class Professor extends Person {
         return DAO.save(professor);
     }
 
-    public void update() throws SQLException, ClassNotFoundException{
-        DAO.update(this);
+    public static Optional<Professor> update(Professor professor) {
+        return DAO.update(professor);
     }
 
     public void delete() throws SQLException, ClassNotFoundException{

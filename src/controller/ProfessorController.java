@@ -38,9 +38,6 @@ public class ProfessorController extends Servlet {
         Professor.save(professor);
         return request.getRequestDispatcher("/professors");
 
-    @Override
-    public RequestDispatcher update(HttpServletRequest request) {
-        return null;
     }
 
     @Override
@@ -50,7 +47,32 @@ public class ProfessorController extends Servlet {
 
     @Override
     public RequestDispatcher editPage(HttpServletRequest request) {
+        Long id = Long.valueOf(request.getAttribute("id").toString());
+        request.setAttribute("professor", Professor.findOne(id));
+        request.setAttribute("status", EnumSet.allOf(StatusEnum.class));
+        request.setAttribute("honorifics", EnumSet.allOf(HonorificsEnum.class));
+        request.setAttribute("operation", "Edit");
+        request.setAttribute("action", "/professors/" + id + "/edit");
         return request.getRequestDispatcher("/professor/professorForm.jsp");
+    }
+
+    @Override
+    public RequestDispatcher update(HttpServletRequest request) {
+        Long idProfessor = Long.valueOf(request.getAttribute("id").toString());
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String email = request.getParameter("email");
+        String status = request.getParameter("status");
+        String honorifics = request.getParameter("honorifics");
+        Professor professor = new Professor()
+                .setIdProfessor(idProfessor)
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setEmail(email)
+                .setStatus(status)
+                .setHonorifics(honorifics);
+        Professor.update(professor);
+        return request.getRequestDispatcher("/professors/");
     }
 
     @Override

@@ -34,12 +34,19 @@ public class ProfessorDAO implements DAO<Professor, Long> {
             );
             statement.execute();
             Database.closeConnection(connection, statement);
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    professor.setIdProfessor(generatedKeys.getLong(1));
+                } else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+            }
             return Optional.of(professor);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         Database.closeConnection(connection, statement);
-        return Optional.empty();
+        return Optional.of(professor);
     }
 
     @Override
