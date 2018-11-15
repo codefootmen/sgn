@@ -57,7 +57,7 @@ public class RequestDAO implements DAO<Request, Long> {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(
-                    "INSERT INTO request SET " +
+                    "UPDATE request SET " +
                             "motive = ?, " +
                             "description = ?, " +
                             "priority = ?, " +
