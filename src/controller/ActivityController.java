@@ -36,7 +36,7 @@ public class ActivityController extends Servlet {
         request.setAttribute("activityTypes", EnumSet.allOf(ActivityTypeEnum.class));
         request.setAttribute("operation", "Edit");
         request.setAttribute("action", "/activities/" + id+ "/edit");
-        return request.getRequestDispatcher("/activity/activityForm.jsp");
+        return request.getRequestDispatcher("/activity/activities");
     }
 
     @Override
@@ -103,6 +103,6 @@ public class ActivityController extends Servlet {
     @Override
     public RequestDispatcher delete(HttpServletRequest request) {
         Activity.delete(Long.valueOf(request.getAttribute("id").toString()));
-        return request.getRequestDispatcher("/activity/activityShowAll.jsp");
+        return request.getRequestDispatcher("/activities/");
     }
 }
