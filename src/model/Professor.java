@@ -4,8 +4,8 @@ import dao.ProfessorDAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 @Data
 @Accessors(chain = true)
@@ -14,6 +14,7 @@ public class Professor extends Person {
     private StatusEnum status;
     private HonorificsEnum honorifics;
     private static ProfessorDAO DAO = new ProfessorDAO();
+
 
     public Professor setFirstName(String firstName) {
         this.firstName = firstName;
@@ -40,8 +41,8 @@ public class Professor extends Person {
         return this;
     }
 
-    public void save() throws SQLException, ClassNotFoundException{
-        DAO.save(this);
+    public static Optional<Professor> save(Professor professor) {
+        return DAO.save(professor);
     }
 
     public void update() throws SQLException, ClassNotFoundException{

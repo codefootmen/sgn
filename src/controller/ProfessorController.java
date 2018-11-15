@@ -17,13 +17,26 @@ public class ProfessorController extends Servlet {
     public RequestDispatcher newPage(HttpServletRequest request) {
         request.setAttribute("status", EnumSet.allOf(StatusEnum.class));
         request.setAttribute("honorifics", EnumSet.allOf(HonorificsEnum.class));
+        request.setAttribute("operation", "New");
+        request.setAttribute("action", "/professors/new");
         return request.getRequestDispatcher("/professor/professorForm.jsp");
     }
 
     @Override
     public RequestDispatcher save(HttpServletRequest request) {
-        return null;
-    }
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String email = request.getParameter("email");
+        String status = request.getParameter("status");
+        String honorifics = request.getParameter("honorifics");
+        Professor professor = new Professor()
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setEmail(email)
+                .setStatus(status)
+                .setHonorifics(honorifics);
+        Professor.save(professor);
+        return request.getRequestDispatcher("/professors");
 
     @Override
     public RequestDispatcher update(HttpServletRequest request) {
