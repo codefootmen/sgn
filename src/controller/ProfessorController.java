@@ -42,7 +42,8 @@ public class ProfessorController extends Servlet {
 
     @Override
     public RequestDispatcher delete(HttpServletRequest request) {
-        return null;
+        Professor.delete(Long.valueOf(request.getAttribute("id").toString()));
+        return request.getRequestDispatcher("/professors/");
     }
 
     @Override

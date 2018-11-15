@@ -49,8 +49,8 @@ public class Professor extends Person {
         return DAO.update(professor);
     }
 
-    public void delete() throws SQLException, ClassNotFoundException{
-        DAO.delete(this.idProfessor);
+    public static Boolean delete(Long id) {
+        return DAO.delete(id);
     }
 
     public static Professor findOne(Long id) {
