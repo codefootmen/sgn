@@ -10,6 +10,11 @@
     </div>
     <div class="columns">
         <div class="column">
+            <a href="/buildings/new" class="button is-info">New</a>
+        </div>
+    </div>
+    <div class="columns">
+        <div class="column">
 
             <table class="table box diplay-table margin-auto">
                 <thead>
