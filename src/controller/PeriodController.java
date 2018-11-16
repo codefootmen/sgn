@@ -35,6 +35,11 @@ public class PeriodController extends Servlet {
 
     @Override
     public RequestDispatcher editPage(HttpServletRequest request) {
+        Long id = Long.valueOf(request.getAttribute("id").toString());
+        request.setAttribute("period", Period.findOne(id));
+        request.setAttribute("rooms", Room.findAll());
+        request.setAttribute("operation", "Edit");
+        request.setAttribute("action", "/period/" + id);
         return request.getRequestDispatcher("/period/periodForm.jsp");
     }
 
