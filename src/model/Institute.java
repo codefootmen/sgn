@@ -12,7 +12,6 @@ import java.util.List;
 public class Institute {
     private Long idInstitute;
     private String name;
-    private String logo;
     private String site;
     static private InstituteDAO DAO = new InstituteDAO();
 

@@ -26,7 +26,6 @@ public class InstituteDAO implements DAO<Institute, Long> {
             Query.setStatementValues(
                     statement,
                     institute.getName(),
-                    institute.getLogo(),
                     institute.getSite()
             );
             statement.execute();
@@ -65,7 +64,6 @@ public class InstituteDAO implements DAO<Institute, Long> {
             Query.setStatementValues(
                     statement,
                     institute.getName(),
-                    institute.getLogo(),
                     institute.getSite(),
                     institute.getIdInstitute()
             );
@@ -102,7 +100,6 @@ public class InstituteDAO implements DAO<Institute, Long> {
         return new Institute()
                 .setIdInstitute(result.getLong("id_institute"))
                 .setName(result.getString("name"))
-                .setLogo(result.getString("logo"))
                 .setSite(result.getString("site"));
     }
 

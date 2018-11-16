@@ -20,7 +20,6 @@
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
-                    <th>Logo</th>
                     <th>Site</th>
                     <th>Edit</th>
                     <th>Delete</th>
@@ -31,7 +30,6 @@
                     <tr>
                         <th><a href="${path}/institutes/${a.getIdInstitute()}">${a.getIdInstitute()}</a></th>
                         <th>${a.getName()}</th>
-                        <th>${a.getLogo()}</th>
                         <th>${a.getSite()}</th>
                         <td>
                             <a href="/institutes/${a.getIdInstitute()}/edit">

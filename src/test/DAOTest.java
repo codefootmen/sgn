@@ -7,7 +7,6 @@ public class DAOTest {
     public static void main(String[] args) {
         Institute institute = new Institute()
                 .setName("Name")
-                .setLogo("Logo")
                 .setSite("Site");
         new InstituteDAO().save(institute);
 
