@@ -8,7 +8,7 @@
                 <h1 class="title has-text-centered">${operation} Course</h1>
             </div>
         </div>
-        <form action="${path}${action}">
+        <form action="${path}${action}" method="POST">
             <div class="columns">
                 <div class="column">
                     <div class="field is-inline-block">
@@ -43,7 +43,6 @@
                                 </div>
                             </div>
                         </div>
-
 
                         <div class="field is-inline-block column">
                             <label class="label">Program</label>
