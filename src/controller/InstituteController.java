@@ -31,6 +31,10 @@ public class InstituteController extends Servlet {
 
     @Override
     public RequestDispatcher editPage(HttpServletRequest request) {
+        Long id = Long.valueOf(request.getAttribute("id").toString());
+        request.setAttribute("institute", Institute.findOne(id));
+        request.setAttribute("operation", "Edit");
+        request.setAttribute("action", "/institute/" + id);
         return request.getRequestDispatcher("/institute/instituteForm.jsp");
     }
 
