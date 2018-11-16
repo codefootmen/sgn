@@ -26,7 +26,8 @@ public class InstituteController extends Servlet {
 
     @Override
     public RequestDispatcher delete(HttpServletRequest request) {
-        return null;
+        Institute.delete(Long.valueOf(request.getAttribute("id").toString()));
+        return request.getRequestDispatcher("/institutes/");
     }
 
     @Override

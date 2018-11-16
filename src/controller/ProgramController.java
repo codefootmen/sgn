@@ -27,7 +27,8 @@ public class ProgramController extends Servlet {
 
     @Override
     public RequestDispatcher delete(HttpServletRequest request) {
-        return null;
+        Program.delete(Long.valueOf(request.getAttribute("id").toString()));
+        return request.getRequestDispatcher("/programs/");
     }
 
     @Override

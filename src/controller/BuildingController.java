@@ -29,7 +29,7 @@ public class BuildingController extends Servlet {
         request.setAttribute("campi", Campus.findAll());
         request.setAttribute("institutes", Institute.findAll());
         request.setAttribute("operation", "Edit");
-        request.setAttribute("action", "/building/" + id+ "/edit");
+        request.setAttribute("action", "/building/" + id + "/edit");
         return request.getRequestDispatcher("/building/buildingForm.jsp");
     }
 
@@ -54,7 +54,6 @@ public class BuildingController extends Servlet {
 
     @Override
     public RequestDispatcher update(HttpServletRequest request) {
-
         Long idBuilding = Long.valueOf(request.getAttribute("id").toString());
         String name = request.getParameter("name");
         String quantityOfBathrooms = request.getParameter("quantityOfBathrooms");
@@ -70,19 +69,15 @@ public class BuildingController extends Servlet {
                 .setAccessibility(Boolean.valueOf(accessibility))
                 .setCampus(Campus.findOne(Long.parseLong(campus)))
                 .setInstitute(Institute.findOne(Long.parseLong(institute)));
-        try {
-            building.update();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+
+        building.update();
         return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
     public RequestDispatcher delete(HttpServletRequest request) {
-        return null;
+        Building.delete(Long.valueOf(request.getAttribute("id").toString()));
+        return request.getRequestDispatcher("/buildings/");
     }
 
     @Override

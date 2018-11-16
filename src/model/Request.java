@@ -48,8 +48,8 @@ public class Request {
         DAO.update(this);
     }
 
-    public void delete(){
-        DAO.delete(this.idRequest);
+    public static void delete(Long id){
+        DAO.delete(id);
     }
 
     public static Request findOne(Long id) {

@@ -43,7 +43,8 @@ public class RequestController extends Servlet {
 
     @Override
     public RequestDispatcher delete(HttpServletRequest request) {
-        return null;
+        Request.delete(Long.valueOf(request.getAttribute("id").toString()));
+        return request.getRequestDispatcher("/requests/");
     }
 
     @Override

@@ -28,7 +28,8 @@ return null;
 
     @Override
     public RequestDispatcher delete(HttpServletRequest request) {
-        return null;
+        Subject.delete(Long.valueOf(request.getAttribute("id").toString()));
+        return request.getRequestDispatcher("/subjects/");
     }
 
     @Override

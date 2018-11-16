@@ -35,16 +35,16 @@ public class Period {
         return this;
     }
 
-    public void save() throws SQLException, ClassNotFoundException{
+    public void save(){
         DAO.save(this);
     }
 
-    public void update() throws SQLException, ClassNotFoundException{
+    public void update(){
         DAO.update(this);
     }
 
-    public void delete() throws SQLException, ClassNotFoundException{
-        DAO.delete(this.idPeriod);
+    public static void delete(Long id){
+        DAO.delete(id);
     }
 
     public static Period findOne(Long id) {

@@ -23,8 +23,8 @@ public class RoomType {
         DAO.update(this);
     }
 
-    public void delete(){
-        DAO.delete(this.idRoomType);
+    public static void delete(Long id){
+        DAO.delete(id);
     }
 
     public static RoomType findOne(Long id) {
