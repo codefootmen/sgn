@@ -22,6 +22,18 @@ public class DepartmentController extends Servlet {
     }
 
     @Override
+    public RequestDispatcher editPage(HttpServletRequest request) {
+        Long id = Long.valueOf(request.getAttribute("id").toString());
+        request.setAttribute("department", Department.findOne(id));
+        request.setAttribute("campi", Campus.findAll());
+        request.setAttribute("institutes", Institute.findAll());
+        request.setAttribute("professors", Professor.findAll());
+        request.setAttribute("operation", "Edit");
+        request.setAttribute("action", "/department/" + id);
+        return request.getRequestDispatcher("/department/departmentForm.jsp");
+    }
+
+    @Override
     public RequestDispatcher save(HttpServletRequest request) {
         return null;
     }
@@ -34,11 +46,6 @@ public class DepartmentController extends Servlet {
     @Override
     public RequestDispatcher delete(HttpServletRequest request) {
         return null;
-    }
-
-    @Override
-    public RequestDispatcher editPage(HttpServletRequest request) {
-        return request.getRequestDispatcher("/department/departmentForm.jsp");
     }
 
     @Override
