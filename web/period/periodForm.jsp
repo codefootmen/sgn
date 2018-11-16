@@ -1,27 +1,28 @@
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <c:import url="../header.jsp"/>
-    <c:import url="../navbar.jsp"/>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:import url="../header.jsp"/>
+<c:import url="../navbar.jsp"/>
 
-    <div class="container">
-        <div class="columns">
-            <div class="column">
-                <h1 class="title has-text-centered">${operation} Period</h1>
-            </div>
+<div class="container">
+    <div class="columns">
+        <div class="column">
+            <h1 class="title has-text-centered">${operation} Period</h1>
         </div>
+    </div>
+    <form action="${path}${action}" method="post">
         <div class="columns">
             <div class="column">
 
                 <div class="field">
                     <label class="label">Start</label>
                     <div class="control">
-                        <input class="input is-info" type="text" placeholder="DD-MM-YYYY">
+                        <input class="input is-info" type="text" placeholder="DD-MM-YYYY" value="${period.getStart()}">
                     </div>
                 </div>
 
                 <div class="field">
                     <label class="label">End</label>
                     <div class="control">
-                        <input class="input is-info" type="text" placeholder="DD-MM-YYYY">
+                        <input class="input is-info" type="text" placeholder="DD-MM-YYYY" value="${period.getEnd()}">
                     </div>
                 </div>
 
@@ -31,7 +32,7 @@
                         <div class="select">
                             <select>
                                 <c:forEach items="${rooms}" var="room">
-                                    <option value="${room.getIdRoom()}" <c:if test="${period.getIdRooms == room.getIdRoom}"> selected </c:if>${room.getNumber()}</option>
+                                    <option value="${room.getIdRoom()}" <c:if test="${period.getIdRoom() == room.getIdRoom()}"> selected </c:if> >${room.getNumber()}</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -66,7 +67,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    <c:import url="../footer.jsp"/>
-    </body>
-    </html>
+    </form>
+</div>
+<c:import url="../footer.jsp"/>
+</body>
+</html>
