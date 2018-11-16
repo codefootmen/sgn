@@ -8,7 +8,7 @@
             <h1 class="title has-text-centered">${operation} Department</h1>
         </div>
     </div>
-    <form action="${path}${action}">
+    <form action="${path}${action} method="POST">
         <div class="columns">
             <div class="column">
                 <div class="field">
