@@ -61,8 +61,8 @@ public class Room {
         DAO.update(this);
     }
 
-    public void delete() {
-        DAO.delete(this.idRoom);
+    public static void delete(Long id) {
+        DAO.delete(id);
     }
 
     public static Room findOne(Long id) {

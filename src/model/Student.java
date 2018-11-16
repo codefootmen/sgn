@@ -55,8 +55,8 @@ public class Student extends Person {
         DAO.update(this);
     }
 
-    public void delete(){
-        DAO.delete(this.idStudent);
+    public static void delete(Long id){
+        DAO.delete(id);
     }
 
     public static Student findOne(Long id) {

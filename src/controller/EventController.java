@@ -33,7 +33,8 @@ public class EventController extends Servlet {
 
     @Override
     public RequestDispatcher delete(HttpServletRequest request) {
-        return null;
+        Event.delete(Long.valueOf(request.getAttribute("id").toString()));
+        return request.getRequestDispatcher("/events/");
     }
 
     @Override

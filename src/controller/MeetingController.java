@@ -33,7 +33,8 @@ public class MeetingController extends Servlet {
 
     @Override
     public RequestDispatcher delete(HttpServletRequest request) {
-        return null;
+        Meeting.delete(Long.valueOf(request.getAttribute("id").toString()));
+        return request.getRequestDispatcher("/meetings/");
     }
 
     @Override

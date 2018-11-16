@@ -40,7 +40,8 @@ public class RoomController extends Servlet {
 
     @Override
     public RequestDispatcher delete(HttpServletRequest request) {
-        return null;
+        Room.delete(Long.valueOf(request.getAttribute("id").toString()));
+        return request.getRequestDispatcher("/rooms/");
     }
 
     @Override

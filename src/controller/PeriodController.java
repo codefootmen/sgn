@@ -29,7 +29,8 @@ public class PeriodController extends Servlet {
 
     @Override
     public RequestDispatcher delete(HttpServletRequest request) {
-        return null;
+        Period.delete(Long.valueOf(request.getAttribute("id").toString()));
+        return request.getRequestDispatcher("/periods/");
     }
 
     @Override

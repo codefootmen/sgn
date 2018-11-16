@@ -41,7 +41,8 @@ public class StudentController extends Servlet {
 
     @Override
     public RequestDispatcher delete(HttpServletRequest request) {
-        return null;
+        Student.delete(Long.valueOf(request.getAttribute("id").toString()));
+        return request.getRequestDispatcher("/students/");
     }
 
     @Override

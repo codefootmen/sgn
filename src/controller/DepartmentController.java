@@ -45,7 +45,8 @@ public class DepartmentController extends Servlet {
 
     @Override
     public RequestDispatcher delete(HttpServletRequest request) {
-        return null;
+        Department.delete(Long.valueOf(request.getAttribute("id").toString()));
+        return request.getRequestDispatcher("/departments/");
     }
 
     @Override

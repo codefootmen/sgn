@@ -53,7 +53,8 @@ public class CampusController extends Servlet{
 
     @Override
     public RequestDispatcher delete(HttpServletRequest request) {
-        return null;
+        Campus.delete(Long.valueOf(request.getAttribute("id").toString()));
+        return request.getRequestDispatcher("/campi/");
     }
 
     @Override

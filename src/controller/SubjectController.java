@@ -23,12 +23,31 @@ public class SubjectController extends Servlet {
 
     @Override
     public RequestDispatcher update(HttpServletRequest request) {
-return null;
+        Long id = Long.valueOf(request.getAttribute("id").toString());
+        String name = request.getParameter("name");
+        Integer quantityOfCredits = Integer.valueOf(request.getParameter("quantityOfCredits"));
+        Long idRoomType = Long.valueOf(request.getParameter("roomType"));
+        Long idProgram = Long.valueOf(request.getParameter("program"));
+        Long idDepartment = Long.valueOf(request.getParameter("department"));
+        Long idCampus = Long.valueOf(request.getParameter("campus"));
+        Long idInstitute = Long.valueOf(request.getParameter("institute"));
+        Subject subject = new Subject()
+                .setIdSubject(id)
+                .setName(name)
+                .setQuantityOfCredits(quantityOfCredits)
+                .setIdRoomType(idRoomType)
+                .setIdProgram(idProgram)
+                .setIdDepartment(idDepartment)
+                .setIdCampus(idCampus)
+                .setIdInstitute(idInstitute);
+        subject.update();
+        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
     public RequestDispatcher delete(HttpServletRequest request) {
-        return null;
+        Subject.delete(Long.valueOf(request.getAttribute("id").toString()));
+        return request.getRequestDispatcher("/subjects/");
     }
 
     @Override
@@ -42,7 +61,7 @@ return null;
         request.setAttribute("programs", Program.findAll());
         request.setAttribute("roomTypes", RoomType.findAll());
         request.setAttribute("operation", "Edit");
-        request.setAttribute("action", "/subjects/" + id+ "/edit");
+        request.setAttribute("action", "/subjects/" + id + "/edit");
         return request.getRequestDispatcher("/subject/subjectForm.jsp");
     }
 
