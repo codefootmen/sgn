@@ -51,7 +51,29 @@ public class CourseController extends Servlet {
 
     @Override
     public RequestDispatcher update(HttpServletRequest request) {
-        return null;
+        Long id = Long.valueOf(request.getAttribute("id").toString());
+        Boolean semester = Boolean.valueOf(request.getParameter("semester"));
+        Integer year = Integer.valueOf(request.getParameter("year"));
+        Long idSubject = Long.valueOf(request.getParameter("idSubject"));
+        Long idProgram = Long.valueOf(request.getParameter("idProgram"));
+        Long idDepartment = Long.valueOf(request.getParameter("idDepartment"));
+        Long idCampus = Long.valueOf(request.getParameter("idCampus"));
+        Long idInstitute = Long.valueOf(request.getParameter("idInstitute"));
+        Long idPeriod = Long.valueOf(request.getParameter("idPeriod"));
+        Long idProfessor = Long.valueOf(request.getParameter("idProfessor"));
+        Course course = new Course()
+                .setIdCourse(id)
+                .setSemester(semester)
+                .setYear(year)
+                .setIdSubject(idSubject)
+                .setIdProgram(idProgram)
+                .setIdDepartment(idDepartment)
+                .setIdCampus(idCampus)
+                .setIdInstitute(idInstitute)
+                .setIdPeriod(idPeriod)
+                .setIdProfessor(idProfessor);
+        course.update();
+        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
