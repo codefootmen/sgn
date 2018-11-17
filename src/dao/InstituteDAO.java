@@ -20,7 +20,6 @@ public class InstituteDAO implements DAO<Institute, Long> {
             statement = connection.prepareStatement(
                     "INSERT INTO institute SET " +
                             "name = ?, " +
-                            "logo = ?, " +
                             "site = ?"
             );
             Query.setStatementValues(

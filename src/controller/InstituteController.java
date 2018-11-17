@@ -16,7 +16,13 @@ public class InstituteController extends Servlet {
 
     @Override
     public RequestDispatcher save(HttpServletRequest request) {
-        return null;
+        String name = request.getParameter("name");
+        String site = request.getParameter("site");
+        Institute institute = new Institute()
+                .setName(name)
+                .setSite(site);
+        institute.save();
+        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override

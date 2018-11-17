@@ -64,7 +64,6 @@ CREATE TABLE `institute`
 (
   `id_institute` BIGINT unsigned NOT NULL AUTO_INCREMENT,
   `name`           VARCHAR(255)    NOT NULL,
-  `logo`           VARCHAR(255)    NOT NULL,
   `site`           VARCHAR(255)    NOT NULL,
 
   PRIMARY KEY (`id_institute`)
