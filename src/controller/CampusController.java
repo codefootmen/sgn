@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "CampusController", urlPatterns = {"/campi/*"})
-public class CampusController extends Servlet{
+public class CampusController extends Servlet {
 
 
     @Override
@@ -48,7 +48,27 @@ public class CampusController extends Servlet{
 
     @Override
     public RequestDispatcher update(HttpServletRequest request) {
-        return null;
+        Long id = Long.valueOf(request.getAttribute("id").toString());
+        String name = request.getParameter("name");
+        String street = request.getParameter("street");
+        Long number = Long.valueOf(request.getParameter("number"));
+        String city = request.getParameter("city");
+        String state = request.getParameter("state");
+        String telephone = request.getParameter("telephone");
+        String zip = request.getParameter("zip");
+        Long idInstitute = Long.valueOf(request.getParameter("idInstitute"));
+        Campus campus = new Campus()
+                .setIdCampus(id)
+                .setName(name)
+                .setStreet(street)
+                .setNumber(number)
+                .setCity(city)
+                .setState(state)
+                .setTelephone(telephone)
+                .setZip(zip)
+                .setIdInstitute(idInstitute);
+        campus.update();
+        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
@@ -63,7 +83,7 @@ public class CampusController extends Servlet{
         request.setAttribute("campus", Campus.findOne(id));
         request.setAttribute("institutes", Institute.findAll());
         request.setAttribute("operation", "Edit");
-        request.setAttribute("action", "/campi/" + id);
+        request.setAttribute("action", "/campi/" + id + "/edit");
         return request.getRequestDispatcher("/campus/campusForm.jsp");
     }
 
