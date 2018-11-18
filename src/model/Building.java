@@ -56,12 +56,8 @@ public class Building {
         return this;
     }
 
-    public void save(){
-        DAO.save(this);
-    }
-
-    public void update(){
-        DAO.update(this);
+    public static Optional<Building> update(Building building) {
+        return DAO.update(building);
     }
 
     public static void delete(Long id) {
