@@ -29,7 +29,7 @@ public class BuildingController extends Servlet {
         request.setAttribute("campi", Campus.findAll());
         request.setAttribute("institutes", Institute.findAll());
         request.setAttribute("operation", "Edit");
-        request.setAttribute("action", "/building/" + id + "/edit");
+        request.setAttribute("action", "/buildings/" + id + "/edit");
         return request.getRequestDispatcher("/building/buildingForm.jsp");
     }
 
@@ -69,8 +69,7 @@ public class BuildingController extends Servlet {
                 .setAccessibility(Boolean.valueOf(accessibility))
                 .setCampus(Campus.findOne(Long.parseLong(campus)))
                 .setInstitute(Institute.findOne(Long.parseLong(institute)));
-
-        building.update();
+        Building.update(building);
         return request.getRequestDispatcher("/index.jsp");
     }
 
