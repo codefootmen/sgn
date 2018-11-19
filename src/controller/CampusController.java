@@ -32,7 +32,7 @@ public class CampusController extends Servlet {
         String state = request.getParameter("state");
         String telephone = request.getParameter("telephone");
         String zip = request.getParameter("zip");
-        String institute = request.getParameter("institute");
+        Long institute = Long.parseLong(request.getParameter("idInstitute"));
         Campus campus = new Campus()
                 .setName(name)
                 .setStreet(street)
@@ -41,7 +41,7 @@ public class CampusController extends Servlet {
                 .setState(state)
                 .setTelephone(telephone)
                 .setZip(zip)
-                .setInstitute(Institute.findOne(Long.parseLong(institute)));
+                .setIdInstitute(institute);
         Campus.save(campus);
         return request.getRequestDispatcher("/index.jsp");
     }
