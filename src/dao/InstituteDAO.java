@@ -56,7 +56,6 @@ public class InstituteDAO implements DAO<Institute, Long> {
             statement = connection.prepareStatement(
                     "UPDATE institute SET " +
                             "name = ?, " +
-                            "logo = ?, " +
                             "site = ? " +
                             "WHERE id_institute = ?"
             );

@@ -28,7 +28,7 @@ public class Institute {
         return DAO.findAll();
     }
 
-    public static Optional<Institute> save(Institute institute) { return DAO.update(institute); }
+    public static Optional<Institute> save(Institute institute) { return DAO.save(institute); }
 
     public static Optional<Institute> update(Institute institute) {
         return DAO.update(institute);
