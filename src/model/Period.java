@@ -7,6 +7,7 @@ import lombok.experimental.Accessors;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 @Data
 @Accessors(chain = true)
@@ -35,12 +36,12 @@ public class Period {
         return this;
     }
 
-    public void save(){
-        DAO.save(this);
+    public static Optional<Period> save(Period period) {
+        return DAO.save(period);
     }
 
-    public void update(){
-        DAO.update(this);
+    public static Optional<Period> update(Period period) {
+        return DAO.update(period);
     }
 
     public static void delete(Long id){

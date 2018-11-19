@@ -9,6 +9,7 @@ import lombok.experimental.Accessors;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 @Data
 @Accessors(chain = true)
@@ -77,12 +78,12 @@ public class Program {
         return this;
     }
 
-    public void save(){
-        DAO.save(this);
+    public static Optional<Program> save(Program program) {
+        return DAO.save(program);
     }
 
-    public void update(){
-        DAO.update(this);
+    public static Optional<Program> update(Program program) {
+        return DAO.update(program);
     }
 
     public static void delete(Long id){

@@ -17,7 +17,7 @@ public class Institute {
     static private InstituteDAO DAO = new InstituteDAO();
 
     public static Optional<Institute> save(Institute institute) {
-        return DAO.update(institute);
+        return DAO.save(institute);
     }
 
     public static Optional<Institute> update(Institute institute) {

@@ -8,6 +8,7 @@ import lombok.experimental.Accessors;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 @Data
 @Accessors(chain = true)
@@ -53,12 +54,12 @@ public class Room {
         return this;
     }
 
-    public void save() {
-        DAO.save(this);
+    public static Optional<Room> save(Room room) {
+        return DAO.save(room);
     }
 
-    public void update() {
-        DAO.update(this);
+    public static Optional<Room> update(Room room) {
+        return DAO.update(room);
     }
 
     public static void delete(Long id) {

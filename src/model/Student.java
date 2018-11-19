@@ -7,6 +7,7 @@ import lombok.experimental.Accessors;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 @Data
 @Accessors(chain = true)
@@ -47,12 +48,10 @@ public class Student extends Person {
         return this;
     }
 
-    public void save(){
-        DAO.save(this);
-    }
+    public static Optional<Student> save(Student student) { return DAO.save(student); }
 
-    public void update(){
-        DAO.update(this);
+    public static Optional<Student> update(Student student) {
+        return DAO.update(student);
     }
 
     public static void delete(Long id){
