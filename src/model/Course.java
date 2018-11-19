@@ -4,8 +4,10 @@ import dao.*;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.nio.charset.CoderResult;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 @Data
 @Accessors(chain = true)
@@ -141,14 +143,6 @@ public class Course {
         return this;
     }
 
-    public void save(){
-        DAO.save(this);
-    }
-
-    public void update() {
-        DAO.update(this);
-    }
-
     public static void delete(Long id) {
         DAO.delete(id);
     }
@@ -160,4 +154,8 @@ public class Course {
     public static List<Course> findAll() {
         return DAO.findAll();
     }
+
+    public static Optional<Course> save(Course course) { return DAO.save(course); }
+
+    public static Optional<Course> update(Course course) { return DAO.update(course); }
 }

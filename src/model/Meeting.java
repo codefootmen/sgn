@@ -75,14 +75,6 @@ public class Meeting {
         return this;
     }
 
-    public static Optional<Meeting> save(Meeting meeting) {
-        return DAO.save(meeting);
-    }
-
-    public static Optional<Meeting> update(Meeting meeting) {
-        return DAO.update(meeting);
-    }
-
     public static void delete(Long id){
         DAO.delete(id);
     }
@@ -94,4 +86,8 @@ public class Meeting {
     public static List<Meeting> findAll() {
         return DAO.findAll();
     }
+
+    public static Optional<Meeting> save(Meeting meeting) { return DAO.save(meeting); }
+
+    public static Optional<Meeting> update(Meeting meeting) { return DAO.update(meeting); }
 }

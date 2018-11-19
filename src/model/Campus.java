@@ -39,14 +39,6 @@ public class Campus {
         return this;
     }
 
-    public void save() {
-        DAO.save(this);
-    }
-
-    public void update() {
-        DAO.update(this);
-    }
-
     public static void delete(Long id){
         DAO.delete(id);
     }
@@ -60,4 +52,8 @@ public class Campus {
     }
 
     public static Optional<Campus> save(Campus campus){return DAO.save(campus); }
+
+    public static Optional<Campus> update(Campus campus) {
+        return DAO.update(campus);
+    }
 }

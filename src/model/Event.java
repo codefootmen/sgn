@@ -73,14 +73,6 @@ public class Event {
         return this;
     }
 
-    public static Optional<Event> save(Event event) {
-        return DAO.save(event);
-    }
-
-    public static Optional<Event> update(Event event) {
-        return DAO.update(event);
-    }
-
     public static void delete(Long id){
         DAO.delete(id);
     }
@@ -91,5 +83,13 @@ public class Event {
 
     public static List<Event> findAll() {
         return DAO.findAll();
+    }
+
+    public static Optional<Event> save(Event event) {
+        return DAO.save(event);
+    }
+
+    public static Optional<Event> update(Event event) {
+        return DAO.update(event);
     }
 }
