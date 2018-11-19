@@ -57,20 +57,20 @@ public class ActivityController extends Servlet {
         String name = request.getParameter("name");
         String area = request.getParameter("area");
         String activityType = request.getParameter("activityType");
-        String professor = request.getParameter("professor");
-        String department = request.getParameter("department");
-        String campus = request.getParameter("campus");
-        String institute = request.getParameter("institute");
-        String program = request.getParameter("program");
+        Long professor = Long.parseLong(request.getParameter("idProfessor"));
+        Long department = Long.parseLong(request.getParameter("idDepartment"));
+        Long campus = Long.parseLong(request.getParameter("idCampus"));
+        Long institute = Long.parseLong(request.getParameter("idInstitute"));
+        Long program = Long.parseLong(request.getParameter("idProgram"));
         Activity activity = new Activity()
                 .setName(name)
                 .setArea(area)
                 .setActivityType(activityType)
-                .setProfessor(Professor.findOne(Long.parseLong(professor)))
-                .setDepartment(Department.findOne(Long.parseLong(department)))
-                .setCampus(Campus.findOne(Long.parseLong(campus)))
-                .setInstitute(Institute.findOne(Long.parseLong(institute)))
-                .setProgram(Program.findOne(Long.parseLong(program)));
+                .setIdProfessor(professor)
+                .setIdDepartment(department)
+                .setIdCampus(campus)
+                .setIdInstitute(institute)
+                .setIdProgram(program);
         Activity.save(activity);
         return request.getRequestDispatcher("/index.jsp");
     }
@@ -81,21 +81,21 @@ public class ActivityController extends Servlet {
         String name = request.getParameter("name");
         String area = request.getParameter("area");
         String activityType = request.getParameter("activityType");
-        String professor = request.getParameter("professor");
-        String department = request.getParameter("department");
-        String campus = request.getParameter("campus");
-        String institute = request.getParameter("institute");
-        String program = request.getParameter("program");
+        Long professor = Long.parseLong(request.getParameter("idProfessor"));
+        Long department = Long.parseLong(request.getParameter("idDepartment"));
+        Long campus = Long.parseLong(request.getParameter("idCampus"));
+        Long institute = Long.parseLong(request.getParameter("idInstitute"));
+        Long program = Long.parseLong(request.getParameter("idProgram"));
         Activity activity = new Activity()
                 .setIdActivity(idActivity)
                 .setName(name)
                 .setArea(area)
                 .setActivityType(activityType)
-                .setProfessor(Professor.findOne(Long.parseLong(professor)))
-                .setDepartment(Department.findOne(Long.parseLong(department)))
-                .setCampus(Campus.findOne(Long.parseLong(campus)))
-                .setInstitute(Institute.findOne(Long.parseLong(institute)))
-                .setProgram(Program.findOne(Long.parseLong(program)));
+                .setIdProfessor(professor)
+                .setIdDepartment(department)
+                .setIdCampus(campus)
+                .setIdInstitute(institute)
+                .setIdProgram(program);
         Activity.update(activity);
         return request.getRequestDispatcher("/index.jsp");
     }
