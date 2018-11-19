@@ -21,7 +21,7 @@
             <div class="field">
                 <label class="label">Date</label>
                 <div class="control">
-                    <input class="input is-info" type="text" placeholder="MM-DD-YYYY" value="${event.getDate()}">
+                    <input class="input is-info" name="date" type="text" placeholder="MM-DD-YYYY" value="${event.getDate()}">
                 </div>
             </div>
 
@@ -31,7 +31,7 @@
                     <label class="label">Period</label>
                     <div class="control">
                         <div class="select">
-                            <select name="Period">
+                            <select name="idPeriod">
                                 <c:forEach items="${periods}" var="period">
                                     <option value="${period.getIdPeriod()}" <c:if test="${event.getIdPeriod() == period.getIdPeriod()}"> selected </c:if> >${period.getStart()} </option>
                                 </c:forEach>
@@ -44,7 +44,7 @@
                     <label class="label">Professor</label>
                     <div class="control">
                         <div class="select">
-                            <select>
+                            <select name="idProfessor">
                                 <c:forEach items="${professors}" var="prof">
                                     <option value="${prof.getIdProfessor()}" <c:if
                                         test="${event.getIdProfessor() == prof.getIdProfessor()}"> selected </c:if> >${prof.getFirstName()}</option>
@@ -58,7 +58,7 @@
                     <label class="label">Room</label>
                     <div class="control">
                         <div class="select">
-                            <select>
+                            <select name="idRoom">
                                 <c:forEach items="${rooms}" var="room">
                                     <option value="${room.getIdRoom()}" <c:if test="${event.getIdRoom() == room.getIdRoom()}"> selected </c:if> >${room.getNumber()}</option>
                                 </c:forEach>
@@ -70,10 +70,10 @@
 
             <div class="field is-grouped">
                 <div class="control">
-                    <button class="button is-link">Submit</button>
+                    <button type="submit" class="button is-link">Submit</button>
                 </div>
                 <div class="control">
-                    <button class="button is-text">Cancel</button>
+                    <button type="reset" class="button is-text">Cancel</button>
                 </div>
             </div>
         </div>
