@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.util.List;
+import java.util.Optional;
 
 @Data
 @Accessors(chain = true)
@@ -15,12 +16,12 @@ public class Institute {
     private String site;
     static private InstituteDAO DAO = new InstituteDAO();
 
-    public void save() {
-        DAO.save(this);
+    public static Optional<Institute> save(Institute institute) {
+        return DAO.update(institute);
     }
 
-    public void update(){
-        DAO.update(this);
+    public static Optional<Institute> update(Institute institute) {
+        return DAO.update(institute);
     }
 
     public static void delete(Long id){
