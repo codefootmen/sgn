@@ -21,13 +21,21 @@ public class InstituteController extends Servlet {
         Institute institute = new Institute()
                 .setName(name)
                 .setSite(site);
-        institute.save();
+        Institute.save(institute);
         return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
     public RequestDispatcher update(HttpServletRequest request) {
-        return null;
+        Long idInstitute = Long.valueOf(request.getAttribute("id").toString());
+        String name = request.getParameter("name");
+        String site = request.getParameter("site");
+        Institute institute = new Institute()
+                .setIdInstitute(idInstitute)
+                .setName(name)
+                .setSite(site);
+        Institute.update(institute);
+        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
@@ -41,7 +49,7 @@ public class InstituteController extends Servlet {
         Long id = Long.valueOf(request.getAttribute("id").toString());
         request.setAttribute("institute", Institute.findOne(id));
         request.setAttribute("operation", "Edit");
-        request.setAttribute("action", "/institute/" + id);
+        request.setAttribute("action", "/institute/" + id + "/edit");
         return request.getRequestDispatcher("/institute/instituteForm.jsp");
     }
 
