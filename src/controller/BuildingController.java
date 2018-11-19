@@ -36,18 +36,18 @@ public class BuildingController extends Servlet {
     @Override
     public RequestDispatcher save(HttpServletRequest request) {
         String name = request.getParameter("name");
-        String quantityOfBathrooms = request.getParameter("quantityOfBathrooms");
-        String elevator = request.getParameter("elevator");
-        String accessibility = request.getParameter("accessibility");
-        String campus = request.getParameter("campus");
-        String institute = request.getParameter("institute");
+        Integer quantityOfBathrooms = Integer.valueOf(request.getParameter("quantityOfBathrooms"));
+        Boolean elevator = Boolean.valueOf(request.getParameter("elevator"));
+        Boolean accessibility = Boolean.valueOf(request.getParameter("accessibility"));
+        Long idCampus = Long.valueOf(request.getParameter("idCampus"));
+        Long idInstitute = Long.valueOf(request.getParameter("institute"));
         Building building = new Building()
                 .setName(name)
-                .setQuantityOfBathrooms(Integer.valueOf(quantityOfBathrooms))
-                .setElevator(Boolean.valueOf(elevator))
-                .setAccessibility(Boolean.valueOf(accessibility))
-                .setCampus(Campus.findOne(Long.parseLong(campus)))
-                .setInstitute(Institute.findOne(Long.parseLong(institute)));
+                .setQuantityOfBathrooms(quantityOfBathrooms)
+                .setElevator(elevator)
+                .setAccessibility(accessibility)
+                .setIdCampus(idCampus)
+                .setIdInstitute(idInstitute);
         Building.save(building);
         return request.getRequestDispatcher("/index.jsp");
     }
@@ -56,19 +56,19 @@ public class BuildingController extends Servlet {
     public RequestDispatcher update(HttpServletRequest request) {
         Long idBuilding = Long.valueOf(request.getAttribute("id").toString());
         String name = request.getParameter("name");
-        String quantityOfBathrooms = request.getParameter("quantityOfBathrooms");
-        String elevator = request.getParameter("elevator");
-        String accessibility = request.getParameter("accessibility");
-        String campus = request.getParameter("campus");
-        String institute = request.getParameter("institute");
+        Integer quantityOfBathrooms = Integer.valueOf(request.getParameter("quantityOfBathrooms"));
+        Boolean elevator = Boolean.valueOf(request.getParameter("elevator"));
+        Boolean accessibility = Boolean.valueOf(request.getParameter("accessibility"));
+        Long idCampus = Long.valueOf(request.getParameter("campus"));
+        Long idInstitute = Long.valueOf(request.getParameter("institute"));
         Building building = new Building()
                 .setIdBuilding(idBuilding)
                 .setName(name)
-                .setQuantityOfBathrooms(Integer.valueOf(quantityOfBathrooms))
-                .setElevator(Boolean.valueOf(elevator))
-                .setAccessibility(Boolean.valueOf(accessibility))
-                .setCampus(Campus.findOne(Long.parseLong(campus)))
-                .setInstitute(Institute.findOne(Long.parseLong(institute)));
+                .setQuantityOfBathrooms(quantityOfBathrooms)
+                .setElevator(elevator)
+                .setAccessibility(accessibility)
+                .setIdCampus(idCampus)
+                .setIdInstitute(idInstitute);
         Building.update(building);
         return request.getRequestDispatcher("/index.jsp");
     }
