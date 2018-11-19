@@ -23,12 +23,38 @@ public class EventController extends Servlet {
 
     @Override
     public RequestDispatcher save(HttpServletRequest request) {
-        return null;
+        String name = request.getParameter("name");
+        String date = request.getParameter("date");
+        Long idPeriod = Long.valueOf(request.getParameter("idPeriod"));
+        Long idProfessor = Long.valueOf(request.getParameter("idProfessor"));
+        Long idRoom = Long.valueOf(request.getParameter("idRoom"));
+        Event event = new Event()
+                .setName(name)
+                .setDate(date)
+                .setIdPeriod(idPeriod)
+                .setIdProfessor(idProfessor)
+                .setIdRoom(idRoom);
+        Event.save(event);
+        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
     public RequestDispatcher update(HttpServletRequest request) {
-        return null;
+        Long idEvent = Long.valueOf(request.getAttribute("id").toString());
+        String name = request.getParameter("name");
+        String date = request.getParameter("date");
+        Long idPeriod = Long.valueOf(request.getParameter("idPeriod"));
+        Long idProfessor = Long.valueOf(request.getParameter("idProfessor"));
+        Long idRoom = Long.valueOf(request.getParameter("idRoom"));
+        Event event = new Event()
+                .setIdEvent(idEvent)
+                .setName(name)
+                .setDate(date)
+                .setIdPeriod(idPeriod)
+                .setIdProfessor(idProfessor)
+                .setIdRoom(idRoom);
+        Event.update(event);
+        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
@@ -45,7 +71,7 @@ public class EventController extends Servlet {
         request.setAttribute("professors", Professor.findAll());
         request.setAttribute("rooms", Room.findAll());
         request.setAttribute("operation", "Edit");
-        request.setAttribute("action", "/event/" + id);
+        request.setAttribute("action", "/events/" + id + "/edit");
         return request.getRequestDispatcher("/event/eventForm.jsp");
     }
 
