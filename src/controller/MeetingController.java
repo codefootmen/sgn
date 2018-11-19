@@ -23,12 +23,46 @@ public class MeetingController extends Servlet {
 
     @Override
     public RequestDispatcher save(HttpServletRequest request) {
-        return null;
+        String day = request.getParameter("day");
+        String time = request.getParameter("time");
+        String agenda = request.getParameter("agenda");
+        String minutes = request.getParameter("minutes");
+        Long idDepartment = Long.valueOf(request.getParameter("idDepartment"));
+        Long idCampus = Long.valueOf(request.getParameter("idCampus"));
+        Long idInstitute = Long.valueOf(request.getParameter("idInstitute"));
+        Meeting meeting = new Meeting()
+                .setDay(day)
+                .setTime(time)
+                .setAgenda(agenda)
+                .setMinutes(minutes)
+                .setIdCampus(idCampus)
+                .setIdInstitute(idInstitute)
+                .setIdDepartment(idDepartment);
+        Meeting.save(meeting);
+        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
     public RequestDispatcher update(HttpServletRequest request) {
-        return null;
+        Long idMeeting = Long.valueOf(request.getAttribute("id").toString());
+        String day = request.getParameter("day");
+        String time = request.getParameter("time");
+        String agenda = request.getParameter("agenda");
+        String minutes = request.getParameter("minutes");
+        Long idDepartment = Long.valueOf(request.getParameter("idDepartment"));
+        Long idCampus = Long.valueOf(request.getParameter("idCampus"));
+        Long idInstitute = Long.valueOf(request.getParameter("idInstitute"));
+        Meeting meeting = new Meeting()
+                .setIdMeeting(idMeeting)
+                .setDay(day)
+                .setTime(time)
+                .setAgenda(agenda)
+                .setMinutes(minutes)
+                .setIdCampus(idCampus)
+                .setIdInstitute(idInstitute)
+                .setIdDepartment(idDepartment);
+        Meeting.update(meeting);
+        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
@@ -45,7 +79,7 @@ public class MeetingController extends Servlet {
         request.setAttribute("campi", Campus.findAll());
         request.setAttribute("institutes", Institute.findAll());
         request.setAttribute("operation", "Edit");
-        request.setAttribute("action", "/meeting/" + id);
+        request.setAttribute("action", "/meetings/" + id + "/edit");
         return request.getRequestDispatcher("/meeting/meetingForm.jsp");
     }
 
