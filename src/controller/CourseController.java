@@ -45,7 +45,7 @@ public class CourseController extends Servlet {
                 .setIdInstitute(idInstitute)
                 .setIdPeriod(idPeriod)
                 .setIdProfessor(idProfessor);
-        course.save();
+        Course.save(course);
         return request.getRequestDispatcher("/index.jsp");
     }
 
@@ -72,7 +72,7 @@ public class CourseController extends Servlet {
                 .setIdInstitute(idInstitute)
                 .setIdPeriod(idPeriod)
                 .setIdProfessor(idProfessor);
-        course.update();
+        Course.update(course);
         return request.getRequestDispatcher("/index.jsp");
     }
 

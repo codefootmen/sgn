@@ -16,14 +16,6 @@ public class Institute {
     private String site;
     static private InstituteDAO DAO = new InstituteDAO();
 
-    public static Optional<Institute> save(Institute institute) {
-        return DAO.update(institute);
-    }
-
-    public static Optional<Institute> update(Institute institute) {
-        return DAO.update(institute);
-    }
-
     public static void delete(Long id){
         DAO.delete(id);
     }
@@ -34,5 +26,11 @@ public class Institute {
 
     public static List<Institute> findAll() {
         return DAO.findAll();
+    }
+
+    public static Optional<Institute> save(Institute institute) { return DAO.update(institute); }
+
+    public static Optional<Institute> update(Institute institute) {
+        return DAO.update(institute);
     }
 }

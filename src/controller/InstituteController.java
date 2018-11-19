@@ -49,7 +49,7 @@ public class InstituteController extends Servlet {
         Long id = Long.valueOf(request.getAttribute("id").toString());
         request.setAttribute("institute", Institute.findOne(id));
         request.setAttribute("operation", "Edit");
-        request.setAttribute("action", "/institute/" + id + "/edit");
+        request.setAttribute("action", "/institutes/" + id + "/edit");
         return request.getRequestDispatcher("/institute/instituteForm.jsp");
     }
 

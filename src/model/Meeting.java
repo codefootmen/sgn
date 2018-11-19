@@ -9,6 +9,7 @@ import lombok.experimental.Accessors;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 @Data
 @Accessors(chain = true)
@@ -74,14 +75,6 @@ public class Meeting {
         return this;
     }
 
-    public void save(){
-        DAO.save(this);
-    }
-
-    public void update(){
-        DAO.update(this);
-    }
-
     public static void delete(Long id){
         DAO.delete(id);
     }
@@ -93,4 +86,8 @@ public class Meeting {
     public static List<Meeting> findAll() {
         return DAO.findAll();
     }
+
+    public static Optional<Meeting> save(Meeting meeting) { return DAO.save(meeting); }
+
+    public static Optional<Meeting> update(Meeting meeting) { return DAO.update(meeting); }
 }

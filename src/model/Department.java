@@ -73,12 +73,6 @@ public class Department {
         return this;
     }
 
-    public static Optional<Department> save(Department department){return DAO.save(department); }
-
-    public static Optional<Department> update(Department department) {
-        return DAO.update(department);
-    }
-
     public static void delete(Long id){
         DAO.delete(id);
     }
@@ -89,5 +83,11 @@ public class Department {
 
     public static List<Department> findAll() {
         return DAO.findAll();
+    }
+
+    public static Optional<Department> save(Department department){return DAO.save(department); }
+
+    public static Optional<Department> update(Department department) {
+        return DAO.update(department);
     }
 }

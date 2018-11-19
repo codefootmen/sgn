@@ -67,7 +67,7 @@ public class CampusController extends Servlet {
                 .setTelephone(telephone)
                 .setZip(zip)
                 .setIdInstitute(idInstitute);
-        campus.update();
+        Campus.update(campus);
         return request.getRequestDispatcher("/index.jsp");
     }
 
