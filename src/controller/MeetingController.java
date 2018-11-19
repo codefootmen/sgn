@@ -33,11 +33,19 @@ public class MeetingController extends Servlet {
 
     @Override
     public RequestDispatcher delete(HttpServletRequest request) {
-        return null;
+        Meeting.delete(Long.valueOf(request.getAttribute("id").toString()));
+        return request.getRequestDispatcher("/meetings/");
     }
 
     @Override
     public RequestDispatcher editPage(HttpServletRequest request) {
+        Long id = Long.valueOf(request.getAttribute("id").toString());
+        request.setAttribute("meeting", Meeting.findOne(id));
+        request.setAttribute("departments", Department.findAll());
+        request.setAttribute("campi", Campus.findAll());
+        request.setAttribute("institutes", Institute.findAll());
+        request.setAttribute("operation", "Edit");
+        request.setAttribute("action", "/meeting/" + id);
         return request.getRequestDispatcher("/meeting/meetingForm.jsp");
     }
 

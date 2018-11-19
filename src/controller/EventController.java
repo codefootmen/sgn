@@ -33,11 +33,19 @@ public class EventController extends Servlet {
 
     @Override
     public RequestDispatcher delete(HttpServletRequest request) {
-        return null;
+        Event.delete(Long.valueOf(request.getAttribute("id").toString()));
+        return request.getRequestDispatcher("/events/");
     }
 
     @Override
     public RequestDispatcher editPage(HttpServletRequest request) {
+        Long id = Long.valueOf(request.getAttribute("id").toString());
+        request.setAttribute("event", Event.findOne(id));
+        request.setAttribute("periods", Period.findAll());
+        request.setAttribute("professors", Professor.findAll());
+        request.setAttribute("rooms", Room.findAll());
+        request.setAttribute("operation", "Edit");
+        request.setAttribute("action", "/event/" + id);
         return request.getRequestDispatcher("/event/eventForm.jsp");
     }
 

@@ -16,7 +16,13 @@ public class InstituteController extends Servlet {
 
     @Override
     public RequestDispatcher save(HttpServletRequest request) {
-        return null;
+        String name = request.getParameter("name");
+        String site = request.getParameter("site");
+        Institute institute = new Institute()
+                .setName(name)
+                .setSite(site);
+        institute.save();
+        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
@@ -26,11 +32,16 @@ public class InstituteController extends Servlet {
 
     @Override
     public RequestDispatcher delete(HttpServletRequest request) {
-        return null;
+        Institute.delete(Long.valueOf(request.getAttribute("id").toString()));
+        return request.getRequestDispatcher("/institutes/");
     }
 
     @Override
     public RequestDispatcher editPage(HttpServletRequest request) {
+        Long id = Long.valueOf(request.getAttribute("id").toString());
+        request.setAttribute("institute", Institute.findOne(id));
+        request.setAttribute("operation", "Edit");
+        request.setAttribute("action", "/institute/" + id);
         return request.getRequestDispatcher("/institute/instituteForm.jsp");
     }
 

@@ -8,45 +8,36 @@
             <h1 class="title has-text-centered">${operation} Institute</h1>
         </div>
     </div>
-    <div class="columns">
-        <div class="column">
-            <div class="field">
-                <label class="label">Name</label>
-                <div class="control">
-                    <input class="input is-info" type="text" placeholder="Text input">
+    <form action="${path}${action}" method="POST">
+        <div class="columns">
+            <div class="column">
+                <div class="field">
+                    <label class="label">Name</label>
+                    <div class="control">
+                        <input class="input is-info" name="name" type="text" placeholder="Text input"
+                               value="${institute.getName()}">
+                    </div>
                 </div>
-            </div>
 
-            <div class="field">
-                <label class="label">Web Page</label>
-                <div class="control">
-                    <input class="input is-info" type="text" placeholder="https://www.sgd.edu.br">
+                <div class="field">
+                    <label class="label">Web Page</label>
+                    <div class="control">
+                        <input class="input is-info" name="site" type="text" placeholder="https://www.sgd.edu.br"
+                               value="${institute.getSite()}">
+                    </div>
                 </div>
-            </div>
 
-            <div class="field">
-                <div class="file is-boxed is-info has-name">
-                    <label class="file-label">
-                        <input class="file-input" type="file" name="resume">
-                        <span class="file-cta">
-                            <span class="file-label">
-                              Select File
-                            </span>
-                        </span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="field is-grouped">
-                <div class="control">
-                    <button class="button is-link">Submit</button>
-                </div>
-                <div class="control">
-                    <button class="button is-text">Cancel</button>
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button class="button is-link">Submit</button>
+                    </div>
+                    <div class="control">
+                        <button class="button is-text">Cancel</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
 <c:import url="../footer.jsp"/>
 </body>

@@ -36,7 +36,7 @@ public class ActivityController extends Servlet {
         request.setAttribute("activityTypes", EnumSet.allOf(ActivityTypeEnum.class));
         request.setAttribute("operation", "Edit");
         request.setAttribute("action", "/activities/" + id+ "/edit");
-        return request.getRequestDispatcher("/activity/activities");
+        return request.getRequestDispatcher("/activity/activityForm.jsp");
     }
 
     @Override

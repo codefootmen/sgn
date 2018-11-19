@@ -47,8 +47,8 @@ public class Campus {
         DAO.update(this);
     }
 
-    public void delete(){
-        DAO.delete(this.idCampus);
+    public static void delete(Long id){
+        DAO.delete(id);
     }
 
     public static Campus findOne(Long id) {

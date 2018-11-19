@@ -12,7 +12,6 @@ import java.util.List;
 public class Institute {
     private Long idInstitute;
     private String name;
-    private String logo;
     private String site;
     static private InstituteDAO DAO = new InstituteDAO();
 
@@ -24,8 +23,8 @@ public class Institute {
         DAO.update(this);
     }
 
-    public void delete(){
-        DAO.delete(this.idInstitute);
+    public static void delete(Long id){
+        DAO.delete(id);
     }
 
     public static Institute findOne(Long id){

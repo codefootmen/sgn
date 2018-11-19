@@ -20,7 +20,6 @@
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
-                    <th>Logo</th>
                     <th>Site</th>
                     <th>Edit</th>
                     <th>Delete</th>
@@ -29,10 +28,9 @@
                 <tbody>
                 <c:forEach items="${institutes}" var="a">
                     <tr>
-                        <th><a href="${path}/institutes/${a.getIdInstitute()}">${a.getIdInstitute()}</a></th>
-                        <th>${a.getName()}</th>
-                        <th>${a.getLogo()}</th>
-                        <th>${a.getSite()}</th>
+                        <td><a href="${path}/institutes/${a.getIdInstitute()}">${a.getIdInstitute()}</a></td>
+                        <td>${a.getName()}</td>
+                        <td>${a.getSite()}</td>
                         <td>
                             <a href="/institutes/${a.getIdInstitute()}/edit">
                                 <span class="icon">

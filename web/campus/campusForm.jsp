@@ -64,7 +64,7 @@
                         <div class="control">
                             <label class="label is-inline-block">Institute</label>
                             <div class="select is-inline-block">
-                                <select name="institute">
+                                <select name="idInstitute">
                                     <c:forEach items="${institutes}" var="inst">
                                         <option value="${inst.getIdInstitute()}" <c:if test="${inst.getIdInstitute() == campus.getIdInstitute()}"> selected</c:if>> ${inst.getName()}</option>
                                     </c:forEach>

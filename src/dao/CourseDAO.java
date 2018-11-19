@@ -68,14 +68,14 @@ public class CourseDAO implements DAO<Course, Long> {
         try {
             statement = connection.prepareStatement(
                     "UPDATE course SET " +
-                            "semester = ? " +
-                            "year = ? " +
-                            "id_subject = ? " +
-                            "id_program = ?" +
-                            "id_department = ? " +
-                            "id_campus = ? " +
-                            "id_institute = ? " +
-                            "id_period = ? " +
+                            "semester = ?, " +
+                            "year = ?, " +
+                            "id_subject = ?, " +
+                            "id_program = ?," +
+                            "id_department = ?, " +
+                            "id_campus = ?, " +
+                            "id_institute = ?, " +
+                            "id_period = ?, " +
                             "id_professor = ? " +
                             "WHERE id_course = ?"
             );

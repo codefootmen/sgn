@@ -35,7 +35,8 @@ public class RoomTypeController extends Servlet {
 
     @Override
     public RequestDispatcher delete(HttpServletRequest request) {
-        return null;
+        RoomType.delete(Long.valueOf(request.getAttribute("id").toString()));
+        return request.getRequestDispatcher("/roomTypes/");
     }
 
     @Override

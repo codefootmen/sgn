@@ -56,16 +56,12 @@ public class Building {
         return this;
     }
 
-    public void save() throws SQLException, ClassNotFoundException{
-        DAO.save(this);
+    public static Optional<Building> update(Building building) {
+        return DAO.update(building);
     }
 
-    public void update() throws SQLException, ClassNotFoundException{
-        DAO.update(this);
-    }
-
-    public void delete() throws SQLException, ClassNotFoundException{
-        DAO.delete(this.idBuilding);
+    public static void delete(Long id) {
+        DAO.delete(id);
     }
 
     public static Building findOne(Long id) {

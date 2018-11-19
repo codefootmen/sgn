@@ -15,7 +15,6 @@
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
-                    <th>Logo</th>
                     <th>Site</th>
                 </tr>
                 </thead>
@@ -23,7 +22,6 @@
                     <tr>
                         <th>${institute.getIdInstitute()}</th>
                         <th>${institute.getName()}</th>
-                        <th><img src="${institute.getLogo()}"></th>
                         <th>${institute.getSite()}</th>
                     </tr>
                 </tbody>
