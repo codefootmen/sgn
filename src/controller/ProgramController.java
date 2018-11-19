@@ -18,12 +18,38 @@ public class ProgramController extends Servlet {
 
     @Override
     public RequestDispatcher save(HttpServletRequest request) {
-        return null;
+        String name = request.getParameter("name");
+        Long idDepartment = Long.valueOf(request.getParameter("idDepartment"));
+        String academicLevel = request.getParameter("academicLevel");
+        Long idCampus = Long.valueOf(request.getParameter("idCampus"));
+        Long idInstitute = Long.valueOf(request.getParameter("institute"));
+        Program program = new Program()
+                .setName(name)
+                .setIdDepartment(idDepartment)
+                .setAcademicLevel(academicLevel)
+                .setIdCampus(idCampus)
+                .setIdInstitute(idInstitute);
+        Program.save(program);
+        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
     public RequestDispatcher update(HttpServletRequest request) {
-        return null;
+        Long idProgram = Long.valueOf(request.getAttribute("id").toString());
+        String name = request.getParameter("name");
+        Long idDepartment = Long.valueOf(request.getParameter("idDepartment"));
+        String academicLevel = request.getParameter("academicLevel");
+        Long idCampus = Long.valueOf(request.getParameter("idCampus"));
+        Long idInstitute = Long.valueOf(request.getParameter("institute"));
+        Program program = new Program()
+                .setIdProgram(idProgram)
+                .setName(name)
+                .setIdDepartment(idDepartment)
+                .setAcademicLevel(academicLevel)
+                .setIdCampus(idCampus)
+                .setIdInstitute(idInstitute);
+        Program.update(program);
+        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
@@ -41,7 +67,7 @@ public class ProgramController extends Servlet {
         request.setAttribute("campi", Campus.findAll());
         request.setAttribute("institutes", Institute.findAll());
         request.setAttribute("operation", "Edit");
-        request.setAttribute("action", "/program/" + id);
+        request.setAttribute("action", "/programs/" + id + "/edit");
         return request.getRequestDispatcher("/program/programForm.jsp");
     }
 
