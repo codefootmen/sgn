@@ -19,7 +19,17 @@ public class StudentController extends Servlet {
 
     @Override
     public RequestDispatcher save(HttpServletRequest request) {
-        return null;
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        Long idActivity = Long.valueOf(request.getParameter("activity"));
+        String email = request.getParameter("email");
+        Student student = new Student()
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setEmail(email)
+                .setIdActivity(idActivity);
+        Student.save(student);
+        return request.getRequestDispatcher("/student/studentShowAll.jsp");
     }
 
     @Override
@@ -35,7 +45,7 @@ public class StudentController extends Servlet {
                 .setLastName(lastName)
                 .setEmail(email)
                 .setIdActivity(idActivity);
-        student.update();
+        Student.update(student);
         return request.getRequestDispatcher("/student/studentShowAll.jsp");
     }
 

@@ -20,7 +20,17 @@ public class RequestController extends Servlet {
 
     @Override
     public RequestDispatcher save(HttpServletRequest request) {
-        return null;
+        String motive = request.getParameter("motive");
+        String description = request.getParameter("description");
+        String priority = request.getParameter("priority");
+        Long idRoom = Long.valueOf(request.getParameter("room"));
+        Request systemRequest = new Request()
+                .setMotive(motive)
+                .setDescription(description)
+                .setPriority(priority)
+                .setIdRoom(idRoom);
+        Request.update(systemRequest);
+        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
@@ -36,7 +46,7 @@ public class RequestController extends Servlet {
                 .setDescription(description)
                 .setPriority(priority)
                 .setIdRoom(idRoom);
-        systemRequest.update();
+        systemRequest.update(systemRequest);
         return request.getRequestDispatcher("/index.jsp");
 
     }

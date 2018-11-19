@@ -18,7 +18,23 @@ public class SubjectController extends Servlet {
 
     @Override
     public RequestDispatcher save(HttpServletRequest request) {
-        return null;
+        String name = request.getParameter("name");
+        Integer quantityOfCredits = Integer.valueOf(request.getParameter("quantityOfCredits"));
+        Long idRoomType = Long.valueOf(request.getParameter("roomType"));
+        Long idProgram = Long.valueOf(request.getParameter("program"));
+        Long idDepartment = Long.valueOf(request.getParameter("department"));
+        Long idCampus = Long.valueOf(request.getParameter("campus"));
+        Long idInstitute = Long.valueOf(request.getParameter("institute"));
+        Subject subject = new Subject()
+                .setName(name)
+                .setQuantityOfCredits(quantityOfCredits)
+                .setIdRoomType(idRoomType)
+                .setIdProgram(idProgram)
+                .setIdDepartment(idDepartment)
+                .setIdCampus(idCampus)
+                .setIdInstitute(idInstitute);
+        Subject.update(subject);
+        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
@@ -40,7 +56,7 @@ public class SubjectController extends Servlet {
                 .setIdDepartment(idDepartment)
                 .setIdCampus(idCampus)
                 .setIdInstitute(idInstitute);
-        subject.update();
+        Subject.update(subject);
         return request.getRequestDispatcher("/index.jsp");
     }
 

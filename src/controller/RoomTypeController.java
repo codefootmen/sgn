@@ -17,7 +17,13 @@ public class RoomTypeController extends Servlet {
 
     @Override
     public RequestDispatcher save(HttpServletRequest request) {
-        return null;
+        String name = request.getParameter("name");
+        String description = request.getParameter("description");
+        RoomType roomType = new RoomType()
+                .setName(name)
+                .setDescription(description);
+        RoomType.save(roomType);
+        return request.getRequestDispatcher("/roomType/roomTypeShowAll.jsp");
     }
 
     @Override
@@ -29,7 +35,7 @@ public class RoomTypeController extends Servlet {
                 .setIdRoomType(id)
                 .setName(name)
                 .setDescription(description);
-        roomType.update();
+        RoomType.update(roomType);
         return request.getRequestDispatcher("/roomType/roomTypeShowAll.jsp");
     }
 

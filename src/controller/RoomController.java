@@ -18,7 +18,17 @@ public class RoomController extends Servlet {
 
     @Override
     public RequestDispatcher save(HttpServletRequest request) {
-        return null;
+        Integer number = Integer.valueOf(request.getParameter("number"));
+        Integer quantityOfSeats = Integer.valueOf(request.getParameter("quantityOfSeats"));
+        Long roomType = Long.valueOf(request.getParameter("roomType"));
+        Long building = Long.valueOf(request.getParameter("building"));
+        Room room = new Room()
+                .setNumber(number)
+                .setQuantityOfSeats(quantityOfSeats)
+                .setIdRoomType(roomType)
+                .setIdBuilding(building);
+        Room.save(room);
+        return request.getRequestDispatcher("/room/roomShowAll.jsp");
     }
 
     @Override
@@ -34,7 +44,7 @@ public class RoomController extends Servlet {
                 .setQuantityOfSeats(quantityOfSeats)
                 .setIdRoomType(roomType)
                 .setIdBuilding(building);
-        room.update();
+        Room.update(room);
         return request.getRequestDispatcher("/room/roomShowAll.jsp");
     }
 
