@@ -29,18 +29,44 @@ public class DepartmentController extends Servlet {
         request.setAttribute("institutes", Institute.findAll());
         request.setAttribute("professors", Professor.findAll());
         request.setAttribute("operation", "Edit");
-        request.setAttribute("action", "/department/" + id);
+        request.setAttribute("action", "/departments/" + id + "/edit");
         return request.getRequestDispatcher("/department/departmentForm.jsp");
     }
 
     @Override
     public RequestDispatcher save(HttpServletRequest request) {
-        return null;
+        String field = request.getParameter("field");
+        String description = request.getParameter("description");
+        Long idProfessor = Long.valueOf(request.getParameter("idProfessor"));
+        Long idCampus = Long.valueOf(request.getParameter("idCampus"));
+        Long idInstitute = Long.valueOf(request.getParameter("idInstitute"));
+        Department department = new Department()
+                .setField(field)
+                .setDescription(description)
+                .setIdProfessor(idProfessor)
+                .setIdCampus(idCampus)
+                .setIdInstitute(idInstitute);
+        Department.save(department);
+        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
     public RequestDispatcher update(HttpServletRequest request) {
-        return null;
+        Long idDepartment = Long.valueOf(request.getAttribute("id").toString());
+        String field = request.getParameter("field");
+        String description = request.getParameter("description");
+        Long idProfessor = Long.valueOf(request.getParameter("idProfessor"));
+        Long idCampus = Long.valueOf(request.getParameter("idCampus"));
+        Long idInstitute = Long.valueOf(request.getParameter("idInstitute"));
+        Department department = new Department()
+                .setIdDepartment(idDepartment)
+                .setField(field)
+                .setDescription(description)
+                .setIdProfessor(idProfessor)
+                .setIdCampus(idCampus)
+                .setIdInstitute(idInstitute);
+        Department.update(department);
+        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
