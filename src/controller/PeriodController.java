@@ -19,12 +19,34 @@ public class PeriodController extends Servlet {
 
     @Override
     public RequestDispatcher save(HttpServletRequest request) {
-        return null;
+        String start = request.getParameter("start");
+        String end = request.getParameter("end");
+        Long idRoom = Long.valueOf(request.getParameter("idRoom"));
+        String dayOfTheWeek = request.getParameter("dayOfTheWeek");
+        Period period = new Period()
+                .setStart(start)
+                .setEnd(end)
+                .setIdRoom(idRoom)
+                .setDayOfTheWeek(dayOfTheWeek);
+        Period.save(period);
+        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
     public RequestDispatcher update(HttpServletRequest request) {
-        return null;
+        Long idPeriod = Long.valueOf(request.getAttribute("id").toString());
+        String start = request.getParameter("start");
+        String end = request.getParameter("end");
+        Long idRoom = Long.valueOf(request.getParameter("idRoom"));
+        String dayOfTheWeek = request.getParameter("dayOfTheWeek");
+        Period period = new Period()
+                .setIdPeriod(idPeriod)
+                .setStart(start)
+                .setEnd(end)
+                .setIdRoom(idRoom)
+                .setDayOfTheWeek(dayOfTheWeek);
+        Period.save(period);
+        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
@@ -39,7 +61,7 @@ public class PeriodController extends Servlet {
         request.setAttribute("period", Period.findOne(id));
         request.setAttribute("rooms", Room.findAll());
         request.setAttribute("operation", "Edit");
-        request.setAttribute("action", "/period/" + id);
+        request.setAttribute("action", "/periods/" + id + "/edit");
         return request.getRequestDispatcher("/period/periodForm.jsp");
     }
 
