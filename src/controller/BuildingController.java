@@ -18,7 +18,7 @@ public class BuildingController extends Servlet {
         request.setAttribute("campi", Campus.findAll());
         request.setAttribute("institutes", Institute.findAll());
         request.setAttribute("operation", "New");
-        request.setAttribute("action", "/building/new");
+        request.setAttribute("action", "/buildings/new");
         return request.getRequestDispatcher("/building/buildingForm.jsp");
     }
 
