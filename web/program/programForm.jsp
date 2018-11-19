@@ -14,7 +14,7 @@
                 <div class="field">
                     <label class="label">Name</label>
                     <div class="control">
-                        <input class="input is-info" type="text" placeholder="Name" value="${program.getName()}">
+                        <input class="input is-info" name="name" type="text" placeholder="Name" value="${program.getName()}">
                     </div>
                 </div>
 
@@ -22,7 +22,7 @@
                     <label class="label">Department</label>
                     <div class="control">
                         <div class="select">
-                            <select>
+                            <select name="idDepartment">
                                 <c:forEach items="${departments}" var="dep">
                                     <option value="${dep.getIdDepartment()}"
                                             <c:if test="${program.getIdDepartment() == dep.getIdDepartment()}">selected </c:if> >${dep.getField()}</option>
@@ -36,7 +36,7 @@
                     <label class="label">Academic Level</label>
                     <div class="control">
                         <div class="select">
-                            <select>
+                            <select name="academicLevel">
                                 <c:forEach items="${levels}" var="acad">
                                     <option value="${acad}"
                                             <c:if test="${program.getAcademicLevel() == acad}">selected </c:if> >${acad}</option>
@@ -50,7 +50,7 @@
                     <label class="label">Campus</label>
                     <div class="control">
                         <div class="select">
-                            <select>
+                            <select name="idCampus">
                                 <c:forEach items="${campi}" var="campus">
                                     <option value="${campus.getIdCampus()}"
                                             <c:if test="${program.getIdCampus() == campus.getIdCampus()}">selected </c:if> >${campus.getName()}</option>
@@ -64,7 +64,7 @@
                     <label class="label">Institute</label>
                     <div class="control">
                         <div class="select">
-                            <select>
+                            <select name="idInstitute">
                                 <c:forEach items="${institutes}" var="inst">
                                     <option value="${inst.getIdInstitute()}"
                                             <c:if test="${program.getIdInstitute() == inst.getIdInstitute()}">selected </c:if> >${inst.getName()}</option>
@@ -76,10 +76,10 @@
 
                 <div class="field is-grouped">
                     <div class="control">
-                        <button class="button is-link">Submit</button>
+                        <button class="button is-link" type="submit">Submit</button>
                     </div>
                     <div class="control">
-                        <button class="button is-text">Cancel</button>
+                        <button class="button is-text" type="reset">Cancel</button>
                     </div>
                 </div>
             </div>

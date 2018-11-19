@@ -15,14 +15,14 @@
                 <div class="field">
                     <label class="label">Start</label>
                     <div class="control">
-                        <input class="input is-info" type="text" placeholder="DD-MM-YYYY" value="${period.getStart()}">
+                        <input class="input is-info" name="start" type="text" placeholder="DD-MM-YYYY" value="${period.getStart()}">
                     </div>
                 </div>
 
                 <div class="field">
                     <label class="label">End</label>
                     <div class="control">
-                        <input class="input is-info" type="text" placeholder="DD-MM-YYYY" value="${period.getEnd()}">
+                        <input class="input is-info" name="end" type="text" placeholder="DD-MM-YYYY" value="${period.getEnd()}">
                     </div>
                 </div>
 
@@ -30,7 +30,7 @@
                     <label class="label">Room</label>
                     <div class="control">
                         <div class="select">
-                            <select>
+                            <select name="idRoom">
                                 <c:forEach items="${rooms}" var="room">
                                     <option value="${room.getIdRoom()}" <c:if test="${period.getIdRoom() == room.getIdRoom()}"> selected </c:if> >${room.getNumber()}</option>
                                 </c:forEach>
@@ -43,7 +43,7 @@
                     <label class="label">Day of the week</label>
                     <div class="is-inline-block">
                         <div class="select">
-                            <select>
+                            <select name="dayOfTheWeek">
                                 <option value="monday">Monday</option>
                                 <option value="tuesday">Tuesday</option>
                                 <option value="wednesday">Wednesday</option>
@@ -59,10 +59,10 @@
 
                 <div class="field is-grouped">
                     <div class="control">
-                        <button class="button is-link">Submit</button>
+                        <button class="button is-link" type="submit">Submit</button>
                     </div>
                     <div class="control">
-                        <button class="button is-text">Cancel</button>
+                        <button class="button is-text" type="reset">Cancel</button>
                     </div>
                 </div>
             </div>
