@@ -12,6 +12,11 @@ import java.util.EnumSet;
 public class SubjectController extends Servlet {
 
     @Override
+    public AccessLevelEnum getRequiredAccessLevel() {
+        return AccessLevelEnum.HEAD;
+    }
+
+    @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
         return request.getRequestDispatcher("/subject/subjectForm.jsp");
     }

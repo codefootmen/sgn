@@ -1,5 +1,7 @@
 package controller;
 
+import model.AccessLevelEnum;
+
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -9,7 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import static model.AccessLevelEnum.*;
+
 public abstract class Servlet extends HttpServlet {
+
+    public abstract AccessLevelEnum getRequiredAccessLevel();
 
     public abstract RequestDispatcher newPage(HttpServletRequest request);
 
@@ -24,6 +30,35 @@ public abstract class Servlet extends HttpServlet {
     public abstract RequestDispatcher update(HttpServletRequest request);
 
     public abstract RequestDispatcher delete(HttpServletRequest request);
+
+    protected Boolean authenticate(HttpServletRequest request){
+        if(getRequiredAccessLevel() == NONE){
+            return true;
+        }
+        if(request.getSession().getAttribute("access_level") == null){
+            return false;
+        }
+        switch (AccessLevelEnum.valueOf(request.getSession().getAttribute("access_level").toString()))
+        {
+            case ADMIN:
+                return true;
+            case HEAD:
+                if(getRequiredAccessLevel() != ADMIN){
+                    return true;
+                }else {
+                    return false;
+                }
+            case PROFESSOR:
+                if(getRequiredAccessLevel() == PROFESSOR){
+                    return true;
+                }else {
+                    return false;
+                }
+
+        }
+
+        return false;
+    }
 
     protected void handleRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -78,10 +113,18 @@ public abstract class Servlet extends HttpServlet {
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        handleRequest(request, response);
+        if(authenticate(request)){
+            handleRequest(request, response);
+        }else {
+            response.sendRedirect("/authentication");
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        handleRequest(request, response);
+        if(authenticate(request)){
+            handleRequest(request, response);
+        }else {
+            response.sendRedirect("/authentication");
+        }
     }
 }

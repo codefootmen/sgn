@@ -1,5 +1,6 @@
 package controller;
 
+import model.AccessLevelEnum;
 import model.Institute;
 
 import javax.servlet.RequestDispatcher;
@@ -8,6 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 
 @WebServlet(name = "InstituteController", urlPatterns = {"/institutes/*"})
 public class InstituteController extends Servlet {
+
+    @Override
+    public AccessLevelEnum getRequiredAccessLevel() {
+        return AccessLevelEnum.ADMIN;
+    }
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {

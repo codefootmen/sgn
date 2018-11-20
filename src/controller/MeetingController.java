@@ -1,9 +1,6 @@
 package controller;
 
-import model.Campus;
-import model.Department;
-import model.Institute;
-import model.Meeting;
+import model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 
 @WebServlet(name = "MeetingController", urlPatterns = {"/meetings/*"})
 public class MeetingController extends Servlet {
+
+    @Override
+    public AccessLevelEnum getRequiredAccessLevel() {
+        return AccessLevelEnum.HEAD;
+    }
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {

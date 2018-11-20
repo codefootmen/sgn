@@ -18,14 +18,12 @@
                             <input class="input is-info" name="name" type="text" placeholder="Text input" value="${building.getName()}">
                         </div>
                     </div>
-
                     <div class="field">
                         <label class="label">Quantity of bathrooms</label>
                         <div class="control">
                             <input class="input is-info" name="quantityOfBathrooms" type="number" placeholder="Number input" value="${building.getQuantityOfBathrooms()}">
                         </div>
                     </div>
-
                     <div class="field">
                         <div class="checkbox">
                             <input class="is-info" name="elevator" id="elevator" type="checkbox" ${building.getElevator() ? "checked" : ""}>

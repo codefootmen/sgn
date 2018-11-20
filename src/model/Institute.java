@@ -35,4 +35,5 @@ public class Institute {
     public static List<Institute> findAll() {
         return DAO.findAll();
     }
+
 }

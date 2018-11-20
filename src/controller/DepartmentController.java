@@ -1,9 +1,6 @@
 package controller;
 
-import model.Campus;
-import model.Department;
-import model.Institute;
-import model.Professor;
+import model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 
 @WebServlet(name = "DepartmentController", urlPatterns = {"/departments/*"})
 public class DepartmentController extends Servlet {
+
+    @Override
+    public AccessLevelEnum getRequiredAccessLevel() {
+        return AccessLevelEnum.ADMIN;
+    }
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {

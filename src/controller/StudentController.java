@@ -1,5 +1,6 @@
 package controller;
 
+import model.AccessLevelEnum;
 import model.Activity;
 import model.RoomType;
 import model.Student;
@@ -11,6 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 
 @WebServlet(name = "StudentController", urlPatterns = {"/students/*"})
 public class StudentController extends Servlet {
+
+    @Override
+    public AccessLevelEnum getRequiredAccessLevel() {
+        return AccessLevelEnum.PROFESSOR;
+    }
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {

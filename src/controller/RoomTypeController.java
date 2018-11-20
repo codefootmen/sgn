@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 public class RoomTypeController extends Servlet {
 
     @Override
+    public AccessLevelEnum getRequiredAccessLevel() {
+        return AccessLevelEnum.ADMIN;
+    }
+
+    @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
         return request.getRequestDispatcher("/roomType/roomTypeForm.jsp");
     }

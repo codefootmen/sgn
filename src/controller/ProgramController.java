@@ -12,6 +12,11 @@ import java.util.EnumSet;
 public class ProgramController extends Servlet {
 
     @Override
+    public AccessLevelEnum getRequiredAccessLevel() {
+        return AccessLevelEnum.ADMIN;
+    }
+
+    @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
         return request.getRequestDispatcher("/program/programForm.jsp");
     }

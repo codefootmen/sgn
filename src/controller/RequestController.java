@@ -1,5 +1,6 @@
 package controller;
 
+import model.AccessLevelEnum;
 import model.PriorityEnum;
 import model.Request;
 import model.Room;
@@ -12,6 +13,11 @@ import java.util.EnumSet;
 
 @WebServlet(name = "RequestController", urlPatterns = {"/requests/*"})
 public class RequestController extends Servlet {
+
+    @Override
+    public AccessLevelEnum getRequiredAccessLevel() {
+        return AccessLevelEnum.PROFESSOR;
+    }
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {

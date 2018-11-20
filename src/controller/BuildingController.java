@@ -1,5 +1,6 @@
 package controller;
 
+import model.AccessLevelEnum;
 import model.Building;
 import model.Campus;
 import model.Institute;
@@ -12,6 +13,11 @@ import java.sql.SQLException;
 
 @WebServlet(name = "BuildingController", urlPatterns = {"/buildings/*"})
 public class BuildingController extends Servlet {
+
+    @Override
+    public AccessLevelEnum getRequiredAccessLevel() {
+        return AccessLevelEnum.ADMIN;
+    }
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {

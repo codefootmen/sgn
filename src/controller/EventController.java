@@ -1,9 +1,6 @@
 package controller;
 
-import model.Event;
-import model.Period;
-import model.Professor;
-import model.Room;
+import model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 
 @WebServlet(name = "EventController", urlPatterns = {"/events/*"})
 public class EventController extends Servlet {
+
+    @Override
+    public AccessLevelEnum getRequiredAccessLevel() {
+        return AccessLevelEnum.PROFESSOR;
+    }
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {

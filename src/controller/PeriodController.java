@@ -1,5 +1,6 @@
 package controller;
 
+import model.AccessLevelEnum;
 import model.Period;
 import model.Room;
 
@@ -10,6 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 
 @WebServlet(name = "PeriodController", urlPatterns = {"/periods/*"})
 public class PeriodController extends Servlet {
+
+    @Override
+    public AccessLevelEnum getRequiredAccessLevel() {
+        return AccessLevelEnum.ADMIN;
+    }
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {

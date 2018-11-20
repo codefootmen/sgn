@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 public class CourseController extends Servlet {
 
     @Override
+    public AccessLevelEnum getRequiredAccessLevel() {
+        return AccessLevelEnum.HEAD;
+    }
+
+    @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
         request.setAttribute("subjects", Subject.findAll());
         request.setAttribute("programs", Program.findAll());

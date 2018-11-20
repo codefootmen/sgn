@@ -1,5 +1,6 @@
 package controller;
 
+import model.AccessLevelEnum;
 import model.Campus;
 import model.Institute;
 
@@ -14,6 +15,11 @@ import java.io.IOException;
 @WebServlet(name = "CampusController", urlPatterns = {"/campi/*"})
 public class CampusController extends Servlet {
 
+
+    @Override
+    public AccessLevelEnum getRequiredAccessLevel() {
+        return AccessLevelEnum.ADMIN;
+    }
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {

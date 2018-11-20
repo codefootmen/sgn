@@ -12,6 +12,11 @@ import java.util.EnumSet;
 public class ActivityController extends Servlet {
 
     @Override
+    public AccessLevelEnum getRequiredAccessLevel() {
+        return AccessLevelEnum.PROFESSOR;
+    }
+
+    @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
         request.setAttribute("professors", Professor.findAll());
         request.setAttribute("departments", Department.findAll());
