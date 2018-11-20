@@ -22,7 +22,7 @@ public class ProgramController extends Servlet {
         Long idDepartment = Long.valueOf(request.getParameter("idDepartment"));
         String academicLevel = request.getParameter("academicLevel");
         Long idCampus = Long.valueOf(request.getParameter("idCampus"));
-        Long idInstitute = Long.valueOf(request.getParameter("institute"));
+        Long idInstitute = Long.valueOf(request.getParameter("idInstitute"));
         Program program = new Program()
                 .setName(name)
                 .setIdDepartment(idDepartment)
@@ -40,7 +40,7 @@ public class ProgramController extends Servlet {
         Long idDepartment = Long.valueOf(request.getParameter("idDepartment"));
         String academicLevel = request.getParameter("academicLevel");
         Long idCampus = Long.valueOf(request.getParameter("idCampus"));
-        Long idInstitute = Long.valueOf(request.getParameter("institute"));
+        Long idInstitute = Long.valueOf(request.getParameter("idInstitute"));
         Program program = new Program()
                 .setIdProgram(idProgram)
                 .setName(name)
