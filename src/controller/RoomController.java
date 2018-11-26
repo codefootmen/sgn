@@ -13,6 +13,10 @@ public class RoomController extends Servlet {
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
+        request.setAttribute("roomTypes", RoomType.findAll());
+        request.setAttribute("buildings", Building.findAll());
+        request.setAttribute("operation", "New");
+        request.setAttribute("action", "/rooms/new");
         return request.getRequestDispatcher("/room/roomForm.jsp");
     }
 
