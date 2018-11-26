@@ -8,10 +8,14 @@ import model.Meeting;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 
 @WebServlet(name = "MeetingController", urlPatterns = {"/meetings/*"})
 public class MeetingController extends Servlet {
+
+    private final String redirect = "/meetings";
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
@@ -22,7 +26,7 @@ public class MeetingController extends Servlet {
     }
 
     @Override
-    public RequestDispatcher save(HttpServletRequest request) {
+    public void save(HttpServletRequest request, HttpServletResponse response) {
         String day = request.getParameter("day");
         String time = request.getParameter("time");
         String agenda = request.getParameter("agenda");
@@ -39,11 +43,16 @@ public class MeetingController extends Servlet {
                 .setIdInstitute(idInstitute)
                 .setIdDepartment(idDepartment);
         Meeting.save(meeting);
-        return request.getRequestDispatcher("/index.jsp");
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public RequestDispatcher update(HttpServletRequest request) {
+    public void update(HttpServletRequest request, HttpServletResponse response) {
         Long idMeeting = Long.valueOf(request.getAttribute("id").toString());
         String day = request.getParameter("day");
         String time = request.getParameter("time");
@@ -62,13 +71,22 @@ public class MeetingController extends Servlet {
                 .setIdInstitute(idInstitute)
                 .setIdDepartment(idDepartment);
         Meeting.update(meeting);
-        return request.getRequestDispatcher("/index.jsp");
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public RequestDispatcher delete(HttpServletRequest request) {
+    public void delete(HttpServletRequest request, HttpServletResponse response) {
         Meeting.delete(Long.valueOf(request.getAttribute("id").toString()));
-        return request.getRequestDispatcher("/meetings/");
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

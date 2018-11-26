@@ -7,6 +7,7 @@ import model.Institute;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 
 
@@ -34,7 +35,7 @@ public class BuildingController extends Servlet {
     }
 
     @Override
-    public RequestDispatcher save(HttpServletRequest request) {
+    public void save(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
         Integer quantityOfBathrooms = Integer.valueOf(request.getParameter("quantityOfBathrooms"));
         Boolean elevator = Boolean.valueOf(request.getParameter("elevator"));
@@ -49,11 +50,10 @@ public class BuildingController extends Servlet {
                 .setIdCampus(idCampus)
                 .setIdInstitute(idInstitute);
         Building.save(building);
-        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
-    public RequestDispatcher update(HttpServletRequest request) {
+    public void update(HttpServletRequest request, HttpServletResponse response) {
         Long idBuilding = Long.valueOf(request.getAttribute("id").toString());
         String name = request.getParameter("name");
         Integer quantityOfBathrooms = Integer.valueOf(request.getParameter("quantityOfBathrooms"));
@@ -70,13 +70,11 @@ public class BuildingController extends Servlet {
                 .setIdCampus(idCampus)
                 .setIdInstitute(idInstitute);
         Building.update(building);
-        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
-    public RequestDispatcher delete(HttpServletRequest request) {
+    public void delete(HttpServletRequest request, HttpServletResponse response) {
         Building.delete(Long.valueOf(request.getAttribute("id").toString()));
-        return request.getRequestDispatcher("/buildings/");
     }
 
     @Override

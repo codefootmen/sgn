@@ -8,6 +8,7 @@ import model.Professor;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet(name = "DepartmentController", urlPatterns = {"/departments/*"})
@@ -34,7 +35,7 @@ public class DepartmentController extends Servlet {
     }
 
     @Override
-    public RequestDispatcher save(HttpServletRequest request) {
+    public void save(HttpServletRequest request, HttpServletResponse response) {
         String field = request.getParameter("field");
         String description = request.getParameter("description");
         Long idProfessor = Long.valueOf(request.getParameter("idProfessor"));
@@ -47,11 +48,10 @@ public class DepartmentController extends Servlet {
                 .setIdCampus(idCampus)
                 .setIdInstitute(idInstitute);
         Department.save(department);
-        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
-    public RequestDispatcher update(HttpServletRequest request) {
+    public void update(HttpServletRequest request, HttpServletResponse response) {
         Long idDepartment = Long.valueOf(request.getAttribute("id").toString());
         String field = request.getParameter("field");
         String description = request.getParameter("description");
@@ -66,13 +66,11 @@ public class DepartmentController extends Servlet {
                 .setIdCampus(idCampus)
                 .setIdInstitute(idInstitute);
         Department.update(department);
-        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
-    public RequestDispatcher delete(HttpServletRequest request) {
+    public void delete(HttpServletRequest request, HttpServletResponse response) {
         Department.delete(Long.valueOf(request.getAttribute("id").toString()));
-        return request.getRequestDispatcher("/departments/");
     }
 
     @Override

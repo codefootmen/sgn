@@ -24,7 +24,7 @@ public class CampusController extends Servlet {
     }
 
     @Override
-    public RequestDispatcher save(HttpServletRequest request) {
+    public void save(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
         String street = request.getParameter("street");
         String number = request.getParameter("number");
@@ -43,11 +43,10 @@ public class CampusController extends Servlet {
                 .setZip(zip)
                 .setIdInstitute(institute);
         Campus.save(campus);
-        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
-    public RequestDispatcher update(HttpServletRequest request) {
+    public void update(HttpServletRequest request, HttpServletResponse response) {
         Long id = Long.valueOf(request.getAttribute("id").toString());
         String name = request.getParameter("name");
         String street = request.getParameter("street");
@@ -68,13 +67,11 @@ public class CampusController extends Servlet {
                 .setZip(zip)
                 .setIdInstitute(idInstitute);
         Campus.update(campus);
-        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
-    public RequestDispatcher delete(HttpServletRequest request) {
+    public void delete(HttpServletRequest request, HttpServletResponse response) {
         Campus.delete(Long.valueOf(request.getAttribute("id").toString()));
-        return request.getRequestDispatcher("/campi/");
     }
 
     @Override

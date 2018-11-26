@@ -5,6 +5,7 @@ import model.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.EnumSet;
 
 
@@ -23,7 +24,7 @@ public class ProgramController extends Servlet {
     }
 
     @Override
-    public RequestDispatcher save(HttpServletRequest request) {
+    public void save(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
         Long idDepartment = Long.valueOf(request.getParameter("idDepartment"));
         String academicLevel = request.getParameter("academicLevel");
@@ -36,11 +37,10 @@ public class ProgramController extends Servlet {
                 .setIdCampus(idCampus)
                 .setIdInstitute(idInstitute);
         Program.save(program);
-        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
-    public RequestDispatcher update(HttpServletRequest request) {
+    public void update(HttpServletRequest request, HttpServletResponse response) {
         Long idProgram = Long.valueOf(request.getAttribute("id").toString());
         String name = request.getParameter("name");
         Long idDepartment = Long.valueOf(request.getParameter("idDepartment"));
@@ -55,13 +55,11 @@ public class ProgramController extends Servlet {
                 .setIdCampus(idCampus)
                 .setIdInstitute(idInstitute);
         Program.update(program);
-        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
-    public RequestDispatcher delete(HttpServletRequest request) {
+    public void delete(HttpServletRequest request, HttpServletResponse response) {
         Program.delete(Long.valueOf(request.getAttribute("id").toString()));
-        return request.getRequestDispatcher("/programs/");
     }
 
     @Override

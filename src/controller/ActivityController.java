@@ -5,6 +5,7 @@ import model.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.EnumSet;
 
 
@@ -53,7 +54,7 @@ public class ActivityController extends Servlet {
     }
 
     @Override
-    public RequestDispatcher save(HttpServletRequest request) {
+    public void save(HttpServletRequest request,HttpServletResponse response){
         String name = request.getParameter("name");
         String area = request.getParameter("area");
         String activityType = request.getParameter("activityType");
@@ -72,11 +73,10 @@ public class ActivityController extends Servlet {
                 .setIdInstitute(institute)
                 .setIdProgram(program);
         Activity.save(activity);
-        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
-    public RequestDispatcher update(HttpServletRequest request) {
+    public void update(HttpServletRequest request, HttpServletResponse response) {
         Long idActivity = Long.valueOf(request.getAttribute("id").toString());
         String name = request.getParameter("name");
         String area = request.getParameter("area");
@@ -97,12 +97,10 @@ public class ActivityController extends Servlet {
                 .setIdInstitute(institute)
                 .setIdProgram(program);
         Activity.update(activity);
-        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
-    public RequestDispatcher delete(HttpServletRequest request) {
+    public void delete(HttpServletRequest request, HttpServletResponse response) {
         Activity.delete(Long.valueOf(request.getAttribute("id").toString()));
-        return request.getRequestDispatcher("/activities/");
     }
 }

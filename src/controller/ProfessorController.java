@@ -7,6 +7,7 @@ import model.StatusEnum;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.EnumSet;
 
 
@@ -23,7 +24,7 @@ public class ProfessorController extends Servlet {
     }
 
     @Override
-    public RequestDispatcher save(HttpServletRequest request) {
+    public void save(HttpServletRequest request, HttpServletResponse response) {
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
@@ -36,14 +37,11 @@ public class ProfessorController extends Servlet {
                 .setStatus(status)
                 .setHonorifics(honorifics);
         Professor.save(professor);
-        return request.getRequestDispatcher("/professors");
-
     }
 
     @Override
-    public RequestDispatcher delete(HttpServletRequest request) {
+    public void delete(HttpServletRequest request, HttpServletResponse response) {
         Professor.delete(Long.valueOf(request.getAttribute("id").toString()));
-        return request.getRequestDispatcher("/professors/");
     }
 
     @Override
@@ -58,7 +56,7 @@ public class ProfessorController extends Servlet {
     }
 
     @Override
-    public RequestDispatcher update(HttpServletRequest request) {
+    public void update(HttpServletRequest request, HttpServletResponse response) {
         Long idProfessor = Long.valueOf(request.getAttribute("id").toString());
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
@@ -73,7 +71,6 @@ public class ProfessorController extends Servlet {
                 .setStatus(status)
                 .setHonorifics(honorifics);
         Professor.update(professor);
-        return request.getRequestDispatcher("/professors/");
     }
 
     @Override

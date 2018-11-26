@@ -5,6 +5,7 @@ import model.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.EnumSet;
 
 
@@ -21,7 +22,7 @@ public class RoomController extends Servlet {
     }
 
     @Override
-    public RequestDispatcher save(HttpServletRequest request) {
+    public void save(HttpServletRequest request, HttpServletResponse response) {
         Integer number = Integer.valueOf(request.getParameter("number"));
         Integer quantityOfSeats = Integer.valueOf(request.getParameter("quantityOfSeats"));
         Long roomType = Long.valueOf(request.getParameter("roomType"));
@@ -32,11 +33,10 @@ public class RoomController extends Servlet {
                 .setIdRoomType(roomType)
                 .setIdBuilding(building);
         Room.save(room);
-        return request.getRequestDispatcher("/room/roomShowAll.jsp");
     }
 
     @Override
-    public RequestDispatcher update(HttpServletRequest request) {
+    public void update(HttpServletRequest request, HttpServletResponse response) {
         Long id = Long.valueOf(request.getAttribute("id").toString());
         Integer number = Integer.valueOf(request.getParameter("number"));
         Integer quantityOfSeats = Integer.valueOf(request.getParameter("quantityOfSeats"));
@@ -49,13 +49,11 @@ public class RoomController extends Servlet {
                 .setIdRoomType(roomType)
                 .setIdBuilding(building);
         Room.update(room);
-        return request.getRequestDispatcher("/room/roomShowAll.jsp");
     }
 
     @Override
-    public RequestDispatcher delete(HttpServletRequest request) {
+    public void delete(HttpServletRequest request, HttpServletResponse response) {
         Room.delete(Long.valueOf(request.getAttribute("id").toString()));
-        return request.getRequestDispatcher("/rooms/");
     }
 
     @Override

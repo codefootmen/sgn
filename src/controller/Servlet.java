@@ -19,11 +19,11 @@ public abstract class Servlet extends HttpServlet {
 
     public abstract RequestDispatcher showAllPage(HttpServletRequest request);
 
-    public abstract RequestDispatcher save(HttpServletRequest request);
+    public abstract void save(HttpServletRequest request, HttpServletResponse response);
 
-    public abstract RequestDispatcher update(HttpServletRequest request);
+    public abstract void update(HttpServletRequest request, HttpServletResponse response);
 
-    public abstract RequestDispatcher delete(HttpServletRequest request);
+    public abstract void delete(HttpServletRequest request, HttpServletResponse response);
 
     protected void handleRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -49,14 +49,14 @@ public abstract class Servlet extends HttpServlet {
                     editPage(request).forward(request, response);
                 } else {
                     request.setAttribute("id", m.group(1).substring(1));
-                    update(request).forward(request, response);
+                    update(request, response);
                 }
             }
             if (m.group(3) != null) {
                 if (request.getMethod().equals("GET")) {
                     newPage(request).forward(request, response);
                 } else {
-                    save(request).forward(request, response);
+                    save(request, response);
                 }
             }
             if (m.group(4) != null) {
@@ -65,7 +65,7 @@ public abstract class Servlet extends HttpServlet {
                     showOnePage(request).forward(request, response);
                 } else {
                     request.setAttribute("id", url.substring(1));
-                    delete(request).forward(request, response);
+                    delete(request, response);
                 }
             }
             if (m.group(5) != null) {

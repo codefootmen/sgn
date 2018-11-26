@@ -5,6 +5,7 @@ import model.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet(name = "RoomTypeController", urlPatterns = {"/roomTypes/*"})
@@ -16,18 +17,17 @@ public class RoomTypeController extends Servlet {
     }
 
     @Override
-    public RequestDispatcher save(HttpServletRequest request) {
+    public void save(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
         String description = request.getParameter("description");
         RoomType roomType = new RoomType()
                 .setName(name)
                 .setDescription(description);
         RoomType.save(roomType);
-        return request.getRequestDispatcher("/roomType/roomTypeShowAll.jsp");
     }
 
     @Override
-    public RequestDispatcher update(HttpServletRequest request) {
+    public void update(HttpServletRequest request, HttpServletResponse response) {
         Long id = Long.valueOf(request.getAttribute("id").toString());
         String name = request.getParameter("name");
         String description = request.getParameter("description");
@@ -36,13 +36,11 @@ public class RoomTypeController extends Servlet {
                 .setName(name)
                 .setDescription(description);
         RoomType.update(roomType);
-        return request.getRequestDispatcher("/roomType/roomTypeShowAll.jsp");
     }
 
     @Override
-    public RequestDispatcher delete(HttpServletRequest request) {
+    public void delete(HttpServletRequest request, HttpServletResponse response) {
         RoomType.delete(Long.valueOf(request.getAttribute("id").toString()));
-        return request.getRequestDispatcher("/roomTypes/");
     }
 
     @Override

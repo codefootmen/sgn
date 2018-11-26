@@ -5,6 +5,7 @@ import model.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.EnumSet;
 
 
@@ -25,7 +26,7 @@ public class SubjectController extends Servlet {
     }
 
     @Override
-    public RequestDispatcher save(HttpServletRequest request) {
+    public void save(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
         Integer quantityOfCredits = Integer.valueOf(request.getParameter("quantityOfCredits"));
         Long idRoomType = Long.valueOf(request.getParameter("roomType"));
@@ -42,11 +43,10 @@ public class SubjectController extends Servlet {
                 .setIdCampus(idCampus)
                 .setIdInstitute(idInstitute);
         Subject.update(subject);
-        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
-    public RequestDispatcher update(HttpServletRequest request) {
+    public void update(HttpServletRequest request, HttpServletResponse response) {
         Long id = Long.valueOf(request.getAttribute("id").toString());
         String name = request.getParameter("name");
         Integer quantityOfCredits = Integer.valueOf(request.getParameter("quantityOfCredits"));
@@ -65,13 +65,11 @@ public class SubjectController extends Servlet {
                 .setIdCampus(idCampus)
                 .setIdInstitute(idInstitute);
         Subject.update(subject);
-        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
-    public RequestDispatcher delete(HttpServletRequest request) {
+    public void delete(HttpServletRequest request, HttpServletResponse response) {
         Subject.delete(Long.valueOf(request.getAttribute("id").toString()));
-        return request.getRequestDispatcher("/subjects/");
     }
 
     @Override

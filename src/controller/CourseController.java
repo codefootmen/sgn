@@ -5,6 +5,7 @@ import model.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet(name = "CourseController", urlPatterns = {"/courses/*"})
@@ -25,7 +26,7 @@ public class CourseController extends Servlet {
     }
 
     @Override
-    public RequestDispatcher save(HttpServletRequest request) {
+    public void save(HttpServletRequest request, HttpServletResponse response) {
         Boolean semester = Boolean.valueOf(request.getParameter("semester"));
         Integer year = Integer.valueOf(request.getParameter("year"));
         Long idSubject = Long.valueOf(request.getParameter("idSubject"));
@@ -46,11 +47,10 @@ public class CourseController extends Servlet {
                 .setIdPeriod(idPeriod)
                 .setIdProfessor(idProfessor);
         Course.save(course);
-        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
-    public RequestDispatcher update(HttpServletRequest request) {
+    public void update(HttpServletRequest request, HttpServletResponse response) {
         Long id = Long.valueOf(request.getAttribute("id").toString());
         Boolean semester = Boolean.valueOf(request.getParameter("semester"));
         Integer year = Integer.valueOf(request.getParameter("year"));
@@ -73,13 +73,11 @@ public class CourseController extends Servlet {
                 .setIdPeriod(idPeriod)
                 .setIdProfessor(idProfessor);
         Course.update(course);
-        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
-    public RequestDispatcher delete(HttpServletRequest request) {
+    public void delete(HttpServletRequest request, HttpServletResponse response) {
         Course.delete(Long.valueOf(request.getAttribute("id").toString()));
-        return request.getRequestDispatcher("/courses/");
     }
 
     @Override

@@ -7,6 +7,7 @@ import model.Student;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet(name = "StudentController", urlPatterns = {"/students/*"})
@@ -21,7 +22,7 @@ public class StudentController extends Servlet {
     }
 
     @Override
-    public RequestDispatcher save(HttpServletRequest request) {
+    public void save(HttpServletRequest request, HttpServletResponse response) {
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         Long idActivity = Long.valueOf(request.getParameter("activity"));
@@ -32,11 +33,10 @@ public class StudentController extends Servlet {
                 .setEmail(email)
                 .setIdActivity(idActivity);
         Student.save(student);
-        return request.getRequestDispatcher("/student/studentShowAll.jsp");
     }
 
     @Override
-    public RequestDispatcher update(HttpServletRequest request) {
+    public void update(HttpServletRequest request, HttpServletResponse response) {
         Long id = Long.valueOf(request.getAttribute("id").toString());
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
@@ -49,13 +49,11 @@ public class StudentController extends Servlet {
                 .setEmail(email)
                 .setIdActivity(idActivity);
         Student.update(student);
-        return request.getRequestDispatcher("/student/studentShowAll.jsp");
     }
 
     @Override
-    public RequestDispatcher delete(HttpServletRequest request) {
+    public void delete(HttpServletRequest request, HttpServletResponse response) {
         Student.delete(Long.valueOf(request.getAttribute("id").toString()));
-        return request.getRequestDispatcher("/students/");
     }
 
     @Override

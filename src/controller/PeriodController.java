@@ -6,6 +6,7 @@ import model.Room;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet(name = "PeriodController", urlPatterns = {"/periods/*"})
@@ -18,7 +19,7 @@ public class PeriodController extends Servlet {
     }
 
     @Override
-    public RequestDispatcher save(HttpServletRequest request) {
+    public void save(HttpServletRequest request, HttpServletResponse response) {
         String start = request.getParameter("start");
         String end = request.getParameter("end");
         Long idRoom = Long.valueOf(request.getParameter("idRoom"));
@@ -29,11 +30,10 @@ public class PeriodController extends Servlet {
                 .setIdRoom(idRoom)
                 .setDayOfTheWeek(dayOfTheWeek);
         Period.save(period);
-        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
-    public RequestDispatcher update(HttpServletRequest request) {
+    public void update(HttpServletRequest request, HttpServletResponse response) {
         Long idPeriod = Long.valueOf(request.getAttribute("id").toString());
         String start = request.getParameter("start");
         String end = request.getParameter("end");
@@ -46,13 +46,11 @@ public class PeriodController extends Servlet {
                 .setIdRoom(idRoom)
                 .setDayOfTheWeek(dayOfTheWeek);
         Period.save(period);
-        return request.getRequestDispatcher("/index.jsp");
     }
 
     @Override
-    public RequestDispatcher delete(HttpServletRequest request) {
+    public void delete(HttpServletRequest request, HttpServletResponse response) {
         Period.delete(Long.valueOf(request.getAttribute("id").toString()));
-        return request.getRequestDispatcher("/periods/");
     }
 
     @Override
