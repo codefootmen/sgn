@@ -14,6 +14,9 @@ public class StudentController extends Servlet {
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
+        request.setAttribute("activities", Activity.findAll());
+        request.setAttribute("operation", "New");
+        request.setAttribute("action", "/students/new");
         return request.getRequestDispatcher("/student/studentForm.jsp");
     }
 
@@ -60,6 +63,7 @@ public class StudentController extends Servlet {
         Long id = Long.valueOf(request.getAttribute("id").toString());
         request.setAttribute("student", Student.findOne(id));
         request.setAttribute("activities", Activity.findAll());
+        request.setAttribute("operation", "Edit");
         request.setAttribute("action", "/students/" + id+ "/edit");
         return request.getRequestDispatcher("/student/studentForm.jsp");
     }
