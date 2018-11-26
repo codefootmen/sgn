@@ -13,6 +13,12 @@ public class ProgramController extends Servlet {
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
+        request.setAttribute("departments", Department.findAll());
+        request.setAttribute("levels", EnumSet.allOf(AcademicLevelEnum.class));
+        request.setAttribute("campi", Campus.findAll());
+        request.setAttribute("institutes", Institute.findAll());
+        request.setAttribute("operation", "New");
+        request.setAttribute("action", "/programs/new");
         return request.getRequestDispatcher("/program/programForm.jsp");
     }
 
