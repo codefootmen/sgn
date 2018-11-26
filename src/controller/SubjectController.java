@@ -13,6 +13,14 @@ public class SubjectController extends Servlet {
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
+        request.setAttribute("professors", Professor.findAll());
+        request.setAttribute("departments", Department.findAll());
+        request.setAttribute("campi", Campus.findAll());
+        request.setAttribute("institutes", Institute.findAll());
+        request.setAttribute("programs", Program.findAll());
+        request.setAttribute("roomTypes", RoomType.findAll());
+        request.setAttribute("operation", "New");
+        request.setAttribute("action", "/subjects/new");
         return request.getRequestDispatcher("/subject/subjectForm.jsp");
     }
 
