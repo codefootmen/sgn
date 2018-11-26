@@ -33,7 +33,7 @@ public class RequestController extends Servlet {
                 .setDescription(description)
                 .setPriority(priority)
                 .setIdRoom(idRoom);
-        Request.update(systemRequest);
+        Request.save(systemRequest);
         return request.getRequestDispatcher("/index.jsp");
     }
 
