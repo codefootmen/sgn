@@ -14,7 +14,6 @@ public class SubjectController extends Servlet {
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
-        request.setAttribute("professors", Professor.findAll());
         request.setAttribute("departments", Department.findAll());
         request.setAttribute("campi", Campus.findAll());
         request.setAttribute("institutes", Institute.findAll());
@@ -29,11 +28,11 @@ public class SubjectController extends Servlet {
     public void save(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
         Integer quantityOfCredits = Integer.valueOf(request.getParameter("quantityOfCredits"));
-        Long idRoomType = Long.valueOf(request.getParameter("roomType"));
-        Long idProgram = Long.valueOf(request.getParameter("program"));
-        Long idDepartment = Long.valueOf(request.getParameter("department"));
-        Long idCampus = Long.valueOf(request.getParameter("campus"));
-        Long idInstitute = Long.valueOf(request.getParameter("institute"));
+        Long idRoomType = Long.valueOf(request.getParameter("idRoomType"));
+        Long idProgram = Long.valueOf(request.getParameter("idProgram"));
+        Long idDepartment = Long.valueOf(request.getParameter("idDepartment"));
+        Long idCampus = Long.valueOf(request.getParameter("idCampus"));
+        Long idInstitute = Long.valueOf(request.getParameter("idInstitute"));
         Subject subject = new Subject()
                 .setName(name)
                 .setQuantityOfCredits(quantityOfCredits)
@@ -42,7 +41,8 @@ public class SubjectController extends Servlet {
                 .setIdDepartment(idDepartment)
                 .setIdCampus(idCampus)
                 .setIdInstitute(idInstitute);
-        Subject.update(subject);
+
+        Subject.save(subject);
     }
 
     @Override
@@ -50,11 +50,11 @@ public class SubjectController extends Servlet {
         Long id = Long.valueOf(request.getAttribute("id").toString());
         String name = request.getParameter("name");
         Integer quantityOfCredits = Integer.valueOf(request.getParameter("quantityOfCredits"));
-        Long idRoomType = Long.valueOf(request.getParameter("roomType"));
-        Long idProgram = Long.valueOf(request.getParameter("program"));
-        Long idDepartment = Long.valueOf(request.getParameter("department"));
-        Long idCampus = Long.valueOf(request.getParameter("campus"));
-        Long idInstitute = Long.valueOf(request.getParameter("institute"));
+        Long idRoomType = Long.valueOf(request.getParameter("idRoomType"));
+        Long idProgram = Long.valueOf(request.getParameter("idProgram"));
+        Long idDepartment = Long.valueOf(request.getParameter("idDepartment"));
+        Long idCampus = Long.valueOf(request.getParameter("idCampus"));
+        Long idInstitute = Long.valueOf(request.getParameter("idInstitute"));
         Subject subject = new Subject()
                 .setIdSubject(id)
                 .setName(name)
@@ -76,7 +76,6 @@ public class SubjectController extends Servlet {
     public RequestDispatcher editPage(HttpServletRequest request) {
         Long id = Long.valueOf(request.getAttribute("id").toString());
         request.setAttribute("subject", Subject.findOne(id));
-        request.setAttribute("professors", Professor.findAll());
         request.setAttribute("departments", Department.findAll());
         request.setAttribute("campi", Campus.findAll());
         request.setAttribute("institutes", Institute.findAll());
