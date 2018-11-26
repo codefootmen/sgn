@@ -78,6 +78,7 @@ public class MeetingDAO implements DAO<Meeting, Long> {
                     meeting.getDay(),
                     meeting.getTime(),
                     meeting.getMinutes(),
+                    meeting.getAgenda(),
                     meeting.getIdDepartment(),
                     meeting.getIdCampus(),
                     meeting.getIdInstitute(),
