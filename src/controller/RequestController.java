@@ -15,6 +15,10 @@ public class RequestController extends Servlet {
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
+        request.setAttribute("priorities", EnumSet.allOf(PriorityEnum.class));
+        request.setAttribute("rooms", Room.findAll());
+        request.setAttribute("operation", "New");
+        request.setAttribute("action", "/requests/new");
         return request.getRequestDispatcher("/request/requestForm.jsp");
     }
 
