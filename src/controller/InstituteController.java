@@ -1,5 +1,6 @@
 package controller;
 
+import model.AccessLevelEnum;
 import model.Institute;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +13,11 @@ import java.io.IOException;
 public class InstituteController extends Servlet {
 
     private final String redirect = "/institutes";
+
+    @Override
+    public AccessLevelEnum getRequiredAccessLevel() {
+        return AccessLevelEnum.ADMIN;
+    }
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {

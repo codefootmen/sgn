@@ -16,6 +16,11 @@ public class ProgramController extends Servlet {
     private final String redirect = "/programs";
 
     @Override
+    public AccessLevelEnum getRequiredAccessLevel() {
+        return AccessLevelEnum.ADMIN;
+    }
+
+    @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
         request.setAttribute("departments", Department.findAll());
         request.setAttribute("levels", EnumSet.allOf(AcademicLevelEnum.class));

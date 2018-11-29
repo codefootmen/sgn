@@ -1,5 +1,6 @@
 package controller;
 
+import model.AccessLevelEnum;
 import model.Campus;
 import model.Institute;
 
@@ -15,6 +16,11 @@ import java.io.IOException;
 public class CampusController extends Servlet {
 
     private final String redirect = "/campi";
+
+    @Override
+    public AccessLevelEnum getRequiredAccessLevel() {
+        return AccessLevelEnum.ADMIN;
+    }
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {

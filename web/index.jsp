@@ -39,15 +39,15 @@
                     <h1 class="title">
                         Let's Start!
                     </h1>
-                    <form action="/autentication" method="POST">
+                    <form action="/authentication" method="POST">
                         <div class="field">
                             <p class="control">
-                                <input class="input" type="text" placeholder="User">
+                                <input class="input" name="login" type="text" placeholder="User">
                             </p>
                         </div>
                         <div class="field">
                             <p class="control">
-                                <input class="input" type="password" placeholder="Password">
+                                <input class="input" name="password" type="password" placeholder="Password">
                             </p>
                         </div>
                         <div class="field">

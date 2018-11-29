@@ -16,6 +16,11 @@ public class SubjectController extends Servlet {
     private final String redirect = "/subjects";
 
     @Override
+    public AccessLevelEnum getRequiredAccessLevel() {
+        return AccessLevelEnum.HEAD;
+    }
+
+    @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
         request.setAttribute("departments", Department.findAll());
         request.setAttribute("campi", Campus.findAll());

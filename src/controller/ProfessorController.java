@@ -1,5 +1,6 @@
 package controller;
 
+import model.AccessLevelEnum;
 import model.HonorificsEnum;
 import model.Professor;
 import model.StatusEnum;
@@ -16,6 +17,11 @@ import java.util.EnumSet;
 public class ProfessorController extends Servlet {
 
     private final String redirect = "/professors";
+
+    @Override
+    public AccessLevelEnum getRequiredAccessLevel() {
+        return AccessLevelEnum.HEAD;
+    }
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {

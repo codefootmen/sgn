@@ -1,5 +1,7 @@
+<%@ page import="model.AccessLevelEnum" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <aside class="menu is-hidden-mobile">
+    <% if (session.getAttribute("access_level") == AccessLevelEnum.ADMIN) { %>
     <p class="menu-label">
         Administration
     </p>
@@ -47,6 +49,11 @@
             </ul>
         </li>
     </ul>
+    <% } %>
+    <% if ((session.getAttribute("access_level") == AccessLevelEnum.ADMIN)
+            || (session.getAttribute("access_level") == AccessLevelEnum.HEAD)
+    ) {%>
+
     <p class="menu-label">
         Head
     </p>
@@ -88,6 +95,8 @@
         </li>
 
     </ul>
+    <%}%>
+    <% if (session.getAttribute("access_level") != null) {%>
     <p class="menu-label">
         Professor
     </p>
@@ -114,4 +123,5 @@
             </ul>
         </li>
     </ul>
+    <%}%>
 </aside>

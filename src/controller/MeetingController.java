@@ -1,9 +1,6 @@
 package controller;
 
-import model.Campus;
-import model.Department;
-import model.Institute;
-import model.Meeting;
+import model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +13,11 @@ import java.io.IOException;
 public class MeetingController extends Servlet {
 
     private final String redirect = "/meetings";
+
+    @Override
+    public AccessLevelEnum getRequiredAccessLevel() {
+        return AccessLevelEnum.HEAD;
+    }
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
