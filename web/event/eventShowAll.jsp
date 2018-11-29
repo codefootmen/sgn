@@ -3,10 +3,8 @@
 <table class="table box diplay-table margin-auto">
     <thead>
     <tr>
-        <th>Id</th>
         <th>Name</th>
         <th>Date</th>
-        <th>Period</th>
         <th>Professor</th>
         <th>Room</th>
         <th>Edit</th>
@@ -16,12 +14,10 @@
     <tbody>
     <c:forEach items="${events}" var="a">
         <tr>
-            <td><a href="${path}/events/${a.getIdEvent()}">${a.getIdEvent()}</a></td>
-            <td>${a.getName()}</td>
+            <td><a href="${path}/events/${a.getIdEvent()}">${a.getName()}</a></td>
             <td>${a.getDate()}</td>
-            <td>${a.getIdPeriod()}</td>
-            <td>${a.getIdProfessor()}</td>
-            <td>${a.getIdRoom()}</td>
+            <td>${a.getProfessor().getFirstName()}</td>
+            <td>${a.getRoom().getNumber()}</td>
             <td>
                 <a href="/events/${a.getIdEvent()}/edit">
                     <span class="icon">
