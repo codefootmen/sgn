@@ -47,8 +47,8 @@ public class BuildingController extends Servlet {
     public void save(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
         Integer quantityOfBathrooms = Integer.valueOf(request.getParameter("quantityOfBathrooms"));
-        Boolean elevator = Boolean.valueOf(request.getParameter("elevator"));
-        Boolean accessibility = Boolean.valueOf(request.getParameter("accessibility"));
+        Boolean elevator = (request.getParameter("elevator") != null);
+        Boolean accessibility = (request.getParameter("accessibility") != null);
         Long idCampus = Long.parseLong(request.getParameter("campus"));
         Long idInstitute = Long.parseLong(request.getParameter("institute"));
         Building building = new Building()
@@ -72,8 +72,8 @@ public class BuildingController extends Servlet {
         Long idBuilding = Long.valueOf(request.getAttribute("id").toString());
         String name = request.getParameter("name");
         Integer quantityOfBathrooms = Integer.valueOf(request.getParameter("quantityOfBathrooms"));
-        Boolean elevator = Boolean.valueOf(request.getParameter("elevator"));
-        Boolean accessibility = Boolean.valueOf(request.getParameter("accessibility"));
+        Boolean elevator = (request.getParameter("elevator") != null);
+        Boolean accessibility = (request.getParameter("accessibility") != null);
         Long idCampus = Long.parseLong(request.getParameter("campus"));
         Long idInstitute = Long.parseLong(request.getParameter("institute"));
         Building building = new Building()
