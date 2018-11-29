@@ -33,6 +33,8 @@ DROP TABLE IF EXISTS `professor`;
 
 DROP TABLE IF EXISTS `room_type`;
 
+DROP TABLE IF EXISTS `user`;
+
 -- ************************************** `room_type`
 
 CREATE TABLE `room_type`
@@ -304,6 +306,17 @@ CREATE TABLE `course`
   FOREIGN KEY (`id_institute`) REFERENCES institute (id_institute),
   FOREIGN KEY (`id_period`) REFERENCES period (id_period),
   FOREIGN KEY (`id_professor`) REFERENCES professor (id_professor)
+);
+
+-- ************************************** `user`
+
+CREATE TABLE `user`
+(
+  `id_user` BIGINT unsigned NOT NULL AUTO_INCREMENT,
+  `login` VARCHAR(64) NOT NULL,
+  `password` VARCHAR(64) NOT NULL,
+  `access_level` ENUM('admin', 'head', 'professor', 'none') NOT NULL,
+  PRIMARY KEY (`id_user`)
 );
 
 

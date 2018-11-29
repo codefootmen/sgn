@@ -1,5 +1,6 @@
 package controller;
 
+import model.AccessLevelEnum;
 import model.Period;
 import model.Room;
 
@@ -15,6 +16,11 @@ public class PeriodController extends Servlet {
 
     private final String redirect = "/periods";
 
+
+    @Override
+    public AccessLevelEnum getRequiredAccessLevel() {
+        return AccessLevelEnum.ADMIN;
+    }
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {

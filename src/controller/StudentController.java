@@ -1,5 +1,6 @@
 package controller;
 
+import model.AccessLevelEnum;
 import model.Activity;
 import model.RoomType;
 import model.Student;
@@ -15,6 +16,11 @@ import java.io.IOException;
 public class StudentController extends Servlet {
 
     private final String redirect = "/students";
+
+    @Override
+    public AccessLevelEnum getRequiredAccessLevel() {
+        return AccessLevelEnum.PROFESSOR;
+    }
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {

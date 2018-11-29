@@ -16,6 +16,11 @@ public class RoomController extends Servlet {
     private final String redirect = "/rooms";
 
     @Override
+    public AccessLevelEnum getRequiredAccessLevel() {
+        return AccessLevelEnum.ADMIN;
+    }
+
+    @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
         request.setAttribute("roomTypes", RoomType.findAll());
         request.setAttribute("buildings", Building.findAll());
