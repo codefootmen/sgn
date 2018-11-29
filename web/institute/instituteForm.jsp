@@ -22,7 +22,7 @@
                 <div class="field">
                     <label class="label">Web Page</label>
                     <div class="control">
-                        <input class="input is-info" name="site" type="text" placeholder="https://www.sgd.edu.br"
+                        <input class="input is-info" name="site" type="text" placeholder="https://www.sgn.edu.br"
                                value="${institute.getSite()}">
                     </div>
                 </div>
