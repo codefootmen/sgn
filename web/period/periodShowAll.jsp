@@ -3,7 +3,6 @@
 <table class="table box diplay-table margin-auto">
     <thead>
     <tr>
-        <th>Id</th>
         <th>Start</th>
         <th>End</th>
         <th>dayOfTheWeek</th>
@@ -15,11 +14,10 @@
     <tbody>
     <c:forEach items="${periods}" var="a">
         <tr>
-            <td><a href="${path}/periods/${a.getIdPeriod()}">${a.getIdPeriod()}</a></td>
-            <td>${a.getStart()}</td>
+            <td><a href="${path}/periods/${a.getIdPeriod()}">${a.getStart()}</a></td>
             <td>${a.getEnd()}</td>
             <td>${a.getDayOfTheWeek()}</td>
-            <td>${a.getIdRoom()}</td>
+            <td>${a.getRoom().getNumber()}</td>
             <td>
                 <a href="/periods/${a.getIdPeriod()}/edit">
                     <span class="icon">

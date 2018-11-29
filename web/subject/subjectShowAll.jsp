@@ -3,7 +3,6 @@
 <table class="table box diplay-table margin-auto">
     <thead>
     <tr>
-        <th>Id</th>
         <th>Name</th>
         <th>Quantity of Credits</th>
         <th>Room Type</th>
@@ -18,14 +17,13 @@
     <tbody>
     <c:forEach items="${subjects}" var="a">
         <tr>
-            <td><a href="${path}/subjects/${a.getIdSubject()}">${a.getIdSubject()}</a></td>
-            <td>${a.getName()}</td>
+            <td><a href="${path}/subjects/${a.getIdSubject()}">${a.getName()}</a></td>
             <td>${a.getQuantityOfCredits()}</td>
-            <td>${a.getIdRoomType()}</td>
-            <td>${a.getIdProgram()}</td>
-            <td>${a.getIdDepartment()}</td>
-            <td>${a.getIdCampus()}</td>
-            <td>${a.getIdInstitute()}</td>
+            <td>${a.getRoomType().getName()}</td>
+            <td>${a.getProgram().getName()}</td>
+            <td>${a.getDepartment().getField()}</td>
+            <td>${a.getCampus().getName()}</td>
+            <td>${a.getInstitute().getName()}</td>
             <td>
                 <a href="/subjects/${a.getIdSubject()}/edit">
                     <span class="icon">
