@@ -9,9 +9,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <c:import url="../header.jsp"/>
-    <div>
+<div>
 
-        <img src="https://uploaddeimagens.com.br/images/001/751/201/original/photo_2018-11-29_00-30-14.jpg?1543458699" alt="Error 404 - Not Found">
+    <img src="http://www.i-css.com/common/images/v_error505.gif" alt="Error 500 - Internal Server Error">
 
-    </div>
+</div>
 <c:import url="../footer.jsp"/>

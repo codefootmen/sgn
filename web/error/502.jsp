@@ -9,9 +9,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <c:import url="../header.jsp"/>
-    <div>
+<div>
 
-        <img src="https://uploaddeimagens.com.br/images/001/751/201/original/photo_2018-11-29_00-30-14.jpg?1543458699" alt="Error 404 - Not Found">
+    <img src="http://www.quickmeme.com/img/d5/d5cb23906c19b82a3f28229a6b45ab7bce63cae3ca8f49bdad8a45ce09c2d34f.jpg" alt="Error 502 - Bad Gateway">
 
-    </div>
+</div>
 <c:import url="../footer.jsp"/>
