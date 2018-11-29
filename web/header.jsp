@@ -23,6 +23,13 @@
             </a>
         </div>
     </div>
+    <div class="has-text-right">
+        <div class="navbar-brand">
+            <a class="navbar-item brand-text" href="../">
+                Logout
+            </a>
+        </div>
+    </div>
 </nav>
 <!-- END NAV -->
 <div class="container">
