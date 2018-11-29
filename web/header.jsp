@@ -15,3 +15,19 @@
 </head>
 
 <body>
+<nav class="navbar is-white">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item brand-text" href="../">
+                SGN
+            </a>
+        </div>
+    </div>
+</nav>
+<!-- END NAV -->
+<div class="container">
+    <div class="columns">
+        <div class="column is-3 ">
+            <c:import url="/sidebar.jsp"/>
+        </div>
+        <div class="column is-9">

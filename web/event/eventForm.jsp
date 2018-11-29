@@ -1,26 +1,21 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="../header.jsp"/>
-
-<div class="container">
-    <div class="columns">
-        <div class="column">
-            <h1 class="title has-text-centered">${operation} Event</h1>
-        </div>
-    </div>
-    <form action="${path}${action}" method="POST">
+<form action="${path}${action}" method="POST">
     <div class="columns">
         <div class="column">
             <div class="field">
                 <label class="label">Name</label>
                 <div class="control">
-                    <input class="input is-info" name="name" type="text" placeholder="Text input" value="${event.getName()}">
+                    <input class="input is-info" name="name" type="text" placeholder="Text input"
+                           value="${event.getName()}">
                 </div>
             </div>
 
             <div class="field">
                 <label class="label">Date</label>
                 <div class="control">
-                    <input class="input is-info" name="date" type="text" placeholder="MM-DD-YYYY" value="${event.getDate()}">
+                    <input class="input is-info" name="date" type="text" placeholder="MM-DD-YYYY"
+                           value="${event.getDate()}">
                 </div>
             </div>
 
@@ -32,7 +27,8 @@
                         <div class="select">
                             <select name="idPeriod">
                                 <c:forEach items="${periods}" var="period">
-                                    <option value="${period.getIdPeriod()}" <c:if test="${event.getIdPeriod() == period.getIdPeriod()}"> selected </c:if> >${period.getStart()} </option>
+                                    <option value="${period.getIdPeriod()}" <c:if
+                                            test="${event.getIdPeriod() == period.getIdPeriod()}"> selected </c:if> >${period.getStart()} </option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -46,7 +42,7 @@
                             <select name="idProfessor">
                                 <c:forEach items="${professors}" var="prof">
                                     <option value="${prof.getIdProfessor()}" <c:if
-                                        test="${event.getIdProfessor() == prof.getIdProfessor()}"> selected </c:if> >${prof.getFirstName()}</option>
+                                            test="${event.getIdProfessor() == prof.getIdProfessor()}"> selected </c:if> >${prof.getFirstName()}</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -59,7 +55,8 @@
                         <div class="select">
                             <select name="idRoom">
                                 <c:forEach items="${rooms}" var="room">
-                                    <option value="${room.getIdRoom()}" <c:if test="${event.getIdRoom() == room.getIdRoom()}"> selected </c:if> >${room.getNumber()}</option>
+                                    <option value="${room.getIdRoom()}" <c:if
+                                            test="${event.getIdRoom() == room.getIdRoom()}"> selected </c:if> >${room.getNumber()}</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -78,7 +75,4 @@
         </div>
     </div>
 </form>
-</div>
 <c:import url="../footer.jsp"/>
-</body>
-</html>
