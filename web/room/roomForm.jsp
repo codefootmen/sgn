@@ -6,14 +6,14 @@
             <div class="field">
                 <label class="label">Number</label>
                 <div class="control">
-                    <input class="input is-info" type="text" name="number" placeholder="Text input"
+                    <input class="input is-info" type="number" name="number" min="0" placeholder="Number of the room"
                            value="${room.getNumber()}">
                 </div>
             </div>
             <div class="field">
                 <label class="label">Quantity of Seats</label>
                 <div class="control">
-                    <input class="input is-info" type="text" name="quantityOfSeats" placeholder="Text input"
+                    <input class="input is-info" type="number" name="quantityOfSeats" min="0" placeholder="Number of seats"
                            value="${room.getQuantityOfSeats()}">
                 </div>
             </div>
