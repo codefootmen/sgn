@@ -3,7 +3,6 @@
 <table class="table box diplay-table margin-auto">
     <thead>
     <tr>
-        <th>Id</th>
         <th>Name</th>
         <th>Description</th>
         <th>Edit</th>
@@ -13,8 +12,7 @@
     <tbody>
     <c:forEach items="${roomTypes}" var="a">
         <tr>
-            <td><a href="${path}/roomTypes/${a.getIdRoomType()}">${a.getIdRoomType()}</a></td>
-            <td>${a.getName()}</td>
+            <td><a href="${path}/roomTypes/${a.getIdRoomType()}">${a.getName()}</a></td>
             <td>${a.getDescription()}</td>
             <td>
                 <a href="/roomTypes/${a.getIdRoomType()}/edit">

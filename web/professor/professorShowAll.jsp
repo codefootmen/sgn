@@ -3,7 +3,6 @@
 <table class="table box diplay-table margin-auto">
     <thead>
     <tr>
-        <th>Id</th>
         <th>First Name</th>
         <th>Last Name</th>
         <th>email</th>
@@ -16,8 +15,7 @@
     <tbody>
     <c:forEach items="${professors}" var="a">
         <tr>
-            <td><a href="${path}/professors/${a.getIdProfessor()}">${a.getIdProfessor()}</a></td>
-            <td>${a.getFirstName()}</td>
+            <td><a href="${path}/professors/${a.getIdProfessor()}">${a.getFirstName()}</a></td>
             <td>${a.getLastName()}</td>
             <td>${a.getEmail()}</td>
             <td>${a.getStatus()}</td>
