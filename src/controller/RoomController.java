@@ -6,11 +6,14 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.EnumSet;
 
 
 @WebServlet(name = "RoomController", urlPatterns = {"/rooms/*"})
 public class RoomController extends Servlet {
+
+    private final String redirect = "/rooms";
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
@@ -33,6 +36,12 @@ public class RoomController extends Servlet {
                 .setIdRoomType(roomType)
                 .setIdBuilding(building);
         Room.save(room);
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -49,11 +58,23 @@ public class RoomController extends Servlet {
                 .setIdRoomType(roomType)
                 .setIdBuilding(building);
         Room.update(room);
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(HttpServletRequest request, HttpServletResponse response) {
         Room.delete(Long.valueOf(request.getAttribute("id").toString()));
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

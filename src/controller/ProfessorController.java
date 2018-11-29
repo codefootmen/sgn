@@ -8,11 +8,14 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.EnumSet;
 
 
 @WebServlet(name = "ProfessorController", urlPatterns = {"/professors/*"})
 public class ProfessorController extends Servlet {
+
+    private final String redirect = "/professors";
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
@@ -37,11 +40,23 @@ public class ProfessorController extends Servlet {
                 .setStatus(status)
                 .setHonorifics(honorifics);
         Professor.save(professor);
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(HttpServletRequest request, HttpServletResponse response) {
         Professor.delete(Long.valueOf(request.getAttribute("id").toString()));
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -71,6 +86,12 @@ public class ProfessorController extends Servlet {
                 .setStatus(status)
                 .setHonorifics(honorifics);
         Professor.update(professor);
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

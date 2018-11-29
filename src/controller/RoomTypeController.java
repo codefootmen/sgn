@@ -6,10 +6,13 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 
 @WebServlet(name = "RoomTypeController", urlPatterns = {"/roomTypes/*"})
 public class RoomTypeController extends Servlet {
+
+    private final String redirect = "/roomTypes";
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
@@ -24,6 +27,12 @@ public class RoomTypeController extends Servlet {
                 .setName(name)
                 .setDescription(description);
         RoomType.save(roomType);
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -36,11 +45,23 @@ public class RoomTypeController extends Servlet {
                 .setName(name)
                 .setDescription(description);
         RoomType.update(roomType);
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(HttpServletRequest request, HttpServletResponse response) {
         RoomType.delete(Long.valueOf(request.getAttribute("id").toString()));
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

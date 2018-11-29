@@ -7,10 +7,14 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 
 @WebServlet(name = "PeriodController", urlPatterns = {"/periods/*"})
 public class PeriodController extends Servlet {
+
+    private final String redirect = "/periods";
+
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
@@ -30,6 +34,12 @@ public class PeriodController extends Servlet {
                 .setIdRoom(idRoom)
                 .setDayOfTheWeek(dayOfTheWeek);
         Period.save(period);
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -46,11 +56,23 @@ public class PeriodController extends Servlet {
                 .setIdRoom(idRoom)
                 .setDayOfTheWeek(dayOfTheWeek);
         Period.save(period);
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(HttpServletRequest request, HttpServletResponse response) {
         Period.delete(Long.valueOf(request.getAttribute("id").toString()));
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

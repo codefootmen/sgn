@@ -9,10 +9,13 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 
 @WebServlet(name = "EventController", urlPatterns = {"/events/*"})
 public class EventController extends Servlet {
+
+    private final String redirect = "/events";
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
@@ -36,6 +39,12 @@ public class EventController extends Servlet {
                 .setIdProfessor(idProfessor)
                 .setIdRoom(idRoom);
         Event.save(event);
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -54,11 +63,23 @@ public class EventController extends Servlet {
                 .setIdProfessor(idProfessor)
                 .setIdRoom(idRoom);
         Event.update(event);
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(HttpServletRequest request, HttpServletResponse response) {
         Event.delete(Long.valueOf(request.getAttribute("id").toString()));
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

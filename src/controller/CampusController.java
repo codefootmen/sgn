@@ -14,6 +14,7 @@ import java.io.IOException;
 @WebServlet(name = "CampusController", urlPatterns = {"/campi/*"})
 public class CampusController extends Servlet {
 
+    private final String redirect = "/campi";
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
@@ -43,6 +44,12 @@ public class CampusController extends Servlet {
                 .setZip(zip)
                 .setIdInstitute(institute);
         Campus.save(campus);
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -67,11 +74,23 @@ public class CampusController extends Servlet {
                 .setZip(zip)
                 .setIdInstitute(idInstitute);
         Campus.update(campus);
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(HttpServletRequest request, HttpServletResponse response) {
         Campus.delete(Long.valueOf(request.getAttribute("id").toString()));
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

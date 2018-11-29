@@ -8,11 +8,14 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.sql.SQLException;
 
 
 @WebServlet(name = "BuildingController", urlPatterns = {"/buildings/*"})
 public class BuildingController extends Servlet {
+
+    private final String redirect = "/buildings";
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
@@ -50,6 +53,12 @@ public class BuildingController extends Servlet {
                 .setIdCampus(idCampus)
                 .setIdInstitute(idInstitute);
         Building.save(building);
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -70,11 +79,23 @@ public class BuildingController extends Servlet {
                 .setIdCampus(idCampus)
                 .setIdInstitute(idInstitute);
         Building.update(building);
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(HttpServletRequest request, HttpServletResponse response) {
         Building.delete(Long.valueOf(request.getAttribute("id").toString()));
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

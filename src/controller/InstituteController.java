@@ -6,9 +6,12 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @WebServlet(name = "InstituteController", urlPatterns = {"/institutes/*"})
 public class InstituteController extends Servlet {
+
+    private final String redirect = "/institutes";
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
@@ -23,6 +26,12 @@ public class InstituteController extends Servlet {
                 .setName(name)
                 .setSite(site);
         Institute.save(institute);
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -35,11 +44,23 @@ public class InstituteController extends Servlet {
                 .setName(name)
                 .setSite(site);
         Institute.update(institute);
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(HttpServletRequest request, HttpServletResponse response) {
         Institute.delete(Long.valueOf(request.getAttribute("id").toString()));
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
