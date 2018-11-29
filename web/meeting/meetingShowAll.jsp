@@ -10,7 +10,7 @@
         <th>Minutes</th>
         <th>Department</th>
         <th>Campus</th>
-        <th>Institution</th>
+        <th>Institute</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>

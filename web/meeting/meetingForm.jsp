@@ -6,7 +6,7 @@
             <div class="field">
                 <label class="label">Day</label>
                 <div class="control">
-                    <input class="input is-info" name="day" type="text" placeholder="MM-DD-YYYY"
+                    <input class="input is-info" name="day" type="text" placeholder="YYYY-MM-DD"
                            value="${meeting.getDay()}">
                 </div>
             </div>
