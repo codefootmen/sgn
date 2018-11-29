@@ -9,14 +9,14 @@
                     <input class="input is-info" name="field" type="text" placeholder="Text input"
                            value="${department.getField()}">
                 </div>
+                <div class="field">
+                    <label class="label">Description</label>
+                    <div class="control">
+                        <input class="input is-info" name="description" type="text" placeholder="Text input"
+                               value="${department.getDescription()}">
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="field">
-        <label class="label">Description</label>
-        <div class="control">
-            <input class="input is-info" name="description" type="text" placeholder="Text input"
-                   value="${department.getDescription()}">
         </div>
     </div>
     <div class="columns">
