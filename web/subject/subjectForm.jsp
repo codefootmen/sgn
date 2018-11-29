@@ -13,7 +13,7 @@
             <div class="field">
                 <label class="label">Quantity of Credits</label>
                 <div class="control">
-                    <input class="input is-info" type="text" name="quantityOfCredits" placeholder="Text input"
+                    <input class="input is-info" type="number" min="1" name="quantityOfCredits" placeholder="Text input"
                            value="${subject.getQuantityOfCredits()}">
                 </div>
             </div>
