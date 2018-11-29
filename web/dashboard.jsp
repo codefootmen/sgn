@@ -57,51 +57,13 @@
                 <div class="content">
                     <table class="table is-fullwidth is-striped">
                         <tbody>
-                        <tr>
-                            <td width="5%"><i class="fa fa-bell-o"></i></td>
-                            <td>Lorum ipsum dolem aire</td>
-                            <td><a class="button is-small is-primary" href="#">Action</a></td>
-                        </tr>
-                        <tr>
-                            <td width="5%"><i class="fa fa-bell-o"></i></td>
-                            <td>Lorum ipsum dolem aire</td>
-                            <td><a class="button is-small is-primary" href="#">Action</a></td>
-                        </tr>
-                        <tr>
-                            <td width="5%"><i class="fa fa-bell-o"></i></td>
-                            <td>Lorum ipsum dolem aire</td>
-                            <td><a class="button is-small is-primary" href="#">Action</a></td>
-                        </tr>
-                        <tr>
-                            <td width="5%"><i class="fa fa-bell-o"></i></td>
-                            <td>Lorum ipsum dolem aire</td>
-                            <td><a class="button is-small is-primary" href="#">Action</a></td>
-                        </tr>
-                        <tr>
-                            <td width="5%"><i class="fa fa-bell-o"></i></td>
-                            <td>Lorum ipsum dolem aire</td>
-                            <td><a class="button is-small is-primary" href="#">Action</a></td>
-                        </tr>
-                        <tr>
-                            <td width="5%"><i class="fa fa-bell-o"></i></td>
-                            <td>Lorum ipsum dolem aire</td>
-                            <td><a class="button is-small is-primary" href="#">Action</a></td>
-                        </tr>
-                        <tr>
-                            <td width="5%"><i class="fa fa-bell-o"></i></td>
-                            <td>Lorum ipsum dolem aire</td>
-                            <td><a class="button is-small is-primary" href="#">Action</a></td>
-                        </tr>
-                        <tr>
-                            <td width="5%"><i class="fa fa-bell-o"></i></td>
-                            <td>Lorum ipsum dolem aire</td>
-                            <td><a class="button is-small is-primary" href="#">Action</a></td>
-                        </tr>
-                        <tr>
-                            <td width="5%"><i class="fa fa-bell-o"></i></td>
-                            <td>Lorum ipsum dolem aire</td>
-                            <td><a class="button is-small is-primary" href="#">Action</a></td>
-                        </tr>
+                        <c:forEach items="${events}" var="e">
+                            <tr>
+                                <td width="5%"><i class="fa fa-bell-o"></i></td>
+                                <td>${e.getName()}</td>
+                                <td><a class="button is-small is-primary" href="#">${e.getDate()}</a></td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
