@@ -2,10 +2,7 @@ package dao;
 
 import model.Room;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +18,8 @@ public class RoomDAO implements DAO<Room, Long> {
                             "number = ?, " +
                             "quantity_of_seats = ?, " +
                             "id_room_type = ?, " +
-                            "id_building = ?"
+                            "id_building = ?",
+                    Statement.RETURN_GENERATED_KEYS
             );
             Query.setStatementValues(
                     statement,
@@ -31,6 +29,13 @@ public class RoomDAO implements DAO<Room, Long> {
                     room.getIdBuilding()
             );
             statement.execute();
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    room.setIdRoom(generatedKeys.getLong(1));
+                } else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+            }
             Database.closeConnection(connection, statement);
             return Optional.of(room);
         } catch (SQLException e) {

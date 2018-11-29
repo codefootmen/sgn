@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.EnumSet;
+import java.util.Optional;
 
 
 @WebServlet(name = "RoomController", urlPatterns = {"/rooms/*"})
@@ -40,7 +41,20 @@ public class RoomController extends Servlet {
                 .setQuantityOfSeats(quantityOfSeats)
                 .setIdRoomType(roomType)
                 .setIdBuilding(building);
-        Room.save(room);
+
+        Optional<Room> r = Room.save(room);
+
+        for(int i = 0; i < 7; i++){
+            for(int j = 0; j < 11; j++){
+                Period p = new Period()
+                        .setDayOfTheWeek(String.valueOf(i))
+                        .setStart(String.valueOf(j))
+                        .setEnd(String.valueOf(j+1))
+                        .setIdRoom(r.get().getIdRoom());
+                Period.save(p);
+            }
+        }
+
 
         try {
             response.sendRedirect(redirect);
