@@ -1,9 +1,6 @@
 package controller;
 
-import model.Course;
-import model.Event;
-import model.Professor;
-import model.Student;
+import model.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,11 +22,13 @@ public class DashboardController extends HttpServlet {
             response.sendRedirect("/authentication");
         } else {
             List<Event> e = Event.findAll();
+            List<Activity> a = Activity.findAll();
             request.setAttribute("numberOfProfessors", Professor.findAll().size());
             request.setAttribute("numberOfStudents", Student.findAll().size());
             request.setAttribute("numberOfEvents", e.size());
             request.setAttribute("numberOfCourses", Course.findAll().size());
             request.setAttribute("events", e);
+            request.setAttribute("activities", a);
             request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
         }
     }

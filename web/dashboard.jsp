@@ -73,11 +73,12 @@
             </footer>
         </div>
     </div>
+
     <div class="column is-6">
-        <div class="card">
+        <div class="card events-card">
             <header class="card-header">
                 <p class="card-header-title">
-                    Inventory Search
+                    Activities
                 </p>
                 <a href="#" class="card-header-icon" aria-label="more options">
                   <span class="icon">
@@ -85,44 +86,24 @@
                   </span>
                 </a>
             </header>
-            <div class="card-content">
+            <div class="card-table">
                 <div class="content">
-                    <div class="control has-icons-left has-icons-right">
-                        <input class="input is-large" type="text" placeholder="">
-                        <span class="icon is-medium is-left">
-                      <i class="fa fa-search"></i>
-                    </span>
-                        <span class="icon is-medium is-right">
-                      <i class="fa fa-check"></i>
-                    </span>
-                    </div>
+                    <table class="table is-fullwidth is-striped">
+                        <tbody>
+                        <c:forEach items="${activities}" var="a">
+                            <tr>
+                                <td width="5%"><i class="fa fa-bell-o"></i></td>
+                                <td>${a.getName()}</td>
+                                <td><a class="button is-small is-primary" href="#">${a.getActivityType()}</a></td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </div>
-        <div class="card">
-            <header class="card-header">
-                <p class="card-header-title">
-                    User Search
-                </p>
-                <a href="#" class="card-header-icon" aria-label="more options">
-                  <span class="icon">
-                    <i class="fa fa-angle-down" aria-hidden="true"></i>
-                  </span>
-                </a>
-            </header>
-            <div class="card-content">
-                <div class="content">
-                    <div class="control has-icons-left has-icons-right">
-                        <input class="input is-large" type="text" placeholder="">
-                        <span class="icon is-medium is-left">
-                      <i class="fa fa-search"></i>
-                    </span>
-                        <span class="icon is-medium is-right">
-                      <i class="fa fa-check"></i>
-                    </span>
-                    </div>
-                </div>
-            </div>
+            <footer class="card-footer">
+                <a href="#" class="card-footer-item">View All</a>
+            </footer>
         </div>
     </div>
 </div>
