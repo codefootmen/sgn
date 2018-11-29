@@ -8,11 +8,14 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.EnumSet;
 
 
 @WebServlet(name = "RequestController", urlPatterns = {"/requests/*"})
 public class RequestController extends Servlet {
+
+    private final String redirect = "/requests";
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
@@ -34,8 +37,13 @@ public class RequestController extends Servlet {
                 .setDescription(description)
                 .setPriority(priority)
                 .setIdRoom(idRoom);
-
         Request.save(systemRequest);
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -53,11 +61,22 @@ public class RequestController extends Servlet {
                 .setIdRoom(idRoom);
         systemRequest.update(systemRequest);
 
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(HttpServletRequest request, HttpServletResponse response) {
         Request.delete(Long.valueOf(request.getAttribute("id").toString()));
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

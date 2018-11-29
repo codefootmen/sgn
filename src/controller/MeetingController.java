@@ -22,6 +22,8 @@ public class MeetingController extends Servlet {
         request.setAttribute("departments", Department.findAll());
         request.setAttribute("campi", Campus.findAll());
         request.setAttribute("institutes", Institute.findAll());
+        request.setAttribute("operation", "New");
+        request.setAttribute("action", "/meetings/new");
         return request.getRequestDispatcher("/meeting/meetingForm.jsp");
     }
 

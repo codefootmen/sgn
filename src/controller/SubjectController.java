@@ -6,11 +6,14 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.EnumSet;
 
 
 @WebServlet(name = "SubjectController", urlPatterns = {"/subjects/*"})
 public class SubjectController extends Servlet {
+
+    private final String redirect = "/subjects";
 
     @Override
     public RequestDispatcher newPage(HttpServletRequest request) {
@@ -41,8 +44,13 @@ public class SubjectController extends Servlet {
                 .setIdDepartment(idDepartment)
                 .setIdCampus(idCampus)
                 .setIdInstitute(idInstitute);
-
         Subject.save(subject);
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -65,11 +73,23 @@ public class SubjectController extends Servlet {
                 .setIdCampus(idCampus)
                 .setIdInstitute(idInstitute);
         Subject.update(subject);
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(HttpServletRequest request, HttpServletResponse response) {
         Subject.delete(Long.valueOf(request.getAttribute("id").toString()));
+
+        try {
+            response.sendRedirect(redirect);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
