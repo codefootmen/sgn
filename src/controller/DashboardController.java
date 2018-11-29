@@ -20,11 +20,15 @@ public class DashboardController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("numberOfProfessors", Professor.findAll().size());
-        request.setAttribute("numberOfStudents", Student.findAll().size());
-        request.setAttribute("numberOfEvents", Event.findAll().size());
-        request.setAttribute("numberOfCourses", Course.findAll().size());
-        request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
+        if(request.getSession().getAttribute("access_level") == null){
+            response.sendRedirect("/authentication");
+        }else {
+            request.setAttribute("numberOfProfessors", Professor.findAll().size());
+            request.setAttribute("numberOfStudents", Student.findAll().size());
+            request.setAttribute("numberOfEvents", Event.findAll().size());
+            request.setAttribute("numberOfCourses", Course.findAll().size());
+            request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
+        }
     }
 
 }

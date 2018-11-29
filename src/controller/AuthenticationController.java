@@ -18,7 +18,7 @@ public class AuthenticationController extends HttpServlet {
         if(User.authenticate(request)){
             response.sendRedirect("/");
         }else {
-            response.sendRedirect("/authenticate");
+            response.sendRedirect("/authentication");
         }
 
     }
