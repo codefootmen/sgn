@@ -3,7 +3,6 @@
 <table class="table box diplay-table margin-auto">
     <thead>
     <tr>
-        <th>Id</th>
         <th>Semester</th>
         <th>Year</th>
         <th>Subject</th>
@@ -11,7 +10,6 @@
         <th>Department</th>
         <th>Campus</th>
         <th>Institute</th>
-        <th>Period</th>
         <th>Professor</th>
         <th>Edit</th>
         <th>Delete</th>
@@ -20,16 +18,22 @@
     <tbody>
     <c:forEach items="${courses}" var="a">
         <tr>
-            <td><a href="${path}/courses/${a.getIdCourse()}">${a.getIdCourse()}</a></td>
-            <td>${a.getSemester()}</td>
+            <td><a href="${path}/courses/${a.getIdCourse()}">
+                <c:if test="${a.getSemester() == false}">
+                    First
+                </c:if>
+                <c:if test="${a.getSemester() == true}">
+                    Second
+                </c:if>
+
+            </a></td>
             <td>${a.getYear()}</td>
-            <td>${a.getIdSubject()}</td>
-            <td>${a.getIdProgram()}</td>
-            <td>${a.getIdDepartment()}</td>
-            <td>${a.getIdCampus()}</td>
-            <td>${a.getIdInstitute()}</td>
-            <td>${a.getIdPeriod()}</td>
-            <td>${a.getIdProfessor()}</td>
+            <td>${a.getSubject().getName()}</td>
+            <td>${a.getProgram().getName()}</td>
+            <td>${a.getDepartment().getField()}</td>
+            <td>${a.getCampus().getName()}</td>
+            <td>${a.getInstitute().getName()}</td>
+            <td>${a.getProfessor().getFirstName()}</td>
             <td>
                 <a href="/courses/${a.getIdCourse()}/edit">
                     <span class="icon">
