@@ -1,20 +1,22 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:import url="../header.jsp"/>
-<c:import url="../navbar.jsp"/>
-
+<c:import url="/header.jsp"/>
+<!-- START NAV -->
+<nav class="navbar is-white">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item brand-text" href="../">
+                SGN
+            </a>
+        </div>
+    </div>
+</nav>
+<!-- END NAV -->
 <div class="container">
     <div class="columns">
-        <div class="column">
-            <h1 class="title has-text-centered">Activities</h1>
+        <div class="column is-3 ">
+            <c:import url="/sidebar.jsp"/>
         </div>
-    </div>
-    <div class="columns">
-        <div class="column">
-            <a href="/activities/new" class="button is-info">New</a>
-        </div>
-    </div>
-    <div class="columns">
-        <div class="column">
+        <div class="column is-9">
             <table class="table box diplay-table margin-auto">
                 <thead>
                 <tr>
@@ -66,6 +68,7 @@
         </div>
     </div>
 </div>
-<c:import url="../footer.jsp"/>
+<script async type="text/javascript" src="../js/bulma.js"></script>
 </body>
+
 </html>
