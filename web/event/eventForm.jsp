@@ -14,7 +14,7 @@
             <div class="field">
                 <label class="label">Date</label>
                 <div class="control">
-                    <input class="input is-info" name="date" type="text" placeholder="MM-DD-YYYY"
+                    <input class="input is-info" name="date" type="text" placeholder="YYYY-MM-DD"
                            value="${event.getDate()}">
                 </div>
             </div>
