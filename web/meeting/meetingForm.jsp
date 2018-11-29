@@ -31,43 +31,45 @@
                            value="${meeting.getMinutes()}">
                 </div>
             </div>
-            <div class="columns">
-                <div class="field is-inline-block column">
-                    <label class="label">Department</label>
-                    <div class="control">
-                        <div class="select">
-                            <select name="idDepartment">
-                                <c:forEach items="${departments}" var="dept">
-                                    <option value="${dept.getIdDepartment()}" <c:if
-                                            test="${meeting.getIdDepartment() == dept.getIdDepartment()}"> selected </c:if> >${dept.getField()}</option>
-                                </c:forEach>
-                            </select>
+            <div class="field">
+                <div class="columns">
+                    <div class="field is-inline-block column">
+                        <label class="label">Department</label>
+                        <div class="control">
+                            <div class="select">
+                                <select name="idDepartment">
+                                    <c:forEach items="${departments}" var="dept">
+                                        <option value="${dept.getIdDepartment()}" <c:if
+                                                test="${meeting.getIdDepartment() == dept.getIdDepartment()}"> selected </c:if> >${dept.getField()}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="field is-inline-block column">
-                    <label class="label">Campus</label>
-                    <div class="control">
-                        <div class="select">
-                            <select name="idCampus">
-                                <c:forEach items="${campi}" var="cam">
-                                    <option value="${cam.getIdCampus()}"
-                                            <c:if test="${meeting.getIdCampus() == cam.getIdCampus()}">selected </c:if> >${cam.getName()}</option>
-                                </c:forEach>
-                            </select>
+                    <div class="field is-inline-block column">
+                        <label class="label">Campus</label>
+                        <div class="control">
+                            <div class="select">
+                                <select name="idCampus">
+                                    <c:forEach items="${campi}" var="cam">
+                                        <option value="${cam.getIdCampus()}"
+                                                <c:if test="${meeting.getIdCampus() == cam.getIdCampus()}">selected </c:if> >${cam.getName()}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="field is-inline-block column">
-                    <label class="label">Institute</label>
-                    <div class="control">
-                        <div class="select">
-                            <select name="idInstitute">
-                                <c:forEach items="${institutes}" var="inst">
-                                    <option value="${inst.getIdInstitute()}" <c:if
-                                            test="${meeting.getIdInstitute() == inst.getIdInstitute()}"> selected </c:if> >${inst.getName()}</option>
-                                </c:forEach>
-                            </select>
+                    <div class="field is-inline-block column">
+                        <label class="label">Institute</label>
+                        <div class="control">
+                            <div class="select">
+                                <select name="idInstitute">
+                                    <c:forEach items="${institutes}" var="inst">
+                                        <option value="${inst.getIdInstitute()}" <c:if
+                                                test="${meeting.getIdInstitute() == inst.getIdInstitute()}"> selected </c:if> >${inst.getName()}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -75,9 +77,6 @@
             <div class="field is-grouped">
                 <div class="control">
                     <button class="button is-link" type="submit">Submit</button>
-                </div>
-                <div class="control">
-                    <button class="button is-text" type="reset">Cancel</button>
                 </div>
             </div>
         </div>
