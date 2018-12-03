@@ -6,8 +6,6 @@
         <th>Name</th>
         <th>Activity Type</th>
         <th>Area</th>
-        <th>Professor</th>
-        <th>Department</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
@@ -18,8 +16,7 @@
             <td><a href="${path}/activities/${a.getIdActivity()}">${a.getName()}</a></td>
             <td>${a.getActivityType()}</td>
             <td>${a.getArea()}</td>
-            <td>${a.getProfessor().getFirstName()}</td>
-            <td>${a.getDepartment().getField()}</td>
+
             <td>
                 <a href="/activities/${a.getIdActivity()}/edit">
                                 <span class="icon">
