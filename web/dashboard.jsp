@@ -15,27 +15,36 @@
 <section class="info-tiles">
     <div class="tile is-ancestor has-text-centered">
         <div class="tile is-parent">
+            <article class="tile is-child box" >
+                <a href="/professors/">
+                    <p class="title">${ numberOfProfessors }</p>
+                    <p class="subtitle">Professors</p>
+                </a>
+            </article>
+
+        </div>
+        <div class="tile is-parent">
             <article class="tile is-child box">
-                <p class="title">${ numberOfProfessors }</p>
-                <p class="subtitle">Professors</p>
+                <a href="/students/">
+                    <p class="title">${ numberOfStudents }</p>
+                    <p class="subtitle">Students</p>
+                </a>
             </article>
         </div>
         <div class="tile is-parent">
             <article class="tile is-child box">
-                <p class="title">${ numberOfStudents }</p>
-                <p class="subtitle">Students</p>
+                <a href="/events/">
+                    <p class="title">${ numberOfEvents }</p>
+                    <p class="subtitle">Events</p>
+                </a>
             </article>
         </div>
         <div class="tile is-parent">
             <article class="tile is-child box">
-                <p class="title">${ numberOfEvents }</p>
-                <p class="subtitle">Events</p>
-            </article>
-        </div>
-        <div class="tile is-parent">
-            <article class="tile is-child box">
-                <p class="title">${ numberOfCourses }</p>
-                <p class="subtitle">Courses</p>
+                <a href="/courses/">
+                    <p class="title">${ numberOfCourses }</p>
+                    <p class="subtitle">Courses</p>
+                </a>
             </article>
         </div>
     </div>
@@ -61,7 +70,7 @@
                             <tr>
                                 <td width="5%"><i class="fa fa-bell-o"></i></td>
                                 <td>${e.getName()}</td>
-                                <td><a class="button is-small is-primary" href="#">${e.getDate()}</a></td>
+                                <td><a class="button is-small is-primary" href="/events/${e.getIdEvent()}">${e.getDate()}</a></td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -69,7 +78,7 @@
                 </div>
             </div>
             <footer class="card-footer">
-                <a href="#" class="card-footer-item">View All</a>
+                <a href="/events/" class="card-footer-item">View All</a>
             </footer>
         </div>
     </div>
@@ -94,7 +103,7 @@
                             <tr>
                                 <td width="5%"><i class="fa fa-bell-o"></i></td>
                                 <td>${a.getName()}</td>
-                                <td><a class="button is-small is-primary" href="#">${a.getActivityType()}</a></td>
+                                <td><a class="button is-small is-primary" href="/activities/${a.getIdActivity()}">${a.getActivityType()}</a></td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -102,7 +111,7 @@
                 </div>
             </div>
             <footer class="card-footer">
-                <a href="#" class="card-footer-item">View All</a>
+                <a href="/activities/" class="card-footer-item">View All</a>
             </footer>
         </div>
     </div>
