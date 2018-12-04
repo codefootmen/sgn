@@ -3,7 +3,6 @@
 <table class="table box diplay-table margin-auto">
     <thead>
     <tr>
-        <th>Id</th>
         <th>Name</th>
         <th>Street</th>
         <th>Number</th>
@@ -11,23 +10,19 @@
         <th>State</th>
         <th>Telephone</th>
         <th>ZIP</th>
-        <th>Institute</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th colspan="2">Operations</th>
     </tr>
     </thead>
     <tbody>
     <c:forEach items="${campi}" var="a">
         <tr>
-            <td><a href="${path}/campi/${a.getIdCampus()}">${a.getIdCampus()}</a></td>
-            <td>${a.getName()}</td>
+            <td><a href="${path}/campi/${a.getIdCampus()}">${a.getName()}</a></td>
             <td>${a.getStreet()}</td>
             <td>${a.getNumber()}</td>
             <td>${a.getCity()}</td>
             <td>${a.getState()}</td>
             <td>${a.getTelephone()}</td>
             <td>${a.getZip()}</td>
-            <td>${a.getIdInstitute()}</td>
             <td>
                 <a href="/campi/${a.getIdCampus()}/edit">
                     <span class="icon">

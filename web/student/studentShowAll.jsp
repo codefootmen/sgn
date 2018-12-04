@@ -3,21 +3,16 @@
 <table class="table box diplay-table margin-auto">
     <thead>
     <tr>
-        <th>Id</th>
         <th>First Name</th>
         <th>Last Name</th>
-        <th>Activity</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th colspan="2">Operations</th>
     </tr>
     </thead>
     <tbody>
     <c:forEach items="${students}" var="a">
         <tr>
-            <td><a href="${path}/students/${a.getIdStudent()}">${a.getIdStudent()}</a></td>
-            <td>${a.getFirstName()}</td>
+            <td><a href="${path}/students/${a.getIdStudent()}">${a.getFirstName()}</a></td>
             <td>${a.getLastName()}</td>
-            <td>${a.getIdActivity()}</td>
             <td>
                 <a href="/students/${a.getIdStudent()}/edit">
                     <span class="icon">

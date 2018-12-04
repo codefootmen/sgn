@@ -4,23 +4,18 @@
 <table class="table box diplay-table margin-auto">
     <thead>
     <tr>
-        <th>Id</th>
         <th>Motive</th>
         <th>Description</th>
         <th>Priority</th>
-        <th>Room</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th colspan="2">Operations</th>
     </tr>
     </thead>
     <tbody>
     <c:forEach items="${requests}" var="a">
         <tr>
-            <td><a href="${path}/requests/${a.getIdRequest()}">${a.getIdRequest()}</a></td>
-            <td>${a.getMotive()}</td>
+            <td><a href="${path}/requests/${a.getIdRequest()}">${a.getMotive()}</a></td>
             <td>${a.getDescription()}</td>
             <td>${a.getPriority()}</td>
-            <td>${a.getIdRoom()}</td>
             <td>
                 <a href="/requests/${a.getIdRequest()}/edit">
                     <span class="icon">

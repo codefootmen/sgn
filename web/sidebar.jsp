@@ -122,6 +122,13 @@
                 <li><a href="/events/">Show</a></li>
             </ul>
         </li>
+        <li>
+            <a class="expandable unselectable">Request</a>
+            <ul class="display-none">
+                <li><a href="/requests/new">New</a></li>
+                <li><a href="/requests/">Show</a></li>
+            </ul>
+        </li>
     </ul>
     <%}%>
 </aside>

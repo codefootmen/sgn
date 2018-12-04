@@ -3,29 +3,20 @@
 <table class="table box diplay-table margin-auto">
     <thead>
     <tr>
-        <th>Id</th>
         <th>Day</th>
         <th>Time</th>
         <th>Agenda</th>
         <th>Minutes</th>
-        <th>Department</th>
-        <th>Campus</th>
-        <th>Institution</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th colspan="2">Operations</th>
     </tr>
     </thead>
     <tbody>
     <c:forEach items="${meetings}" var="a">
         <tr>
-            <td><a href="${path}/meetings/${a.getIdMeeting()}">${a.getIdMeeting()}</a></td>
-            <td>${a.getDay()}</td>
+            <td><a href="${path}/meetings/${a.getIdMeeting()}">${a.getDay()}</a></td>
             <td>${a.getTime()}</td>
             <td>${a.getAgenda()}</td>
             <td>${a.getMinutes()}</td>
-            <td>${a.getIdDepartment()}</td>
-            <td>${a.getIdCampus()}</td>
-            <td>${a.getIdInstitute()}</td>
             <td>
                 <a href="/meetings/${a.getIdMeeting()}/edit">
                     <span class="icon">

@@ -3,27 +3,32 @@
 <table class="table box diplay-table margin-auto">
     <thead>
     <tr>
-        <th>Id</th>
-        <th>Day</th>
-        <th>Time</th>
-        <th>Agenda</th>
-        <th>Minutes</th>
-        <th>Department</th>
-        <th>Campus</th>
-        <th>Institute</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>${meeting.getIdMeeting()}</td>
+        <th>Day:</th>
         <td>${meeting.getDay()}</td>
-        <td>${meeting.getTime()}</td>
-        <td>${meeting.getAgenda()}</td>
-        <td>${meeting.getMinutes()}</td>
-        <td>${meeting.getIdDepartment()}</td>
-        <td>${meeting.getIdCampus()}</td>
-        <td>${meeting.getIdInstitute()}</td>
     </tr>
-    </tbody>
+    <tr>
+        <th>Time:</th>
+        <td>${meeting.getTime()}</td>
+    </tr>
+    <tr>
+        <th>Agenda:</th>
+        <td>${meeting.getAgenda()}</td>
+    </tr>
+    <tr>
+        <th>Minutes:</th>
+        <td>${meeting.getMinutes()}</td>
+    </tr>
+    <tr>
+        <th>Department:</th>
+        <td>${meeting.getDepartment().getField()}</td>
+    </tr>
+    <tr>
+        <th>Campus:</th>
+        <td>${meeting.getCampus().getName()}</td>
+    </tr>
+    <tr>
+        <th>Institute:</th>
+        <td>${meeting.getInstitute().getName()}</td>
+    </tr>
 </table>
 <c:import url="../footer.jsp"/>
