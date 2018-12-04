@@ -5,8 +5,7 @@
     <tr>
         <th>First Name</th>
         <th>Last Name</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th colspan="2">Operations</th>
     </tr>
     </thead>
     <tbody>

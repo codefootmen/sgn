@@ -5,8 +5,7 @@
     <tr>
         <th>Number</th>
         <th>Quantity of Seats</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th colspan="2">Operations</th>
     </tr>
     </thead>
     <tbody>

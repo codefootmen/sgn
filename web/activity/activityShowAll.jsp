@@ -6,8 +6,7 @@
         <th>Name</th>
         <th>Activity Type</th>
         <th>Area</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th colspan="2">Operations</th>
     </tr>
     </thead>
     <tbody>

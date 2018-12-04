@@ -7,8 +7,7 @@
         <th>Time</th>
         <th>Agenda</th>
         <th>Minutes</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th colspan="2">Operations</th>
     </tr>
     </thead>
     <tbody>

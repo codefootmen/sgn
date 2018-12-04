@@ -8,8 +8,7 @@
         <th>email</th>
         <th>Status</th>
         <th>Honorifcs</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th colspan="2">Operations</th>
     </tr>
     </thead>
     <tbody>
