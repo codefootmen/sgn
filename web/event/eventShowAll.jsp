@@ -5,8 +5,6 @@
     <tr>
         <th>Name</th>
         <th>Date</th>
-        <th>Professor</th>
-        <th>Room</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
@@ -16,8 +14,6 @@
         <tr>
             <td><a href="${path}/events/${a.getIdEvent()}">${a.getName()}</a></td>
             <td>${a.getDate()}</td>
-            <td>${a.getProfessor().getFirstName()}</td>
-            <td>${a.getRoom().getNumber()}</td>
             <td>
                 <a href="/events/${a.getIdEvent()}/edit">
                     <span class="icon">

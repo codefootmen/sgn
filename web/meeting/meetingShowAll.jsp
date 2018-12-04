@@ -7,9 +7,6 @@
         <th>Time</th>
         <th>Agenda</th>
         <th>Minutes</th>
-        <th>Department</th>
-        <th>Campus</th>
-        <th>Institute</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
@@ -21,9 +18,6 @@
             <td>${a.getTime()}</td>
             <td>${a.getAgenda()}</td>
             <td>${a.getMinutes()}</td>
-            <td>${a.getDepartment().getField()}</td>
-            <td>${a.getCampus().getName()}</td>
-            <td>${a.getInstitute().getName()}</td>
             <td>
                 <a href="/meetings/${a.getIdMeeting()}/edit">
                     <span class="icon">

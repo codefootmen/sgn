@@ -7,8 +7,6 @@
         <th>Quantity of bathdrooms</th>
         <th>Elevator</th>
         <th>Accessibility</th>
-        <th>Campus</th>
-        <th>Institute</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
@@ -20,8 +18,6 @@
             <td>${a.getQuantityOfBathrooms()}</td>
             <td>${a.getElevator()}</td>
             <td>${a.getAccessibility()}</td>
-            <td>${a.getCampus().getName()}</td>
-            <td>${a.getInstitute().getName()}</td>
             <td>
                 <a href="/buildings/${a.getIdBuilding()}/edit">
                     <span class="icon">

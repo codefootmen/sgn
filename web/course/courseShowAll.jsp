@@ -6,11 +6,6 @@
         <th>Semester</th>
         <th>Year</th>
         <th>Subject</th>
-        <th>Program</th>
-        <th>Department</th>
-        <th>Campus</th>
-        <th>Institute</th>
-        <th>Professor</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
@@ -18,22 +13,16 @@
     <tbody>
     <c:forEach items="${courses}" var="a">
         <tr>
-            <td><a href="${path}/courses/${a.getIdCourse()}">
+            <td>
                 <c:if test="${a.getSemester() == false}">
                     First
                 </c:if>
                 <c:if test="${a.getSemester() == true}">
                     Second
                 </c:if>
-
-            </a></td>
+            </td>
             <td>${a.getYear()}</td>
-            <td>${a.getSubject().getName()}</td>
-            <td>${a.getProgram().getName()}</td>
-            <td>${a.getDepartment().getField()}</td>
-            <td>${a.getCampus().getName()}</td>
-            <td>${a.getInstitute().getName()}</td>
-            <td>${a.getProfessor().getFirstName()}</td>
+            <td><a href="${path}/courses/${a.getIdCourse()}">${a.getSubject().getName()}</a></td>
             <td>
                 <a href="/courses/${a.getIdCourse()}/edit">
                     <span class="icon">

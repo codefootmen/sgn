@@ -7,7 +7,6 @@
         <th>Motive</th>
         <th>Description</th>
         <th>Priority</th>
-        <th>Room</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
@@ -18,7 +17,6 @@
             <td><a href="${path}/requests/${a.getIdRequest()}">${a.getMotive()}</a></td>
             <td>${a.getDescription()}</td>
             <td>${a.getPriority()}</td>
-            <td>${a.getRoom().getNumber()}</td>
             <td>
                 <a href="/requests/${a.getIdRequest()}/edit">
                     <span class="icon">

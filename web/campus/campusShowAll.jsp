@@ -10,7 +10,6 @@
         <th>State</th>
         <th>Telephone</th>
         <th>ZIP</th>
-        <th>Institute</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
@@ -25,7 +24,6 @@
             <td>${a.getState()}</td>
             <td>${a.getTelephone()}</td>
             <td>${a.getZip()}</td>
-            <td>${a.getInstitute().getName()}</td>
             <td>
                 <a href="/campi/${a.getIdCampus()}/edit">
                     <span class="icon">

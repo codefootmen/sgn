@@ -5,11 +5,6 @@
     <tr>
         <th>Name</th>
         <th>Quantity of Credits</th>
-        <th>Room Type</th>
-        <th>Program</th>
-        <th>Department</th>
-        <th>Campus</th>
-        <th>Institute</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
@@ -19,11 +14,7 @@
         <tr>
             <td><a href="${path}/subjects/${a.getIdSubject()}">${a.getName()}</a></td>
             <td>${a.getQuantityOfCredits()}</td>
-            <td>${a.getRoomType().getName()}</td>
-            <td>${a.getProgram().getName()}</td>
-            <td>${a.getDepartment().getField()}</td>
-            <td>${a.getCampus().getName()}</td>
-            <td>${a.getInstitute().getName()}</td>
+
             <td>
                 <a href="/subjects/${a.getIdSubject()}/edit">
                     <span class="icon">

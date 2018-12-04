@@ -5,8 +5,6 @@
     <tr>
         <th>Number</th>
         <th>Quantity of Seats</th>
-        <th>Room Type</th>
-        <th>Building</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
@@ -16,8 +14,7 @@
         <tr>
             <td><a href="${path}/rooms/${a.getIdRoom()}">${a.getNumber()}</a></td>
             <td>${a.getQuantityOfSeats()}</td>
-            <td>${a.getRoomType().getName()}</td>
-            <td>${a.getBuilding().getName()}</td>
+
             <td>
                 <a href="/rooms/${a.getIdRoom()}/edit">
                     <span class="icon">

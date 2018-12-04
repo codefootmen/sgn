@@ -5,9 +5,6 @@
     <tr>
         <th>Field</th>
         <th>Description</th>
-        <th>Campus</th>
-        <th>Institute</th>
-        <th>Professor</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
@@ -17,9 +14,6 @@
         <tr>
             <td><a href="${path}/departments/${a.getIdDepartment()}">${a.getField()}</a></td>
             <td>${a.getDescription()}</td>
-            <td>${a.getCampus().getName()}</td>
-            <td>${a.getInstitute().getName()}</td>
-            <td>${a.getProfessor().getFirstName()}</td>
             <td>
                 <a href="/departments/${a.getIdDepartment()}/edit">
                     <span class="icon">

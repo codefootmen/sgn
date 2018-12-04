@@ -1,31 +1,38 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="../header.jsp"/>
 <table class="table box diplay-table margin-auto">
-    <thead>
     <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Street</th>
-        <th>Number</th>
-        <th>City</th>
-        <th>State</th>
-        <th>Telephone</th>
-        <th>ZIP</th>
-        <th>Institution</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>${campus.getIdCampus()}</td>
+        <th>Name:</th>
         <td>${campus.getName()}</td>
-        <td>${campus.getStreet()}</td>
-        <td>${campus.getNumber()}</td>
-        <td>${campus.getCity()}</td>
-        <td>${campus.getState()}</td>
-        <td>${campus.getTelephone()}</td>
-        <td>${campus.getZip()}</td>
-        <td>${campus.getIdInstitute()}</td>
     </tr>
-    </tbody>
+    <tr>
+        <th>Street:</th>
+        <td>${campus.getStreet()}</td>
+    </tr>
+    <tr>
+        <th>Number:</th>
+        <td>${campus.getNumber()}</td>
+    </tr>
+    <tr>
+        <th>City:</th>
+        <td>${campus.getCity()}</td>
+    </tr>
+    <tr>
+        <th>State:</th>
+        <td>${campus.getState()}</td>
+    </tr>
+    <tr>
+        <th>Telephone:</th>
+        <td>${campus.getTelephone()}</td>
+    </tr>
+    <tr>
+        <th>ZIP:</th>
+        <td>${campus.getZip()}</td>
+    </tr>
+    <tr>
+        <th>Institute:</th>
+        <td>${campus.getInstitute().getName()}</td>
+    </tr>
+
 </table>
 <c:import url="../footer.jsp"/>

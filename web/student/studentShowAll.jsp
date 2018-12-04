@@ -5,7 +5,6 @@
     <tr>
         <th>First Name</th>
         <th>Last Name</th>
-        <th>Activity</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
@@ -15,7 +14,6 @@
         <tr>
             <td><a href="${path}/students/${a.getIdStudent()}">${a.getFirstName()}</a></td>
             <td>${a.getLastName()}</td>
-            <td>${a.getActivity().getName()}</td>
             <td>
                 <a href="/students/${a.getIdStudent()}/edit">
                     <span class="icon">
