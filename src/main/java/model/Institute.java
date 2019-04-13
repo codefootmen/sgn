@@ -23,28 +23,25 @@ public class Institute {
     private Long idInstitute;
     private String name;
     private String site;
-    static private InstituteDAO DAO = new InstituteDAO();
+    static private nDAO DAO = new nDAO();
 
     public static void delete(Long id){
-        DAO.delete(id);
+        DAO.delete(new Institute().setIdInstitute(id));
     }
 
     public static Institute findOne(Long id){
-        nDAO d = new nDAO();
-        return (Institute)d.findOne(id, Institute.class);
+        return (Institute)DAO.findOne(id, Institute.class);
     }
 
-    public static List<Institute> findAll() {
-        return DAO.findAll();
+    public static List<Object> findAll() {
+        return DAO.findAll(Institute.class);
     }
 
     public static Optional<Institute> save(Institute institute) {
-        nDAO d = new nDAO();
-        return d.save(institute);
+        return DAO.save(institute);
     }
 
     public static Optional<Institute> update(Institute institute) {
-        nDAO d = new nDAO();
-        return d.update(institute);
+        return DAO.update(institute);
     }
 }
