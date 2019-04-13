@@ -1,6 +1,13 @@
 package dao;
 
 import model.Institute;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.Metadata;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,32 +21,15 @@ public class InstituteDAO implements DAO<Institute, Long> {
 
     @Override
     public Optional<Institute> save(Institute institute) {
-        Connection connection = Database.getConnection();
-        PreparedStatement statement = null;
-        try {
-            statement = connection.prepareStatement(
-                    "INSERT INTO institute SET " +
-                            "name = ?, " +
-                            "site = ?"
-            );
-            Query.setStatementValues(
-                    statement,
-                    institute.getName(),
-                    institute.getSite()
-            );
-            statement.execute();
-            Database.closeConnection(connection, statement);
-            return Optional.of(institute);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        Database.closeConnection(connection, statement);
-        return Optional.empty();
+
+
+
+        return Optional.of(institute);
     }
 
     @Override
     public Institute findOne(Long key) {
-        String sql = String.format("SELECT * FROM institute WHERE id_institute = '%s'", key);
+        String sql = String.format("SELECT * FROM Institute WHERE id_institute = '%s'", key);
         return search(sql).get(0);
     }
 
