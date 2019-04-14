@@ -1,7 +1,6 @@
 package model;
 
 
-import dao.InstituteDAO;
 import dao.nDAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -21,6 +20,7 @@ public class Institute {
     @Id
     @GeneratedValue
     private Long idInstitute;
+
     private String name;
     private String site;
     static private nDAO DAO = new nDAO();

@@ -1,17 +1,22 @@
 package model;
 
-import dao.CampusDAO;
-import dao.InstituteDAO;
+import dao.nDAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import javax.persistence.*;
 import java.util.List;
 import java.util.Optional;
 
 @Data
 @Accessors(chain = true)
+@Entity
 public class Campus {
+
+    @Id
+    @GeneratedValue
     private Long idCampus;
+
     private String name;
     private String street;
     private Long number;
@@ -19,14 +24,17 @@ public class Campus {
     private String state;
     private String telephone;
     private String zip;
+
+    @ManyToOne
     private Institute institute;
+
     private Long idInstitute;
-    private static CampusDAO DAO = new CampusDAO();
+    private static nDAO DAO = new nDAO();
 
     public Institute getInstitute() {
         if (institute == null) {
-            InstituteDAO dao = new InstituteDAO();
-            institute = dao.findOne(idInstitute);
+            nDAO dao = new nDAO();
+            institute = (Institute) dao.findOne(idInstitute, Institute.class);
         }
         return institute;
     }
@@ -40,15 +48,15 @@ public class Campus {
     }
 
     public static void delete(Long id){
-        DAO.delete(id);
+        DAO.delete(new Campus().setIdCampus(id));
     }
 
     public static Campus findOne(Long id) {
-        return DAO.findOne(id);
+        return (Campus)DAO.findOne(id, Campus.class);
     }
 
-    public static List<Campus> findAll(){
-        return DAO.findAll();
+    public static List<Object> findAll(){
+        return DAO.findAll(Campus.class);
     }
 
     public static Optional<Campus> save(Campus campus){return DAO.save(campus); }

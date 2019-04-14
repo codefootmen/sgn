@@ -1,34 +1,42 @@
 package model;
 
-import dao.CampusDAO;
-import dao.DepartmentDAO;
-import dao.InstituteDAO;
-import dao.ProfessorDAO;
+import dao.nDAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.sql.SQLException;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Optional;
 
 @Data
 @Accessors(chain = true)
+@Entity
 public class Department {
+    @Id
+    @GeneratedValue
     private Long idDepartment;
+
     private String field;
     private String description;
+
+    @ManyToOne
     private Campus campus;
     private Long idCampus;
+
+    @ManyToOne
     private Institute institute;
     private Long idInstitute;
+
+    @ManyToOne
     private Professor professor;
     private Long idProfessor;
-    private static DepartmentDAO DAO = new DepartmentDAO();
+
+    private static nDAO DAO = new nDAO();
 
     public Campus getCampus() {
         if (campus == null) {
-            CampusDAO dao = new CampusDAO();
-            campus = dao.findOne(idCampus);
+            nDAO dao = new nDAO();
+            campus = (Campus) dao.findOne(idCampus, Campus.class);
         }
         return campus;
     }
@@ -43,8 +51,8 @@ public class Department {
 
     public Institute getInstitute() {
         if (institute == null) {
-            InstituteDAO dao = new InstituteDAO();
-            institute = dao.findOne(idInstitute);
+            nDAO dao = new nDAO();
+            institute = (Institute) dao.findOne(idInstitute, Institute.class);
         }
         return institute;
     }
@@ -59,8 +67,8 @@ public class Department {
 
     public Professor getProfessor() {
         if (professor == null) {
-            ProfessorDAO dao = new ProfessorDAO();
-            professor = dao.findOne(idProfessor);
+            nDAO dao = new nDAO();
+            professor = (Professor) dao.findOne(idProfessor, Professor.class);
         }
         return professor;
     }
@@ -74,15 +82,13 @@ public class Department {
     }
 
     public static void delete(Long id){
-        DAO.delete(id);
+        DAO.delete(new Department().setIdDepartment(id));
     }
 
-    public static Department findOne(Long id) {
-        return DAO.findOne(id);
-    }
+    public static Department findOne(Long id) { return (Department) DAO.findOne(id, Department.class); }
 
-    public static List<Department> findAll() {
-        return DAO.findAll();
+    public static List<Object> findAll() {
+        return DAO.findAll(Department.class);
     }
 
     public static Optional<Department> save(Department department){return DAO.save(department); }

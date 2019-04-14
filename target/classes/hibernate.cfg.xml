@@ -11,6 +11,10 @@
     <property name="hibernate.hbm2ddl.auto">update</property>
 
     <mapping class="model.Institute"/>
+    <mapping class="model.Campus"/>
+    <mapping class="model.Department"/>
+    <mapping class="model.Building"/>
+    <mapping class="model.Professor"/>
 
 
     <!-- DB schema will be updated if needed -->

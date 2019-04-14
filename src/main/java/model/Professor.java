@@ -1,19 +1,26 @@
 package model;
 
 import dao.ProfessorDAO;
+import dao.nDAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.List;
 import java.util.Optional;
 
 @Data
 @Accessors(chain = true)
+@Entity
 public class Professor extends Person {
+    @Id
+    @GeneratedValue
     private Long idProfessor;
     private StatusEnum status;
     private HonorificsEnum honorifics;
-    private static ProfessorDAO DAO = new ProfessorDAO();
+    private static nDAO DAO = new nDAO();
 
 
     public Professor setFirstName(String firstName) {
@@ -41,6 +48,17 @@ public class Professor extends Person {
         return this;
     }
 
+
+    public static void delete(Long id){
+        DAO.delete(new Professor().setIdProfessor(id));
+    }
+
+    public static Professor findOne(Long id) { return (Professor) DAO.findOne(id, Professor.class); }
+
+    public static List<Object> findAll() {
+        return DAO.findAll(Professor.class);
+    }
+
     public static Optional<Professor> save(Professor professor) {
         return DAO.save(professor);
     }
@@ -49,15 +67,5 @@ public class Professor extends Person {
         return DAO.update(professor);
     }
 
-    public static Boolean delete(Long id) {
-        return DAO.delete(id);
-    }
 
-    public static Professor findOne(Long id) {
-        return DAO.findOne(id);
-    }
-
-    public static List<Professor> findAll() {
-        return DAO.findAll();
-    }
 }

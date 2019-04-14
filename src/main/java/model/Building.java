@@ -1,33 +1,40 @@
 package model;
 
-import dao.BuildingDAO;
-import dao.CampusDAO;
-import dao.InstituteDAO;
+import dao.nDAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.sql.SQLException;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Optional;
 
 @Data
 @Accessors(chain = true)
+@Entity
 public class Building {
+    @Id
+    @GeneratedValue
     private Long idBuilding;
+
     private String name;
     private Integer quantityOfBathrooms;
     private Boolean elevator;
     private Boolean accessibility;
+
+    @ManyToOne
     private Campus campus;
     private Long idCampus;
+
+    @ManyToOne
     private Institute institute;
     private Long idInstitute;
-    private static BuildingDAO DAO = new BuildingDAO();
+
+    private static nDAO DAO = new nDAO();
 
     public Campus getCampus() {
         if (campus == null) {
-            CampusDAO dao = new CampusDAO();
-            campus = dao.findOne(idCampus);
+            nDAO dao = new nDAO();
+            campus = (Campus) dao.findOne(idCampus, Campus.class);
         }
         return campus;
     }
@@ -42,8 +49,8 @@ public class Building {
 
     public Institute getInstitute() {
         if (institute == null) {
-            InstituteDAO dao = new InstituteDAO();
-            institute = dao.findOne(idInstitute);
+            nDAO dao = new nDAO();
+            institute = (Institute) dao.findOne(idInstitute, Institute.class);
         }
         return institute;
     }
@@ -57,15 +64,15 @@ public class Building {
     }
 
     public static void delete(Long id) {
-        DAO.delete(id);
+        DAO.delete(new Building().setIdBuilding(id));
     }
 
     public static Building findOne(Long id) {
-        return DAO.findOne(id);
+        return (Building) DAO.findOne(id, Building.class);
     }
 
-    public static List<Building> findAll() {
-        return DAO.findAll();
+    public static List<Object> findAll() {
+        return DAO.findAll(Building.class);
     }
 
     public static Optional<Building> save(Building building){return DAO.save(building); }
