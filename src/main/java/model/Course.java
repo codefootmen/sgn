@@ -4,37 +4,58 @@ import dao.*;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.nio.charset.CoderResult;
-import java.sql.SQLException;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.util.List;
 import java.util.Optional;
 
 @Data
 @Accessors(chain = true)
+@Entity
 public class Course {
+    @Id
+    @GeneratedValue
     private Long idCourse;
+
     private Boolean semester;
     private Integer year;
+
+    @ManyToOne
     private Subject subject;
     private Long idSubject;
+
+    @ManyToOne
     private Program program;
     private Long idProgram;
+
+    @ManyToOne
     private Department department;
     private Long idDepartment;
+
+    @ManyToOne
     private Campus campus;
     private Long idCampus;
+
+    @ManyToOne
     private Institute institute;
     private Long idInstitute;
+
+    @ManyToOne
     private Period period;
     private Long idPeriod;
+
+    @ManyToOne
     private Professor professor;
     private Long idProfessor;
-    private static CourseDAO DAO = new CourseDAO();
+
+    private static nDAO DAO = new nDAO();
 
     public Subject getSubject() {
         if(subject == null){
-            SubjectDAO dao = new SubjectDAO();
-            subject = dao.findOne(idSubject);
+            nDAO dao = new nDAO();
+            subject = (Subject) dao.findOne(idSubject, Subject.class);
         }
         return subject;
     }
@@ -49,8 +70,8 @@ public class Course {
 
     public Program getProgram() {
         if (program == null) {
-            ProgramDAO dao = new ProgramDAO();
-            program = dao.findOne(idProgram);
+            nDAO dao = new nDAO();
+            program = (Program) dao.findOne(idProgram, Program.class);
         }
         return program;
     }
@@ -65,8 +86,8 @@ public class Course {
 
     public Department getDepartment() {
         if (department == null) {
-            DepartmentDAO dao = new DepartmentDAO();
-            department = dao.findOne(idDepartment);
+            nDAO dao = new nDAO();
+            department = (Department) dao.findOne(idDepartment, Department.class);
         }
         return department;
     }
@@ -81,8 +102,8 @@ public class Course {
 
     public Campus getCampus() {
         if (campus == null) {
-            CampusDAO dao = new CampusDAO();
-            campus = dao.findOne(idCampus);
+            nDAO dao = new nDAO();
+            campus = (Campus) dao.findOne(idCampus, Campus.class);
         }
         return campus;
     }
@@ -97,8 +118,8 @@ public class Course {
 
     public Institute getInstitute() {
         if (institute == null) {
-            InstituteDAO dao = new InstituteDAO();
-            institute = dao.findOne(idInstitute);
+            nDAO dao = new nDAO();
+            institute = (Institute) dao.findOne(idInstitute, Institute.class);
         }
         return institute;
     }
@@ -113,8 +134,8 @@ public class Course {
 
     public Period getPeriod() {
         if(period == null){
-            PeriodDAO dao = new PeriodDAO();
-            period = dao.findOne(idPeriod);
+            nDAO dao = new nDAO();
+            period = (Period) dao.findOne(idPeriod, Period.class);
         }
         return period;
     }
@@ -129,8 +150,8 @@ public class Course {
 
     public Professor getProfessor() {
         if (professor == null) {
-            ProfessorDAO dao = new ProfessorDAO();
-            professor = dao.findOne(idProfessor);
+            nDAO dao = new nDAO();
+            professor = (Professor) dao.findOne(idProfessor, Professor.class);
         }
         return professor;
     }
@@ -144,15 +165,15 @@ public class Course {
     }
 
     public static void delete(Long id) {
-        DAO.delete(id);
+        DAO.delete(new Course().setIdCourse(id));
     }
 
     public static Course findOne(Long id) {
-        return DAO.findOne(id);
+        return (Course) DAO.findOne(id, Course.class);
     }
 
-    public static List<Course> findAll() {
-        return DAO.findAll();
+    public static List<Object> findAll() {
+        return DAO.findAll(Course.class);
     }
 
     public static Optional<Course> save(Course course) { return DAO.save(course); }

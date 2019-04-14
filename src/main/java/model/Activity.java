@@ -4,33 +4,48 @@ import dao.*;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import javax.persistence.*;
 import java.util.List;
 import java.util.Optional;
 
 @Data
 @Accessors(chain = true)
+@Entity
 public class Activity {
+    @Id
+    @GeneratedValue
     private Long idActivity;
     private String name;
     private ActivityTypeEnum activityType;
     private String area;
+
+    @ManyToOne
     private Professor professor;
     private Long idProfessor;
+
+    @ManyToOne
     private Department department;
     private Long idDepartment;
+
+    @ManyToOne
     private Campus campus;
     private Long idCampus;
+
+    @ManyToOne
     private Institute institute;
     private Long idInstitute;
+
+    @ManyToOne
     private Program program;
     private Long idProgram;
-    private static ActivityDAO DAO = new ActivityDAO();
+
+    private static nDAO DAO = new nDAO();
 
 
     public Professor getProfessor() {
         if (professor == null) {
-            ProfessorDAO dao = new ProfessorDAO();
-            professor = dao.findOne(idProfessor);
+            nDAO dao = new nDAO();
+            professor = (Professor) dao.findOne(idProfessor, Professor.class);
         }
         return professor;
     }
@@ -45,8 +60,8 @@ public class Activity {
 
     public Department getDepartment() {
         if (department == null) {
-            DepartmentDAO dao = new DepartmentDAO();
-            department = dao.findOne(idDepartment);
+            nDAO dao = new nDAO();
+            department = (Department) dao.findOne(idDepartment, Department.class);
         }
         return department;
     }
@@ -61,8 +76,8 @@ public class Activity {
 
     public Campus getCampus() {
         if (campus == null) {
-            CampusDAO dao = new CampusDAO();
-            campus = dao.findOne(idCampus);
+            nDAO dao = new nDAO();
+            campus = (Campus) dao.findOne(idCampus, Campus.class);
         }
         return campus;
     }
@@ -77,8 +92,8 @@ public class Activity {
 
     public Institute getInstitute() {
         if (institute == null) {
-            InstituteDAO dao = new InstituteDAO();
-            institute = dao.findOne(idInstitute);
+            nDAO dao = new nDAO();
+            institute = (Institute) dao.findOne(idInstitute, Institute.class);
         }
         return institute;
     }
@@ -93,8 +108,8 @@ public class Activity {
 
     public Program getProgram() {
         if (program == null) {
-            ProgramDAO dao = new ProgramDAO();
-            program = dao.findOne(idProgram);
+            nDAO dao = new nDAO();
+            program = (Program) dao.findOne(idProgram, Program.class);
         }
         return program;
     }
@@ -112,12 +127,15 @@ public class Activity {
         return this;
     }
 
+
+    public static void delete(Long id) { DAO.delete(new Activity().setIdActivity(id)); }
+
     public static Activity findOne(Long id) {
-        return DAO.findOne(id);
+        return (Activity) DAO.findOne(id, Activity.class);
     }
 
-    public static List<Activity> findAll() {
-        return DAO.findAll();
+    public static List<Object> findAll() {
+        return DAO.findAll(Activity.class);
     }
 
     public static Optional<Activity> save(Activity activity) {
@@ -128,7 +146,4 @@ public class Activity {
         return DAO.update(activity);
     }
 
-    public static Boolean delete(Long id) {
-        return DAO.delete(id);
-    }
 }

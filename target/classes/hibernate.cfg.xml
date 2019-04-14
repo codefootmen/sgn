@@ -15,6 +15,18 @@
     <mapping class="model.Department"/>
     <mapping class="model.Building"/>
     <mapping class="model.Professor"/>
+    <mapping class="model.Activity"/>
+    <mapping class="model.Program"/>
+    <mapping class="model.Room"/>
+    <mapping class="model.RoomType"/>
+    <mapping class="model.Course"/>
+    <mapping class="model.Event"/>
+    <mapping class="model.Meeting"/>
+    <mapping class="model.Period"/>
+    <mapping class="model.Request"/>
+    <mapping class="model.Student"/>
+    <mapping class="model.Subject"/>
+    <mapping class="model.User"/>
 
 
     <!-- DB schema will be updated if needed -->

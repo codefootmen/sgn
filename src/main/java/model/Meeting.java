@@ -1,36 +1,46 @@
 package model;
 
-import dao.CampusDAO;
-import dao.DepartmentDAO;
-import dao.InstituteDAO;
-import dao.MeetingDAO;
+import dao.*;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.sql.SQLException;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.util.List;
 import java.util.Optional;
 
 @Data
 @Accessors(chain = true)
+@Entity
 public class Meeting {
+    @Id
+    @GeneratedValue
     private Long idMeeting;
     private String day;
     private String time;
     private String agenda;
     private String minutes;
+
+    @ManyToOne
     private Department department;
     private Long idDepartment;
+
+    @ManyToOne
     private Campus campus;
     private Long idCampus;
+
+    @ManyToOne
     private Institute institute;
     private Long idInstitute;
-    private static MeetingDAO DAO = new MeetingDAO();
+
+    private static nDAO DAO = new nDAO();
 
     public Department getDepartment() {
         if (department == null) {
-            DepartmentDAO dao = new DepartmentDAO();
-            department = dao.findOne(idDepartment);
+            nDAO dao = new nDAO();
+            department = (Department) dao.findOne(idDepartment, Department.class);
         }
         return department;
     }
@@ -45,8 +55,8 @@ public class Meeting {
 
     public Campus getCampus() {
         if (campus == null) {
-            CampusDAO dao = new CampusDAO();
-            campus = dao.findOne(idCampus);
+            nDAO dao = new nDAO();
+            campus = (Campus) dao.findOne(idCampus, Campus.class);
         }
         return campus;
     }
@@ -61,8 +71,8 @@ public class Meeting {
 
     public Institute getInstitute() {
         if (institute == null) {
-            InstituteDAO dao = new InstituteDAO();
-            institute = dao.findOne(idInstitute);
+            nDAO dao = new nDAO();
+            institute = (Institute) dao.findOne(idInstitute, Institute.class);
         }
         return institute;
     }
@@ -76,15 +86,15 @@ public class Meeting {
     }
 
     public static void delete(Long id){
-        DAO.delete(id);
+        DAO.delete(new Meeting().setIdMeeting(id));
     }
 
     public static Meeting findOne(Long id) {
-        return DAO.findOne(id);
+        return (Meeting) DAO.findOne(id, Meeting.class);
     }
 
-    public static List<Meeting> findAll() {
-        return DAO.findAll();
+    public static List<Object> findAll() {
+        return DAO.findAll(Meeting.class);
     }
 
     public static Optional<Meeting> save(Meeting meeting) { return DAO.save(meeting); }

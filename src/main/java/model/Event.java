@@ -1,34 +1,45 @@
 package model;
 
-import dao.EventDAO;
-import dao.PeriodDAO;
-import dao.ProfessorDAO;
-import dao.RoomDAO;
+import dao.*;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.sql.SQLException;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.util.List;
 import java.util.Optional;
 
 @Data
 @Accessors(chain = true)
+@Entity
 public class Event {
+    @Id
+    @GeneratedValue
     private Long idEvent;
+
     private String name;
     private String date;
+
+    @ManyToOne
     private Period period;
     private Long idPeriod;
+
+    @ManyToOne
     private Professor professor;
     private Long idProfessor;
+
+    @ManyToOne
     private Room room;
     private Long idRoom;
-    private static EventDAO DAO = new EventDAO();
+
+    private static nDAO DAO = new nDAO();
 
     public Period getPeriod() {
         if (period == null) {
-            PeriodDAO dao = new PeriodDAO();
-            period = dao.findOne(idPeriod);
+            nDAO dao = new nDAO();
+            period = (Period) dao.findOne(idPeriod, Period.class);
         }
         return period;
     }
@@ -43,8 +54,8 @@ public class Event {
 
     public Professor getProfessor() {
         if (professor == null) {
-            ProfessorDAO dao = new ProfessorDAO();
-            professor = dao.findOne(idProfessor);
+            nDAO dao = new nDAO();
+            professor = (Professor) dao.findOne(idProfessor, Professor.class);
         }
         return professor;
     }
@@ -59,8 +70,8 @@ public class Event {
 
     public Room getRoom() {
         if (room == null) {
-            RoomDAO dao = new RoomDAO();
-            room = dao.findOne(idRoom);
+            nDAO dao = new nDAO();
+            room = (Room) dao.findOne(idRoom, Room.class);
         }
         return room;
     }
@@ -74,15 +85,15 @@ public class Event {
     }
 
     public static void delete(Long id){
-        DAO.delete(id);
+        DAO.delete(new Event().setIdEvent(id));
     }
 
     public static Event findOne(Long id) {
-        return DAO.findOne(id);
+        return (Event) DAO.findOne(id, Event.class);
     }
 
-    public static List<Event> findAll() {
-        return DAO.findAll();
+    public static List<Object> findAll() {
+        return DAO.findAll(Event.class);
     }
 
     public static Optional<Event> save(Event event) {

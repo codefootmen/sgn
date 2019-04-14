@@ -1,24 +1,32 @@
 package model;
 
-import dao.RequestDAO;
-import dao.RoomDAO;
+import dao.nDAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.sql.SQLException;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.util.List;
 import java.util.Optional;
 
 @Data
 @Accessors(chain = true)
+@Entity
 public class Request {
+    @Id
+    @GeneratedValue
     private Long idRequest;
     private String motive;
     private String description;
     private PriorityEnum priority;
+
+    @ManyToOne
     private Room room;
     private Long idRoom;
-    private static RequestDAO DAO = new RequestDAO();
+
+    private static nDAO DAO = new nDAO();
 
     public Request setPriority(String priority) {
         this.priority = PriorityEnum.valueOf(priority.toUpperCase());
@@ -27,8 +35,8 @@ public class Request {
 
     public Room getRoom() {
         if (room == null) {
-            RoomDAO dao = new RoomDAO();
-            room = dao.findOne(idRoom);
+            nDAO dao = new nDAO();
+            room = (Room) dao.findOne(idRoom, Room.class);
         }
         return room;
     }
@@ -48,14 +56,14 @@ public class Request {
     }
 
     public static void delete(Long id){
-        DAO.delete(id);
+        DAO.delete(new Request().setIdRequest(id));
     }
 
     public static Request findOne(Long id) {
-        return DAO.findOne(id);
+        return (Request) DAO.findOne(id, Request.class);
     }
 
-    public static List<Request> findAll() {
-        return DAO.findAll();
+    public static List<Object> findAll() {
+        return DAO.findAll(Request.class);
     }
 }

@@ -1,31 +1,40 @@
 package model;
 
-import dao.BuildingDAO;
-import dao.RoomDAO;
-import dao.RoomTypeDAO;
+import dao.nDAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.sql.SQLException;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.util.List;
 import java.util.Optional;
 
 @Data
 @Accessors(chain = true)
+@Entity
 public class Room {
+    @Id
+    @GeneratedValue
     private Long idRoom;
+
     private Integer number;
     private Integer quantityOfSeats;
+
+    @ManyToOne
     private RoomType roomType;
     private Long idRoomType;
+
+    @ManyToOne
     private Building building;
     private Long idBuilding;
-    private static RoomDAO DAO = new RoomDAO();
+    private static nDAO DAO = new nDAO();
 
     public RoomType getRoomType() {
         if (roomType == null) {
-            RoomTypeDAO dao = new RoomTypeDAO();
-            roomType = dao.findOne(idRoomType);
+            nDAO dao = new nDAO();
+            roomType = (RoomType) dao.findOne(idRoomType, RoomType.class);
         }
         return roomType;
     }
@@ -40,8 +49,8 @@ public class Room {
 
     public Building getBuilding() {
         if (building == null) {
-            BuildingDAO dao = new BuildingDAO();
-            building = dao.findOne(idBuilding);
+            nDAO dao = new nDAO();
+            building = (Building) dao.findOne(idBuilding, Building.class);
         }
         return building;
     }
@@ -63,14 +72,14 @@ public class Room {
     }
 
     public static void delete(Long id) {
-        DAO.delete(id);
+        DAO.delete(new Room().setIdRoom(id));
     }
 
     public static Room findOne(Long id) {
-        return DAO.findOne(id);
+        return (Room) DAO.findOne(id, Room.class);
     }
 
-    public static List<Room> findAll() {
-        return DAO.findAll();
+    public static List<Object> findAll() {
+        return DAO.findAll(Room.class);
     }
 }

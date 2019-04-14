@@ -1,5 +1,6 @@
 package dao;
 
+import model.User;
 import org.hibernate.IdentifierLoadAccess;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,6 +13,11 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.swing.text.html.Option;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -87,7 +93,5 @@ public class nDAO {
         Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
         return meta.getSessionFactoryBuilder().build();
     }
-
-
 
 }

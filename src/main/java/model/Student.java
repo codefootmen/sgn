@@ -1,21 +1,29 @@
 package model;
 
-import dao.ActivityDAO;
-import dao.StudentDAO;
+import dao.nDAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.sql.SQLException;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.util.List;
 import java.util.Optional;
 
 @Data
 @Accessors(chain = true)
+@Entity
 public class Student extends Person {
+    @Id
+    @GeneratedValue
     private Long idStudent;
+
+    @ManyToOne
     private Activity activity;
     private Long idActivity;
-    private static StudentDAO DAO = new StudentDAO();
+
+    private static nDAO DAO = new nDAO();
 
     public Student setFirstName(String firstName) {
         this.firstName = firstName;
@@ -34,8 +42,8 @@ public class Student extends Person {
 
     public Activity getActivity() {
         if (activity == null) {
-            ActivityDAO dao = new ActivityDAO();
-            activity = dao.findOne(idActivity);
+            nDAO dao = new nDAO();
+            activity = (Activity) dao.findOne(idActivity, Activity.class);
         }
         return activity;
     }
@@ -55,14 +63,14 @@ public class Student extends Person {
     }
 
     public static void delete(Long id){
-        DAO.delete(id);
+        DAO.delete(new Student().setIdStudent(id));
     }
 
     public static Student findOne(Long id) {
-        return DAO.findOne(id);
+        return (Student) DAO.findOne(id, Student.class);
     }
 
-    public static List<Student> findAll() {
-        return DAO.findAll();
+    public static List<Object> findAll() {
+        return DAO.findAll(Student.class);
     }
 }

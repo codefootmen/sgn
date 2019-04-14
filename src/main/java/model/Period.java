@@ -1,29 +1,37 @@
 package model;
 
-import dao.PeriodDAO;
-import dao.RoomDAO;
+import dao.nDAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.sql.SQLException;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.util.List;
 import java.util.Optional;
 
 @Data
 @Accessors(chain = true)
+@Entity
 public class Period {
+    @Id
+    @GeneratedValue
     private Long idPeriod;
     private String start;
     private String end;
     private String dayOfTheWeek;
+
+    @ManyToOne
     private Room room;
     private Long idRoom;
-    private static PeriodDAO DAO = new PeriodDAO();
+
+    private static nDAO DAO = new nDAO();
 
     public Room getRoom() {
         if (room == null) {
-            RoomDAO dao = new RoomDAO();
-            room = dao.findOne(idRoom);
+            nDAO dao = new nDAO();
+            room = (Room) dao.findOne(idRoom, Room.class);
         }
         return room;
     }
@@ -45,14 +53,14 @@ public class Period {
     }
 
     public static void delete(Long id){
-        DAO.delete(id);
+        DAO.delete(new Period().setIdPeriod(id));
     }
 
     public static Period findOne(Long id) {
-        return DAO.findOne(id);
+        return (Period) DAO.findOne(id, Room.class);
     }
 
-    public static List<Period> findAll() {
-        return DAO.findAll();
+    public static List<Object> findAll() {
+        return DAO.findAll(Room.class);
     }
 }

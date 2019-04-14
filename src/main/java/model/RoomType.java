@@ -1,20 +1,25 @@
 package model;
 
-import dao.RoomTypeDAO;
+import dao.nDAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.sql.SQLException;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.List;
 import java.util.Optional;
 
 @Data
 @Accessors(chain = true)
+@Entity
 public class RoomType {
+    @Id
+    @GeneratedValue
     private Long idRoomType;
     private String name;
     private String description;
-    private static RoomTypeDAO DAO = new RoomTypeDAO();
+    private static nDAO DAO = new nDAO();
 
     public static Optional<RoomType> save(RoomType roomtype) {
         return DAO.save(roomtype);
@@ -25,15 +30,15 @@ public class RoomType {
     }
 
     public static void delete(Long id){
-        DAO.delete(id);
+        DAO.delete(new RoomType().setIdRoomType(id));
     }
 
     public static RoomType findOne(Long id) {
-        return DAO.findOne(id);
+        return (RoomType) DAO.findOne(id, RoomType.class);
     }
 
-    public static List<RoomType> findAll() {
-        return DAO.findAll();
+    public static List<Object> findAll() {
+        return DAO.findAll(RoomType.class);
     }
 
 }

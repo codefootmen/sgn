@@ -1,29 +1,39 @@
 package model;
 
-import dao.CampusDAO;
-import dao.DepartmentDAO;
-import dao.InstituteDAO;
-import dao.ProgramDAO;
+import dao.*;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.sql.SQLException;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.util.List;
 import java.util.Optional;
 
 @Data
 @Accessors(chain = true)
+@Entity
 public class Program {
+
+    @Id
+    @GeneratedValue
     private Long idProgram;
     private String name;
     private AcademicLevelEnum academicLevel;
+
+    @ManyToOne
     private Department department;
     private Long idDepartment;
+
+    @ManyToOne
     private Campus campus;
     private Long idCampus;
+
+    @ManyToOne
     private Institute institute;
     private Long idInstitute;
-    private static ProgramDAO DAO = new ProgramDAO();
+    private static nDAO DAO = new nDAO();
 
     public Program setAcademicLevel(String academicLevel) {
         this.academicLevel = AcademicLevelEnum.valueOf(academicLevel.toUpperCase());
@@ -32,8 +42,8 @@ public class Program {
 
     public Department getDepartment() {
         if (department == null) {
-            DepartmentDAO dao = new DepartmentDAO();
-            department = dao.findOne(idDepartment);
+            nDAO dao = new nDAO();
+            department = (Department) dao.findOne(idDepartment, Department.class);
         }
         return department;
     }
@@ -48,8 +58,8 @@ public class Program {
 
     public Campus getCampus() {
         if (campus == null) {
-            CampusDAO dao = new CampusDAO();
-            campus = dao.findOne(idCampus);
+            nDAO dao = new nDAO();
+            campus = (Campus) dao.findOne(idCampus, Campus.class);
         }
         return campus;
     }
@@ -64,8 +74,8 @@ public class Program {
 
     public Institute getInstitute() {
         if (institute == null) {
-            InstituteDAO dao = new InstituteDAO();
-            institute = dao.findOne(idInstitute);
+            nDAO dao = new nDAO();
+            institute = (Institute) dao.findOne(idInstitute, Institute.class);
         }
         return institute;
     }
@@ -87,14 +97,14 @@ public class Program {
     }
 
     public static void delete(Long id){
-        DAO.delete(id);
+        DAO.delete(new Program().setIdProgram(id));
     }
 
     public static Program findOne(Long id) {
-        return DAO.findOne(id);
+        return (Program) DAO.findOne(id, Program.class);
     }
 
-    public static List<Program> findAll() {
-        return DAO.findAll();
+    public static List<Object> findAll() {
+        return DAO.findAll(Program.class);
     }
 }

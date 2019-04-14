@@ -21,8 +21,8 @@ public class DashboardController extends HttpServlet {
         if (request.getSession().getAttribute("access_level") == null) {
             response.sendRedirect("/authentication");
         } else {
-            List<Event> e = Event.findAll();
-            List<Activity> a = Activity.findAll();
+            List<Object> e = Event.findAll();
+            List<Object> a = Activity.findAll();
             request.setAttribute("numberOfProfessors", Professor.findAll().size());
             request.setAttribute("numberOfStudents", Student.findAll().size());
             request.setAttribute("numberOfEvents", e.size());
