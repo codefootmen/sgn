@@ -1,6 +1,5 @@
 package model;
 
-import dao.ProfessorDAO;
 import dao.nDAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
