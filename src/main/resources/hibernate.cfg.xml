@@ -26,8 +26,6 @@
     <mapping class="model.Request"/>
     <mapping class="model.Student"/>
     <mapping class="model.Subject"/>
-    <mapping class="model.User"/>
-
 
     <!-- DB schema will be updated if needed -->
   </session-factory>
