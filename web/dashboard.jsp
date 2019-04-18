@@ -116,4 +116,9 @@
         </div>
     </div>
 </div>
+<label>
+    <form action="../src/reports/Test02" method="post">
+        <input type="submit" name="report" value="teste">
+    </form>
+</label>
 <c:import url="/footer.jsp"/>

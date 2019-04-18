@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Test02" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="66a930ef-0300-4052-a182-5e73380e70b1">
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[c2duLmluc3RpdHV0ZSBBUyAsMzI3LDEyMiw3OTE2M2UzNS1iMmEyLTQzNTQtYmUyYy0wMzdjODlh
+ODMxZDY7c2duLmNhbXB1cyBBUyAsMTEyLDc2LGM5OTI3MTk1LTBhZDItNDQxZC1hY2QzLTBkNTI1
+NzY1YzFmNzs=
+]]>
+	</property>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="teste"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT sgn.campus.id_campus,
+	sgn.campus.name,
+	sgn.campus.id_institute,
+	sgn.institute.name,
+	sgn.institute.id_institute
+FROM sgn.campus
+	INNER JOIN sgn.institute ON 
+	 sgn.campus.id_institute = sgn.institute.id_institute]]>
+	</queryString>
+	<field name="id_campus" class="java.math.BigInteger">
+		<property name="com.jaspersoft.studio.field.label" value="id_campus"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="campus"/>
+	</field>
+	<field name="name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="campus"/>
+	</field>
+	<field name="id_institute" class="java.math.BigInteger">
+		<property name="com.jaspersoft.studio.field.label" value="id_institute"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="campus"/>
+	</field>
+	<field name="COLUMN_4" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="institute"/>
+	</field>
+	<field name="COLUMN_5" class="java.math.BigInteger">
+		<property name="com.jaspersoft.studio.field.label" value="id_institute"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="institute"/>
+	</field>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{name}]]></groupExpression>
+		<groupHeader>
+			<band height="33">
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="0" width="100" height="32" forecolor="#666666" backcolor="#E6E6E6" uuid="cf702416-9106-4c9c-848a-614dcfa3c2ff"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[name]]></text>
+				</staticText>
+				<textField>
+					<reportElement mode="Opaque" x="100" y="0" width="455" height="32" forecolor="#006699" backcolor="#E6E6E6" uuid="4251510f-c0d4-4e28-aa8f-d173c83de181"/>
+					<textElement>
+						<font size="24" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="-20" y="32" width="595" height="1" forecolor="#666666" uuid="f6d30245-765f-42cd-82f2-7102fd893986"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="884a8206-a779-4184-9fc0-0c10d12aeeba"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="fa00a087-cc8f-46ed-a234-560f1a15058c"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TITLE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="0ee68501-932e-4c16-9980-a96a3da3c838"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Add a description here]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="0d774813-cfe7-4f11-8467-c9d80cb903e8"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="e019b243-1018-4417-92c4-98e3e952e4d2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="14ab4fd1-9baf-490e-8e3b-b20c9303055f"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[id_campus]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="138" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="48304623-eeb2-46f4-8d1f-b5bafdacd8e6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c8c527a1-9db0-4524-90d4-a0fd533ed053"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[id_institute]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="276" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="011df32f-0960-4a5b-a76f-d103fd0708ca">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7dc49c34-37e5-4399-a72b-c9cc81af1389"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COLUMN_4]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="414" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a0f3c757-17c5-40da-9af4-0419113bbf1f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5c272102-dc9e-40bd-bdbd-4a1c40b1aaa4"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COLUMN_5]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="b934ca6d-cfaf-4c64-9c5c-00c2f5500a6b"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="138" height="20" uuid="38ba08e7-e84f-4c1d-b01b-b3578112b86e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="14ab4fd1-9baf-490e-8e3b-b20c9303055f"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_campus}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="138" y="0" width="138" height="20" uuid="a202ad38-7fd1-4856-8969-474026a9c93d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c8c527a1-9db0-4524-90d4-a0fd533ed053"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_institute}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="276" y="0" width="138" height="20" uuid="b400eb42-2e5f-4324-bf27-d96b06017402">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7dc49c34-37e5-4399-a72b-c9cc81af1389"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COLUMN_4}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="414" y="0" width="138" height="20" uuid="e52ba606-8b11-4c19-bbba-10466438ca64">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5c272102-dc9e-40bd-bdbd-4a1c40b1aaa4"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COLUMN_5}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="ce6bc833-b2a6-4f4a-977a-9824f02fe2b9"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="b33d8ff0-387a-49b8-9f44-f16e16eae51e"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="707494ca-499c-4d1e-ba78-6d5702a15e33"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
