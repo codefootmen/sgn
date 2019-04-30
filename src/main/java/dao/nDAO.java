@@ -34,7 +34,7 @@ public class nDAO {
         factory.close();
         session.close();
 
-        return Optional.empty();
+        return Optional.of(entity);
     }
 
     public Optional update(Object entity) {

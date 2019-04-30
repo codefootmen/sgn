@@ -57,10 +57,10 @@ public class Period {
     }
 
     public static Period findOne(Long id) {
-        return (Period) DAO.findOne(id, Room.class);
+        return (Period) DAO.findOne(id, Period.class);
     }
 
     public static List<Object> findAll() {
-        return DAO.findAll(Room.class);
+        return DAO.findAll(Period.class);
     }
 }

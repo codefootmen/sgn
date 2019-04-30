@@ -44,16 +44,16 @@ public class RoomController extends Servlet {
 
         Optional<Room> r = Room.save(room);
 
-        for(int i = 0; i < 7; i++){
-            for(int j = 0; j < 11; j++){
-                Period p = new Period()
-                        .setDayOfTheWeek(String.valueOf(i))
-                        .setStart(String.valueOf(j))
-                        .setEnd(String.valueOf(j+1))
-                        .setIdRoom(r.get().getIdRoom());
-                Period.save(p);
-            }
-        }
+//        for(int i = 0; i < 7; i++){
+//            for(int j = 0; j < 11; j++){
+//                Period p = new Period()
+//                        .setDayOfTheWeek(String.valueOf(i))
+//                        .setStart(String.valueOf(j))
+//                        .setEnd(String.valueOf(j+1))
+//                        .setIdRoom(r.get().getIdRoom());
+//                Period.save(p);
+//            }
+//        }
 
 
         try {
