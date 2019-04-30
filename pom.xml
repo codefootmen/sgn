@@ -33,6 +33,12 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.38</version>
         </dependency>
+        <!-- Vo matar o jasper -->
+        <dependency>
+            <groupId>ar.com.fdvs</groupId>
+            <artifactId>DynamicJasper</artifactId>
+            <version>5.1.1</version>
+        </dependency>
 
 
     </dependencies>
