@@ -19,7 +19,7 @@ public class SubjectReport {
         FastReportBuilder drb = new FastReportBuilder();
         DynamicReport dr = drb
                 .addColumn("Name", "name", String.class.getName(), 30)
-                .addColumn("Quantity Of Credits", "quantityOfCredits", String.class.getName(), 30)
+                .addColumn("Quantity Of Credits", "quantityOfCredits", Integer.class.getName(), 30)
                 .setTitle("Subject")
                 .setSubtitle("This report was generated at " + new Date())
                 .setPrintBackgroundOnOddRows(true)
