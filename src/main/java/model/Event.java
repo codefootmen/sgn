@@ -34,11 +34,11 @@ public class Event {
     private Room room;
     private Long idRoom;
 
-    private static nDAO DAO = new nDAO();
+    private static dao.DAO DAO = new DAO();
 
     public Period getPeriod() {
         if (period == null) {
-            nDAO dao = new nDAO();
+            dao.DAO dao = new DAO();
             period = (Period) dao.findOne(idPeriod, Period.class);
         }
         return period;
@@ -54,7 +54,7 @@ public class Event {
 
     public Professor getProfessor() {
         if (professor == null) {
-            nDAO dao = new nDAO();
+            dao.DAO dao = new DAO();
             professor = (Professor) dao.findOne(idProfessor, Professor.class);
         }
         return professor;
@@ -70,7 +70,7 @@ public class Event {
 
     public Room getRoom() {
         if (room == null) {
-            nDAO dao = new nDAO();
+            dao.DAO dao = new DAO();
             room = (Room) dao.findOne(idRoom, Room.class);
         }
         return room;

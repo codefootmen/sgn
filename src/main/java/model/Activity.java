@@ -39,12 +39,12 @@ public class Activity {
     private Program program;
     private Long idProgram;
 
-    private static nDAO DAO = new nDAO();
+    private static dao.DAO DAO = new DAO();
 
 
     public Professor getProfessor() {
         if (professor == null) {
-            nDAO dao = new nDAO();
+            dao.DAO dao = new DAO();
             professor = (Professor) dao.findOne(idProfessor, Professor.class);
         }
         return professor;
@@ -60,7 +60,7 @@ public class Activity {
 
     public Department getDepartment() {
         if (department == null) {
-            nDAO dao = new nDAO();
+            dao.DAO dao = new DAO();
             department = (Department) dao.findOne(idDepartment, Department.class);
         }
         return department;
@@ -76,7 +76,7 @@ public class Activity {
 
     public Campus getCampus() {
         if (campus == null) {
-            nDAO dao = new nDAO();
+            dao.DAO dao = new DAO();
             campus = (Campus) dao.findOne(idCampus, Campus.class);
         }
         return campus;
@@ -92,7 +92,7 @@ public class Activity {
 
     public Institute getInstitute() {
         if (institute == null) {
-            nDAO dao = new nDAO();
+            dao.DAO dao = new DAO();
             institute = (Institute) dao.findOne(idInstitute, Institute.class);
         }
         return institute;
@@ -108,7 +108,7 @@ public class Activity {
 
     public Program getProgram() {
         if (program == null) {
-            nDAO dao = new nDAO();
+            dao.DAO dao = new DAO();
             program = (Program) dao.findOne(idProgram, Program.class);
         }
         return program;

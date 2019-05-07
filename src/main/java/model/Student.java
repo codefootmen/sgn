@@ -1,6 +1,6 @@
 package model;
 
-import dao.nDAO;
+import dao.DAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -23,7 +23,7 @@ public class Student extends Person {
     private Activity activity;
     private Long idActivity;
 
-    private static nDAO DAO = new nDAO();
+    private static dao.DAO DAO = new DAO();
 
     public Student setFirstName(String firstName) {
         this.firstName = firstName;
@@ -42,7 +42,7 @@ public class Student extends Person {
 
     public Activity getActivity() {
         if (activity == null) {
-            nDAO dao = new nDAO();
+            dao.DAO dao = new DAO();
             activity = (Activity) dao.findOne(idActivity, Activity.class);
         }
         return activity;

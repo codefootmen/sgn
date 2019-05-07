@@ -33,7 +33,7 @@ public class Program {
     @ManyToOne
     private Institute institute;
     private Long idInstitute;
-    private static nDAO DAO = new nDAO();
+    private static dao.DAO DAO = new DAO();
 
     public Program setAcademicLevel(String academicLevel) {
         this.academicLevel = AcademicLevelEnum.valueOf(academicLevel.toUpperCase());
@@ -42,7 +42,7 @@ public class Program {
 
     public Department getDepartment() {
         if (department == null) {
-            nDAO dao = new nDAO();
+            dao.DAO dao = new DAO();
             department = (Department) dao.findOne(idDepartment, Department.class);
         }
         return department;
@@ -58,7 +58,7 @@ public class Program {
 
     public Campus getCampus() {
         if (campus == null) {
-            nDAO dao = new nDAO();
+            dao.DAO dao = new DAO();
             campus = (Campus) dao.findOne(idCampus, Campus.class);
         }
         return campus;
@@ -74,7 +74,7 @@ public class Program {
 
     public Institute getInstitute() {
         if (institute == null) {
-            nDAO dao = new nDAO();
+            dao.DAO dao = new DAO();
             institute = (Institute) dao.findOne(idInstitute, Institute.class);
         }
         return institute;

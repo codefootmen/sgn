@@ -1,6 +1,6 @@
 package model;
 
-import dao.nDAO;
+import dao.DAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -26,11 +26,11 @@ public class Room {
     @ManyToOne
     private Building building;
     private Long idBuilding;
-    private static nDAO DAO = new nDAO();
+    private static dao.DAO DAO = new DAO();
 
     public RoomType getRoomType() {
         if (roomType == null) {
-            nDAO dao = new nDAO();
+            dao.DAO dao = new DAO();
             roomType = (RoomType) dao.findOne(idRoomType, RoomType.class);
         }
         return roomType;
@@ -46,7 +46,7 @@ public class Room {
 
     public Building getBuilding() {
         if (building == null) {
-            nDAO dao = new nDAO();
+            dao.DAO dao = new DAO();
             building = (Building) dao.findOne(idBuilding, Building.class);
         }
         return building;

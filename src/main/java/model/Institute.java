@@ -1,7 +1,7 @@
 package model;
 
 
-import dao.nDAO;
+import dao.DAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -23,7 +23,7 @@ public class Institute {
 
     private String name;
     private String site;
-    static private nDAO DAO = new nDAO();
+    static private dao.DAO DAO = new DAO();
 
     public static void delete(Long id){
         DAO.delete(new Institute().setIdInstitute(id));

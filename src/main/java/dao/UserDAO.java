@@ -11,34 +11,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class UserDAO implements DAO<User, Long> {
+public class UserDAO{
 
     public User authenticate(String login, String password){
         String sql = String.format("SELECT * FROM user WHERE login = '%s' AND password = '%s'", login.trim(), password.trim());
         return search(sql).get(0);
     }
 
-    @Override
     public Optional<User> save(User user) {
         return Optional.empty();
     }
 
-    @Override
     public User findOne(Long key) {
         return null;
     }
 
-    @Override
     public List<User> findAll() {
         return null;
     }
 
-    @Override
     public Optional<User> update(User user) {
         return Optional.empty();
     }
 
-    @Override
     public Boolean delete(Long key) {
         return null;
     }

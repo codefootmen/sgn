@@ -1,6 +1,6 @@
 package model;
 
-import dao.nDAO;
+import dao.DAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -19,7 +19,7 @@ public class RoomType {
     private Long idRoomType;
     private String name;
     private String description;
-    private static nDAO DAO = new nDAO();
+    private static dao.DAO DAO = new DAO();
 
     public static Optional<RoomType> save(RoomType roomtype) {
         return DAO.save(roomtype);

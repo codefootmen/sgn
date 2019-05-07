@@ -50,11 +50,11 @@ public class Course {
     private Professor professor;
     private Long idProfessor;
 
-    private static nDAO DAO = new nDAO();
+    private static dao.DAO DAO = new DAO();
 
     public Subject getSubject() {
         if(subject == null){
-            nDAO dao = new nDAO();
+            dao.DAO dao = new DAO();
             subject = (Subject) dao.findOne(idSubject, Subject.class);
         }
         return subject;
@@ -70,7 +70,7 @@ public class Course {
 
     public Program getProgram() {
         if (program == null) {
-            nDAO dao = new nDAO();
+            dao.DAO dao = new DAO();
             program = (Program) dao.findOne(idProgram, Program.class);
         }
         return program;
@@ -86,7 +86,7 @@ public class Course {
 
     public Department getDepartment() {
         if (department == null) {
-            nDAO dao = new nDAO();
+            dao.DAO dao = new DAO();
             department = (Department) dao.findOne(idDepartment, Department.class);
         }
         return department;
@@ -102,7 +102,7 @@ public class Course {
 
     public Campus getCampus() {
         if (campus == null) {
-            nDAO dao = new nDAO();
+            dao.DAO dao = new DAO();
             campus = (Campus) dao.findOne(idCampus, Campus.class);
         }
         return campus;
@@ -118,7 +118,7 @@ public class Course {
 
     public Institute getInstitute() {
         if (institute == null) {
-            nDAO dao = new nDAO();
+            dao.DAO dao = new DAO();
             institute = (Institute) dao.findOne(idInstitute, Institute.class);
         }
         return institute;
@@ -134,7 +134,7 @@ public class Course {
 
     public Period getPeriod() {
         if(period == null){
-            nDAO dao = new nDAO();
+            dao.DAO dao = new DAO();
             period = (Period) dao.findOne(idPeriod, Period.class);
         }
         return period;
@@ -150,7 +150,7 @@ public class Course {
 
     public Professor getProfessor() {
         if (professor == null) {
-            nDAO dao = new nDAO();
+            dao.DAO dao = new DAO();
             professor = (Professor) dao.findOne(idProfessor, Professor.class);
         }
         return professor;

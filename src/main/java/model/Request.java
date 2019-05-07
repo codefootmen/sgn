@@ -1,6 +1,6 @@
 package model;
 
-import dao.nDAO;
+import dao.DAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -26,7 +26,7 @@ public class Request {
     private Room room;
     private Long idRoom;
 
-    private static nDAO DAO = new nDAO();
+    private static dao.DAO DAO = new DAO();
 
     public Request setPriority(String priority) {
         this.priority = PriorityEnum.valueOf(priority.toUpperCase());
@@ -35,7 +35,7 @@ public class Request {
 
     public Room getRoom() {
         if (room == null) {
-            nDAO dao = new nDAO();
+            dao.DAO dao = new DAO();
             room = (Room) dao.findOne(idRoom, Room.class);
         }
         return room;

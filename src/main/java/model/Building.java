@@ -1,6 +1,6 @@
 package model;
 
-import dao.nDAO;
+import dao.DAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -29,11 +29,11 @@ public class Building {
     private Institute institute;
     private Long idInstitute;
 
-    private static nDAO DAO = new nDAO();
+    private static dao.DAO DAO = new DAO();
 
     public Campus getCampus() {
         if (campus == null) {
-            nDAO dao = new nDAO();
+            dao.DAO dao = new DAO();
             campus = (Campus) dao.findOne(idCampus, Campus.class);
         }
         return campus;
@@ -49,7 +49,7 @@ public class Building {
 
     public Institute getInstitute() {
         if (institute == null) {
-            nDAO dao = new nDAO();
+            dao.DAO dao = new DAO();
             institute = (Institute) dao.findOne(idInstitute, Institute.class);
         }
         return institute;

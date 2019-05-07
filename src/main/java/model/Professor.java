@@ -1,6 +1,6 @@
 package model;
 
-import dao.nDAO;
+import dao.DAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -19,7 +19,7 @@ public class Professor extends Person {
     private Long idProfessor;
     private StatusEnum status;
     private HonorificsEnum honorifics;
-    private static nDAO DAO = new nDAO();
+    private static dao.DAO DAO = new DAO();
 
 
     public Professor setFirstName(String firstName) {
