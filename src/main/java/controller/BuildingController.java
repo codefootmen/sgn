@@ -56,8 +56,8 @@ public class BuildingController extends Servlet {
                 .setQuantityOfBathrooms(quantityOfBathrooms)
                 .setElevator(elevator)
                 .setAccessibility(accessibility)
-                .setIdCampus(idCampus)
-                .setIdInstitute(idInstitute);
+                .setCampus(Campus.findOne(idCampus))
+                .setInstitute(Institute.findOne(idInstitute));
         Building.save(building);
 
         try {
@@ -82,8 +82,8 @@ public class BuildingController extends Servlet {
                 .setQuantityOfBathrooms(quantityOfBathrooms)
                 .setElevator(elevator)
                 .setAccessibility(accessibility)
-                .setIdCampus(idCampus)
-                .setIdInstitute(idInstitute);
+                .setCampus(Campus.findOne(idCampus))
+                .setInstitute(Institute.findOne(idInstitute));
         Building.update(building);
 
         try {

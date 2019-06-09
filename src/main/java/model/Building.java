@@ -23,45 +23,11 @@ public class Building {
 
     @ManyToOne
     private Campus campus;
-    private Long idCampus;
 
     @ManyToOne
     private Institute institute;
-    private Long idInstitute;
 
     private static dao.DAO DAO = new DAO();
-
-    public Campus getCampus() {
-        if (campus == null) {
-            dao.DAO dao = new DAO();
-            campus = (Campus) dao.findOne(idCampus, Campus.class);
-        }
-        return campus;
-    }
-
-    public Building setCampus(Campus campus) {
-        if (campus != null) {
-            this.idCampus = campus.getIdCampus();
-        }
-        this.campus = campus;
-        return this;
-    }
-
-    public Institute getInstitute() {
-        if (institute == null) {
-            dao.DAO dao = new DAO();
-            institute = (Institute) dao.findOne(idInstitute, Institute.class);
-        }
-        return institute;
-    }
-
-    public Building setInstitute(Institute institute) {
-        if (institute != null) {
-            this.idInstitute = institute.getIdInstitute();
-        }
-        this.institute = institute;
-        return this;
-    }
 
     public static void delete(Long id) {
         DAO.delete(new Building().setIdBuilding(id));
