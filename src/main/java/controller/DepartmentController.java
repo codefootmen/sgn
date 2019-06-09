@@ -1,6 +1,7 @@
 package controller;
 
 import model.*;
+import report.ProfessorReport;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
@@ -49,9 +50,9 @@ public class DepartmentController extends Servlet {
         Department department = new Department()
                 .setField(field)
                 .setDescription(description)
-                .setIdProfessor(idProfessor)
-                .setIdCampus(idCampus)
-                .setIdInstitute(idInstitute);
+                .setProfessor(Professor.findOne(idProfessor))
+                .setCampus(Campus.findOne(idCampus))
+                .setInstitute(Institute.findOne(idInstitute));
         Department.save(department);
 
         try {
@@ -73,9 +74,9 @@ public class DepartmentController extends Servlet {
                 .setIdDepartment(idDepartment)
                 .setField(field)
                 .setDescription(description)
-                .setIdProfessor(idProfessor)
-                .setIdCampus(idCampus)
-                .setIdInstitute(idInstitute);
+                .setProfessor(Professor.findOne(idProfessor))
+                .setCampus(Campus.findOne(idCampus))
+                .setInstitute(Institute.findOne(idInstitute));
         Department.update(department);
 
         try {
