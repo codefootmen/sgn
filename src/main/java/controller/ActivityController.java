@@ -75,11 +75,11 @@ public class ActivityController extends Servlet {
                 .setName(name)
                 .setArea(area)
                 .setActivityType(activityType)
-                .setIdProfessor(professor)
-                .setIdDepartment(department)
-                .setIdCampus(campus)
-                .setIdInstitute(institute)
-                .setIdProgram(program);
+                .setProfessor(Professor.findOne(professor))
+                .setDepartment(Department.findOne(department))
+                .setCampus(Campus.findOne(campus))
+                .setInstitute(Institute.findOne(institute))
+                .setProgram(Program.findOne(program));
         Activity.save(activity);
 
         try {
@@ -105,11 +105,11 @@ public class ActivityController extends Servlet {
                 .setName(name)
                 .setArea(area)
                 .setActivityType(activityType)
-                .setIdProfessor(professor)
-                .setIdDepartment(department)
-                .setIdCampus(campus)
-                .setIdInstitute(institute)
-                .setIdProgram(program);
+                .setProfessor(Professor.findOne(professor))
+                .setDepartment(Department.findOne(department))
+                .setCampus(Campus.findOne(campus))
+                .setInstitute(Institute.findOne(institute))
+                .setProgram(Program.findOne(program));
         Activity.update(activity);
 
         try {
