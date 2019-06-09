@@ -43,9 +43,9 @@ public class MeetingController extends Servlet {
                 .setTime(time)
                 .setAgenda(agenda)
                 .setMinutes(minutes)
-                .setIdCampus(idCampus)
-                .setIdInstitute(idInstitute)
-                .setIdDepartment(idDepartment);
+                .setCampus(Campus.findOne(idCampus))
+                .setInstitute(Institute.findOne(idInstitute))
+                .setDepartment(Department.findOne(idDepartment));
         Meeting.save(meeting);
 
         try {
@@ -71,9 +71,9 @@ public class MeetingController extends Servlet {
                 .setTime(time)
                 .setAgenda(agenda)
                 .setMinutes(minutes)
-                .setIdCampus(idCampus)
-                .setIdInstitute(idInstitute)
-                .setIdDepartment(idDepartment);
+                .setCampus(Campus.findOne(idCampus))
+                .setInstitute(Institute.findOne(idInstitute))
+                .setDepartment(Department.findOne(idDepartment));
         Meeting.update(meeting);
 
         try {
