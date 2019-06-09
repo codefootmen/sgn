@@ -24,25 +24,9 @@ public class Period {
 
     @ManyToOne
     private Room room;
-    private Long idRoom;
 
     private static dao.DAO DAO = new DAO();
 
-    public Room getRoom() {
-        if (room == null) {
-            dao.DAO dao = new DAO();
-            room = (Room) dao.findOne(idRoom, Room.class);
-        }
-        return room;
-    }
-
-    public Period setRoom(Room room) {
-        if (room != null) {
-            idRoom = room.getIdRoom();
-        }
-        this.room = room;
-        return this;
-    }
 
     public static Optional<Period> save(Period period) {
         return DAO.save(period);

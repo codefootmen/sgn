@@ -28,24 +28,7 @@ public class Campus {
     @ManyToOne
     private Institute institute;
 
-    private Long idInstitute;
     private static dao.DAO DAO = new DAO();
-
-    public Institute getInstitute() {
-        if (institute == null) {
-            dao.DAO dao = new DAO();
-            institute = (Institute) dao.findOne(idInstitute, Institute.class);
-        }
-        return institute;
-    }
-
-    public Campus setInstitute(Institute institute) {
-        if (institute != null) {
-            this.idInstitute = institute.getIdInstitute();
-        }
-        this.institute = institute;
-        return this;
-    }
 
     public static void delete(Long id){
         DAO.delete(new Campus().setIdCampus(id));

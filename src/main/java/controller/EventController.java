@@ -39,9 +39,9 @@ public class EventController extends Servlet {
         Event event = new Event()
                 .setName(name)
                 .setDate(date)
-                .setIdPeriod(idPeriod)
-                .setIdProfessor(idProfessor)
-                .setIdRoom(idRoom);
+                .setPeriod(Period.findOne(idPeriod))
+                .setProfessor(Professor.findOne(idProfessor))
+                .setRoom(Room.findOne(idRoom));
         Event.save(event);
 
         try {
@@ -63,9 +63,9 @@ public class EventController extends Servlet {
                 .setIdEvent(idEvent)
                 .setName(name)
                 .setDate(date)
-                .setIdPeriod(idPeriod)
-                .setIdProfessor(idProfessor)
-                .setIdRoom(idRoom);
+                .setPeriod(Period.findOne(idPeriod))
+                .setProfessor(Professor.findOne(idProfessor))
+                .setRoom(Room.findOne(idRoom));
         Event.update(event);
 
         try {

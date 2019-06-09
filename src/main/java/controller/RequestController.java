@@ -42,7 +42,7 @@ public class RequestController extends Servlet {
                 .setMotive(motive)
                 .setDescription(description)
                 .setPriority(priority)
-                .setIdRoom(idRoom);
+                .setRoom(Room.findOne(idRoom));
         Request.save(systemRequest);
 
         try {
@@ -64,7 +64,7 @@ public class RequestController extends Servlet {
                 .setMotive(motive)
                 .setDescription(description)
                 .setPriority(priority)
-                .setIdRoom(idRoom);
+                .setRoom(Room.findOne(idRoom));
         systemRequest.update(systemRequest);
 
         try {

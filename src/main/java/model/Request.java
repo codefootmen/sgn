@@ -24,7 +24,6 @@ public class Request {
 
     @ManyToOne
     private Room room;
-    private Long idRoom;
 
     private static dao.DAO DAO = new DAO();
 
@@ -33,21 +32,6 @@ public class Request {
         return this;
     }
 
-    public Room getRoom() {
-        if (room == null) {
-            dao.DAO dao = new DAO();
-            room = (Room) dao.findOne(idRoom, Room.class);
-        }
-        return room;
-    }
-
-    public Request setRoom(Room room) {
-        if (room != null) {
-            idRoom = room.getIdRoom();
-        }
-        this.room = room;
-        return this;
-    }
 
     public static Optional<Request> save(Request request) { return DAO.save(request); }
 

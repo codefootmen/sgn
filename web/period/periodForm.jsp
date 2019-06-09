@@ -27,7 +27,7 @@
                         <select name="idRoom">
                             <c:forEach items="${rooms}" var="room">
                                 <option value="${room.getIdRoom()}" <c:if
-                                        test="${period.getIdRoom() == room.getIdRoom()}"> selected </c:if> >${room.getNumber()}</option>
+                                        test="${period.getRoom().getIdRoom() == room.getIdRoom()}"> selected </c:if> >${room.getNumber()}</option>
                             </c:forEach>
                         </select>
                     </div>

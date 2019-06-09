@@ -12,6 +12,7 @@ import java.util.Optional;
 @Accessors(chain = true)
 @Entity
 public class Department {
+
     @Id
     @GeneratedValue
     private Long idDepartment;
@@ -21,65 +22,14 @@ public class Department {
 
     @ManyToOne
     private Campus campus;
-    private Long idCampus;
 
     @ManyToOne
     private Institute institute;
-    private Long idInstitute;
 
     @ManyToOne
     private Professor professor;
-    private Long idProfessor;
 
     private static dao.DAO DAO = new DAO();
-
-    public Campus getCampus() {
-        if (campus == null) {
-            dao.DAO dao = new DAO();
-            campus = (Campus) dao.findOne(idCampus, Campus.class);
-        }
-        return campus;
-    }
-
-    public Department setCampus(Campus campus) {
-        if(campus != null){
-            this.idCampus = campus.getIdCampus();
-        }
-        this.campus = campus;
-        return this;
-    }
-
-    public Institute getInstitute() {
-        if (institute == null) {
-            dao.DAO dao = new DAO();
-            institute = (Institute) dao.findOne(idInstitute, Institute.class);
-        }
-        return institute;
-    }
-
-    public Department setInstitute(Institute institute) {
-        if(institute != null){
-            this.idInstitute = institute.getIdInstitute();
-        }
-        this.institute = institute;
-        return this;
-    }
-
-    public Professor getProfessor() {
-        if (professor == null) {
-            dao.DAO dao = new DAO();
-            professor = (Professor) dao.findOne(idProfessor, Professor.class);
-        }
-        return professor;
-    }
-
-    public Department setProfessor(Professor professor) {
-        if (professor != null){
-            this.idProfessor = professor.getIdProfessor();
-        }
-        this.professor = professor;
-        return this;
-    }
 
     public static void delete(Long id){
         DAO.delete(new Department().setIdDepartment(id));

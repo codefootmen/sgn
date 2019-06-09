@@ -48,7 +48,7 @@ public class CampusController extends Servlet {
                 .setState(state)
                 .setTelephone(telephone)
                 .setZip(zip)
-                .setIdInstitute(institute);
+                .setInstitute(Institute.findOne(institute));
         Campus.save(campus);
 
         try {
@@ -78,7 +78,7 @@ public class CampusController extends Servlet {
                 .setState(state)
                 .setTelephone(telephone)
                 .setZip(zip)
-                .setIdInstitute(idInstitute);
+                .setInstitute(Institute.findOne(idInstitute));
         Campus.update(campus);
 
         try {
