@@ -66,7 +66,7 @@
                         <select name="idInstitute">
                             <c:forEach items="${institutes}" var="inst">
                                 <option value="${inst.getIdInstitute()}" <c:if
-                                        test="${inst.getIdInstitute() == campus.getIdInstitute()}"> selected</c:if>> ${inst.getName()}</option>
+                                        test="${inst.getIdInstitute() == campus.getInstitute().getIdInstitute()}"> selected</c:if>> ${inst.getName()}</option>
                             </c:forEach>
                         </select>
                     </div>
