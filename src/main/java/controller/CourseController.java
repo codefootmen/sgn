@@ -1,6 +1,7 @@
 package controller;
 
 import model.*;
+import report.ProfessorReport;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
@@ -47,13 +48,13 @@ public class CourseController extends Servlet {
         Course course = new Course()
                 .setSemester(semester)
                 .setYear(year)
-                .setIdSubject(idSubject)
-                .setIdProgram(idProgram)
-                .setIdDepartment(idDepartment)
-                .setIdCampus(idCampus)
-                .setIdInstitute(idInstitute)
-                .setIdPeriod(idPeriod)
-                .setIdProfessor(idProfessor);
+                .setSubject(Subject.findOne(idSubject))
+                .setProgram(Program.findOne(idProgram))
+                .setDepartment(Department.findOne(idDepartment))
+                .setCampus(Campus.findOne(idCampus))
+                .setInstitute(Institute.findOne(idInstitute))
+                .setPeriod(Period.findOne(idPeriod))
+                .setProfessor(Professor.findOne(idProfessor));
         Course.save(course);
 
         try {
@@ -79,13 +80,13 @@ public class CourseController extends Servlet {
                 .setIdCourse(id)
                 .setSemester(semester)
                 .setYear(year)
-                .setIdSubject(idSubject)
-                .setIdProgram(idProgram)
-                .setIdDepartment(idDepartment)
-                .setIdCampus(idCampus)
-                .setIdInstitute(idInstitute)
-                .setIdPeriod(idPeriod)
-                .setIdProfessor(idProfessor);
+                .setSubject(Subject.findOne(idSubject))
+                .setProgram(Program.findOne(idProgram))
+                .setDepartment(Department.findOne(idDepartment))
+                .setCampus(Campus.findOne(idCampus))
+                .setInstitute(Institute.findOne(idInstitute))
+                .setPeriod(Period.findOne(idPeriod))
+                .setProfessor(Professor.findOne(idProfessor));
         Course.update(course);
 
         try {
