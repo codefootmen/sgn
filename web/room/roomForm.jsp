@@ -26,7 +26,7 @@
                             <select name="roomType">
                                 <c:forEach items="${roomTypes}" var="roomType">
                                     <option value="${roomType.getIdRoomType()}"
-                                            <c:if test="${room.getIdRoomType() == roomType.getIdRoomType()}"> selected </c:if>> ${roomType.getName()}
+                                            <c:if test="${room.getRoomType().getIdRoomType() == roomType.getIdRoomType()}"> selected </c:if>> ${roomType.getName()}
                                     </option>
                                 </c:forEach>
                             </select>
@@ -40,7 +40,7 @@
                             <select name="building">
                                 <c:forEach items="${buildings}" var="building">
                                     <option value="${building.getIdBuilding()}" <c:if
-                                            test="${room.getIdBuilding() == building.getIdBuilding()}"> selected </c:if>>
+                                            test="${room.getBuilding().getIdBuilding() == building.getIdBuilding()}"> selected </c:if>>
                                             ${building.getName()}</option>
                                 </c:forEach>
                             </select>

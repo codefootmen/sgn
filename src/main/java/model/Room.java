@@ -21,44 +21,11 @@ public class Room {
 
     @ManyToOne
     private RoomType roomType;
-    private Long idRoomType;
 
     @ManyToOne
     private Building building;
-    private Long idBuilding;
+
     private static dao.DAO DAO = new DAO();
-
-    public RoomType getRoomType() {
-        if (roomType == null) {
-            dao.DAO dao = new DAO();
-            roomType = (RoomType) dao.findOne(idRoomType, RoomType.class);
-        }
-        return roomType;
-    }
-
-    public Room setRoomType(RoomType roomType) {
-        if (roomType != null) {
-            this.idRoomType = roomType.getIdRoomType();
-        }
-        this.roomType = roomType;
-        return this;
-    }
-
-    public Building getBuilding() {
-        if (building == null) {
-            dao.DAO dao = new DAO();
-            building = (Building) dao.findOne(idBuilding, Building.class);
-        }
-        return building;
-    }
-
-    public Room setBuilding(Building building) {
-        if (building != null) {
-            idBuilding = building.getIdBuilding();
-        }
-        this.building = building;
-        return this;
-    }
 
     public static Optional<Room> save(Room room) {
         return DAO.save(room);
