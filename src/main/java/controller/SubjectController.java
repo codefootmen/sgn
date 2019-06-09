@@ -44,11 +44,11 @@ public class SubjectController extends Servlet {
         Subject subject = new Subject()
                 .setName(name)
                 .setQuantityOfCredits(quantityOfCredits)
-                .setIdRoomType(idRoomType)
-                .setIdProgram(idProgram)
-                .setIdDepartment(idDepartment)
-                .setIdCampus(idCampus)
-                .setIdInstitute(idInstitute);
+                .setRoomType(RoomType.findOne(idRoomType))
+                .setProgram(Program.findOne(idProgram))
+                .setDepartment(Department.findOne(idDepartment))
+                .setCampus(Campus.findOne(idCampus))
+                .setInstitute(Institute.findOne(idInstitute));
         Subject.save(subject);
 
         try {
@@ -72,11 +72,11 @@ public class SubjectController extends Servlet {
                 .setIdSubject(id)
                 .setName(name)
                 .setQuantityOfCredits(quantityOfCredits)
-                .setIdRoomType(idRoomType)
-                .setIdProgram(idProgram)
-                .setIdDepartment(idDepartment)
-                .setIdCampus(idCampus)
-                .setIdInstitute(idInstitute);
+                .setRoomType(RoomType.findOne(idRoomType))
+                .setProgram(Program.findOne(idProgram))
+                .setDepartment(Department.findOne(idDepartment))
+                .setCampus(Campus.findOne(idCampus))
+                .setInstitute(Institute.findOne(idInstitute));
         Subject.update(subject);
 
         try {
