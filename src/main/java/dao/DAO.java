@@ -96,4 +96,35 @@ public class DAO {
         return meta.getSessionFactoryBuilder().build();
     }
 
+
+
+    public User authenticate(String login, String password) {
+
+        String sql = String.format("SELECT * FROM user WHERE login = '%s' AND password = '%s'", login.trim(), password.trim());
+        return search(sql).get(0);
+    }
+
+    private User fromResultSet(ResultSet result) throws SQLException {
+        return new User()
+                .setIdUser(result.getLong("id_user"))
+                .setLogin(result.getString("login"))
+                .setAccessLevel(result.getString("access_level"));
+    }
+
+    private List<User> search(String sql) {
+        Connection connection = Database.getConnection();
+        PreparedStatement statement = null;
+        List<User> list = new ArrayList<>();
+        try {
+            statement = connection.prepareStatement(sql);
+            try (ResultSet result = statement.executeQuery()) {
+                while (result.next()) list.add(fromResultSet(result));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Database.closeConnection(connection, statement);
+        return list;
+    }
+
 }
