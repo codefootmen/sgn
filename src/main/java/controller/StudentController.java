@@ -40,7 +40,7 @@ public class StudentController extends Servlet {
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setEmail(email)
-                .setIdActivity(idActivity);
+                .setActivity(Activity.findOne(idActivity));
         Student.save(student);
 
         try {
@@ -62,7 +62,7 @@ public class StudentController extends Servlet {
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setEmail(email)
-                .setIdActivity(idActivity);
+                .setActivity(Activity.findOne(idActivity));
         Student.update(student);
 
         try {

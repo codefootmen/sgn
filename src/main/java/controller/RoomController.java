@@ -39,8 +39,8 @@ public class RoomController extends Servlet {
         Room room = new Room()
                 .setNumber(number)
                 .setQuantityOfSeats(quantityOfSeats)
-                .setIdRoomType(roomType)
-                .setIdBuilding(building);
+                .setRoomType(RoomType.findOne(roomType))
+                .setBuilding(Building.findOne(building));
 
         Optional<Room> r = Room.save(room);
 
@@ -74,8 +74,8 @@ public class RoomController extends Servlet {
                 .setIdRoom(id)
                 .setNumber(number)
                 .setQuantityOfSeats(quantityOfSeats)
-                .setIdRoomType(roomType)
-                .setIdBuilding(building);
+                .setRoomType(RoomType.findOne(roomType))
+                .setBuilding(Building.findOne(building));
         Room.update(room);
 
         try {

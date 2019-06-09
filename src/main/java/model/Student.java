@@ -21,7 +21,6 @@ public class Student extends Person {
 
     @ManyToOne
     private Activity activity;
-    private Long idActivity;
 
     private static dao.DAO DAO = new DAO();
 
@@ -37,22 +36,6 @@ public class Student extends Person {
 
     public Student setEmail(String email) {
         this.email = email;
-        return this;
-    }
-
-    public Activity getActivity() {
-        if (activity == null) {
-            dao.DAO dao = new DAO();
-            activity = (Activity) dao.findOne(idActivity, Activity.class);
-        }
-        return activity;
-    }
-
-    public Student setActivity(Activity activity) {
-        if (activity != null) {
-            idActivity = activity.getIdActivity();
-        }
-        this.activity = activity;
         return this;
     }
 
