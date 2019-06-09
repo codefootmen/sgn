@@ -40,10 +40,10 @@ public class ProgramController extends Servlet {
         Long idInstitute = Long.valueOf(request.getParameter("idInstitute"));
         Program program = new Program()
                 .setName(name)
-                .setIdDepartment(idDepartment)
+                .setDepartment(Department.findOne(idDepartment))
                 .setAcademicLevel(academicLevel)
-                .setIdCampus(idCampus)
-                .setIdInstitute(idInstitute);
+                .setCampus(Campus.findOne(idCampus))
+                .setInstitute(Institute.findOne(idInstitute));
         Program.save(program);
 
         try {
@@ -64,10 +64,10 @@ public class ProgramController extends Servlet {
         Program program = new Program()
                 .setIdProgram(idProgram)
                 .setName(name)
-                .setIdDepartment(idDepartment)
+                .setDepartment(Department.findOne(idDepartment))
                 .setAcademicLevel(academicLevel)
-                .setIdCampus(idCampus)
-                .setIdInstitute(idInstitute);
+                .setCampus(Campus.findOne(idCampus))
+                .setInstitute(Institute.findOne(idInstitute));
         Program.update(program);
 
         try {
