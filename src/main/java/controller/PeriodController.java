@@ -39,7 +39,7 @@ public class PeriodController extends Servlet {
         Period period = new Period()
                 .setStart(start)
                 .setEnd(end)
-                .setIdRoom(idRoom)
+                .setRoom(Room.findOne(idRoom))
                 .setDayOfTheWeek(dayOfTheWeek);
         Period.save(period);
 
@@ -61,7 +61,7 @@ public class PeriodController extends Servlet {
                 .setIdPeriod(idPeriod)
                 .setStart(start)
                 .setEnd(end)
-                .setIdRoom(idRoom)
+                .setRoom(Room.findOne(idRoom))
                 .setDayOfTheWeek(dayOfTheWeek);
         Period.save(period);
 
