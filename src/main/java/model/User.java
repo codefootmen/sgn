@@ -4,9 +4,6 @@ import dao.DAO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;

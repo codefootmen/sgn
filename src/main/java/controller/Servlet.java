@@ -31,34 +31,39 @@ public abstract class Servlet extends HttpServlet {
 
     public abstract void delete(HttpServletRequest request, HttpServletResponse response);
 
+
     protected Boolean authenticate(HttpServletRequest request){
+        Boolean isValid = false;
+
         if(getRequiredAccessLevel() == NONE){
-            return true;
+            isValid = true;
         }
         if(request.getSession().getAttribute("access_level") == null){
-            return false;
+            isValid = false;
         }
+
         switch (AccessLevelEnum.valueOf(request.getSession().getAttribute("access_level").toString()))
         {
             case ADMIN:
-                return true;
+                isValid = true;
             case HEAD:
                 if(getRequiredAccessLevel() != ADMIN){
-                    return true;
+                    isValid = true;
                 }else {
-                    return false;
+                    isValid = false;
                 }
             case PROFESSOR:
                 if(getRequiredAccessLevel() == PROFESSOR){
-                    return true;
+                    isValid = true;
                 }else {
-                    return false;
+                    isValid = false;
                 }
-
         }
 
-        return false;
+        return isValid;
     }
+
+
 
     protected void handleRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
