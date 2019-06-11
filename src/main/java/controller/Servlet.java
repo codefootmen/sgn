@@ -33,36 +33,15 @@ public abstract class Servlet extends HttpServlet {
 
 
     protected Boolean authenticate(HttpServletRequest request){
-        Boolean isValid = false;
 
-        if(getRequiredAccessLevel() == NONE){
-            isValid = true;
-        }
-        if(request.getSession().getAttribute("access_level") == null){
-            isValid = false;
+        AccessLevelEnum currentAccessLevel = AccessLevelEnum.valueOf(request.getSession().getAttribute("access_level").toString());
+
+        if(currentAccessLevel.ordinal() <= getRequiredAccessLevel().ordinal()){
+            return true;
         }
 
-        switch (AccessLevelEnum.valueOf(request.getSession().getAttribute("access_level").toString()))
-        {
-            case ADMIN:
-                isValid = true;
-            case HEAD:
-                if(getRequiredAccessLevel() != ADMIN){
-                    isValid = true;
-                }else {
-                    isValid = false;
-                }
-            case PROFESSOR:
-                if(getRequiredAccessLevel() == PROFESSOR){
-                    isValid = true;
-                }else {
-                    isValid = false;
-                }
-        }
-
-        return isValid;
+        return false;
     }
-
 
 
     protected void handleRequest(HttpServletRequest request, HttpServletResponse response)
