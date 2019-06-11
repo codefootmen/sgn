@@ -32,16 +32,14 @@ public abstract class Servlet extends HttpServlet {
     public abstract void delete(HttpServletRequest request, HttpServletResponse response);
 
 
-    protected Boolean authenticate(HttpServletRequest request){
+    protected Boolean authenticate(HttpServletRequest request) {
 
         AccessLevelEnum currentAccessLevel = AccessLevelEnum.valueOf(request.getSession().getAttribute("access_level").toString());
 
-        if(currentAccessLevel.ordinal() <= getRequiredAccessLevel().ordinal()){
-            return true;
-        }
+        return (currentAccessLevel.ordinal() <= getRequiredAccessLevel().ordinal());
 
-        return false;
     }
+
 
 
     protected void handleRequest(HttpServletRequest request, HttpServletResponse response)
