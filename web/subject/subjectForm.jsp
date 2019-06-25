@@ -25,7 +25,7 @@
                             <div class="select">
                                 <select name="idRoomType">
                                     <c:forEach items="${roomTypes}" var="roomType">
-                                        <option value="${roomType.getIdRoomType()}"
+                                        <option value="${roomType.getRoomType().getIdRoomType()}"
                                                 <c:if test="${subject.getRoomType().getName() == roomType.getName()}"> selected </c:if>> ${roomType.getName()}
                                         </option>
                                     </c:forEach>
@@ -39,7 +39,7 @@
                             <div class="select">
                                 <select name="idProgram">
                                     <c:forEach items="${programs}" var="pro">
-                                        <option value="${pro.getIdProgram()}" <c:if
+                                        <option value="${pro.getProgram().getIdProgram()}" <c:if
                                                 test="${subject.getProgram().getIdProgram() == pro.getIdProgram()}"> selected </c:if>>
                                                 ${pro.getName()}</option>
                                     </c:forEach>
@@ -53,7 +53,7 @@
                             <div class="select">
                                 <select name="idDepartment">
                                     <c:forEach items="${departments}" var="depart">
-                                        <option value="${depart.getIdDepartment()}" <c:if
+                                        <option value="${depart.getDepartment().getIdDepartment()}" <c:if
                                                 test="${subject.getIdDepartment() == depart.getIdDepartment()}"> selected </c:if>> ${depart.getField()}</option>
                                     </c:forEach>
                                 </select>
@@ -70,7 +70,7 @@
                             <div class="select">
                                 <select name="idCampus">
                                     <c:forEach items="${campi}" var="camp">
-                                        <option value="${camp.getIdCampus()}" <c:if
+                                        <option value="${camp.getCampus().getIdCampus()}" <c:if
                                                 test="${subject.getIdCampus() == camp.getIdCampus()}"> selected </c:if>> ${camp.getName()}</option>
                                     </c:forEach>
                                 </select>

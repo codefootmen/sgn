@@ -32,7 +32,7 @@
                                 <select name="idSubject">
                                     <c:forEach items="${subjects}" var="subj">
                                         <option value="${subj.getIdSubject()}" <c:if
-                                                test="${course.getIdSubject() == subj.getIdSubject()}"> selected </c:if> >${subj.getName()}</option>
+                                                test="${course.getSubject().getIdSubject() == subj.getIdSubject()}"> selected </c:if> >${subj.getName()}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -46,7 +46,7 @@
                                 <select name="idProgram">
                                     <c:forEach items="${programs}" var="prog">
                                         <option value="${prog.getIdProgram()}" <c:if
-                                                test="${course.getIdProgram() == prog.getIdProgram()}"> selected </c:if> > ${prog.getName()}</option>
+                                                test="${course.getProgram().getIdProgram() == prog.getIdProgram()}"> selected </c:if> > ${prog.getName()}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -60,7 +60,7 @@
                                 <select name="idDepartment">
                                     <c:forEach items="${departments}" var="depart">
                                         <option value="${depart.getIdDepartment()}" <c:if
-                                                test="${course.getIdDepartment() == depart.getIdDepartment()}"> selected </c:if>>${depart.getField()}</option>
+                                                test="${course.getDepartment().getIdDepartment() == depart.getIdDepartment()}"> selected </c:if>>${depart.getField()}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -74,7 +74,7 @@
                                 <select name="idCampus">
                                     <c:forEach items="${campi}" var="camp">
                                         <option value="${camp.getIdCampus()}" <c:if
-                                                test="${course.getIdCampus() == camp.getIdCampus()}"> selected </c:if> > ${camp.getName()}</option>
+                                                test="${course.getCampus().getIdCampus() == camp.getIdCampus()}"> selected </c:if> > ${camp.getName()}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -91,7 +91,7 @@
                                 <select name="idInstitute">
                                     <c:forEach items="${institutes}" var="inst">
                                         <option value="${inst.getIdInstitute()}"<c:if
-                                                test="${course.getIdInstitute() == inst.getIdInstitute()}"> selected </c:if>>${inst.getName()}</option>
+                                                test="${course.getInstitute().getIdInstitute() == inst.getIdInstitute()}"> selected </c:if>>${inst.getName()}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -105,7 +105,7 @@
                                 <select name="idPeriod">
                                     <c:forEach items="${periods}" var="per">
                                         <option value="${per.getIdPeriod()}" <c:if
-                                                test="${course.getIdPeriod() == per.getIdPeriod()}"> selected </c:if>>${per.getStart()}
+                                                test="${course.getPeriod().getIdPeriod() == per.getIdPeriod()}"> selected </c:if>>${per.getStart()}
                                             - ${per.getEnd()}</option>
                                     </c:forEach>
                                 </select>

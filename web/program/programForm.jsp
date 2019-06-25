@@ -18,7 +18,7 @@
                         <select name="idDepartment">
                             <c:forEach items="${departments}" var="dep">
                                 <option value="${dep.getIdDepartment()}"
-                                        <c:if test="${program.getIdDepartment() == dep.getIdDepartment()}">selected </c:if> >${dep.getField()}</option>
+                                        <c:if test="${program.getDepartment().getIdDepartment() == dep.getIdDepartment()}">selected </c:if> >${dep.getField()}</option>
                             </c:forEach>
                         </select>
                     </div>
@@ -46,7 +46,7 @@
                         <select name="idCampus">
                             <c:forEach items="${campi}" var="campus">
                                 <option value="${campus.getIdCampus()}"
-                                        <c:if test="${program.getIdCampus() == campus.getIdCampus()}">selected </c:if> >${campus.getName()}</option>
+                                        <c:if test="${program.getCampus().getIdCampus() == campus.getIdCampus()}">selected </c:if> >${campus.getName()}</option>
                             </c:forEach>
                         </select>
                     </div>
@@ -60,7 +60,7 @@
                         <select name="idInstitute">
                             <c:forEach items="${institutes}" var="inst">
                                 <option value="${inst.getIdInstitute()}"
-                                        <c:if test="${program.getIdInstitute() == inst.getIdInstitute()}">selected </c:if> >${inst.getName()}</option>
+                                        <c:if test="${program.getInstitute().getIdInstitute() == inst.getIdInstitute()}">selected </c:if> >${inst.getName()}</option>
                             </c:forEach>
                         </select>
                     </div>

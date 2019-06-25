@@ -40,7 +40,7 @@
                                 <select name="idDepartment">
                                     <c:forEach items="${departments}" var="dept">
                                         <option value="${dept.getIdDepartment()}" <c:if
-                                                test="${meeting.getIdDepartment() == dept.getIdDepartment()}"> selected </c:if> >${dept.getField()}</option>
+                                                test="${meeting.getDepartment().getIdDepartment() == dept.getIdDepartment()}"> selected </c:if> >${dept.getField()}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -53,7 +53,7 @@
                                 <select name="idCampus">
                                     <c:forEach items="${campi}" var="cam">
                                         <option value="${cam.getIdCampus()}"
-                                                <c:if test="${meeting.getIdCampus() == cam.getIdCampus()}">selected </c:if> >${cam.getName()}</option>
+                                                <c:if test="${meeting.getCampus().getIdCampus() == cam.getIdCampus()}">selected </c:if> >${cam.getName()}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -66,7 +66,7 @@
                                 <select name="idInstitute">
                                     <c:forEach items="${institutes}" var="inst">
                                         <option value="${inst.getIdInstitute()}" <c:if
-                                                test="${meeting.getIdInstitute() == inst.getIdInstitute()}"> selected </c:if> >${inst.getName()}</option>
+                                                test="${meeting.getInstitute().getIdInstitute() == inst.getIdInstitute()}"> selected </c:if> >${inst.getName()}</option>
                                     </c:forEach>
                                 </select>
                             </div>

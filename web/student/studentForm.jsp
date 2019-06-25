@@ -32,7 +32,7 @@
                             <select name="activity">
                                 <c:forEach items="${activities}" var="activity">
                                     <option value="${activity.getIdActivity()}"
-                                            <c:if test="${activity.getIdActivity() == student.getIdActivity()}"> selected </c:if>> ${activity.getName()}
+                                            <c:if test="${activity.getIdActivity() == student.getActivity().getIdActivity()}"> selected </c:if>> ${activity.getName()}
                                     </option>
                                 </c:forEach>
                             </select>

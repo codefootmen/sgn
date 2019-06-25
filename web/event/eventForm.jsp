@@ -29,7 +29,7 @@
                                 <select name="idPeriod">
                                     <c:forEach items="${periods}" var="period">
                                         <option value="${period.getIdPeriod()}" <c:if
-                                                test="${event.getIdPeriod() == period.getIdPeriod()}"> selected </c:if> >${period.getStart()} </option>
+                                                test="${event.getPeriod().getIdPeriod() == period.getIdPeriod()}"> selected </c:if> >${period.getStart()} </option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -43,7 +43,7 @@
                                 <select name="idProfessor">
                                     <c:forEach items="${professors}" var="prof">
                                         <option value="${prof.getIdProfessor()}" <c:if
-                                                test="${event.getIdProfessor() == prof.getIdProfessor()}"> selected </c:if> >${prof.getFirstName()}</option>
+                                                test="${event.getProfessor().getIdProfessor() == prof.getIdProfessor()}"> selected </c:if> >${prof.getFirstName()}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -57,7 +57,7 @@
                                 <select name="idRoom">
                                     <c:forEach items="${rooms}" var="room">
                                         <option value="${room.getIdRoom()}" <c:if
-                                                test="${event.getIdRoom() == room.getIdRoom()}"> selected </c:if> >${room.getNumber()}</option>
+                                                test="${event.getRoom().getIdRoom() == room.getIdRoom()}"> selected </c:if> >${room.getNumber()}</option>
                                     </c:forEach>
                                 </select>
                             </div>
