@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="sgn" target="8" />
+      <module name="sgn" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
