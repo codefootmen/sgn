@@ -26,7 +26,6 @@
     <mapping class="model.Request"/>
     <mapping class="model.Student"/>
     <mapping class="model.Subject"/>
-
     <!-- DB schema will be updated if needed -->
   </session-factory>
 </hibernate-configuration>

@@ -1,8 +1,6 @@
 <component name="libraryTable">
   <library name="jdbc">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/jdbc.jar!/" />
-    </CLASSES>
+    <CLASSES />
     <JAVADOC />
     <SOURCES />
   </library>

@@ -48,7 +48,7 @@ public class DAO {
         factory.close();
         session.close();
 
-        return Optional.empty();
+        return Optional.of(entity);
     }
 
     public Object findOne(Long key, Class c){
