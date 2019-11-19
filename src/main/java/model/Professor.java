@@ -33,7 +33,11 @@ public class Professor extends Person {
     }
 
     public Professor setEmail(String email) {
-        this.email = email;
+        if(this.isValidEmail(email)){
+            this.email = email;
+            return this;
+        }
+
         return this;
     }
 
@@ -45,6 +49,37 @@ public class Professor extends Person {
     public Professor setHonorifics(String honorifics) {
         this.honorifics = HonorificsEnum.valueOf(honorifics.toUpperCase());
         return this;
+    }
+
+    public boolean isValidEmail(String email){
+        if (!email.contains("@"))
+            return false;
+
+        if (!email.contains(".com"))
+            return false;
+
+        if (email.contains("#"))
+            return false;
+
+        if (email.contains("!"))
+            return false;
+
+        if (email.contains("\""))
+            return false;
+
+        if (email.contains(";"))
+            return false;
+
+        if (email.length() > 255)
+            return false;
+
+        if (email.length() <= 7)
+            return false;
+
+        if(!email.matches(".+@.+\\.com?.+"))
+            return false;
+
+        return true;
     }
 
 

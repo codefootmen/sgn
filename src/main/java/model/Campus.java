@@ -42,7 +42,7 @@ public class Campus {
         return DAO.findAll(Campus.class);
     }
 
-    public static Optional<Campus> save(Campus campus){return DAO.save(campus); }
+    public static Optional<Campus> save(Campus campus) { return DAO.save(campus); }
 
     public static Optional<Campus> update(Campus campus) {
         return DAO.update(campus);
